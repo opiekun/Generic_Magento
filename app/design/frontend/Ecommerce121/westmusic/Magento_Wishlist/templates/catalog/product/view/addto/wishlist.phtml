@@ -1,0 +1,39 @@
+<?php
+
+/** @var \Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist $block */
+?>
+<?php if ($block->isWishListAllowed()) : ?>
+
+    <?php
+    $isAdded = false;
+    $_product = $block->getProduct();
+    $_wishlistCollection = $this->helper('Magento\Wishlist\Helper\Data')->getWishlistItemCollection();
+    foreach ($_wishlistCollection as $_item) {
+        $__product = $_item->getProduct();
+        if ($_product->getId() == $__product->getId()) {
+            $isAdded = true;
+            break;
+        }
+    }
+    ?>
+
+    <?php if($isAdded): ?>
+        <a href="#"
+           class="action towishlist towishlist--added"
+           data-post='<?= /* @noEscape */ $block->getWishlistParams() ?>'
+           data-action="add-to-wishlist"><span><?= $block->escapeHtml(__('Add to Wish List')) ?></span></a>
+    <?php else: ?>
+        <a href="#"
+           class="action towishlist"
+           data-post='<?= /* @noEscape */ $block->getWishlistParams() ?>'
+           data-action="add-to-wishlist"><span><?= $block->escapeHtml(__('Add to Wish List')) ?></span></a>
+    <?php endif; ?>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "addToWishlist": <?= /* @noEscape */ $block->getWishlistOptionsJson() ?>
+        }
+    }
+</script>

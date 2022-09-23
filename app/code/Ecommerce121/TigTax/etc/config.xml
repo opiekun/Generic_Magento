@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <tax>
+            <tigtax>
+                <api_url>https://api.unifiedbt.com/tigtax-prod</api_url>
+                <app_version>2.4.2</app_version>
+                <application_name>Magento</application_name>
+                <cron_expr>0 23 * * 7</cron_expr>
+                <name_for_tax_rule>TigTax ruleset</name_for_tax_rule>
+                <stub_postcodes><![CDATA[[
+   {
+      "odata.etag":"W/\"datetime'2021-07-29T16%3A58%3A52.6941582Z'\"",
+      "City":"Abbeville",
+      "County":"Lafayette",
+      "PostOffice":"Abbeville",
+      "RateEffectiveDate":"2021-08-01T00:00:00Z",
+      "State":"MS",
+      "ZipCode":"38601"
+   },
+   {
+      "odata.etag":"W/\"datetime'2021-07-29T16%3A58%3A52.69616Z'\"",
+      "City":"Snow Lake Shores",
+      "County":"Benton",
+      "PostOffice":"Ashland",
+      "RateEffectiveDate":"2021-08-01T00:00:00Z",
+      "State":"MS",
+      "ZipCode":"38603"
+   },
+   {
+      "odata.etag":"W/\"datetime'2021-07-29T16%3A58%3A52.69616Z'\"",
+      "City":"Snow Lake Shores",
+      "County":"Benton",
+      "PostOffice":"Ashland",
+      "RateEffectiveDate":"2021-08-01T00:00:00Z",
+      "State":"MS",
+      "ZipCode":"38604"
+   },
+   {
+      "odata.etag":"W/\"datetime'2021-07-29T16%3A58%3A52.69616Z'\"",
+      "City":"Snow Lake Shores",
+      "County":"Benton",
+      "PostOffice":"Ashland",
+      "RateEffectiveDate":"2021-08-01T00:00:00Z",
+      "State":"MS",
+      "ZipCode":"38605"
+   },
+   {
+      "odata.etag":"W/\"datetime'2021-07-29T16%3A58%3A52.69616Z'\"",
+      "City":"Snow Lake Shores",
+      "County":"Benton",
+      "PostOffice":"Ashland",
+      "RateEffectiveDate":"2021-08-01T00:00:00Z",
+      "State":"MS",
+      "ZipCode":"38615"
+   },
+   {
+      "odata.etag":"W/\"datetime'2021-07-29T16%3A58%3A52.698161Z'\"",
+      "City":"Blue Mountain",
+      "County":"Tippah",
+      "PostOffice":"Blue Mountain",
+      "RateEffectiveDate":"2021-08-01T00:00:00Z",
+      "State":"MS",
+      "ZipCode":"38610"
+   }
+]]]></stub_postcodes>
+                <stub_rates><![CDATA[[
+   {
+      "odata.etag":"W/\"datetime'2021-07-29T17%3A12%3A36.1451146Z'\"",
+      "City":"Snow Lake Shores",
+      "County":"Benton",
+      "PostOffice":"Ashland",
+      "PrimaryRecord":"1",
+      "RateCity":"0",
+      "RateCounty":"2.25",
+      "RateEffectiveDate":"2021-08-01T00:00:00Z",
+      "RateSpecialDistrict":"0",
+      "RateState":"7.25",
+      "ReportingCodeCity":"",
+      "ReportingCodeCounty":"594",
+      "ReportingCodeSpecialDistrict":"",
+      "ReportingCodeState":"000",
+      "SalesTaxRate":9.5,
+      "ShippingTaxable":"0",
+      "State":"MS",
+      "ZipCode":"38603",
+      "z2t_ID":"1"
+   },
+   {
+      "odata.etag":"W/\"datetime'2021-07-29T17%3A12%3A36.1451146Z'\"",
+      "City":"Snow Lake Shores",
+      "County":"Benton",
+      "PostOffice":"Ashland",
+      "PrimaryRecord":"2",
+      "RateCity":"0",
+      "RateCounty":"2.25",
+      "RateEffectiveDate":"2021-08-01T00:00:00Z",
+      "RateSpecialDistrict":"0",
+      "RateState":"7.25",
+      "ReportingCodeCity":"",
+      "ReportingCodeCounty":"594",
+      "ReportingCodeSpecialDistrict":"",
+      "ReportingCodeState":"000",
+      "SalesTaxRate":9.5,
+      "ShippingTaxable":"0",
+      "State":"MS",
+      "ZipCode":"38604",
+      "z2t_ID":"2"
+   },
+   {
+      "odata.etag":"W/\"datetime'2021-07-29T17%3A12%3A36.1451146Z'\"",
+      "City":"Snow Lake Shores",
+      "County":"Benton",
+      "PostOffice":"Ashland",
+      "PrimaryRecord":"2",
+      "RateCity":"0",
+      "RateCounty":"2.25",
+      "RateEffectiveDate":"2021-08-01T00:00:00Z",
+      "RateSpecialDistrict":"0",
+      "RateState":"7.25",
+      "ReportingCodeCity":"",
+      "ReportingCodeCounty":"594",
+      "ReportingCodeSpecialDistrict":"",
+      "ReportingCodeState":"000",
+      "SalesTaxRate":9.5,
+      "ShippingTaxable":"0",
+      "State":"MS",
+      "ZipCode":"38605",
+      "z2t_ID":"3"
+   },
+   {
+      "odata.etag":"W/\"datetime'2021-07-29T17%3A12%3A36.1451146Z'\"",
+      "City":"Snow Lake Shores",
+      "County":"Benton",
+      "PostOffice":"Ashland",
+      "PrimaryRecord":"2",
+      "RateCity":"0",
+      "RateCounty":"2.25",
+      "RateEffectiveDate":"2021-08-01T00:00:00Z",
+      "RateSpecialDistrict":"0",
+      "RateState":"7.25",
+      "ReportingCodeCity":"",
+      "ReportingCodeCounty":"594",
+      "ReportingCodeSpecialDistrict":"",
+      "ReportingCodeState":"000",
+      "SalesTaxRate":9.5,
+      "ShippingTaxable":"0",
+      "State":"MS",
+      "ZipCode":"38615",
+      "z2t_ID":"4"
+   }
+]]]></stub_rates>
+            </tigtax>
+        </tax>
+    </default>
+</config>

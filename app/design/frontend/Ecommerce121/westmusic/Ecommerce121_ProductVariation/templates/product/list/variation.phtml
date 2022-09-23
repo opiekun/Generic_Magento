@@ -1,0 +1,13 @@
+<?php
+/**
+ * @var Ecommerce121\ProductVariation\Block\Product\View\Type\SimpleVariation $block
+ */
+
+$product = $block->getLayout()->getBlock('category.product.addto.compare')->getProduct();
+if ($product && $block->isProductVariation($product)): ?>
+    <a href="<?= $block->escapeUrl($block->getProductUrl($product)); ?>"
+       class="options-available"
+       title="<?= $block->escapeHtml(__('Options Available')) ?>">
+        <?= $block->escapeHtml(__('Options Available')) ?>
+    </a>
+<?php endif; ?>

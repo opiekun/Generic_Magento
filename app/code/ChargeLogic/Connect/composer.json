@@ -1,0 +1,21 @@
+{
+  "name": "chargelogic/chargelogic-connect",
+  "description": "More sales. More places. Securely accept payments from all your sales channels with ChargeLogic.",
+  "type": "magento2-module",
+  "version": "2.0.4",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "require": {
+    "magento/module-sales": "100.0.*",
+    "magento/module-checkout": "100.0.*",
+    "magento/module-payment": "100.0.*"
+  },
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "ChargeLogic\\ChargeLogicConnect\\": ""
+    }
+  }
+}

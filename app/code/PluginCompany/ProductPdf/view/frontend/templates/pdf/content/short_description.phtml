@@ -1,0 +1,12 @@
+<?php if($this->getGroupConfigFlag('short_description/add_pagebreak')){ ?>
+    <pagebreak />
+<?php } ?>
+<div class="section section-short-description">
+    <h3 class="section-title short-description-title"><?php echo __('Short Description');?></h3>
+    <div class="short-description">
+        <p>
+            <?php echo $this->getProduct()->getShortDescription(); ?>
+        </p>
+    </div>
+</div>
+

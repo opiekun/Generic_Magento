@@ -1,0 +1,14 @@
+<uib-tabset active="mgz.active" class="mgz-modal-tab" ng-class="{'mgz-modal-searching': mgz.search}">
+	<uib-tab ng-repeat="tab in mgz.tabs"
+       heading="{{tab.name}}"
+       active="tab.active"
+       disable="tab.disabled" ng-click="mgz.activeTab(tab)">
+       <div class="mgz-elements-wrapper">
+           <ul>
+				<li ng-repeat="element in tab.elements" class="mgz_element-{{ element.type }} mgz-gt-{{ element.type }} mgz-col-xs-12 mgz-col-sm-4 mgz-col-md-3 mgz-col-lg-2" data-position="{{ element.sortOrder }}">
+					<magezon-builder-modal-element element="element" ng-click="mgz.addElement(element)" class="mgz-gt-{{ element.type }}"></magezon-builder-modal-element>
+				</li>
+			</ul>
+		</div>
+   </uib-tab>
+</uib-tabset>

@@ -1,0 +1,35 @@
+<?php
+    $candidates = $this->getValidationResponse()->getSuggestedAddresses();
+    $origin = $this->getValidationResponse()->getOriginalAddress();
+    $error = $this->getValidationResponse()->getError();
+    $valid = $this->getValidationResponse()->getIsValid();
+    $i = 0;
+?>
+
+<p><?php echo __($this->getHelper()->getContentMessage()) ?></p>
+<?php if (!empty($candidates) || $error || !$valid) : ?>
+    <?php if ($this->getHelper()->getAllowNotValidAddress()) : ?>
+        <p class="suggestion"><?php echo __($this->getHelper()->getContentOriginAddress()) ?>:</p>
+        <ul>
+            <li>
+                <input type="radio" id="origin_address" name='candidate' value="origin" title=""/>
+                <label for="origin_address"><?php echo $origin->toString(); ?></label>
+                <div style="clear:both"></div>
+            </li>
+        </ul>
+    <?php endif; ?>
+
+    <?php if (!empty($candidates)) : ?>
+    <p class="suggestion"><?php echo __($this->getHelper()->getContentSuggestedAddress())?>:</p>
+    <ul>
+    <?php foreach ($candidates as $candidate) : ?>
+        <li>
+            <input type="radio" id="candidate_<?php echo $i ;?>" name='candidate' value="<?php echo $i ;?>" title=""/>
+            <label for="candidate_<?php echo $i ;?>"><?php echo $candidate->toString(); ?></label>
+            <div style="clear:both"></div>
+        </li>
+        <?php $i++;?>
+    <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="tax_calculation_rate_tmp" resource="default" engine="innodb" comment="Tax Calculation Rate Temp table">
+        <column xsi:type="int" name="tax_calculation_rate_id" unsigned="false" nullable="false" identity="true" comment="Tax Calculation Rate ID"/>
+        <column xsi:type="varchar" name="tax_country_id" nullable="false" length="2" comment="Tax Country ID"/>
+        <column xsi:type="int" name="tax_region_id" unsigned="false" nullable="false" identity="false" comment="Tax Region ID"/>
+        <column xsi:type="varchar" name="tax_postcode" nullable="true" length="21" comment="Tax Postcode"/>
+        <column xsi:type="varchar" name="code" nullable="false" length="255" comment="Code"/>
+        <column xsi:type="decimal" name="rate" scale="4" precision="12" unsigned="false" nullable="false" comment="Rate"/>
+        <column xsi:type="smallint" name="zip_is_range" unsigned="false" nullable="true" identity="false" comment="Zip Is Range"/>
+        <column xsi:type="int" name="zip_from" unsigned="true" nullable="true" identity="false" comment="Zip From"/>
+        <column xsi:type="int" name="zip_to" unsigned="true" nullable="true" identity="false" comment="Zip To"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="tax_calculation_rate_id"/>
+        </constraint>
+        <index referenceId="TAX_CALC_RATE_TMP_TAX_COUNTRY_ID_TAX_REGION_ID_TAX_POSTCODE" indexType="btree">
+            <column name="tax_country_id"/>
+            <column name="tax_region_id"/>
+            <column name="tax_postcode"/>
+        </index>
+        <index referenceId="TAX_CALCULATION_RATE_TMP_CODE" indexType="btree">
+            <column name="code"/>
+        </index>
+        <index referenceId="IDX_3DB3E9DA8BF2B9EDF08BD0A21AAC17B4" indexType="btree">
+            <column name="tax_calculation_rate_id"/>
+            <column name="tax_country_id"/>
+            <column name="tax_region_id"/>
+            <column name="zip_is_range"/>
+            <column name="tax_postcode"/>
+        </index>
+    </table>
+    <table name="ecommerce121_tig_tax_logs" resource="default" engine="innodb" comment="TigTax logs">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="request" comment="Request"/>
+        <column xsi:type="smallint" name="code" comment="Response code"/>
+        <column xsi:type="varchar" name="body" comment="Body"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>

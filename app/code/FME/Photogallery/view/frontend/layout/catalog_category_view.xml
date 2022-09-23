@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="columns.top">
+            <referenceContainer name="category.view.container" >
+                <block name="categorygallery_top" class="FME\Photogallery\Block\Owlcarousal" before="-" template="FME_Photogallery::owlcaroisal.phtml"/>
+            </referenceContainer>
+        </referenceContainer>
+        <referenceContainer name="footer-container">	
+            <block name="categorygallery_bottom" class="FME\Photogallery\Block\Owlcarousal" before="-" template="FME_Photogallery::category_bottom.phtml"/>	
+        </referenceContainer>
+    </body>
+</page>

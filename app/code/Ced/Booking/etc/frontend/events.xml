@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Event
+ * @author      CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <!-- add additional options to product -->
+    <event name="sales_quote_add_item">
+        <observer name="ced_booking_set_product_additionaloptions" instance="Ced\Booking\Observer\SalesQuoteItemSetAdditionalOptions" shared="false" />
+    </event>
+
+    <event name="checkout_cart_product_add_before">
+        <observer name="ced_booking_checkout_cart_add_before" instance="Ced\Booking\Observer\CartAddBefore" shared="false" />
+    </event>
+
+</config>
+
+
+
+

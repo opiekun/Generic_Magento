@@ -1,0 +1,61 @@
+<?php
+$element         = $this->getElement();
+$link            = $this->getLink();
+$elements        = $this->getElements();
+$count           = count($elements);
+$menu            = $this->getGlobalData('menu');
+$type            = $menu->getType();
+$mobileType      = $menu->getMobileType();
+$title           = $this->getTitle();
+$subTitle        = $element->getData('sub_title');
+$showIcon        = $element->getData('show_icon');
+$icon            = $element->getData('icon');
+$iconClasses     = $element->getData('icon_classes');
+$iconPosition    = $element->getData('icon_position');
+$label           = $element->getData('label');
+$labelPosition   = $element->getData('label_position');
+$nofollow        = $element->getData('nofollow');
+$caret           = $element->getData('caret');
+$scrollto        = $element->getData('scrollto');
+$newTab          = $element->getData('new_tab');
+$innerAttributes = $this->parseAttributes($this->getInnerAttributes());
+?>
+<a href="<?= $link ?>" <?= $nofollow ? 'rel="nofollow"' : '' ?> <?= $scrollto ? 'data-scrollto="' . $scrollto .'"' : '' ?> <?= $newTab ? 'target="_blank"' : '' ?>>
+	<?php if ($showIcon && $icon && $iconPosition=='left') { ?>
+	<i class="item-icon <?= $icon ?> <?= $iconClasses ?>"></i>
+	<?php } ?>
+	<?php if ($label && $labelPosition=='left') { ?>
+	<span class="label"><?= $label ?></span>
+	<?php } ?>
+	<?php if ($subTitle) { ?>
+	<span class="title-wrapper">
+	<?php } ?>
+	<?php if ($title) { ?><span class="title"><?= $title ?></span><?php } ?>
+	<?php if ($subTitle) { ?>
+        <span class="subtitle"><?= $subTitle ?></span>
+	</span>
+	<?php } ?>
+	<?php if ($label && $labelPosition!='left') { ?>
+	<span class="label"><?= $label ?></span>
+	<?php } ?>
+	<?php if ($showIcon && $icon && $iconPosition=='right') { ?>
+	<i class="item-icon <?= $icon ?> <?= $iconClasses ?>"></i>
+	<?php } ?>
+	<?php if ($count && $caret) { ?>
+	<i class="caret <?= $caret ?>"></i>
+	<?php } ?>
+</a>
+<?php if ($count) { ?>
+<div <?= $innerAttributes ?>>
+	<?= $this->getParallaxHtml() ?>
+	<?php if (($type == 'drilldown' || $mobileType == 'drilldown') && $count) { ?>
+	<div class="ninjamenus-drilldown-back">
+		<div class="drilldown-opener drilldown-back"></div>
+		<div class="ninjamenus-current-link"><?= $title ?></div>
+	</div>
+<?php } ?>
+	<?php foreach ($elements as $_element) { ?>
+		<?= $_element->toHtml() ?>
+	<?php } ?>
+</div>
+<?php } ?>

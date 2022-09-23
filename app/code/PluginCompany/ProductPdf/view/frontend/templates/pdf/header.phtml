@@ -1,0 +1,55 @@
+<div id="header" class="header">
+    <div class="logo col-sm-3">
+        <div class="col-padding-right">
+            <?php if($this->getStoreLogo()){ ?>
+                <img class="img-responsive" src="<?php echo $this->getStoreLogo(); ?>" alt="Store Logo" />
+            <?php } ?>
+        </div>
+        <?php if($this->canShowStoreName()){ ?>
+            <h4 class="store-title"><?php echo $this->getStoreName(); ?></h4>
+        <?php } ?>
+    </div>
+    <div class="col-sm-7 col-sm-offset-1">
+        <div class="col-sm-4">
+            <div class="col-padding">
+                <?php echo nl2br($this->getConfig('header_1')); ?>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-padding">
+                <?php echo nl2br($this->getConfig('header_2')); ?>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-padding">
+                <?php echo nl2br($this->getConfig('header_3')); ?>
+            </div>
+        </div>
+    </div>
+    <?php if($this->getConfigFlag('show_barcode')){ ?>
+        <div class="col-sm-2 header-qr-code">
+            <barcode style="margin-bottom:-10px;" code="<?php echo $this->getProduct()->getProductUrl(false); ?>" type="QR" class="barcode" size="0.65" error="L" disableborder="1" />
+        </div>
+    <?php } ?>
+</div>
+</div>
+<?php if($this->getConfig('show_bottomline')){ ?>
+    <div class="hr"></div>
+<?php } ?>
+
+<style>
+    .header {
+        font-family: <?php echo $this->getHeaderFontFamily(); ?>;
+        font-size:<?php echo $this->getConfig('header_fontsize'); ?>;
+        color:#<?php echo $this->getConfig('header_fontcolor'); ?>;
+    }
+    .header .store-title {
+        font-family: <?php echo $this->getStoreTitleFontFamily(); ?>;
+        font-size:<?php echo $this->getConfig('store_title_fontsize'); ?>;
+        color:#<?php echo $this->getConfig('store_title_color'); ?>;
+    }
+    div.hr {
+        background-color:#<?php echo $this->getConfig('bottomline_color'); ?>;
+        height:<?php echo $this->getConfig('bottomline_thickness'); ?>;
+    }
+</style>

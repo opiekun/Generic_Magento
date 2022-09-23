@@ -1,0 +1,112 @@
+.mgz__page-actions {
+	&.page-main-actions {
+		margin: 0 0 3rem;
+		background: #f8f8f8;
+		border-bottom: 1px solid #e3e3e3;
+		border-top: 1px solid #e3e3e3;
+		padding: 1.5rem;
+
+		.page-actions {
+
+			.page-actions-buttons {
+				float: right;
+				justify-content: flex-end;
+				display: -webkit-flex;
+				display: -ms-flexbox;
+				display: flex;
+
+				button {
+					background-color: transparent;
+					text-shadow: none;
+					color: #41362f;
+					font-size: 1.6rem;
+					letter-spacing: .025em;
+					padding-bottom: .8875em;
+					padding-top: .8875em;
+					border-color: transparent;
+					box-shadow: none;
+					margin-left: 1.3rem;
+					font-weight: 600;
+
+					&.primary {
+						-ms-flex-order: 2;
+						-webkit-order: 2;
+						order: 2;
+						background-color: #eb5202;
+						border-color: #eb5202;
+						color: #fff;
+						text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+
+						&:hover {
+							background-color: #ba4000;
+							border-color: #b84002;
+							box-shadow: 0 0 0 1px #007bdb;
+							color: #fff;
+							text-decoration: none;
+						}
+					}
+
+					&.action-secondary {
+						background-color: #514943;
+						border-color: #514943;
+						color: #fff;
+
+						&:hover {
+							background-color: #35302c;
+							border-color: #35302c;
+							box-shadow: 0 0 0 1px #007bdb;
+						}
+					}
+				}
+
+				&>button.back {
+					float: left;
+					-ms-flex-order: -1;
+					-webkit-order: -1;
+					order: -1;
+					margin-left: 1.3rem;
+				}
+
+				@media (max-width: @screen__xs) {
+					display: block;
+					button {
+						&.back {
+							margin: 0;
+						}
+					}
+				}
+			}
+
+			&:before, &:after {
+				content: '';
+				display: table;
+				clear: both;
+			}
+
+			#back {
+				&:before {
+					content: '\e626';
+					margin-right: .5em;
+					position: relative;
+					top: 1px;
+					font-family: 'Magento-Icons'
+				}
+			}
+		}
+	}
+}
+
+
+@media (max-width: @screen__xs) {
+	.mgz__page-actions.page-main-actions {
+		.page-actions {
+			.page-actions-buttons {
+				text-align: center;
+
+				button {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+}

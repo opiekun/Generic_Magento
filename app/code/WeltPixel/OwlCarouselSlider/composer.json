@@ -1,0 +1,29 @@
+{
+    "name": "weltpixel/m2-weltpixel-owl-carousel-slider",
+    "description": "WeltPixel Owl Carousel And Slider Module",
+    "require": {
+        "weltpixel/m2-weltpixel-backend": "*",
+        "weltpixel/m2-weltpixel-mobiledetect": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.10.9",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "WeltPixel",
+            "email": "support@weltpixel.com",
+            "homepage": "http://www.weltpixel.com/"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "WeltPixel\\OwlCarouselSlider\\": ""
+        }
+    }
+}

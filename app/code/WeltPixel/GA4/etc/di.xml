@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="weltpixel-ga4-checkout-shippinginformation"
+                type="WeltPixel\GA4\Plugin\ShippingInformation" sortOrder="10"/>
+    </type>
+    <type name="Magento\Checkout\Model\PaymentInformationManagement">
+        <plugin name="weltpixel-ga4-checkout-paymentinformation"
+                type="WeltPixel\GA4\Plugin\PaymentInformation" sortOrder="10"/>
+    </type>
+    <type name="Magento\Checkout\Model\GuestPaymentInformationManagement">
+        <plugin name="weltpixel-ga4-checkout-guestpaymentinformation"
+                type="WeltPixel\GA4\Plugin\GuestPaymentInformation" sortOrder="10"/>
+    </type>
+    <type name="Magento\Wishlist\Model\Item">
+        <plugin name="weltpixel-ga4-wishlist-addtocart"
+                type="WeltPixel\GA4\Plugin\WishlistAddToCart" sortOrder="10"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Config">
+        <plugin name="weltpixel-ga4-quote-config"
+                type="WeltPixel\GA4\Plugin\QuoteConfig" sortOrder="10"/>
+    </type>
+    <type name="Magento\Framework\App\Http\Context">
+        <plugin name="weltpixel-ga4-context"
+                type="WeltPixel\GA4\Plugin\HttpContext" sortOrder="1"/>
+    </type>
+</config>

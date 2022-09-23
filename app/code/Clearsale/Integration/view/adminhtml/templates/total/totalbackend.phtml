@@ -1,0 +1,186 @@
+<?php
+
+$isActive = $block->getConfigActive();
+
+if($isActive)
+{
+	$apiKey = $block->getConfigKey();
+	$password = $block->getConfigClientSecret();
+	$user = $block->getClientId();
+	$environment =  $block->getConfigEnvironment();
+	$urlClientArea = "http://app.clear.sale";
+	
+	//$obj = Mage::getModel('integration/observer');
+
+	$authResponse = $block->getLogin($environment);
+	//$authResponse = $authBO->login($environment);
+	$token = "";
+	//
+	if($authResponse)
+	{
+		$token = $authResponse;
+	}
+
+	if(isset($environment))
+	{
+		if(strpos($environment, 'sandbox') !== false)
+		{
+			$urlClientArea = "https://sandbox.clear.sale";
+		}
+	}
+
+	$interval = "1";
+	$script = "<script>";
+	$script .= "var apiKey = \"".$apiKey."\";";
+	$script .= "var loginToken = \"".$token."\";";
+	$script .= "var user = \"".$user."\";";
+	$script .= "var password = \"".$password."\";";
+	$script .= "var interval = ".$interval.";";
+	$script .= "var prefix = \"".$environment."\";";
+	$script .= "var environmentRoot = \"".$urlClientArea."\";";
+	$script .= "</script>";
+
+	echo $script;
+
+}
+?>   
+
+<?php 
+if ($isActive) :
+	?>
+
+
+	<div class="container">
+		<div class="block-header">
+			<h2>Dashboard</h2>
+
+			<ul class="actions">
+				<li class="width: 200px">
+					<i class="md md-event"></i>TIME VIEW
+				</li>
+				<li>
+					<select id="ReportFilter">
+						<option value="1">Today</option>
+						<option value="2">Last Week</option>
+						<option value="3">Last Month</option>
+						<option value="4">Last Year</option>
+					</select>
+					<i class=\"md md-signal-cellular-4-bar\"></i>
+				</li>
+			</ul>
+
+		</div>
+
+
+		<div class="mini-charts">
+			<div class="row">
+				<div class="col-sm-6 col-md-4">
+					<div class="mini-charts-item bgm-orange">
+						<div class="clearfix">
+							<div class="chart"><i class="md md-vertical-align-bottom"></i></div>
+							<div class="count">
+								<small>SUBMITTED</small>
+								<h2 id="Submited">Loading...</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4">
+					<div class="mini-charts-item bgm-lightgreen">
+						<div class="clearfix">
+							<div class="chart"><i class="md md-done-all"></i></div>
+							<div class="count">
+								<small>APPROVAL RATE</small>
+								<h2 id="ApprovalRate">Loading...</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4">
+					<div class="mini-charts-item bgm-cyan">
+						<div class="clearfix">
+							<div class="chart"><i class="md md-multitrack-audio"></i></div>
+							<div class="count">
+								<small>IN ANALYSIS</small>
+								<h2 id="InAnlaysis">Loading...</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		
+
+		<div class="row bgm-white" style="margin:0 0px 50px 0">
+			<div class="col-xs-12 col-md-3 col-sm-3">
+
+				<div class="card-header">
+					<h2>Last actions</h2>
+				</div>
+
+				<div style="padding: 10px">
+					<div class="col-xs-6 col-md-6 col-sm-6" style="padding:0">
+						<div class="f-500 c-green">APPROVED</div>
+						<div id="lastOrderApproved" class="c-green numbers">#</div>
+
+						<div class="f-500 c-brown">DECLINED</div>
+						<div id="lastOrderDeclined" class=" c-brown numbers">#</div>
+
+					</div>
+					<div class="col-xs-6 col-md-6 col-sm-6" style="padding:0">
+						<div class="f-500 c-cyan">ANALYSING</div>
+						<div id="lastOrderAnalysing" class="c-cyan numbers">#</div>
+
+						<div class="f-500 c-red">CANCELED</div>
+						<div id="lastOrderCanceled" class="c-red numbers">#</div>
+					</div>
+				</div>
+
+			</div>
+			<div id="lastorders" class="col-xs-12 col-md-9 col-sm-9" style="padding:0">
+
+			</div>
+		</div>
+		<div class="col-md-12 bgm-white">
+			<div class="card-header">
+				<h2>Actions</h2>
+			</div>
+			<div>
+				<form id="clearForm" onsubmit="jQuery("#clearForm input[type='submit']").attr('disabled','disabled'); return  false;" onclick="return sendPostPendingOrders();">
+					<input name="form_key" type="hidden" value="<?php echo $block->getFormKey() ?>" />
+					<input type="hidden" name="sendPendingOrders" value="true">
+					<input type="submit" value="Send pending orders" />
+				</form>
+			</div>
+			<div>
+				<form id="clearUpdate" onsubmit="jQuery("#clearUpdate input[type='submit']").attr('disabled','disabled'); return  false;" onclick="return sendPostUpdateOrders();">
+					<input name="form_key" type="hidden" value="<?php echo $block->getFormKey() ?>" />
+					<input type="hidden" name="updateOrders" value="true">
+					<input type="submit" value="Update orders" />
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+	
+
+
+<?php else : ?>
+	<div class="container">
+		<div class="block-header">
+			<h3>Please, go to our dashboard:</h3><br/>
+			<span>Sandbox: </span><a href="https://sandbox.clear.sale/" target="_blank" >https://sandbox.clear.sale/</a><br/>
+			<span>Production: </span><a href="https://app.clear.sale/" target="_blank" >https://app.clear.sale/</a>
+		</div>
+		<div class="block-header">
+		</div>
+		<div class="block-header">
+		</div>
+	</div>
+<?php endif; ?>

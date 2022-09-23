@@ -1,0 +1,498 @@
+"Something went wrong while process the request.","Something went wrong while process the request."
+"Something went wrong while processing the request.","Something went wrong while processing the request."
+"Something went wrong while process preview styles.","Something went wrong while process preview styles."
+"Something went wrong while saving the page.","Something went wrong while saving the page."
+"Something went wrong while process preview template.","Something went wrong while process preview template."
+"Something went wrong while saving the template.","Something went wrong while saving the template."
+General,General
+"CSS Animation","CSS Animation"
+"Select type of animation for element to be animated when it ""enters"" the browsers viewport (Note: works only in modern browsers).","Select type of animation for element to be animated when it ""enters"" the browsers viewport (Note: works only in modern browsers)."
+"Animation Duration (s)","Animation Duration (s)"
+"Animation Delay(s)","Animation Delay(s)"
+"Animation Infinite","Animation Infinite"
+"Disable Element","Disable Element"
+"Hide on Page Load","Hide on Page Load"
+"Hide on","Hide on"
+"Element ID","Element ID"
+"Enter element ID (Note: make sure it is unique and valid according to <a href=""http://www.w3schools.com/tags/att_global_id.asp"" target=""_blank"">w3c specification</a>)","Enter element ID (Note: make sure it is unique and valid according to <a href=""http://www.w3schools.com/tags/att_global_id.asp"" target=""_blank"">w3c specification</a>)"
+Z-Index,Z-Index
+"Element Class Attribute","Element Class Attribute"
+"Style particular content element differently - add a class name and refer to it in custom CSS.","Style particular content element differently - add a class name and refer to it in custom CSS."
+"Element Inner Class Attribute","Element Inner Class Attribute"
+"Design Options","Design Options"
+"Device type","Device type"
+"Simplify Controls","Simplify Controls"
+Radius,Radius
+"Border Radius Top Left","Border Radius Top Left"
+"Border Top Radius Right","Border Top Radius Right"
+"Border Radius Bottom Right","Border Radius Bottom Right"
+"Border Radius Bottom Left","Border Radius Bottom Left"
+Margin,Margin
+"Margin Top","Margin Top"
+"Margin Right","Margin Right"
+"Margin Bottom","Margin Bottom"
+"Margin Left","Margin Left"
+Border,Border
+"Border Top Width","Border Top Width"
+"Border Right Width","Border Right Width"
+"Border Bottom Width","Border Bottom Width"
+"Border Left Width","Border Left Width"
+Padding,Padding
+"Padding Top","Padding Top"
+"Padding Right","Padding Right"
+"Padidng Bottom","Padidng Bottom"
+"Padding Left","Padding Left"
+Alignment,Alignment
+"Border Color","Border Color"
+"Border Style","Border Style"
+"Theme defaults","Theme defaults"
+"Minimum Height","Minimum Height"
+Float,Float
+"Background Type","Background Type"
+"Background Color","Background Color"
+"Background Position","Background Position"
+"Background Image","Background Image"
+"Background Style","Background Style"
+"YouTube / Vimeo","YouTube / Vimeo"
+"Example: https://www.youtube.com/watch?v=lMJXxhRFO1k","Example: https://www.youtube.com/watch?v=lMJXxhRFO1k"
+Volume,Volume
+"0 to 100","0 to 100"
+"Start Time","Start Time"
+"Start time in seconds when video will be started (this value will be applied also after loop).","Start time in seconds when video will be started (this value will be applied also after loop)."
+"End Time","End Time"
+"End time in seconds when video will be ended.","End time in seconds when video will be ended."
+"Enable on Mobile Devices","Enable on Mobile Devices"
+"Parallax Type","Parallax Type"
+None,None
+"Parallax Speed","Parallax Speed"
+"Number from -1.0 to 2.0","Number from -1.0 to 2.0"
+"Mouse Parallax","Mouse Parallax"
+Size(px),Size(px)
+Speed(milliseconds),Speed(milliseconds)
+"Responsive Options","Responsive Options"
+"Find out more details about Responsiveness Control <a href=""%1"" target=""_blank"">here</a>","Find out more details about Responsiveness Control <a href=""%1"" target=""_blank"">here</a>"
+"Select column width.","Select column width."
+Responsiveness,Responsiveness
+Device,Device
+Offset,Offset
+Width,Width
+"No offset","No offset"
+"Default value from width attribute","Default value from width attribute"
+"Adjust column for different screen sizes. Control width, offset and visibility settings.","Adjust column for different screen sizes. Control width, offset and visibility settings."
+"Carousel Options","Carousel Options"
+Colors,Colors
+Normal,Normal
+Color,Color
+Hover,Hover
+Active,Active
+Desktop,Desktop
+"Tablet Landscape","Tablet Landscape"
+"Tablet Portrait","Tablet Portrait"
+"Mobile Landscape","Mobile Landscape"
+"Mobile Portrait","Mobile Portrait"
+"margin-right(px) on item.","margin-right(px) on item."
+"Navigation Buttons","Navigation Buttons"
+"Navigation Position","Navigation Position"
+"Navigation Size","Navigation Size"
+"Dots Navigation","Dots Navigation"
+Lazyload,Lazyload
+"Auto Height","Auto Height"
+Loop,Loop
+Center,Center
+"Right To Left","Right To Left"
+"Auto Play","Auto Play"
+"Pause on Mouse Hover","Pause on Mouse Hover"
+"Auto Play Timeout","Auto Play Timeout"
+"Auto Play Speed","Auto Play Speed"
+"Dots Speed","Dots Speed"
+"Stage Padding","Stage Padding"
+SlideBy,SlideBy
+"Grid Options","Grid Options"
+Button,Button
+"Enable Button","Enable Button"
+Text,Text
+Link,Link
+"Button Style","Button Style"
+"Button Size","Button Size"
+"Set Full Width Button","Set Full Width Button"
+"Gradient Color 1","Gradient Color 1"
+"Gradient Color 2","Gradient Color 2"
+"Border Width","Border Width"
+"Border Radius","Border Radius"
+"Text Color","Text Color"
+"Inline CSS","Inline CSS"
+"Button Design","Button Design"
+"BoxShadow Color","BoxShadow Color"
+Solid,Solid
+Dotted,Dotted
+Dashed,Dashed
+Hidden,Hidden
+Double,Double
+Groove,Groove
+Ridge,Ridge
+Inset,Inset
+Outset,Outset
+Initial,Initial
+Inherit,Inherit
+Auto,Auto
+Cover,Cover
+Contain,Contain
+"Full width","Full width"
+"Full Height","Full Height"
+Repeat,Repeat
+"Repeat horizontal","Repeat horizontal"
+"Repeat vertical","Repeat vertical"
+"No Repeat","No Repeat"
+Left,Left
+Right,Right
+Image,Image
+"Left Top","Left Top"
+"Center Top","Center Top"
+"Right Top","Right Top"
+"Left Center","Left Center"
+"Center Center","Center Center"
+"Right Center","Right Center"
+"Left Bottom","Left Bottom"
+"Center Bottom","Center Bottom"
+"Right Bottom","Right Bottom"
+Custom,Custom
+Scroll,Scroll
+Scale,Scale
+Opacity,Opacity
+"Opacity + Scroll","Opacity + Scroll"
+"Opacity + Scale","Opacity + Scale"
+Mini,Mini
+Small,Small
+Large,Large
+"Extra Large","Extra Large"
+Top,Top
+Bottom,Bottom
+"Same window","Same window"
+"New window","New window"
+Rounded,Rounded
+Square,Square
+Round,Round
+All,All
+"Top Left","Top Left"
+"Top Right","Top Right"
+"Bottom Left","Bottom Left"
+"Bottom Right","Bottom Right"
+"Bottom Center","Bottom Center"
+"Center Split","Center Split"
+"Top Split","Top Split"
+"Bottom Split","Bottom Split"
+"Zoom In","Zoom In"
+"Zoom Out","Zoom Out"
+Modern,Modern
+Flat,Flat
+Gradient,Gradient
+"Top Center","Top Center"
+"Middle Left","Middle Left"
+"Middle Center","Middle Center"
+"Middle Right","Middle Right"
+Vertical,Vertical
+Horizontal,Horizontal
+"On Click Code","On Click Code"
+"Add Icon","Add Icon"
+"Element Auto Width","Element Auto Width"
+"Display multiple buttons in same row","Display multiple buttons in same row"
+"Display as link","Display as link"
+Icon,Icon
+"Icon Position","Icon Position"
+3D,3D
+"Heading ","Heading "
+"Sub Heading ","Sub Heading "
+Day,Day
+Month,Month
+Year,Year
+Hours,Hours
+Minutes,Minutes
+"Time Zone","Time Zone"
+"Link Text","Link Text"
+"Link Url","Link Url"
+Style,Style
+Layout,Layout
+"Number Color","Number Color"
+"Number Size","Number Size"
+"Number Background Color","Number Background Color"
+"Number Border Radius","Number Border Radius"
+"Number Padding","Number Padding"
+"Number Spacing","Number Spacing"
+"Text Size","Text Size"
+"Text Inline","Text Inline"
+"Show Time Separators","Show Time Separators"
+"Separator Type","Separator Type"
+"Separator Color","Separator Color"
+"Separator Size","Separator Size"
+"Circle Size","Circle Size"
+"Circle Stroke Size","Circle Stroke Size"
+"Circle Color1","Circle Color1"
+"Circle Color2","Circle Color2"
+"Circle Background Color","Circle Background Color"
+"Heading Color","Heading Color"
+"Heading Font Size","Heading Font Size"
+"Sub Heading Color","Sub Heading Color"
+"Sub Heading Font Size","Sub Heading Font Size"
+"Link Color","Link Color"
+"Link Font Size","Link Font Size"
+Numbers,Numbers
+"Numbers & Circles","Numbers & Circles"
+Colon,Colon
+Line,Line
+"Block Name","Block Name"
+Height,Height
+"Height on Tablet Landscape(< 1200px)","Height on Tablet Landscape(< 1200px)"
+"Height on Tablet Portrait(< 992px)","Height on Tablet Portrait(< 992px)"
+"Height on Mobile Landscape(< 768px)","Height on Mobile Landscape(< 768px)"
+"Height on Mobile Portrait(< 576px)","Height on Mobile Portrait(< 576px)"
+"<p>Configure Google Map API key at <a href=""%1"" target=""_blank"">here</a></p>","<p>Configure Google Map API key at <a href=""%1"" target=""_blank"">here</a></p>"
+Zoom,Zoom
+Type,Type
+"Disable UI","Disable UI"
+"Disable Google Map user interface elements","Disable Google Map user interface elements"
+Scrollwheel,Scrollwheel
+"If false, disable scrollwheel zooming on the map","If false, disable scrollwheel zooming on the map"
+Draggable,Draggable
+"If false, prevent the map from being dragged.","If false, prevent the map from being dragged."
+"InforBox Opened by Default","InforBox Opened by Default"
+"InforBox Width","InforBox Width"
+"InforBox Text Color","InforBox Text Color"
+"InforBox Background Color","InforBox Background Color"
+Markers,Markers
+"Find latitude & longitude <a href=""%1"">here</a>","Find latitude & longitude <a href=""%1"">here</a>"
+Latitude,Latitude
+Longitude,Longitude
+Infowindow,Infowindow
+Roadmap,Roadmap
+Satellite,Satellite
+Hybrid,Hybrid
+Terrain,Terrain
+"Heading Type","Heading Type"
+"Font Size","Font Size"
+"Line Height","Line Height"
+"Font Weight","Font Weight"
+"Magento Widget","Magento Widget"
+"Product Options","Product Options"
+Name,Name
+Price,Price
+Review,Review
+"Add To Cart","Add To Cart"
+"Short Description","Short Description"
+"Wishlist Link","Wishlist Link"
+"Compare Link","Compare Link"
+Swatches,Swatches
+"Equal Height","Equal Height"
+Condition,Condition
+"Data Source","Data Source"
+"Total Items","Total Items"
+"Order By","Order By"
+"Display Out of Stock Products","Display Out of Stock Products"
+Conditions,Conditions
+Latest,Latest
+"New Arrival","New Arrival"
+"Best Sellers","Best Sellers"
+"On Sale","On Sale"
+"Most Viewed","Most Viewed"
+"Wishlist Top","Wishlist Top"
+"Top Rated","Top Rated"
+Featured,Featured
+Free,Free
+Random,Random
+Default,Default
+Alphabetically,Alphabetically
+"Price: Low to High","Price: Low to High"
+"Price: High to Low","Price: High to Low"
+"Newest First","Newest First"
+"Oldest First","Oldest First"
+Appearance,Appearance
+"Full Height Row","Full Height Row"
+"Column Equal Height","Column Equal Height"
+"Content Position","Content Position"
+"Columns Gap","Columns Gap"
+"Enter gap between columns in pixels.","Enter gap between columns in pixels."
+"Gap Type","Gap Type"
+"Max Width(px)","Max Width(px)"
+"Content Alignment","Content Alignment"
+"Reverse Column","Reverse Column"
+"Reserve column order on mobile","Reserve column order on mobile"
+Middle,Middle
+Contained,Contained
+"Full Width Row","Full Width Row"
+"Full Width Row and Content","Full Width Row and Content"
+"Full Width Row and Content (no paddings)","Full Width Row and Content (no paddings)"
+Placeholder,Placeholder
+"Input Background Color","Input Background Color"
+"Input Text Color","Input Text Color"
+"Widget Title","Widget Title"
+"Title Tag","Title Tag"
+"Title Alignment","Title Alignment"
+"Title Color","Title Color"
+"Line Style","Line Style"
+"Line Weight","Line Weight"
+"Line Color","Line Color"
+"Element width","Element width"
+"Image Source","Image Source"
+"On click action","On click action"
+"Responsive Images","Responsive Images"
+"External link","External link"
+"Hover Image","Hover Image"
+Tablet(<1024),Tablet(<1024)
+"Landscape Phone(<768px)","Landscape Phone(<768px)"
+"Portrait Phone(<576px)","Portrait Phone(<576px)"
+"Popup Image","Popup Image"
+"Enable Zoom Effect","Enable Zoom Effect"
+"Video or Map","Video or Map"
+"Custom link","Custom link"
+"Image Style","Image Style"
+"Image Hover Effect","Image Hover Effect"
+"Image Width","Image Width"
+"Image Height","Image Height"
+"Alternative Text","Alternative Text"
+"Image ID","Image ID"
+Title,Title
+Description,Description
+"Display Content on Hover","Display Content on Hover"
+"Content Padding","Content Padding"
+"Content Fullwidth","Content Fullwidth"
+Content,Content
+"Title Font Size","Title Font Size"
+"Title Font Weight","Title Font Weight"
+"Description Font Size","Description Font Size"
+"Description Font Weight","Description Font Weight"
+"Overlay Color","Overlay Color"
+"Hover Overlay Color","Hover Overlay Color"
+"Media library","Media library"
+Outline,Outline
+Shadow1,Shadow1
+Shadow2,Shadow2
+"3D Shadow","3D Shadow"
+"Open Magnific Popup","Open Magnific Popup"
+"Open Custom Link","Open Custom Link"
+"Open Video or Map","Open Video or Map"
+"Lift Up","Lift Up"
+"Link Target","Link Target"
+"Follow Button","Follow Button"
+"Icon Radius","Icon Radius"
+"Icon Size","Icon Size"
+"Social Icons","Social Icons"
+"Hover Background Color","Hover Background Color"
+Tab,Tab
+Gap,Gap
+"Active Tab","Active Tab"
+"Enter active tab number. Leave empty or enter non-existing number to close all tabs on page load.","Enter active tab number. Leave empty or enter non-existing number to close all tabs on page load."
+"Do not fill content area?","Do not fill content area?"
+"Hide Empty Tab","Hide Empty Tab"
+"Mobile Accordion","Mobile Accordion"
+"Active Tab when Hover","Active Tab when Hover"
+"Tab Item","Tab Item"
+Position,Position
+Spacing,Spacing
+"Title Colors","Title Colors"
+"Content Colors","Content Colors"
+"Element name %1 not exist","Element name %1 not exist"
+Add,Add
+"Icon Library","Icon Library"
+Url,Url
+Id,Id
+"Search item by name or id","Search item by name or id"
+"Extra Params","Extra Params"
+"Add parameters to link. Eg: utm_source=news4&utm_medium=email&utm_campaign=spring-summer","Add parameters to link. Eg: utm_source=news4&utm_medium=email&utm_campaign=spring-summer"
+"Open link in a new tab","Open link in a new tab"
+"Add nofollow option to link","Add nofollow option to link"
+Category,Category
+Product,Product
+Page,Page
+"Custom Classes","Custom Classes"
+"Custom CSS","Custom CSS"
+"Enter custom CSS (Note: it will be outputted only on this particular page). <a href=""%1"" target=""_blank"">How to add custom css</a>","Enter custom CSS (Note: it will be outputted only on this particular page). <a href=""%1"" target=""_blank"">How to add custom css</a>"
+"<a href=""%1"" target=""_blank"">How to copy page contents between pages/ domains</a>","<a href=""%1"" target=""_blank"">How to copy page contents between pages/ domains</a>"
+"Template Library","Template Library"
+Facebook,Facebook
+Twitter,Twitter
+Pinterest,Pinterest
+LinkedIn,LinkedIn
+Tumblr,Tumblr
+Instagram,Instagram
+Skype,Skype
+Flickr,Flickr
+Dribbble,Dribbble
+Youtube,Youtube
+Vimeo,Vimeo
+RSS,RSS
+Behance,Behance
+Added,Added
+"Inserted Before","Inserted Before"
+"Inserted After","Inserted After"
+Removed,Removed
+Edited,Edited
+Moved,Moved
+Replaced,Replaced
+Duplicated,Duplicated
+Changed,Changed
+Pasted,Pasted
+"Editing Started","Editing Started"
+"Imported Template","Imported Template"
+"Move Up","Move Up"
+"Move Down","Move Down"
+"Cleared Layout","Cleared Layout"
+Profile,Profile
+"New in 4.7","New in 4.7"
+"Web Application Icon","Web Application Icon"
+"Medical Icons","Medical Icons"
+"Text Editor Icons","Text Editor Icons"
+"Spinner Icons","Spinner Icons"
+"File Type Icons","File Type Icons"
+"Directional Icons","Directional Icons"
+"Video Player Icons","Video Player Icons"
+"Transportation Icons","Transportation Icons"
+"Chart Icons","Chart Icons"
+"Brand Icons","Brand Icons"
+"Hand Icons","Hand Icons"
+"Currency Icons","Currency Icons"
+"Accessibility Icons","Accessibility Icons"
+"Gender Icons","Gender Icons"
+Days,Days
+Hour,Hour
+Minute,Minute
+Second,Second
+Seconds,Seconds
+"Follow on %1","Follow on %1"
+Follow,Follow
+"Magezon Builder","Magezon Builder"
+"General Settings","General Settings"
+"Row Inner Width","Row Inner Width"
+"Google Map API key","Google Map API key"
+"Input Google API key","Input Google API key"
+"Customization Settings","Customization Settings"
+Navigator,Navigator
+Elements,Elements
+"Add Element","Add Element"
+Element,Element
+Settings,Settings
+"Clear Layout","Clear Layout"
+Templates,Templates
+ShortCode,ShortCode
+History,History
+"Insert/edit link","Insert/edit link"
+"Awesome 5","Awesome 5"
+awesome,awesome
+"Open Iconic","Open Iconic"
+openiconic,openiconic
+Structure,Structure
+Social,Social
+Magento,Magento
+Row,Row
+Column,Column
+"Text Block","Text Block"
+Section,Section
+Heading,Heading
+Separator,Separator
+"Empty Space","Empty Space"
+Tabs,Tabs
+"Generate Block","Generate Block"
+Sidebar,Sidebar
+"Google Maps","Google Maps"
+"Single Image","Single Image"
+"Search Form","Search Form"
+Countdown,Countdown
+"1 column Full Width","1 column Full Width"

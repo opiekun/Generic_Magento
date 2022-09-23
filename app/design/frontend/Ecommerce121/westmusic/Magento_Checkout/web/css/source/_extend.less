@@ -1,0 +1,99 @@
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .checkout-index-index {
+        .header.content {
+            padding: 0 22px;
+            .logo {
+                margin: 0;
+            }
+        }
+        .checkout-header {
+            margin: 12px 0 32px;
+        }
+        .page-main {
+            margin-top: 56px;
+            padding: 0 10px;
+
+            .continue-shopping-button {
+                .lib-font-size(14) !important;
+                padding: 12px !important;
+                width: 193px;
+            }
+            .authentication-wrapper {
+                float: none;
+            }
+        }
+        .am-checkout.-modern {
+            margin-left: -15px;
+            margin-right: -15px;
+            margin-top: 0;
+            padding-left: 26px;
+            padding-right: 26px;
+            .amcheckout-block:not(:first-of-type) {
+                margin: 20px 0 0;
+            }
+            .amcheckout-step-container .fieldset {
+                > br {
+                    display: none;
+                }
+            }
+            .amcheckout-column:not(:first-of-type) {
+                margin: 20px 0 0;
+            }
+            .amcheckout-summary-container {
+                .amcheckout-title {
+                    background: #eee;
+                }
+            }
+            .amcheckout-step-container {
+                .amcheckout-additional-options {
+                    .amcheckout-checkboxes {
+                        display: flex;
+                        flex-direction: column;
+
+                        > [data-role="checkout-agreements"]{
+                            order: 10;
+                        }
+                        label {
+                            &:after {
+                                content: "";
+                                display: none;
+                            }
+                        }
+                        div.mage-error[generated] {
+                            margin-top: 2px;
+                            margin-left: 5px;
+                            &:before {
+                                content: '*';
+                            }
+                        }
+                    }
+                    .field {
+                        margin-top: 2px;
+                    }
+                }
+            }
+            .checkout-payment-method {
+                &.submit {
+                    .checkout {
+                        .lib-font-size(14);
+                        padding: 11px 20px;
+                    }
+                }
+            }
+            .order-attributes {
+                .order-attributes-form.fieldset {
+                    .field:last-child {
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+        #zonos > .z-flag {
+            padding: 0;
+        }
+    }
+}

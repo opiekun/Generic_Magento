@@ -1,0 +1,23 @@
+<table autosize="2" class="gallery single-image-2col">
+    <tr>
+        <td class="centerimage main-image-2col">
+            <img class="img-responsive" src="<?php echo $this->getMainImageUrl(); ?>" />
+        </td>
+    </tr>
+</table>
+<table class="gallery">
+    <?php
+    $i = 0;
+    foreach($this->getMediaGalleryImages() as $image){ ?>
+        <?php if($i % 2 == 0){ ?>
+            <tr>
+        <?php } ?>
+                <td class="centerimage">
+                    <img class="img-responsive" src="<?php echo $image->getUrl(); ?>" />
+                </td>
+        <?php if($i % 2 == 1 || $i == ($this->getImageCount() - 1)){ ?>
+            </tr>
+        <?php }
+        $i++;
+    } ?>
+</table>

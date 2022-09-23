@@ -1,0 +1,5 @@
+<?php if($block->isButtonEnabled()): ?>
+    <a href="<?php echo $this->getUrl('classwallet/create/order'); ?>" title="<?= $block->escapeHtmlAttr(__('Proceed to Classwallet Checkout')) ?>" class="action primary classwallet-cart-btn" id="classwallet-cart-order-btn">
+        <span><?= $block->escapeHtml(__('Proceed to Classwallet Checkout')) ?></span>
+    </a>
+<?php endif; ?>

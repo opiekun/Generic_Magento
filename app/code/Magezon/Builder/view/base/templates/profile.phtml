@@ -1,0 +1,15 @@
+<?php
+$elements      = $this->getElements();
+$customCss     = $block->getCustomCss();
+$customClasses = $this->getCustomClasses() ? ' ' . $this->getCustomClasses() : '';
+$html          = '';
+?>
+<?php foreach ($elements as $_element) {
+	$html .= $_element->toHtml();
+} ?>
+<?php if ($html) { ?>
+<div class="magezon-builder magezon-builder-preload<?= $customClasses ?>">
+	<?= $html ?>
+	<?php if ($customCss) { ?><style class="mgz-style"><?= $customCss ?></style><?php } ?>
+</div>
+<?php } ?>

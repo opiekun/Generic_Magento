@@ -1,0 +1,7 @@
+<div class="mgz-element-default" ng-style="{'height': element.height}">
+	<magezon-builder-element-icon element="element.builder"></magezon-builder-element-icon>
+	<div class="mgz-element-info">
+		<div class="mgz-element-name">{{ element.builder.name }}</div>
+		<div class="mgz-element-description" ng-if="getBuilderElementDescription()" ng-bind="getBuilderElementDescription()"></div>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<div class="footer">
+    <div class="page-number" ><span>{PAGENO}</span></div>
+    <?php if ($this->canShowProductUrl()) { ?>
+        <div class="product-link-wrapper">
+            <a class="product-link" href="<?php echo $this->getProductUrl(); ?>">
+                <?php echo $this->getProductUrl(); ?>
+            </a>
+        </div>
+    <?php } ?>
+    <?php if ($this->canShowTimeStamp()) { ?>
+        <div class="timestamp-wrapper">
+            <span class="timestamp">
+                <?php echo $this->getTimeStamp(); ?>
+            </span>
+        </div>
+    <?php } ?>
+</div>
+
+

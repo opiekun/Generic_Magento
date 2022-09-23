@@ -1,0 +1,615 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <tab id="fmeextensions" translate="label" sortOrder="2001">
+            <label>FME Extensions</label>
+        </tab>
+      <section id="photogallery" translate="label" sortOrder="124" showInDefault="1" showInWebsite="1" showInStore="1">
+         <label>Photo Gallery</label>
+         <tab>fmeextensions</tab>
+         <resource>FME_Photogallery::config_photogallery</resource>
+        <group id="general" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+         <label>General Settings</label>
+             <field id="enable_module" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Module</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+             </field>
+        </group>
+        <group id="imgsettings" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+             <label>Image Settings On Upload</label>
+             <field id="thumb_width" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Thumb Width</label>
+             </field>
+             <field id="thumb_height" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Thumb Height</label>
+             </field>
+             <field id="bg_color" translate="label" type="text" sortOrder="106" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Thumb Background Color if Keep Aspect Ratio (YES) </label>
+                    <frontend_model>FME\Photogallery\Block\Color</frontend_model> <!-- Our block for attaching color picker to text box -->
+            </field>
+             <field id="frame_thumb" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Keep Frame of Thumb </label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+             </field>
+             <field id="aspect_ration" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Keep Aspect Ratio of Thumb </label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+             </field>
+        </group>
+        <group id="photogallerymainpagesettings" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+             <label>Photogallery Main Page Settings</label>
+            <field id="page_title" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Page Title</label>
+            </field>
+            <field id="seo_url_identifier" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>SEO Url Identifier</label>
+            </field>
+            <field id="seo_url_suffix" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>SEO Url Suffix</label>
+            </field>
+            <field id="meta_keywords" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>META Keywords</label>
+            </field>
+            <field id="meta_desp" type="textarea" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>META Description</label>
+            </field>
+
+             <field id="gallerytype" translate="label" type="select" sortOrder="6.5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Gallery Type</label>
+                <source_model>FME\Photogallery\Model\Config\Gallerytype</source_model>
+            </field>
+        </group>
+        <group id="photogallerysettings" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>FME Photogallery Settings</label>
+            
+             <field id="enable_thumbs" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Thumb On Frontend</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+             </field>
+            
+             <field id="images_per_page" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Images Per Page</label>
+                <comment>Minimum Limit is 10</comment>
+          
+             </field>
+             <field id="ajexloader" translate="label" type="select" sortOrder="6.5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Load Ajax</label>
+                <source_model>FME\Photogallery\Model\Config\Ajexloader\Loadajextype</source_model>
+            </field>
+            <field id="page_button_text" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="6">
+                <label>Pagination Button Text</label> 
+                <depends>
+                        <field id="ajexloader">manual</field>
+                </depends>
+             </field>
+
+
+            <!-->  Filter Option   -->
+            <field id="enable_tabs" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Tabs</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+             <field id="enablepaginition" translate="label" type="select" sortOrder="11.5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable pagination On Tabs</label> 
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <depends>
+                        <field id="enable_tabs">1</field>
+                </depends>      
+            </field>
+
+
+            <field id="filter" translate="label" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Filter</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <depends>
+                        <field id="enable_tabs">0</field>
+                </depends> 
+            </field>
+            <field id="enable_paginationwithoutFilter" translate="label" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Paginition Without Filter</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <depends>
+                        <field id="enable_tabs">0</field>
+                        <field id="filter">0</field>
+                </depends>
+            </field>
+            <!-->  Filter Option End   -->            
+            <!-->  Arrange Of Thumbs  -->
+            <field id="enable_Column" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Thumbs Layout</label>
+                <source_model>FME\Photogallery\Model\Config\Layout\Thumbslayout</source_model>
+            </field>
+            <!-->  Full Width Gallery   -->
+            <field id="full_w_gallery" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Full Width gallery</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="grid_size" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Grid Size</label>
+                 <comment>10,20,30,40,50</comment>
+           
+            </field>
+            <field id="disable_grid_size_below" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Disable Grid Size Below</label>
+            </field>
+
+
+
+        </group>
+        <group id="photogallerytilesettings" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>FME Photogallery Tile Settings</label>
+            <field id="caption" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Caption</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+
+            <!-->  Caption Option   -->
+
+            <field id="caption_position" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Caption Position</label> 
+                    <source_model>FME\Photogallery\Model\Config\Caption\Captionposition</source_model>
+                    <depends>
+                        <field id="caption">1</field>
+                    </depends>
+            </field>
+            <field id="caption_animation" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Caption Animation</label> 
+                    <source_model>FME\Photogallery\Model\Config\Caption\Captionanimation</source_model>
+                    <depends>
+                        <field id="caption">1</field>
+                    </depends>
+            </field>
+            <field id="caption_align" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Caption Alingment</label> 
+                    <source_model>FME\Photogallery\Model\Config\Caption\Captionalingment</source_model>
+                    <depends>
+                        <field id="caption">1</field>
+                    </depends>
+            </field>
+            <field id="caption_colorscheme" translate="label" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Caption Color Scheme</label> 
+                    <source_model>FME\Photogallery\Model\Config\Caption\Colorscheme</source_model>
+                    <depends>
+                        <field id="caption">1</field>
+                    </depends>
+            </field>
+            <field id="icons" translate="label" type="select" sortOrder="12.5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Icons</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                 <depends>
+                        <field id="caption">1</field>
+                    </depends>
+            </field>
+            <field id="icons_list" translate="label" type="text" sortOrder="12.6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Icons Font Awesome Class</label> 
+                    <depends>
+                        <field id="caption">1</field>
+                        <field id="icons">1</field>
+                    </depends>
+                <comment>Like (fa fa-heart) Link : https://fontawesome.com/icons</comment>
+            </field>
+            <field id="zoom" translate="label" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Zoom</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <!-->  Filter Option End   -->
+            <field id="zoom_effect" translate="label" type="select" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Zoom Effect</label> 
+                    <source_model>FME\Photogallery\Model\Config\Zoom\Zoomeffect</source_model>
+                    <depends>
+                        <field id="zoom">1</field>
+                    </depends>
+            </field>
+            <field id="zoom_speed" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Zoom Speed</label> 
+                    <source_model>FME\Photogallery\Model\Config\Zoom\Zoomspeed</source_model>
+                    <depends>
+                        <field id="zoom">1</field>
+                    </depends>
+            </field>
+            <!-->  Icons Option   -->
+            
+            <!-->  margin Option   -->
+            <field id="margin" translate="label" type="select" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable margin</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="margin_list" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Margin Between Thumbs</label> 
+                <comment>margin is in Pixel (i-e 20,40)</comment>
+                    <depends>
+                        <field id="margin">1</field>
+                    </depends>
+            </field>
+            <field id="social_media" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Social Media Icons</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="social_media_icon_pos" translate="label" type="select" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Social Media Icons Position</label>
+                <source_model>FME\Photogallery\Model\Config\Socialmedia\Iconposition</source_model>
+                <depends>
+                        <field id="social_media">1</field>
+                </depends>
+            </field>
+            <field id="social_media_icon_style" translate="label" type="select" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Social Media Icons Style</label>
+                <source_model>FME\Photogallery\Model\Config\Socialmedia\Iconstyle</source_model>
+                <depends>
+                        <field id="social_media">1</field>
+                </depends>
+            </field>
+            <field id="allow_enlargment" translate="label" type="select" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Allow Enlargement</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <comment>Enabling It, may Effect the Pixel of Images</comment>
+            </field>
+            <field id="mintilewidth" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Minimum Tile Width</label>
+                <comment>Should be Mutliple of 200</comment>
+            
+            </field>
+            
+
+        </group>
+        <group id="photogallerypopusetting" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+         <label>FME Photogallery Page Pop Up Settings</label>
+            <field id="popuooptions" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Magnifier</label>
+                <source_model>FME\Photogallery\Model\Config\Popup\Magnifer</source_model>
+            </field>
+            <field id="enablepopupgallery" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Gallery On Pop Up</label>
+                <depends>
+                        <field id="popuooptions">popup</field>
+                </depends>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="enablepopupgalleryclick" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Navigation On CLick</label>
+                <depends>
+                     <field id="popuooptions">popup</field>
+                    <field id="enablepopupgallery">1</field>
+                </depends>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="popuptime" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Pop Up Time</label>
+                <depends>
+                        <field id="popuooptions">popup</field>
+                </depends>
+                 <comment>Time is in millisecond</comment>
+            </field>     
+        </group>
+        <group id="crouselsettings" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+         <label>Carousel Setting</label>
+            <field id="enabled_c_button" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Navigation Button</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            
+            <field id="rotation" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Auto Play</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="time_playing" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Rotation Time</label>
+                <depends>
+                        <field id="rotation">1</field>
+                </depends>
+               <comment>Time is in millisecond</comment>
+            </field>
+            
+            <field id="citems" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Number of Items In Carousel</label>
+                 <comment>Limited From 5 to 20</comment>
+            </field>
+        </group>
+        <group id="productsettings" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+         <label>Product Gallery Settings (Carousel Only)</label>
+            <field id="enabled" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Enable Product Related Photogallery</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+        </group>
+        <group id="catsettings" type="text" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="1">
+         <label>Category Gallery Settings(Carousel Only)</label>
+            <field id="enabled" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Category Related Photogallery</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="position" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Position</label>
+            <source_model>FME\Photogallery\Model\System\Catposition</source_model>
+            <depends>
+                      
+                        <field id="enabled">1</field>
+            </depends>
+            </field>
+        </group> 
+         <group id="misarygallery" type="text" sortOrder="199" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Mensory Gallery Settings</label>
+            <field id="btnsize" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Size</label>
+                    <comment>Size in Pixel </comment>   
+            </field>
+            <field id="btnstyle" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Style</label>
+                    <comment>Use ( default, square, circle, rounded ) </comment>   
+            </field>
+            <field id="arrowposition" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Arrow Position</label>
+                    <comment>Use ( inside, outside, attached )</comment>   
+            </field>
+            <field id="arrowstyle" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Arrow Style</label>
+                    <comment>Use (default, square, circle, rounded, svelt)</comment>   
+            </field>
+            <field id="arrowicons" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Arrow Icon</label>
+                    <comment>Use (default, caret, angle, chevron)</comment>   
+            </field>
+            <field id="arrowhovereffect" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Arrow Hover Effects</label>
+                    <comment>Use (zoom, shrink, translate)</comment>   
+            </field>
+             <field id="imageradius" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Radius</label>
+            </field>
+             <field id="imagebackgroundopacity" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Opacity</label>
+                     <comment>Use  value from 0 to 1 like 0.7</comment>   
+            </field>
+            
+        </group> 
+         <group id="nanogalllerySetting" type="text" sortOrder="199" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Nano Gallery Settings</label>
+                <field id="enable_module" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Gallery Type</label>
+                    <source_model>FME\Photogallery\Model\Config\Nanogallery\Galtype</source_model>
+                </field>
+                 <field id="inbulitlayouts" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Layouts</label>
+                    <source_model>FME\Photogallery\Model\Config\Nanogallery\Thumbslayoutype</source_model>
+                </field>
+            
+            <group id="gallerylayout" type="text" sortOrder="199" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Thumbnail Layout</label>
+                <depends>
+                        <field id="inbulitlayouts">cl</field>
+                </depends>
+                <field id="layouts" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Layout</label>
+                    <source_model>FME\Photogallery\Model\Config\Nanogallery\Thumbslayout</source_model>
+                </field>
+                <field id="width" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Width</label> 
+                    <depends>
+                        <field id="layouts">grid</field>
+                    </depends>
+                </field>
+
+                <field id="height" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Height</label>
+                    <depends>
+                        <field id="layouts">grid</field>
+                    </depends>   
+                </field>
+                <field id="justheight" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Height</label>
+                    <depends>
+                        <field id="layouts">justified</field>
+                    </depends>   
+                </field>
+                 <field id="cascadingwidth" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Width</label> 
+                    <depends>
+                        <field id="layouts">cascading</field>
+                    </depends>
+                </field>
+                 <field id="mosaicwidth" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Width</label> 
+                    <depends>
+                        <field id="layouts">mosaic</field>
+                    </depends>
+                </field>
+
+                <field id="mosaicheight" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Height</label>
+                    <depends>
+                        <field id="layouts">mosaic</field>
+                    </depends>   
+                </field>
+                 <field id="mosaictextarea" translate="label" type="textarea" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Layout Definition</label>
+
+                 <comment>[
+                        { "c": 1, "r": 1, "w": 2, "h": 2 },
+                        { "c": 3, "r": 1, "w": 1, "h": 1 },
+                        { "c": 3, "r": 2, "w": 1, "h": 1 }
+                    ]
+                </comment>
+                    <depends>
+                        <field id="layouts">mosaic</field>
+                    </depends>   
+                </field>
+                <field id="thumbnailBorderHorizontal" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Border Horizontal</label>
+                </field>
+
+                <field id="thumbnailBorderVertical" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Border Vertical</label>
+                </field>
+
+                <field id="bg_color" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Thumb Background Color</label>
+                    <frontend_model>FME\Photogallery\Block\Color</frontend_model> <!-- Our block for attaching color picker to text box -->
+                </field>
+                   
+
+                <field id="thumbnailGutterWidth" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Gutter Width</label>
+                </field>
+
+                <field id="thumbnailGutterHeight" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Gutter Height</label>
+                </field>
+                <field id="thumnsallign" translate="label" type="select" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Thumbnail Alignment</label>
+                    <source_model>FME\Photogallery\Model\Config\Nanogallery\Thumbsalign</source_model>
+                </field>
+                <field id="thumbnailDisplayInterval" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Thumbnail Display Interval</label>
+                </field>
+                <field id="thumbnailDisplayTransition" translate="label" type="select" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Thumbnail Display Transition</label>
+                    <source_model>FME\Photogallery\Model\Config\Nanogallery\Thumbstrans</source_model>
+                </field>
+                <field id="thumbnailDisplayTransitionDuration" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Thumbnail Display Transition Duration</label>
+                </field>
+                 
+
+            </group> 
+            <group id="gallerysetting" type="text" sortOrder="199" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Gallery Settings</label>
+                <depends>
+                        <field id="inbulitlayouts">cl</field>
+                </depends>
+                <field id="enable_module" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Gallery Type</label>
+                    <source_model>FME\Photogallery\Model\Config\Nanogallery\Galtype</source_model>
+                </field>
+            </group>
+             
+            <group id="paginitionsettings" type="text" sortOrder="199" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Pagination Types</label>
+                <depends>
+                        <field id="inbulitlayouts">cl</field>
+                </depends>
+                <field id="paginitionType" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Gallery Type</label>
+                    <source_model>FME\Photogallery\Model\Config\Nanogallery\Paginitiontype</source_model>
+                </field>
+                <field id="galleryLastRowFull" translate="label" type="select" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Gallery Last Row Full</label>
+                    <comment>Wont work for mosaic Layout</comment>
+                    <depends>
+                        <field id="paginitionType">plr</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                 <field id="allowgalleryMaxRows" translate="label" type="select" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Rows</label>
+                    <comment>Wont work for mosaic Layout</comment>
+                        <depends>
+                            <field id="paginitionType">plr</field>
+                        </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="galleryMaxRows" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends>
+                        <field id="allowgalleryMaxRows">1</field>
+                        <field id="paginitionType">plr</field>
+                    </depends>   
+                    <label>Gallery Max Rows</label>
+                </field>
+                 <field id="galleryDisplayMoreStep" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends>
+                        <field id="paginitionType">pbtoon</field>
+                    </depends>   
+                    <label>Gallery Display More Step</label>
+                </field>
+                <field id="dotgalleryMaxRows" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends>
+                        <field id="paginitionType">pdot</field>
+                    </depends>   
+                    <label>Gallery Max Rows</label>
+                </field>
+
+                <field id="numgalleryMaxRows" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends>
+                        <field id="paginitionType">pnum</field>
+                    </depends>   
+                    <label>Gallery Max Rows</label>
+                </field>
+
+                <field id="rectgalleryMaxRows" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends>
+                        <field id="paginitionType">prect</field>
+                    </depends>   
+                    <label>Gallery Max Rows</label>
+                </field>
+
+
+            </group>
+             <group id="labelSetting" type="text" sortOrder="199" showInDefault="1" showInWebsite="1" showInStore="1">
+                <depends>
+                        <field id="inbulitlayouts">cl</field>
+                </depends>
+                <label>Label Settings</label>
+                <field id="position" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <source_model>FME\Photogallery\Model\Config\Nanogallery\Labelposition</source_model>
+                </field>
+                <field id="align" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Align</label>
+                    <source_model>FME\Photogallery\Model\Config\Nanogallery\Labelalign</source_model>
+                </field>
+                <field id="display" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group> 
+            <group id="thumbnailtools" type="text" sortOrder="199" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Thumbnail Tools</label>
+                <depends>
+                        <field id="inbulitlayouts">cl</field>
+                </depends>
+                <comment>Possible tools: 'share', 'download', 'cart', 'info', 'display'. Use comma(,) for multiple icons</comment>
+                <field id="topLeft" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Top Left</label>
+                </field>
+                <field id="topRight" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Top Right</label>
+                </field>
+                <field id="bottomLeft" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bottom Left</label>
+                </field>
+                <field id="bottomRight" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bottom Right</label>
+                </field>
+            </group>
+            <group id="hovereffect" type="text" sortOrder="199" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Hover Effects</label>
+               <depends>
+                        <field id="inbulitlayouts">cl</field>
+                </depends>
+                <comment>Consult User guide for Catchy Hover Effects</comment>
+                <field id="thumbnailHoverEffect2" translate="label" type="textarea" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                     <label>Thumbnail Hover Effect2</label>
+                </field>
+            </group>
+            <group id="lightBox" type="text" sortOrder="199" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>LightBox Settings</label>
+                <depends>
+                        <field id="inbulitlayouts">cl</field>
+                </depends>
+                <comment> Use these to avail 'previousButton', 'nextButton', 'rotateLeft', 'rotateRight', 'pageCounter', 'playPauseButton', 'fullscreenButton', 'infoButton', 'linkOriginalButton', 'closeButton', 'downloadButton', 'zoomButton', 'shareButton', 'label' (image title and description),</comment>
+                <field id="topLeft" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Viewer Tools Left</label>
+                </field>
+                <field id="topRight" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Viewer Tools Right</label>
+                </field>
+                <field id="viewerToolbarstandard" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Viewer Toolbar Standard</label>
+                </field>
+                <field id="viewerToolbarminimize" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Viewer Toolbar Minimized</label>
+                </field>
+            </group>
+        </group>
+   </section>
+</system>
+</config>

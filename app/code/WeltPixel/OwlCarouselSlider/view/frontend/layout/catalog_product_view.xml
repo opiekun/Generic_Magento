@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="catalog.product.related">
+            <action method="setTemplate" ifconfig="weltpixel_owl_carousel_config/related_products/status">
+                <argument name='template' xsi:type='string'>WeltPixel_OwlCarouselSlider::product/list/items.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="product.info.upsell">
+            <action method="setTemplate" ifconfig="weltpixel_owl_carousel_config/upsell_products/status">
+                <argument name='template' xsi:type='string'>WeltPixel_OwlCarouselSlider::product/list/items.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * https://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_Booking
+  * @author      CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+  * @license      https://cedcommerce.com/license-agreement.txt
+  */
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/system_file.xsd">
+    <system>
+        <tab id="booking" sortOrder="1">
+            <label>Booking</label>
+        </tab>
+        <section id="cedcore" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+            <tab>booking</tab>
+            <label>Installed Extensions</label>
+            <resource>Ced_Booking::cedcore</resource>
+            <group id="installed_extensions" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Installed Extensions</label>
+                <frontend_model>Ced\Booking\Block\Extensions</frontend_model>
+            </group>
+            <group id="feeds_group" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Notifications</label>
+                <field id="feeds" translate="label" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>I'd like to be informed by CedCommerce about:</label>
+                    <source_model>Ced\Booking\Model\Source\Updates\Type</source_model>
+                </field>
+            </group>
+            <group id="extensions_groups" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>CedCommerce Extensions Store</label>
+
+                <field id="extensions" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>CedCommerce</label>
+                    <frontend_model>Ced\Booking\Block\Cedcommerce\Store</frontend_model>
+                </field>
+            </group>
+        </section>
+        <section id="booking" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Booking System</label>
+            <tab>booking</tab>
+            <resource>Ced_Booking::booking_settings</resource>
+            <group id="booking_config" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Booking Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enable Booking System In Frontend</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="map_api_key" translate="label comment" type="text" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Map API Key</label>
+                </field>
+                <field id="map_api_authentication_block" translate="label" type="hidden" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <frontend_model>Ced\Booking\Block\Adminhtml\Config</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

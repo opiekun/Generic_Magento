@@ -1,0 +1,460 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="weltpixel_quick_cart" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Quick Cart</label>
+            <tab>weltpixel</tab>
+            <resource>WeltPixel_QuickCart::QuickCartSettings</resource>
+            <group id="notification" translate="label" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Important / Recommended:</label>
+                <fieldset_css>weltpixel-recommended-header active</fieldset_css>
+                <field id="notification_msg" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>WeltPixel\Backend\Block\Adminhtml\System\Config\Notification</frontend_model>
+                </field>
+            </group>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings for QuickCart</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>Enable/Disable QuickCart.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <comment>
+                    <![CDATA[
+                        <script type="text/javascript">
+                            require(['jquery', 'domReady!'], function(){
+                                var groups = [
+                                    'weltpixel_quick_cart_header',
+                                    'weltpixel_quick_cart_footer',
+                                    'weltpixel_quick_cart_message',
+                                    'weltpixel_quick_cart_minicart_message',
+                                    'weltpixel_quick_cart_shoppingcart_message',
+                                    'weltpixel_quick_cart_shopping_cart_content',
+                                    'weltpixel_quick_cart_carousel_options'
+                                ];
+
+                                if (jQuery('#weltpixel_quick_cart_general_enable').val() != 1){
+                                    for (var i = 0; i < groups.length; i++) {
+                                        jQuery('#' + groups[i]).closest('.section-config').hide();
+                                    }
+                                }
+
+                                jQuery('#weltpixel_quick_cart_general_enable').on('change', function(){
+                                    if (this.value != 1) {
+                                        for (var i = 0; i < groups.length; i++) {
+                                            jQuery('#' + groups[i]).closest('.section-config').hide();
+                                        }
+                                    } else {
+                                        for (var i = 0; i < groups.length; i++) {
+                                            jQuery('#' + groups[i]).closest('.section-config').show();
+                                        }
+                                    }
+                                })
+                            });
+                        </script>
+                    ]]>
+                </comment>
+                <field id="open_minicart" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Open minicart after item is added or removed</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                        If set to Yes, the Quick Cart opens each time an item is added to the cart or removed.<br/>
+                        <b>Note:</b> The option is ignored if the core magento setting Stores -> Configuration -> Sales
+                        -> Checkout -> Shopping Cart -> After Adding a Product Redirect to Shopping Cart is set to Yes.
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="open_minicart_display_options" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Open minicart on Mobile/Desktop </label>
+                    <source_model>WeltPixel\QuickCart\Model\Config\Source\MiniCartDisplayOptions</source_model>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/general/open_minicart">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="header" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Quick Cart Header</label>
+                <field id="header_height" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Height</label>
+                    <comment>Set the height of Quick Cart header [in px]. E.g. 40px</comment>
+                    <validate>required</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="header_background" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <comment>Select background color for QuickCart Header. Example: #000000</comment>
+                    <validate>required color {required:false, hash:true}</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="header_text_color" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text Color</label>
+                    <comment>Select text color of QuickCart Header title. Example: #FFFFFF</comment>
+                    <validate>required color {required:false, hash:true}</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="footer" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Quick Cart Footer</label>
+                <field id="subtotal_background" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Subtotal Background Color</label>
+                    <comment>Select background color for subtotal section from QuickCart footer. Example: #F6F6F6</comment>
+                    <validate>required color {required:false, hash:true}</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="subtotal_text_color" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Subtotal Text Color</label>
+                    <comment>Select color for text in subtotal section from QuickCart footer. Example: #000000</comment>
+                    <validate>required color {required:false, hash:true}</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="minicart_message" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Quick Cart Custom Message</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>Enable/Disable Custom message.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="content" translate="label comment" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Message</label>
+                    <comment>
+                        {amount_needed} custom variable can be used if the Free Shipping Integration is used. It will return the needed amount for Free Shipping.
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/minicart_message/enable">1</field>
+                    </depends>
+                </field>
+                <field id="free_shipping_integration" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Free Shipping Integration</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/minicart_message/enable">1</field>
+                    </depends>
+                </field>
+                <field id="free_shipping_content" translate="label comment" type="textarea" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message for Free Shipping </label>
+                    <comment>
+                        <![CDATA[
+                         Insert a custom message which is displayed whe the free shipping can be applied, based on the Minimum Order Amount value set in the Free Shipping settings.
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/minicart_message/enable">1</field>
+                        <field id="weltpixel_quick_cart/minicart_message/free_shipping_integration">1</field>
+                    </depends>
+                </field>
+                <field id="text_color" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message Text Color</label>
+                    <validate>required color {required:false, hash:true}</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/minicart_message/enable">1</field>
+                    </depends>
+                </field>
+                <field id="font_size" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message Text Font Size</label>
+                    <comment>Set the font size [in px]. E.g. 16px</comment>
+                    <validate>required</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/minicart_message/enable">1</field>
+                    </depends>
+                </field>
+                <field id="custom_css" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Css</label>
+                    <comment>
+                        <![CDATA[
+                         #quickcart-custom-msg { <br/> /* Custom Css Here for the custom message*/  <br/> }  <br/><br/>
+                         #quickcart-amount-needed {  <br/> /* Custom Css Here for the {amount_needed} in the custom message */  <br/>}
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/minicart_message/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="shoppingcart_message" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Shopping Cart Custom Message</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>Enable/Disable Custom message.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="content" translate="label comment" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Message</label>
+                    <comment>
+                        {amount_needed} custom variable can be used if the Free Shipping Integration is used. It will return the needed amount for Free Shipping.
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/shoppingcart_message/enable">1</field>
+                    </depends>
+                </field>
+                <field id="free_shipping_integration" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Free Shipping Integration</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/shoppingcart_message/enable">1</field>
+                    </depends>
+                </field>
+                <field id="free_shipping_content" translate="label comment" type="textarea" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message for Free Shipping </label>
+                    <comment>
+                        <![CDATA[
+                         Insert a custom message which is displayed whe the free shipping can be applied, based on the Minimum Order Amount value set in the Free Shipping settings.
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/shoppingcart_message/enable">1</field>
+                        <field id="weltpixel_quick_cart/shoppingcart_message/free_shipping_integration">1</field>
+                    </depends>
+                </field>
+                <field id="text_color" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message Text Color</label>
+                    <validate>required color {required:false, hash:true}</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/shoppingcart_message/enable">1</field>
+                    </depends>
+                </field>
+                <field id="font_size" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message Text Font Size</label>
+                    <comment>Set the font size [in px]. E.g. 30px</comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/shoppingcart_message/enable">1</field>
+                    </depends>
+                </field>
+                <field id="custom_css" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Css</label>
+                    <comment>
+                        <![CDATA[
+                         #shoppingcart-custom-msg { <br/> /* Custom Css Here for the custom message*/ <br/> }<br/><br/>
+                         #shoppingcart-amount-needed { <br/> /* Custom Css Here for the {amount_needed} placeholder in the custom message */ <br/> }
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/shoppingcart_message/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="shopping_cart_content" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Shopping Cart Content Design</label>
+                <field id="qty_button_type" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Quantity Button Type</label>
+                    <source_model>WeltPixel\QuickCart\Model\Config\Source\QuantitySignTypes</source_model>
+                    <comment>
+                       Choose Quantity Button design
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="custom_block_quick_cart_enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Custom CMS Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        Enable this option to be able to display a custom CMS Block in the Quick Cart
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="custom_block_quick_cart" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pick Custom CMS Block</label>
+                    <source_model>WeltPixel\QuickCart\Model\Config\Source\CustomBlockList</source_model>
+                    <comment>
+                        Choose CMS Block that you want to be displayed on Quick Cart
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/shopping_cart_content/custom_block_quick_cart_enable">1</field>
+                    </depends>
+                </field>
+                <field id="discount_display_mode_enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Discounted Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        Enable to display discounted item prices in the Quick Cart.
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="discount_display_mode" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Discounted Price Display Mode</label>
+                    <source_model>WeltPixel\QuickCart\Model\Config\Source\DiscountedPriceDisplayMode</source_model>
+                    <comment>
+                        Select "Column" to display the discounted price under the original price and "Inline" to display it beside the original price.
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="weltpixel_quick_cart/shopping_cart_content/discount_display_mode_enable">1</field>
+                    </depends>
+                </field>
+                <field id="enable_coupon_codes" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Coupon Codes</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        Enable this option to be able to display Coupon Codes in the Quick Cart
+                    </comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="carousel_options" translate="lavel" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Carousel Options</label>
+                <field id="display_carousel" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Carousel</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[
+                        Requires <a target="_blank" href="https://www.weltpixel.com/owl-carousel-and-slider.html">Magento 2 OWL Carousel & Slider</a>.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="carousel_type" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carousel Type</label>
+                    <source_model>WeltPixel\QuickCart\Model\Config\Source\CarouselType</source_model>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+                <field id="carousel_displayfor" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Carousel For</label>
+                    <source_model>WeltPixel\QuickCart\Model\Config\Source\CarouselDisplayFor</source_model>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+                <field id="carousel_title" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carousel Title</label>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+                <field id="carousel_title_color" translate="label" type="text" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carousel Title Color</label>
+                    <comment>Select color for Carousel Title. Example: #FFFFFF</comment>
+                    <validate>color {required:false, hash:true}</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+                <field id="carousel_title_fontsize" translate="label" type="text" sortOrder="33" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carousel Title Font Size</label>
+                    <comment>Set the font size [in px]. E.g. 16px</comment>
+                    <validate>required</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+                <field id="carousel_title_align" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carousel Title Alignment</label>
+                    <source_model>WeltPixel\QuickCart\Model\Config\Source\CarouselTitleAlignment</source_model>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+                <field id="carousel_item_desktop" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of Items Displayed on Desktop</label>
+                    <source_model>WeltPixel\QuickCart\Model\Config\Source\CarouselItemDisplayNumber</source_model>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+                <field id="carousel_item_mobile" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of Items Displayed on Mobile</label>
+                    <source_model>WeltPixel\QuickCart\Model\Config\Source\CarouselItemDisplayNumber</source_model>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+                <field id="carousel_arrows_borderradius" translate="label" type="text" sortOrder="69" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carousel Arrows Border Radius</label>
+                    <comment>Set the border radius [in px]. E.g. 20px</comment>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+                <field id="carousel_arrows_background" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carousel Arrows Background Color</label>
+                    <comment>Select background color for Carousel Arrows. Example: #FFFFFF</comment>
+                    <validate>color {required:false, hash:true}</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+                <field id="carousel_arrows_color" translate="label" type="text" sortOrder="71" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carousel Arrows Color</label>
+                    <comment>Select color for Carousel Arrows. Example: #555555</comment>
+                    <validate>color {required:false, hash:true}</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+                <field id="carousel_arrows_hover_background" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carousel Arrows Hover Background Color</label>
+                    <comment>Select background color for Hover Carousel Arrows. Example: #FFFFFF</comment>
+                    <validate>color {required:false, hash:true}</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+                <field id="carousel_arrows_hover_color" translate="label" type="text" sortOrder="81" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carousel Arrows Hover Color</label>
+                    <comment>Select color for Hover Carousel Arrows. Example: #000000</comment>
+                    <validate>color {required:false, hash:true}</validate>
+                    <depends>
+                        <field id="weltpixel_quick_cart/general/enable">1</field>
+                        <field id="display_carousel">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

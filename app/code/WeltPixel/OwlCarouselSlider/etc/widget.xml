@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="weltpixel_custom_slider" class="WeltPixel\OwlCarouselSlider\Block\Slider\Custom" placeholder_image="WeltPixel_OwlCarouselSlider::images/custom_widget_slider.png">
+        <label translate="true">WeltPixel - Custom Slider Widget</label>
+        <description>WeltPixel - Custom Slider Widget</description>
+        <parameters>
+            <parameter name="slider_id" xsi:type="select" source_model="WeltPixel\OwlCarouselSlider\Model\Config\Source\WidgetCustom" visible="true" sort_order="10" >
+                <label translate="true">Custom Slider</label>
+            </parameter>
+        </parameters>
+    </widget>
+
+    <widget id="weltpixel_products_slider" class="WeltPixel\OwlCarouselSlider\Block\Slider\Products" placeholder_image="WeltPixel_OwlCarouselSlider::images/product_widget_slider.png">
+        <label translate="true">WeltPixel - Products Carousel Widget</label>
+        <description>WeltPixel - Products Slider Widget</description>
+        <parameters>
+            <parameter name="products_type" xsi:type="select" source_model="WeltPixel\OwlCarouselSlider\Model\Config\Source\WidgetProducts" visible="true" sort_order="10" >
+                <label translate="true">Products Slider Type</label>
+            </parameter>
+        </parameters>
+    </widget>
+
+    <widget id="weltpixel_category_slider" class="WeltPixel\OwlCarouselSlider\Block\Slider\Category" placeholder_image="WeltPixel_OwlCarouselSlider::images/product_widget_slider.png">
+        <label translate="true">WeltPixel - Custom Category Product Carousel</label>
+        <description>WeltPixel - Custom Category Product Carousel</description>
+        <parameters>
+            <parameter name="category" xsi:type="block" visible="true" required="true" sort_order="10">
+                <label translate="true">Category</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Category\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Category...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="cache_lifetime" xsi:type="text" visible="true">
+                <label translate="true">Cache Lifetime (Seconds)</label>
+                <description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.</description>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget id="weltpixel_conditions_based_products_slider" class="WeltPixel\OwlCarouselSlider\Block\Slider\ConditionsProducts" placeholder_image="WeltPixel_OwlCarouselSlider::images/product_widget_slider.png">
+        <label translate="true">WeltPixel - Conditions Based Product Carousel</label>
+        <description>WeltPixel - Conditions Based Product Carousel</description>
+        <parameters>
+            <parameter name="condition" xsi:type="conditions" visible="true" required="true" sort_order="10"
+                       class="Magento\CatalogWidget\Block\Product\Widget\Conditions">
+                <label translate="true">Conditions</label>
+            </parameter>
+            <parameter name="cache_lifetime" xsi:type="text" visible="true">
+                <label translate="true">Cache Lifetime (Seconds)</label>
+                <description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.</description>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

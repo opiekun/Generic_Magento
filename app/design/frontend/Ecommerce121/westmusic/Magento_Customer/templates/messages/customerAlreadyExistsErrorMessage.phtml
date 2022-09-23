@@ -1,0 +1,4 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+?>
+<?= $block->escapeHtml(__('There is already an account registered with this email address. Please <a href="%1">CLICK HERE</a> to reset your password.', $block->getData('url')), ['a']);

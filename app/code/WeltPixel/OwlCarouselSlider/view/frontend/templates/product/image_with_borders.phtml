@@ -1,0 +1,38 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/** @var $block \Magento\Catalog\Block\Product\Image */
+/** @var $escaper \Magento\Framework\Escaper */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+?>
+
+<span class="product-image-container product-image-container-<?= /* @noEscape */ $block->getProductId() ?>"
+      style="width:<?php /* @escapeNotVerified */ echo $block->getWidth()?>px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: <?php /* @escapeNotVerified */ echo ($block->getRatio() * 100); ?>%;">
+        <img class=" <?= /* @escapeNotVerified */ $block->getClass() ?> <?php if ($block->getLazyLoad()): echo 'owl-lazy'; endif; ?>"
+             <?php foreach ($block->getCustomAttributes() as $name => $value): ?>
+                 <?= $escaper->escapeHtmlAttr($name) ?>="<?= $escaper->escapeHtmlAttr($value) ?>"
+             <?php endforeach; ?>
+            <?php if (!$block->getLazyLoad()): ?>
+                src="<?= $escaper->escapeUrl($block->getImageUrl()) ?>"
+             <?php endif ;?>
+             <?php if ($block->getHoverImageUrl()) :  ?>
+             data-hoversrc="<?php /* @escapeNotVerified */ echo $block->getHoverImageUrl(); ?>"
+             onmouseover="this.setAttribute('data-tmp', this.src);this.src=this.getAttribute('data-hoversrc');"
+             onmouseout="this.src=this.getAttribute('data-tmp')"
+             onmousemove="if (this.getAttribute('data-hoversrc') != this.src) this.setAttribute('data-tmp', this.src)"<?php endif; ?>
+             width="<?php /* @escapeNotVerified */ echo $block->getWidth(); ?>"
+             height="<?php /* @escapeNotVerified */ echo $block->getHeight(); ?>"
+             alt="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>"
+            <?php if ($block->getLazyLoad()): ?>
+            data-src="<?php /* @escapeNotVerified */ echo $block->getImageUrl(); ?>"
+            data-src-retina="<?php /* @escapeNotVerified */ echo $block->getImageUrl(); ?>"
+            <?php endif; ?>
+            loading="lazy"
+        /></span>
+</span>

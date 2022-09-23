@@ -1,0 +1,20 @@
+<div class="mgz-element-wrap-top" ng-if="element.builder.hovered||element.builder.editing||$root.draggingElement">
+	<div class="mgz-element-controls" 
+		ng-if="!element.builder.editing&&element.builder.controlsVisible" 
+		ng-include="::controlsTemplateUrl"></div>
+	<div class="mgz-element-toolbar" 
+		id="mgz-element-{{ element.id }}-toolbar"
+		ng-if="element.builder.editing" 
+		dynamic-directive 
+		element="element" 
+		element-name="mgz-element-toolbar-{{ ::element.type }}"
+		tabindex="0"
+		></div>
+	<div class="mgz-element-add-control mgz-element-{{ ::element.type }}-add-control" ng-if="$parent.$parent.element.builder.is_collection && !element.builder.is_collection && !$root.draggingElement && element.builder.control">
+		<a class="mgz-element-add" ng-click="$root.$broadcast('addElement', {elem: element, action: 'after' })" title="Add Next Element">
+			<span class="mgz-btn-content">
+				<i class="mgz-icon mgz-icon-add"></i>
+			</span>
+		</a>
+	</div>
+</div>

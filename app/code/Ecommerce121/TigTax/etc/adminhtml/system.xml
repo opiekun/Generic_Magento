@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="tax" translate="label">
+            <group id="tigtax" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>TigTax Settings</label>
+
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>You can find error logs if any here: System > TigTax > Error Logs</comment>
+                </field>
+                <field id="api_url" translate="label" type="text" sortOrder="20" showInDefault="1" canRestore="1">
+                    <label>API URL</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="api_key" translate="label" type="text" sortOrder="30" showInDefault="1">
+                    <label>API KEY</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="app_version" translate="label" type="text" sortOrder="40" showInDefault="1" canRestore="1">
+                    <label>Application version</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="application_name" translate="label" type="text" sortOrder="50" showInDefault="1" canRestore="1">
+                    <label>Application name</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="cron_expr" sortOrder="60" type="text" showInDefault="1" translate="label" canRestore="1">
+                    <label>Schedule (cron syntax)</label>
+                    <comment><![CDATA[<a href="http://crontab.guru/" target="_blank">Need help?</a>]]></comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="name_for_tax_rule" sortOrder="80" type="text" showInDefault="1" translate="label" canRestore="1">
+                    <label>Name for Tax Rule</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="region_ids" translate="label, comment" type="multiselect" sortOrder="85" showInDefault="1" >
+                    <label>Regions</label>
+                    <source_model>Ecommerce121\TigTax\Model\System\Config\Source\Tax\USRegion</source_model>
+                    <can_be_empty>1</can_be_empty>
+                    <comment>The changes will be applied only after the integration process is run</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="stub_enable" translate="label" type="select" sortOrder="90" showInDefault="1">
+                    <label>Enable Stubs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="stub_postcodes" translate="label" type="textarea" sortOrder="100" showInDefault="1" canRestore="1">
+                    <label>TigTax Postcodes response</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="stub_enable">1</field>
+                    </depends>
+                </field>
+                <field id="stub_rates" translate="label" type="textarea" sortOrder="110" showInDefault="1" canRestore="1">
+                    <label>TigTax Rates response</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="stub_enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

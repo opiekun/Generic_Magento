@@ -1,0 +1,107 @@
+//
+//  Mixins
+//  _____________________________________
+
+.am-flex(
+    @horiz-pos: none,
+    @vert-pos: none,
+    @wrap: none
+) {
+    & {
+        display: flex;
+    }
+
+    & when not (@horiz-pos = none) {
+        justify-content: @horiz-pos;
+    }
+
+    & when not (@vert-pos = none) {
+        align-items: @vert-pos;
+    }
+
+    & when not (@wrap = none) {
+        flex-wrap: @wrap;
+    }
+}
+
+.am-scrollbar(
+    @color: #adadad,
+    @second-color: #f0f0f0,
+    @direction: y,
+    @width: 4px,
+    @shadow-color: #fff
+) {
+    & {
+        overflow: hidden;
+        overflow-@{direction}: auto;
+        scrollbar-color: @color rgba(255, 255, 255, .2);
+        scrollbar-width: thin;
+    }
+
+    &::-webkit-scrollbar {
+        background: @second-color;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: @width;
+        background: @color;
+        cursor: pointer;
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px @shadow-color;
+    }
+
+    & when not (@direction = x) {
+        &::-webkit-scrollbar {
+            width: @width;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            width: @width;
+        }
+
+        ::-webkit-scrollbar-track {
+            width: @width;
+        }
+    }
+
+    & when not (@direction = y) {
+        &::-webkit-scrollbar {
+            height: @width;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            height: @width;
+        }
+
+        ::-webkit-scrollbar-track {
+            height: @width;
+        }
+    }
+}
+
+.am-text-clamp(
+    @font-size: 14,
+    @lines: 2
+) {
+    @height: unit(round(@font-size * (@font-size / 10) * @lines), px);
+
+    display: block;
+    overflow: hidden;
+    min-height: @height;
+    max-height: @height;
+    font-size: unit(@font-size, px);
+    line-height: @font-size / 10;
+}
+
+.am-word-break {
+    & {
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .ie11 & {
+        word-break: break-all;
+    }
+}

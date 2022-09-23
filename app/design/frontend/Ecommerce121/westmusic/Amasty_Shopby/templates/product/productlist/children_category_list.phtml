@@ -1,0 +1,91 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2021 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+?>
+<?php
+/**
+ * @var \Amasty\Shopby\Block\Product\ProductList\ChildrenCategoryList $block
+ * @var \Magento\Catalog\Model\Category[] $categories
+ */
+$categories = $block->getChildrenCategories();
+$size = $block->getImageSize();
+$swiperPrefix = $block->isSliderEnabled() ? 'swiper-' : '';
+?>
+
+<?php if (count($categories)): ?>
+    <div class="amslider-container <?= $block->isSliderEnabled() ? 'am-swiper-slider' : ''?>"
+         data-mage-init='{"collapsible":{"collapsible": true, "openedState": "active", "active": true }}'>
+        <div class="subcategory-list-title" data-role="title">
+            <h2><?= $block->escapeHtml(__('Shop by Sub-Category')) ?></h2>
+        </div>
+        <div class="amslider" id="category-carousel" data-role="content">
+            <?php if ((count($categories) > $block->getItemsCountPerSlide()) && $block->isSliderEnabled()): ?>
+                <div class="swiper-button-prev"></div>
+                <div  class="swiper-button-next"></div>
+            <?php endif; ?>
+            <div class="children-category-container <?= /* @noEscape */ $swiperPrefix; ?>container">
+                <div class="<?= /* @noEscape */ $swiperPrefix; ?>wrapper">
+                    <?php foreach ($categories as $category): ?>
+                        <?php $imgUrl = $block->getCategoryImageUrl($category, $size);?>
+                        <?php if ($imgUrl): ?>
+                        <a title="<?= $block->escapeHtml($category->getName())?>"
+                           href="<?= $block->escapeUrl($category->getUrl()) ?>"
+                           class="<?= /* @noEscape */ $swiperPrefix; ?>slide">
+                            <div class="<?= /* @noEscape */ $swiperPrefix ?>category-item
+                                <?= /* @noEscape */ ($block->showLabels()) ? ' category-item-label' : ''; ?>">
+                                <?php if (!$block->isOnlyLabels()): ?>
+                                    <div class="category-item-image">
+                                        <img height="<?= /* @noEscape */ $size?>"
+                                             width="<?= /* @noEscape */ $size ?>"
+                                             src="<?= $block->escapeUrl($imgUrl); ?>" />
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if ($block->showLabels() || $block->isOnlyLabels()): ?>
+                                    <div class="category-item-title"
+                                        <?php $style = 'style="max-width: '. $size . 'px"'; ?>
+                                        <?= /* @noEscape */ $block->isSliderEnabled() ? '' : $style?>
+                                    >
+                                        <?= $block->escapeHtml($category->getName())?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </a>
+                        <?php endif; ?>
+                    <?php endforeach;?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php if ($block->isSliderEnabled()): ?>
+        <script type="text/javascript">
+            require([
+                'jquery',
+                'Amasty_ShopbyBase/js/swiper.min',
+                'domReady!'
+            ], function ($) {
+                new Swiper('#category-carousel .swiper-container', {
+                    "slidesPerView" : "<?= /* @noEscape */ $block->getItemsCountPerSlide()?>",
+                    "loop": true,
+                    "simulateTouch": true,
+                    breakpoints: {
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 10
+                        },
+                        480: {
+                            slidesPerView: 2,
+                            spaceBetween: 20
+                        }
+                    },
+                    nextButton: '#category-carousel .swiper-button-next',
+                        prevButton: '#category-carousel .swiper-button-prev',
+                        spaceBetween: 30
+                });
+            });
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\ProductRecommendationsAdmin\Controller\Adminhtml\Index\Index">
+        <plugin name="Ecommerce121_CustomCsp::Magento_ProductRecommendationsAdmin_Controller_Adminhtml_Index"
+                type="Ecommerce121\CustomCsp\Plugin\Magento\ProductRecommendationsAdmin\Controller\Adminhtml\Index"/>
+    </type>
+</config>

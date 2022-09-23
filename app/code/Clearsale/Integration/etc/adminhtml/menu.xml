@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Clearsale_Integration::menu" title="Clearsale" module="Clearsale_Integration" sortOrder="51" resource="Clearsale_Integration::menu"/>
+	    <add id="Clearsale_Integration::clearsale_settings" title="Settings" module="Clearsale_Integration" sortOrder="20" parent="Clearsale_Integration::menu" action="adminhtml/system_config/edit/section/clearsale_configuration" resource="Clearsale_Integration::clearsale_settings"/>
+    </menu>
+</config>

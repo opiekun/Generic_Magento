@@ -1,0 +1,1 @@
+<a ng-if="element.builder.children" ng-click="$root.$broadcast('addElement', {elem: element, type: element.builder.children, openModal: false })" title="Add {{ children.name }}" ng-init="children=$root.elementManager.getElement(element.builder.children)"><i class="mgz-icon mgz-icon-add"></i> <span>Add {{ children.name }}</span></a>

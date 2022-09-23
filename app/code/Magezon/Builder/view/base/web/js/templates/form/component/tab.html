@@ -1,0 +1,23 @@
+<label class="mgz__field-label" for="{{ ::id }}" ng-if="to.label">
+	<span>{{ :: to.label}}</span>
+	<div class="mgz__tooltip {{ to.tooltipClass ? to.tooltipClass : 'tooltip-top' }}" ng-if="to.tooltip">
+		<span class="mgz__tooltip-help"><span></span></span>
+		<div class="mgz__tooltip-content" ng-bind-html="to.tooltip"></div>
+	</div>
+</label>
+<div class="mgz__field-control">
+	<!-- <div ng-if="false"><formly-transclude></formly-transclude></div> -->
+	<uib-tabset class="{{ options.className }} {{ to.singleMode ? 'nav-tabs-length' + length : ''}}" active="to.activeTab">
+		<uib-tab ng-repeat="tab in tabs"
+			disable="tab.disabled"
+			ng-hide="(tab.hasOwnProperty('status') && !tab.status)" ng-if="!tab.hide">
+			<uib-tab-heading ng-bind-html="tab.templateOptions.label" ng-click="tab.templateOptions.rendered=true"></uib-tab-heading>
+			<!-- <div class="{{ tab.className }} {{ tab.templateOptions.builderType=='containerGroup' ? 'mgz__field-group-columns mgz__control-group-equal' : '' }}" ng-if="($index==to.activeTab||tab.actived||tab.templateOptions.rendered)&&!tab.hide">
+				<formly-form model="$parent.model" fields="tab.fieldGroup" form="form"></formly-form>
+			</div> -->
+			<div class="{{ tab.className }} {{ tab.templateOptions.builderType=='containerGroup' ? 'mgz__field-group-columns mgz__control-group-equal' : '' }}" ng-if="$index==to.activeTab">
+				<formly-form model="$parent.model" fields="tab.fieldGroup" form="form"></formly-form>
+			</div>
+		</uib-tab>	
+	</uib-tabset>
+</div>

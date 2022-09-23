@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_width" xsi:type="number">205</argument>
+                <argument name="logo_height" xsi:type="number">111</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="header_call_us_block">
+            <arguments>
+                <argument name="block_id" xsi:type="string">header_call_us_block_catp</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="header_contact_us_block">
+            <arguments>
+                <argument name="block_id" xsi:type="string">header_contact_us_block_catp</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="footer_links_block">
+            <arguments>
+                <argument name="block_id" xsi:type="string">footer_links_block_catp</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="footer_bottom_links">
+            <arguments>
+                <argument name="block_id" xsi:type="string">footer_bottom_links_catp</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="footer_social_media">
+            <arguments>
+                <argument name="block_id" xsi:type="string">footer_social_media_catp</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

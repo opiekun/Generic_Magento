@@ -1,0 +1,111 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Booking
+ * @author      CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+?>
+<?php
+$pendingAmount = $block->getPendingAmount();
+$earnedAmount = $block->getEarnedAmount();
+$ordersPlaced = $block->getOrdersPlaced();
+$productsSold = $block->getProductsSold();
+?>
+<!-- Total Pending Amount -->
+<div class="col-lg-3 col-md-6 dashboard-info-wrapper">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3 panel-icons">
+                    <i class="fa fa-credit-card fa-4x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">
+                        <strong class="dashboard-totals-value">
+                            <span class="price"><?= $pendingAmount['total']; ?></span> <span
+                                    class="dashboard-totals-decimals"></span>
+                        </strong>
+                    </div>
+                    <div class="info-heading"><?= __('Total Pending Amount'); ?>!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Total Earned Amount -->
+<div class="col-lg-3 col-md-6 dashboard-info-wrapper">
+    <div class="panel panel-green">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3 panel-icons">
+                    <i class="fa fa-money fa-4x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">
+                        <strong class="dashboard-totals-value">
+                            <span class="price"><?= $earnedAmount['total']; ?></span> <span
+                                    class="dashboard-totals-decimals"></span>
+                        </strong>
+                    </div>
+                    <div class="info-heading"><?= __('Total Earned Amount'); ?>!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Total Orders Placed -->
+<div class="col-lg-3 col-md-6 dashboard-info-wrapper">
+    <div class="panel panel-yellow">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3 panel-icons">
+                    <i class="fa fa-shopping-cart fa-4x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">
+                        <strong class="dashboard-totals-value">
+                            <span class="price"><?= $ordersPlaced; ?></span> <span
+                                    class="dashboard-totals-decimals"></span>
+                        </strong>
+                    </div>
+                    <div class="info-heading"><?= __('Total Booking Order Placed'); ?>!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Total Products Sold -->
+<div class="col-lg-3 col-md-6 dashboard-info-wrapper">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3 panel-icons">
+                    <i class="fa fa-bar-chart-o fa-4x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">
+                        <strong class="dashboard-totals-value">
+                            <span class="price"><?= $productsSold['total']; ?></span> <span
+                                    class="dashboard-totals-decimals"></span>
+                        </strong>
+                    </div>
+                    <div class="info-heading"><?= __('Total Booking Product Sold') ?>!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

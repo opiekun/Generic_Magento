@@ -1,0 +1,7 @@
+<div class="mgz-modal-search-inner">
+	<input class="mgz-elements-filter" type="text" ng-model="$parent.mgz.search" ng-change="filterElements()" placeholder="Search element by name">
+	<label for="mgz-elements-filter">
+		<i class="mgz-icon mgz-icon-search"></i>
+	</label>
+	<i class="mgz-icon mgz-icon-close" ng-click="clearSearch()" ng-show="$parent.mgz.search"></i>
+</div>

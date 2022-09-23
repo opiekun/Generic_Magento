@@ -1,0 +1,366 @@
+@import 'module/_checkbox-radio.less';
+@import 'module/_actions-switcher.less';
+@import 'module/_mixins.less';
+@import 'module/_reports.less';
+
+@font-face {
+  font-family: 'Magezon-Icons';
+  src: url('../Magezon_Core/fonts/mgz_icons.eot');
+  src: url('../Magezon_Core/fonts/mgz_icons.eot?#iefix') format('embedded-opentype'), url('../Magezon_Core/fonts/mgz_icons.woff') format('woff'), url('../Magezon_Core/fonts/mgz_icons.woff') format('woff'), url('../Magezon_Core/fonts/mgz_icons.ttf') format('truetype'), url('../Magezon_Core/fonts/mgz_icons.svg#fonts') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.magezon-icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Magezon-Icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  display: inline-block;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.MgzFontAwesome {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#menu-magezon-core-extensions  {
+
+    > a {
+        &:before {
+            content: url('../Magezon_Core/images/logo.svg');
+        }
+
+        &:after {
+            content: url('../Magezon_Core/images/logo_hover.svg');
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+    }
+
+    &:hover,
+    &._active {
+        > a:before {
+            content: url('../Magezon_Core/images/logo_hover.svg');
+        }
+    }
+}
+
+.submenu li[data-ui-id*="menu-magezon-"] > a,
+#nav li li[data-ui-id*="menu-magezon-"].parent > a,
+#nav li li[data-ui-id*="menu-magezon-"].parent > strong {
+    position: relative;
+}
+
+.submenu li[data-ui-id*="menu-magezon-"] > a > span:after,
+#nav li li[data-ui-id*="menu-magezon-"].parent > a > span:after,
+#nav li li[data-ui-id*="menu-magezon-"].parent > strong:after {
+    content: url('../Magezon_Core/images/logo.svg');
+    float: right;
+    margin-top: -3px;
+    position: absolute;
+    right: 5px;
+}
+
+#menu-magezon-core-extensions .submenu li[data-ui-id*="menu-magezon-"] a > span:after,
+#menu-magezon-core-extensions .submenu li[data-ui-id*="menu-magezon-"] strong:after,
+.submenu li[data-ui-id*="menu-magezon-"].parent li[data-ui-id*="menu-magezon-"] > a > span:after {
+    display: none;
+}
+
+#mgz-tabs {
+    .admin__page-nav-item {
+        display: inline-block;
+        border-left: 0;
+        border-top: 3px solid transparent;
+
+        a {
+            border-bottom: 0;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        &._active,
+        &.ui-state-active {
+            .admin__page-nav-link
+            {
+                font-weight: normal;
+            }
+        }
+
+        &:hover {
+            border-top-color: #e4e4e4
+        }
+
+        &.ui-state-active {
+            border-top-color: #eb5202;
+            border-left: 0;
+        }
+    }
+    .admin__page-nav-items {
+        padding: 0;
+    }
+}
+
+.admin__field-control.control {
+    position: relative;
+}
+
+.mgz-form_image {
+    input {
+        width: 100%;
+        padding-right: 120px !important;
+    }
+
+    .action-add-image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #514943;
+        color: #FFF;
+        border-color: #514943;
+        font-weight: normal;
+
+        &:hover {
+            background-color: #35302c;
+            border-color: #35302c;
+            box-shadow: 0 0 0 1px #007bdb;
+        }
+    }
+
+    .image-preview {
+        display: none;
+        margin-top: 15px;
+    }
+}
+
+.minicolors {
+    width: 100% !important;
+
+    input {
+        padding-left: 32px !important;
+    }
+}
+
+.minicolors-theme-default {
+    .minicolors-swatch {
+        height: 26px !important;
+        width: 26px !important;
+        top: 3px !important;
+        left: 3px !important;
+        cursor: pointer;
+    }
+}
+
+.admin__menu .item-extensions .submenu .column:only-of-type .submenu-group-title,
+.admin__menu .item-extensions.level-0 > .submenu > ul > .level-1:only-of-type > .submenu-group-title {
+    display: block;
+}
+
+.mgz-status {
+    display: block;
+    font-weight: bold;
+    line-height: 17px;
+    padding: 0 3px;
+    text-align: center;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    max-width: 90px;
+    margin: 0 auto;
+}
+.mgz-status_1 {
+    background: #d0e5a9 none repeat scroll 0 0;
+    border-color: #5b8116;
+    color: #185b00;
+}
+
+.mgz-status_0 {
+    background: #f9d4d4 none repeat scroll 0 0;
+    border-color: #e22626;
+    color: #e22626;
+}
+
+.data-grid td._date {
+    width: 180px;
+}
+
+.data-grid td._center {
+    text-align: center;
+}
+.data-grid td._select {
+    width: 120px;
+}
+
+
+.mgz-menu.admin__action-dropdown-wrap {
+    z-index: 499;
+
+    a.admin__action-dropdown h1 {
+        background: url('../Magezon_Core/images/logo.png') no-repeat left center;
+        padding-left: 35px;
+        background-size: 25px;
+    }
+
+    .admin__action-dropdown-menu {
+        left: 0;
+        right: auto;
+        width: 500px;
+    }
+
+    .admin__action-dropdown-text:after {
+        left: 0;
+        right: -6px;
+    }
+
+    .admin__action-dropdown-menu > li {
+        width: 50%;
+        float: left;
+
+        > a {
+            padding: 1.1rem 0.5rem;
+
+            &:hover {
+                background-color: #e0f6fe;
+                color: #41362f;
+            }
+        }
+
+        &.separator {
+            border-top: 1px solid #d1d1d1;
+            margin: 1.8rem 0;
+            width: 100%;
+        }
+
+        &.wide {
+            width: 100%;
+        }
+    }
+}
+
+.admin__data-grid-action-columns-menu .col_store_id {
+    display: none !important;
+}
+
+.mgz-filemanager._disabled  button {
+    opacity: .6;
+}
+
+.mgz-ui {
+    .admin__action-multiselect-wrap li {
+        display: block;
+    }
+
+    .admin__action-multiselect-crumb .action-close {
+        padding: 0;
+
+        &:before {
+            font-size: inherit;
+        }
+    }
+}
+
+.mgz-heading {
+    margin: 30px 0;
+    padding: 15px 0;
+    text-align: center;
+    background: #373330;
+    color: #FFF;
+    font-size: 1.6rem;
+}
+.mgz-system-heading {
+    font-size: 15px;
+    border-left: #eb5202 solid 5px;
+    padding: 8px 12px;
+    text-align: left !important;
+    margin-left: 10%;
+    margin-top: 20px;
+    background: #373330;
+    color: #FFF;
+    font-weight: 400;
+}
+
+.mgz-action-menu {
+    list-style: none;
+    margin-bottom: 0;
+
+    li {
+        margin-bottom: 8px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.hide-control-value .admin__grid-control-value {
+    display: none;
+}
+
+.admin__grid-control .mgz-position {
+    width: 80px;
+}
+
+.mgz-extention .page-actions._fixed {
+    background: url('../Magezon_Core/images/logo.png') no-repeat 10px center #f8f8f8;
+    padding-left: 45px;
+    background-size: 25px;
+}
+
+.magezon-extensions {
+    .admin__page-nav-title {
+        background-image: url('../Magezon_Core/images/logo.png') !important;
+        background-repeat: no-repeat !important;
+        background-position: 1.8rem center !important;
+        padding-left: 42px;
+        background-size: 20px !important;
+
+        &:hover {
+            background-color: #f1f1f1 !important;
+        }
+    }
+}
+.mgz-text-left {
+  text-align: left;
+}
+.mgz-text-right {
+  text-align: right;
+}
+.mgz-text-center {
+  text-align: center;
+}
+.mgz-text-justify {
+  text-align: justify;
+}
+.mgz-hidden {
+    display: none;
+}
+.mgz-hide {
+    display: none;
+}
+.mgz-visible {
+    display: block;
+}
+.mgz_fit {
+    width: 1% !important;
+}
+.mgz_center {
+    text-align: center;
+}

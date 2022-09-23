@@ -1,0 +1,71 @@
+<?php
+/**
+ * @var $this IWD\AddressValidation\Block\Frontend\Form
+ */
+?>
+<?php
+$candidates = $this->getValidationResponse()->getSuggestedAddresses();
+$origin = $this->getValidationResponse()->getOriginalAddress();
+$error = $this->getValidationResponse()->getError();
+$valid = $this->getValidationResponse()->getIsValid();
+$i = 0;
+?>
+<div class="fieldset">
+    <?php if (!empty($candidates)) { ?>
+        <div class="iwd_opc_column_name">
+            <?php echo __($this->getHelper()->getContentHeader()) ?>
+        </div>
+        <div class="field">
+            <div class="control">
+                <select class="select"
+                        id="iwd_opc_address_validation_select"
+                        name="iwd_opc_address_validation_select"
+                        placeholder="<?php echo __('Suggested Address ...') ?>"
+                        data-validate="{required:true}">
+                    <option></option>
+                    <?php foreach ($candidates as $candidate) : ?>
+                        <option value="<?php echo $i; ?>">
+                            <?php echo $candidate->toString(); ?>
+                        </option>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <div style="display: none;"
+             class="field">
+            <div class="control">
+                <button title="<?php echo __($this->getHelper()->getContentSuggestedAddress()) ?>"
+                        id="iwd_address_validation_continue_button" class="iwd_opc_button active">
+                    <?php echo __($this->getHelper()->getContentSuggestedAddress()) ?>
+                </button>
+            </div>
+        </div>
+    <?php } else { ?>
+        <div class="iwd_opc_column_name">
+            <?php echo __('Address Validation Failed') ?>
+        </div>
+        <div class="iwd_opc_universal_wrapper">
+            <?php echo __($this->getHelper()->getContentMessage()) ?>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button title="<?php echo __($this->getHelper()->getContentSuggestedAddress()) ?>"
+                        id="iwd_address_validation_continue_button" class="iwd_opc_button active">
+                    <?php echo __('Continue') ?>
+                </button>
+            </div>
+        </div>
+    <?php } ?>
+    <?php if ($this->getHelper()->getAllowNotValidAddress() && !empty($candidates)) : ?>
+        <div
+                class="field">
+            <div class="control">
+                <button title="<?php echo __($this->getHelper()->getContentOriginAddress()) ?>"
+                        id="iwd_address_validation_origin_address_button" class="iwd_opc_button">
+                    <?php echo __($this->getHelper()->getContentOriginAddress()) ?>
+                </button>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>

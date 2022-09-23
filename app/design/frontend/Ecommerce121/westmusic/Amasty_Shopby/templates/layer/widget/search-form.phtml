@@ -1,0 +1,21 @@
+<?php
+/** @var \Amasty\ShopbyBase\Model\FilterSetting $filterCode */
+/** @var $filterLabel */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<div class="amshopby-search-box">
+    <input type="text"
+           class="am-search-box-<?= $escaper->escapeHtml($filterCode) ?>"
+           placeholder="<?= $escaper->escapeHtml(__('Find a ') . $filterLabel) ?>" />
+</div>
+
+<script type="text/x-magento-init">
+            {
+                ".am-search-box-<?= $escaper->escapeHtml($filterCode)?>": {
+                    "amShopbyFilterSearch": {
+                        "highlightTemplate": "<span class='amshopby-highlighted'>$&</span>",
+                        "itemsSelector": ".am-filter-items-<?= $escaper->escapeHtml($filterCode) ?>"
+                    }
+                }
+            }
+</script>

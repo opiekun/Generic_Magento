@@ -1,0 +1,105 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php if ($this->isEnabled()) : ?>
+    <?php $helper = $this->helper('WeltPixel\GA4\Helper\Data'); ?>
+    <?php $product = $this->getCurrentProduct(); ?>
+    <?php if (isset($product)) : ?>
+        <?php $productDetails = []; ?>
+        <?php
+
+        $productDetail = [];
+        $productDetail['item_name'] = html_entity_decode($product->getName());
+        $productDetail['item_id'] = $helper->getGtmProductId($product);
+        $productDetail['price'] = number_format($product->getPriceInfo()->getPrice('final_price')->getValue(), 2, '.', '');
+        if ($helper->isBrandEnabled()) :
+            $productDetail['item_brand'] = $helper->getGtmBrand($product);
+        endif;
+        $ga4Categories = $helper->getGA4CategoriesFromCategoryIds($product->getCategoryIds());
+        $productDetail = array_merge($productDetail, $ga4Categories);
+        $productDetail['currency'] = $this->getCurrencyCode();
+
+        /** Set the custom dimensions */
+        $customDimensions = $this->getProductDimensions($product, $helper);
+        foreach ($customDimensions as $name => $value) :
+            $productDetail[$name] = $value;
+        endforeach;
+
+        $productDetails[] = $productDetail;
+        ?>
+        <?php
+        $this->setEcommerceData('items', $productDetails);
+        $this->setDataLayerOption('event', 'view_item');
+        ?>
+
+        <?php
+
+        $relatedProductsCollection = $this->getRelatedProductCollection();
+        $upsellProductsCollection = $this->getUpsellProductCollection();
+
+        $productImpressions = [];
+
+        if (count($relatedProductsCollection)) :
+            $i = 1;
+            foreach ($relatedProductsCollection as $_product) :
+                $relatedProduct = [];
+                $relatedProduct['item_name'] = html_entity_decode($_product->getName());
+                $relatedProduct['item_id'] = $helper->getGtmProductId($_product);
+                $relatedProduct['price'] = number_format($_product->getPriceInfo()->getPrice('final_price')->getValue(), 2, '.', '');
+                if ($helper->isBrandEnabled()) :
+                    $relatedProduct['item_brand'] = $helper->getGtmBrand($_product);
+                endif;
+                $ga4Categories = $helper->getGA4CategoriesFromCategoryIds($_product->getCategoryIds());
+                $relatedProduct = array_merge($relatedProduct, $ga4Categories);
+                $relatedProduct['category'] = $helper->getGtmCategoryFromCategoryIds($_product->getCategoryIds());
+                $relatedProduct['item_list_name'] = __('Related Products From') . ' ' . $product->getData('name');
+                $relatedProduct['item_list_id'] = 'related_products';
+                $relatedProduct['index'] = $i;
+                $relatedProduct['currency'] = $this->getCurrencyCode();
+                $productImpressions[] = $relatedProduct;
+                $i++;
+            endforeach;
+        endif;
+
+        if (count($upsellProductsCollection)) :
+            $i = 1;
+            foreach ($upsellProductsCollection as $_product) :
+                $upsellProduct = [];
+                $upsellProduct['item_name'] = html_entity_decode($_product->getName());
+                $upsellProduct['item_id'] = $helper->getGtmProductId($_product);
+                $upsellProduct['price'] = number_format($_product->getPriceInfo()->getPrice('final_price')->getValue(), 2, '.', '');
+                if ($helper->isBrandEnabled()) :
+                    $upsellProduct['item_brand'] = $helper->getGtmBrand($_product);
+                endif;
+                $ga4Categories = $helper->getGA4CategoriesFromCategoryIds($_product->getCategoryIds());
+                $upsellProduct = array_merge($upsellProduct, $ga4Categories);
+                $upsellProduct['item_list_name'] = __('Upsell Products From') . ' ' . $product->getData('name');
+                $upsellProduct['item_list_id'] = 'upsell_products';
+                $upsellProduct['index'] = $i;
+                $upsellProduct['currency'] = $this->getCurrencyCode();
+                $productImpressions[] = $upsellProduct;
+                $i++;
+            endforeach;
+        endif;
+
+        if (count($productImpressions)) :
+            $impressionData = [];
+            $impressionData['event'] = 'view_item_list';
+            $impressionData['ecommerce'] = [];
+            $impressionData['ecommerce']['items'] = $productImpressions;
+            $this->setAdditionalDataLayerData($impressionData);
+        endif;
+
+        if ($helper->isAdWordsRemarketingEnabled()):
+            $remarketingData = [];
+            $remarketingData['ecomm_pagetype'] = \WeltPixel\GA4\Model\Api\Remarketing::ECOMM_PAGETYPE_PRODUCT;
+            $remarketingData['ecomm_prodid'] = $helper->getGtmProductId($product);
+            $remarketingData['ecomm_totalvalue'] = number_format($product->getPriceInfo()->getPrice('final_price')->getValue(), 2, '.', '');
+            $remarketingData['ecomm_category'] = $helper->getGtmCategoryFromCategoryIds($product->getCategoryIds());
+            $this->setDataLayerOption('google_tag_params', $remarketingData);
+        endif;
+
+        ?>
+
+    <?php endif; ?>
+<?php endif; ?>

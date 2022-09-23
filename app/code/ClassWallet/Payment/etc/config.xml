@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <classwallet>
+                <active>1</active>
+                <enable_cart_button>0</enable_cart_button>
+                <model>ClassWallet\Payment\Model\Payment\Classwallet</model>
+                <order_status>pending</order_status>
+                <title>Classwallet</title>
+                <vendor_id>5f3ec08f40420f58a14fdc72</vendor_id>
+                <default_shipping_method>freeshipping_freeshipping</default_shipping_method>
+            </classwallet>
+        </payment>
+    </default>
+</config>

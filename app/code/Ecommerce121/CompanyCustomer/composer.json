@@ -1,0 +1,21 @@
+{
+    "name": "ecommerce121/module-company-customer",
+    "description": "n/a",
+    "version": "0.0.1",
+    "license": [
+        "proprietary",
+        "BSD-3-Clause"
+    ],
+    "type": "magento2-module",
+    "require": {
+        "php": "^7.2.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Ecommerce121\\CompanyCustomer\\": ""
+        }
+    }
+}

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://magezon.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_CustomerAttachments
+ * @copyright Copyright (C) 2018 Magezon (https://magezon.com)
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">customerattachments_attachment_form.attachment_form_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Magezon\CustomerAttachments\Block\Adminhtml\Attachment\Edit\Button\Save"/>
+            <button name="save_and_apply" class="Magezon\CustomerAttachments\Block\Adminhtml\Attachment\Edit\Button\SaveAndApplyButton"/>
+            <button name="reset" class="Magezon\CustomerAttachments\Block\Adminhtml\Attachment\Edit\Button\Reset"/>
+            <button name="delete" class="Magezon\CustomerAttachments\Block\Adminhtml\Attachment\Edit\Button\Delete"/>
+            <button name="back" class="Magezon\CustomerAttachments\Block\Adminhtml\Attachment\Edit\Button\Back"/>
+        </buttons>
+        <namespace>customerattachments_attachment_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>customerattachments_attachment_form.attachment_form_data_source</dep>
+        </deps>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+    </settings>
+    <dataSource name="attachment_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="Magezon\CustomerAttachments\Model\Attachment\DataProvider" name="attachment_form_data_source">
+            <settings>
+                <requestFieldName>attachment_id</requestFieldName>
+                <primaryFieldName>attachment_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">General Information</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <field name="attachment_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">attachment</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>attachment_id</dataScope>
+            </settings>
+        </field>
+        <field name="is_active" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">attachment</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable Attachment</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="enable_condition" sortOrder="20" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">attachment</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable Condition</label>
+                <dataScope>enable_condition</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">attachment</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+        <field name="description" template="ui/form/field" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="height" xsi:type="string">300px</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Description</label>
+                <dataScope>description</dataScope>
+            </settings>
+        </field>
+        <field name="attachment_type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magezon\CustomerAttachments\Model\Attachment\Source\Type</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Type</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">page</item>
+                    <item name="dataScope" xsi:type="string">attachment_type</item>
+                    <item name="additionalClasses" xsi:type="string">customerattachments-attachment-file-type</item>
+                </item>
+            </argument>
+        </field>
+        <field name="attachment_file" formElement="fileUploader" template="Magezon_CustomerAttachments/form/element/uploader/uploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">attachment</item>
+                    <item name="label" xsi:type="string" translate="true">File</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="previewTmpl" xsi:type="string">Magezon_CustomerAttachments/file-preview</item>
+                    <item name="required" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="customerattachments/attachment_file/upload"/>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="attachment_url" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="label" xsi:type="string" translate="true">URL</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="attachment-url">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+        <field name="from_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">From</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-date" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="source" xsi:type="string">catalog_rule</item>
+                    <item name="dataScope" xsi:type="string">from_date</item>
+                </item>
+            </argument>
+        </field>
+        <field name="to_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">To</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">catalog_rule</item>
+                    <item name="dataScope" xsi:type="string">to_date</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-date" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="number_of_downloads" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="style" xsi:type="string">width: 150px;</item>
+                    <item name="source" xsi:type="string">attachment</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Max. Downloads</label>
+                <dataScope>number_of_downloads</dataScope>
+                <elementTmpl>Magezon_Core/form/element/input</elementTmpl>
+            </settings>
+        </field>
+        <field name="website_ids" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">attachment</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <tooltip>
+                    <link>http://docs.magento.com/m2/ce/user_guide/configuration/scope.html</link>
+                    <description>What is this?</description>
+                </tooltip>
+                <label translate="true">Websites</label>
+                <dataScope>website_id</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\CatalogRule\Model\Rule\WebsitesOptionsProvider"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+    <htmlContent name="block_mca_attachment_edit_tab_conditions">
+        <argument name="data" xsi:type="array">
+            <item name="wrapper" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Conditions</item>
+                <item name="initializeFieldsetDataByDefault" xsi:type="boolean">true</item>
+                <item name="wasActivated" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <settings>
+            <wrapper>
+                <canShow>true</canShow>
+                <componentType>fieldset</componentType>
+            </wrapper>
+        </settings>
+        <block class="Magezon\CustomerAttachments\Block\Adminhtml\Attachment\Edit\Tab\Conditions" name="mca_attachment_edit_tab"/>
+    </htmlContent>
+    <fieldset name="assign_customers">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="initializeFieldsetDataByDefault" xsi:type="boolean">true</item>
+                <item name="wasActivated" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <settings>
+            <collapsible>false</collapsible>
+            <label translate="true">Fixed Customers</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <container name="assign_customers_container" sortOrder="160">
+            <htmlContent name="html_content">
+                <block name="assign_customers" class="Magezon\CustomerAttachments\Block\Adminhtml\Attachment\AssignedCustomers"/>
+            </htmlContent>
+        </container>
+    </fieldset>
+    <fieldset name="report">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="initializeFieldsetDataByDefault" xsi:type="boolean">true</item>
+                <item name="wasActivated" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <settings>
+            <collapsible>false</collapsible>
+            <label translate="true">Downloads Report</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <container name="assign_products_container" sortOrder="160">
+            <htmlContent name="html_content">
+                <block name="assign_products" class="Magezon\CustomerAttachments\Block\Adminhtml\Attachment\Edit\Tab\Downloads"/>
+            </htmlContent>
+        </container>
+    </fieldset>
+</form>

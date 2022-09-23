@@ -1,0 +1,107 @@
+//
+//  Common
+//  -------------------------------------------
+
+& when (@media-common = true) {
+    //Product recommendations section
+    [data-bind*="product_recommendations"]{
+        .block-related-heading {
+            color: @color-black;
+            .lib-font-size(22);
+            .lib-line-height(69);
+            font-weight: @font-weight__bold;
+            padding-left: 14px;
+        }
+        .slick-slide {
+            margin: 0 12.5px;
+        }
+
+        .product-item {
+            min-height: auto;
+            margin-bottom: 0;
+        }
+
+        .product-item-photo {
+            display: block;
+            min-height: 187px;
+            img {
+                aspect-ratio: ~'205/256';
+                display: block;
+                object-fit: contain;
+            }
+        }
+
+        .product-item-details {
+            text-align: left;
+
+            .price-box {
+                margin-bottom: 20px;
+                margin-top: 0;
+                min-height: 50px;
+                .final-price {
+                    .price {
+                        .lib-font-size(18);
+                        .lib-line-height(25);
+                        color: @theme__color__secondary;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .actions-secondary {
+                display: none;
+            }
+
+            .product-item-actions {
+                font-weight: 700;
+                color: @theme__color__third;
+
+                .actions-primary {
+                    display: block;
+
+                    .tocart {
+                        .lib-font-size(13);
+                        .lib-line-height(18);
+                        border-radius: 5px;
+                        box-sizing: border-box;
+                        font-weight: 700;
+                        padding: 13px 0;
+                        width: 100%;
+                        position: static;
+                    }
+                }
+
+                .stock {
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        .product-item-name {
+            margin-bottom: 12px;
+            margin-top: 0;
+            text-align: left;
+
+            .product-item-link {
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+                .lib-font-size(12);
+                .lib-line-height(18);
+                color: @theme__color__secondary;
+                display: block;
+                display: -webkit-box;
+                font-weight: 700;
+                height: 54px;
+                overflow: hidden;
+                &:hover {
+                    color: @theme__color__primary;
+                    text-decoration: none;
+                    span {
+                        color: @theme__color__primary;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}

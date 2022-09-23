@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * https://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_Appointment
+  * @author      CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+  * @license      https://cedcommerce.com/license-agreement.txt
+  */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Ced_Booking::css/booking_listing.css"/>
+        <css src="Ced_Booking::css/fontall.min.css" />
+    </head>
+    <body>
+        <referenceContainer name="sidebar.additional" >
+            <referenceBlock name="wishlist_sidebar" remove="true"/>
+            <referenceBlock name="catalog.compare.sidebar" remove="true" />
+            <block class="Ced\Appointment\Block\Left" name="appointment.listing.left" template="Ced_Appointment::left.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Ced\Appointment\Block\ProductListing" name="appointment.product.listing" template="Ced_Appointment::product_listing.phtml" />
+        </referenceContainer>
+    </body>
+</page>
+

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\CustomerCustomAttributes\Helper\Customer">
+        <plugin name="Ecommerce121_CompanyCustomer::add-company-form-code"
+                type="Ecommerce121\CompanyCustomer\Plugin\Magento\CustomerCustomAttributes\Helper\Customer\AddCompanyFormCode" />
+    </type>
+    <type name="Magento\CustomerCustomAttributes\Helper\Address">
+        <plugin name="Ecommerce121_CompanyCustomer::add-company-form-code-address"
+                type="Ecommerce121\CompanyCustomer\Plugin\Magento\CustomerCustomAttributes\Helper\Customer\AddCompanyFormAddressCode" />
+    </type>
+    <type name="Magento\Customer\Controller\Account\CreatePost">
+        <plugin name="Ecommerce121_CompanyCustomer::redirect-on-error"
+                type="Ecommerce121\CompanyCustomer\Plugin\Magento\Customer\Controller\Account\CreatePost\RedirectOnError" />
+    </type>
+</config>

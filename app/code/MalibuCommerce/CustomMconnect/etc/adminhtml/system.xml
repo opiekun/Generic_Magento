@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="malibucommerce_mconnect" translate="label" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="inventory" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0" translate="label">
+                <field id="set_in_stock_for_sources" type="multiselect" sortOrder="95" showInDefault="1" showInWebsite="0" showInStore="0" translate="label">
+                    <label>Set Strict Product Stock Status to "In Stock" for Sources</label>
+                    <source_model>MalibuCommerce\CustomMconnect\Model\Config\Source\InventorySources</source_model>
+                    <comment><![CDATA[Set strict product stock status to "In Stock" regardless of QTY]]></comment>
+                    <can_be_empty>1</can_be_empty>
+                    <depends>
+                        <field id="set_in_stock">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="PluginCompany_ProductPdf::pc_pdf_general"
+             module="PluginCompany_ProductPdf"
+             parent="Magento_Backend::content"
+             resource="PluginCompany_ProductPdf::general"
+             sortOrder="10000"
+             title="Product Page PDF"
+        />
+		<add action="adminhtml/system_config/edit/section/plugincompany_productpdf"
+             id="PluginCompany_ProductPdf::pc_pdf_config"
+             module="PluginCompany_ProductPdf"
+             parent="PluginCompany_ProductPdf::pc_pdf_general"
+			 resource="PluginCompany_ProductPdf::general"
+             sortOrder="10001"
+             title="Configuration"
+		/>
+	</menu>
+</config>

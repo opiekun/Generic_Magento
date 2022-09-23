@@ -1,0 +1,294 @@
+.uibuilder-styling {
+	.admin__fieldset-wrapper-content > .admin__fieldset {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	.uibuilder-multiplepage {
+		display: none;
+	}
+
+	.uibuilder-modal-design-right {
+		width: 380px;
+		float: left;
+		margin-left: 30px;
+		margin-top: -30px;
+
+		.admin__field {
+			&:before,
+			&:after {
+				display: table;
+				content: " ";
+			}
+		}
+	}
+
+	.admin__field-service {
+		display: none;
+	}
+
+	.admin__field-label {
+		text-align: left;
+	}
+
+	.uibuilder-element-image {
+		margin-top: 15px;
+
+		.uibuilder-element-image-insert {
+			background: #FFF;
+		}
+	}
+
+	.uibuilder-design-simply {
+		display: inline-block;
+		margin-left: 150px;
+
+		> .admin__field > .admin__field-label {
+			display: none;
+		}
+
+		.admin__field {
+			display: inline-block;
+			padding: 0;
+			float: left;
+			margin-right: 4px;
+
+			.admin__field-label {
+				padding: 0;
+			}
+		}
+
+		.admin__control-radio + .admin__field-label:before, 
+		.admin__control-checkbox + .admin__field-label:before {
+			margin: 0;
+		}
+
+		label {
+			cursor: pointer;
+		}
+	}
+
+	.uibuilder-modal-design-heading-wrapper {
+		float: left;
+		width: 100%;
+		font-weight: 600;
+		margin-bottom: 5px;
+		display: block;
+	}
+
+	.uibuilder-modal-design-left {
+		width: 350px;
+		float: left;
+
+		.admin__field-label {
+			display: none;
+		}
+
+		label.uibuilder-modal-design-element-heading {
+			font-size: 12px;
+			position: absolute;
+			top: 5px;
+			left: 5px;
+		}
+
+		input {
+			text-align: center;
+			width: 34px;
+			margin: 0;
+			padding: .4rem 0.6rem .4rem;
+			min-width: auto;
+		}
+
+		.uibuilder-modal-design-margin {
+			border: 1px dashed #bababa;
+			position: relative;
+
+			.admin__field {
+				position: absolute;
+
+				&.uibuilder-design-top {
+					top: 9px;
+					left: 50%;
+					margin-left: -17px;
+				}
+
+				&.uibuilder-design-right {
+					top: 50%;
+					right: 5px;
+					margin-top: -12px;
+				}
+
+				&.uibuilder-design-bottom {
+					bottom: 9px;
+					left: 50%;
+					margin-left: -17px;
+				}
+
+				&.uibuilder-design-left {
+					top: 50%;
+					left: 5px;
+					margin-top: -12px;
+				}
+			}
+
+			.uibuilder-modal-design-border {
+				margin: 44px;
+				border: 1px solid #d7d7d7;
+				background: #f6f6f6;
+				position: relative;
+			}
+
+			.uibuilder-modal-design-padding {
+				margin: 44px;
+				border: 1px solid #bababa;
+				background: #ebebeb;
+				position: relative;
+			}
+
+			.uibuilder-modal-design-padding-unit {
+				margin: 64px;
+				visibility: hidden;
+			}
+
+			.uibuilder-modal-design-margin-unit,
+			.uibuilder-modal-design-border-unit {
+				position: absolute;
+				bottom: 2px;
+				left: 2px;
+
+				.admin__field {
+					width: 65px;
+					position: static;
+				}
+			}
+
+			.uibuilder-modal-design-margin-unit,
+			.uibuilder-modal-design-border-unit,
+			.uibuilder-modal-design-padding-unit {
+				.admin__action-multiselect {
+					min-height: 29px;
+					padding-right: 3rem;
+
+					&:before {
+						height: 2.9rem;
+					}
+
+					.admin__action-multiselect-text {
+						padding: 0;
+						text-align: center;
+						line-height: 26px;
+					}
+				}
+			}
+
+			.uibuilder-modal-design-padding-unit .admin__field {
+				position: relative;
+				width: 65px;
+				margin-left: -10px;
+				margin-bottom: -5px;
+			}
+		}
+
+		.uibuilder-modal-design-radius {
+			margin-top: 20px;
+			border: 1px dashed #bababa;
+			position: relative;
+			background: #f6f6f6;
+			height: 210px;
+
+			.admin__field {
+				position: absolute;
+				margin-top: 0;
+
+				&.uibuilder-design-top {
+					top: 5px;
+					left: 5px;
+				}
+
+				&.uibuilder-design-right {
+					top: 5px;
+					right: 5px;
+				}
+
+				&.uibuilder-design-bottom {
+					bottom: 5px;
+					right: 5px;
+				}
+
+				&.uibuilder-design-left {
+					bottom: 5px;
+					left: 5px;
+				}
+
+				&.uibuilder-design-border-radius-top {
+					.admin__field-note {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						margin-left: 140px;
+
+						span {
+							width: 80px;
+							float: left;
+						}
+					}
+				}
+			}
+		}
+
+		.uibuilder-design-border-radius-unit.admin__field {
+			margin: 90px 0 0 150px;
+			position: relative;
+			width: 65px;
+
+			.admin__action-multiselect {
+				min-height: 29px;
+				padding-right: 3rem;
+
+				&:before {
+					height: 29px;
+				}
+
+				.admin__action-multiselect-text {
+					line-height: 26px;
+					padding: 0;
+					text-align: center;
+				}
+			}
+		}
+
+		.admin__field-error, 
+		label.mage-error {
+			position: relative;
+			z-index: 9;
+			width: 180px;
+			position: absolute;
+		}
+	}
+
+	.uibuilder-element-image-link {
+		width: 100%;
+	}
+
+	.uibuilder-modal-design-footer {
+		float: left;
+		width: 100%;
+		margin-top: 20px;
+	}
+
+	.uibuilder-styling-boxshadow {
+		margin: 0;
+		width: 100% !important;
+		margin-bottom: 10px;
+		margin-left: 0 !important;
+
+		.minicolors {
+			width: 80% !important;
+		}
+	}
+
+	.uibuilder-custom-class {
+		clear: both;
+	}
+}

@@ -1,0 +1,14 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php if($this->isEnabled()) : ?>
+    <?php $helper = $this->helper('WeltPixel\GA4\Helper\Data'); ?>
+    <?php $products = $this->getProducts(); ?>
+
+    <?php
+    $this->setDataLayerOption('event', 'begin_checkout');
+    $this->setDataLayerOption('cart_total', number_format($this->getCartTotal(), 2, '.', ''));
+    $this->setDataLayerOption('currency', $this->getCurrencyCode());
+    $this->setEcommerceData('items', $products);
+    ?>
+<?php endif; ?>

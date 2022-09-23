@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <chargelogic_connect>
+                <active>0</active>
+                <model>ChargeLogic\Connect\Model\Payment</model>
+                <payment_action>authorize_capture</payment_action>
+                <title>ChargeLogic Connect</title>
+                <!--<api_key backend_model="Magento\Config\Model\Config\Backend\Encrypted" />-->
+                <cctypes>VI,MC,DI,AE,JCB,DN</cctypes>
+                <allowspecific>0</allowspecific>
+                <min_order_total>0.50</min_order_total>
+            </chargelogic_connect>
+        </payment>
+    </default>
+</config>

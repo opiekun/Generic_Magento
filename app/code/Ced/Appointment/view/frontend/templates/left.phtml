@@ -1,0 +1,152 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Appointment
+ * @author      CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+
+$bookingdatahelper = $this->helper(\Ced\Booking\Helper\Data::class);
+$helper = $this->helper(\Ced\Appointment\Helper\Data::class);
+$mapApiKey = $bookingdatahelper->getStoreConfig('booking/booking_config/map_api_key');
+$productPrices = $block->getProductPrices();
+$defaultMinPrice = count($productPrices) > 1 ? min($productPrices) : 0;
+$defaultMaxPrice = count($productPrices) != 0 ? max($productPrices) : 100;
+
+$address = $this->getRequest()->getParam('location');
+$location = $this->getRequest()->getParam('search_by_location');
+$appointmentDate = $this->getRequest()->getParam('appointment_date');
+$searchByPrice = $this->getRequest()->getParam('search_by_price');
+$searchByServiceType = $this->getRequest()->getParam('service_type');
+
+$serchedminPrice = $defaultMinPrice;
+$serchedmaxPrice = $defaultMaxPrice;
+if ($searchByPrice)
+{
+    $searchedPrices = explode('-',$searchByPrice);
+    $serchedminPrice = $searchedPrices[0];
+    $serchedmaxPrice =  $searchedPrices[1];
+}
+$currencySymbol = $block->getCurrentSymbol();
+?>
+<script src="//maps.googleapis.com/maps/api/js?key=<?= $mapApiKey; ?>&libraries=places"></script>
+<div class="ced-appointment-header-wrapper">
+        <div clas="appointment-header-filter-form">
+            <form id="ced-appointment-search-form" class="appointment_search" action="<?= $this->getFormActionUrl(); ?>">
+                <div class="appointment-search-wrapper">
+                    <div class="ced-side-filter-wrapper ced-appointment-price-filter-wrapper">
+                        <strong for="price"><?= __('Filter By Price') ?>:</strong>
+                        <input type="text" id="price" readonly style="border:0; color:#006bb4; font-weight:bold;"/>
+                        <input type="hidden" id="price-hidden" name="search_by_price"/>
+                        <div id="price-range-slider"></div>
+                    </div>
+                    <div class="ced-side-filter-wrapper ced-appointment-location-filter-wrapper">
+                        <strong for="price"><?= __('Filter By Location') ?>:</strong>
+                        <i class="fa fa-map-marker-alt input-icon"></i>
+                        <input id="searchByaddress" value="<?= $location; ?>" name="search_by_location" type="text" placeholder="<?= __('Location') ?>"/>
+                    </div>
+                    <div class="ced-side-filter-wrapper ced-appointment-date-filter-wrapper">
+                        <strong for="price"><?= __('Filter By Date') ?>:</strong>
+                        <i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                        <input autocomplete="off" value="<?= $appointmentDate; ?>" type="text" id="appointment-date" name="appointment_date" placeholder="<?= __('Appointment Date') ?>" value="" class="form-control">
+                    </div>
+                    <div class="ced-side-filter-wrapper ced-appointment-servicetype-filter-wrapper">
+                        <strong for="price"><?= __('Filter By Service Type') ?>:</strong>
+                        <?php $serviceTypeOption = $block->getServiceTypeOptions(); ?>
+                        <select id="service-type" name="service_type">
+                            <?php foreach ($serviceTypeOption as $type) {
+                                if ($type['value'] != '' && $type['value']!=$helper->getServiceTypeBothOptionId())
+                                {
+                                    $selected = ($type['value']==$searchByServiceType)?'selected="selected"':'';
+                                    ?>
+                                    <option value="<?= $type['value']; ?>" <?= $selected; ?>><?= $type['label'];?></option>
+                                <?php } } ?>
+                        </select>
+                    </div>
+                    <div class="ced-side-filter-wrapper booking-search-btn">
+                        <div class="actions">
+                            <button class="action subscribe primary" title="Search" type="submit">
+                                <span><?= __('Search') ?></span>
+                            </button>
+                            <button id="reset-filter" class="action subscribe reset-Filter-btn" title="Reset Filter" type="Button">
+                                <span><?= __('Reset Filter') ?></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
+
+<script>
+    require([
+            'jquery',
+            "jquery/ui"
+        ],
+        function ($){
+
+            /** @note autocomplete booking location **/
+            var selectedLocation = false;
+            var input = document.getElementById('searchByaddress');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                selectedLocation = true;
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                }
+                input.value = place.formatted_address;
+                var event = new Event('change');
+                input.dispatchEvent(event);
+            });
+            $('#searchByaddress').on('focus', function () {
+                selectedLocation = false;
+            }).on('blur', function () {
+                if (!selectedLocation) {
+                    $(this).val('');
+                }
+            });
+            /** end of autocomplete booking location **/
+
+            /** appointment date input **/
+            var dateToday = new Date();
+            $( "#appointment-date" ).datepicker({
+                minDate: dateToday,
+                dateFormat: '<?= \Ced\Booking\Helper\Data::JS_DATE_FORMAT; ?>',
+            });
+
+
+            $('#reset-filter').click(function(){
+                window.location.href = "<?= $this->getUrl('*/*/'); ?>";
+            });
+
+            var currencySymbol = "<?= $currencySymbol; ?>";
+            var defaultMinPrice = parseInt(<?= $defaultMinPrice; ?>);
+            var defaultMaxPrice = parseInt(<?= $defaultMaxPrice; ?>);
+            var serchedminPrice = parseInt(<?= $serchedminPrice; ?>);
+            var serchedmaxPrice = parseInt(<?= $serchedmaxPrice; ?>);
+
+            $( "#price-range-slider" ).slider({
+                range: true,
+                min: defaultMinPrice,
+                max: defaultMaxPrice,
+                values: [ serchedminPrice, serchedmaxPrice ],
+                slide: function( event, ui ) {
+                    console.log(ui.values[ 1 ]);
+                    $( "#price" ).val( currencySymbol + ui.values[ 0 ] + " - "+currencySymbol + ui.values[ 1 ] );
+                    $( "#price-hidden" ).val( ui.values[ 0 ] + " - "+ ui.values[ 1 ] );
+                }
+            });
+            $( "#price" ).val( currencySymbol + $( "#price-range-slider" ).slider( "values", 0 ) +
+                " - "+currencySymbol + $( "#price-range-slider" ).slider( "values", 1 ) );
+        });
+</script>

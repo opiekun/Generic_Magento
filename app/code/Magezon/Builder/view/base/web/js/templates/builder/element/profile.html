@@ -1,0 +1,8 @@
+<div
+	ng-show="element.elements.length"
+	class="mgz-element-profile mgz-element-collection"
+	dnd-list="element.elements"
+	dnd-drop="mgz.dropElement(item, index, element)"
+	dnd-allowed-types="[$root.builderConfig.mainElement]"
+	ng-include="::$root.magezonBuilderUrl.getViewFileUrl('Magezon_Builder/js/templates/builder/element/list.html')"
+></div>

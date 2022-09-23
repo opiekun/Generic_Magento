@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="ClassWallet\Payment\Api\OrderInterface" type="ClassWallet\Payment\Model\OrderManagement"/>
+	<!-- Plugin used for disable offline payment method in frontend -->
+    <type name="Magento\Payment\Model\MethodList">
+        <plugin sortOrder="5" name="disableCashondelivery" type="ClassWallet\Payment\Plugin\MethodAvailable" disabled="false" />
+    </type>
+
+	<type name="Magento\Payment\Model\Method\AbstractMethod">  
+    	<plugin name="disable_payment_method_in_frontend" type="ClassWallet\Payment\Plugin\DisablePaymentInFront" />  
+   	</type> 
+
+    <type name="ClassWallet\Payment\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="ClassWallet\Payment\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">myLoggerName</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">ClassWallet\Payment\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+   	
+</config>

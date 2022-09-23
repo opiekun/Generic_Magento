@@ -1,0 +1,21 @@
+{
+  "name": "ecommerce121/module-charge-logic-connect",
+  "version": "1.0.0",
+  "description": "N/A",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "chargelogic/chargelogic-connect": "2.0.*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Ecommerce121\\ChargeLogicConnect\\": ""
+    }
+  }
+}

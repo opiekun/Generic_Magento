@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>WeltPixel Sliders Manager</title>
+    </head>
+    <body>
+        <referenceBlock name="menu">
+            <action method="setActive">
+                <argument name="itemId" xsi:type="string">WeltPixel_OwlCarouselSlider::OwlCarouselSliders</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+        <block class="WeltPixel\OwlCarouselSlider\Block\Adminhtml\Slider\Edit" name="banner_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+        <block class="WeltPixel\OwlCarouselSlider\Block\Adminhtml\Slider\Edit\Tabs" name="banner_edit_tabs">
+            <block class="WeltPixel\OwlCarouselSlider\Block\Adminhtml\Slider\Edit\Tab\Form" name="banner_edit_tab_form"/>
+        	<action method="addTab">
+                <argument name="name" xsi:type="string">main_section</argument>
+                <argument name="block" xsi:type="string">banner_edit_tab_form</argument>
+            </action>
+            <action method="addTab">
+                <argument name="name" xsi:type="string">banner_section</argument>
+                <argument name="block" xsi:type="array">
+                    <item name="label" xsi:type="string">Slider Banners</item>
+                    <item name="title" xsi:type="string">Slider Banners</item>
+                    <item name="url" xsi:type="helper" helper="WeltPixel\OwlCarouselSlider\Helper\Data::getSliderBannerUrl"></item>
+                    <item name="class" xsi:type="string">ajax</item>
+                </argument>
+            </action>
+        </block>
+        </referenceContainer>
+    </body>
+</page>

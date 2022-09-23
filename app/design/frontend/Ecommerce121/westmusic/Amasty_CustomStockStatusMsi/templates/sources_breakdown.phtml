@@ -1,0 +1,45 @@
+<?php
+/** @var \Amasty\CustomStockStatusMsi\Block\SourcesBreakdown $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+
+<?php if ($block->isSeparateLink()): ?>
+    <button class="amstock-button action primary" data-amstock-js="open-popup">
+        <?= $escaper->escapeHtml($block->getLinkLabel()) ?>
+    </button>
+<?php endif; ?>
+
+<aside class="amstock-popup-wrapper" data-mage-init='{"amStockStatusPopup":{}}'>
+    <div class="amstock-popup-block" data-amstock-js="popup-block">
+        <button class="amstock-button -close -clear"
+                title="<?= $escaper->escapeHtmlAttr(__('Close popup')) ?>"
+                data-amstock-js="close-popup">
+            <?= $escaper->escapeHtml(__('Close')) ?>
+        </button>
+        <h3 class="amstock-header" data-amstock-js="popup-header">
+            <?= $escaper->escapeHtml($block->getPopupTitle()) ?>
+        </h3>
+        <div class="amstock-content" data-amstock-js="popup-content">
+            <?php foreach ($block->getSourcesInformation() as $sourceStatusInformation): ?>
+                <div class="amstock-item">
+                    <div class="amstock-title">
+                        <?= $escaper->escapeHtml($sourceStatusInformation->getSourceLabel()) ?>
+                    </div>
+                    <div class="amstock-value">
+                        <?php if ($sourceStatusInformation->getStatusIcon()): ?>
+                            <img class="amstock-image"
+                                 src="<?= $escaper->escapeUrl($sourceStatusInformation->getStatusIcon()) ?>"
+                                 alt="<?= $escaper->escapeHtmlAttr(__('Stock image')) ?>"
+                            />
+                        <?php endif; ?>
+                        <?php if ($sourceStatusInformation->getStatusMessage()): ?>
+                            <div class="amstock-message">
+                                <?= /* @noEscape */ $sourceStatusInformation->getStatusMessage() ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</aside>

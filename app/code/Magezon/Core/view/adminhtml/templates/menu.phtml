@@ -1,0 +1,67 @@
+<?php
+/**
+ * @var $block \Magezon\Core\Block\Adminhtml\TopMenu
+ */
+$titleId    = ($block->getTitleId()) ? ' id="' . $block->getTitleId() . '"' : '';
+$titleClass = ($block->getTitleClass()) ? ' ' . $block->getTitleClass() : '';
+$title      = $block->escapeHtml($block->getPageTitle());
+$links      = [];
+if ($block->getLinks()) {
+	$links = $block->getLinks();
+}
+$total = count($links);
+foreach ($links as $_columnLinks) {
+	foreach ($_columnLinks as $_link) {
+		$total++;
+	}
+}
+?>
+<?php if ($total) { ?>
+	<div class="mgz-menu admin__action-dropdown-wrap">
+	    <a
+	        href="<?= $block->getUrl('adminhtml/system_account/index') ?>"
+	        class="admin__action-dropdown"
+	        data-mage-init='{"dropdown":{}}'
+	        data-toggle="dropdown">
+	        <span class="admin__action-dropdown-text">
+	            <span class="page-title-wrapper<?= $titleClass ?>">
+	            	<h1 class="page-title"<?= $titleId ?>><?= $title ?></h1>
+	            	<?= $block->getChildHtml() ?>
+	            </span>
+	        </span>
+	    </a>
+	    <ul class="admin__action-dropdown-menu">
+			<?php foreach ($links as $_link) { ?>
+				<?php if (is_array($_link) && isset($_link[0])) { ?>
+					<?php foreach ($_link as $_link1) { ?>
+						<?php if (isset($_link1['class']) || isset($_link1['title']) || isset($_link1['link'])) { ?>
+							<li <?php if (isset($_link1['class'])): ?>class="<?php echo $_link1['class'] ?>"<?php endif; ?>>
+								<?php if (isset($_link1['link']) && $_link1['title']) { ?>
+									<a <?php if (isset($_link1['target'])): ?>target="<?php echo $_link1['target'] ?>"<?php endif; ?> href="<?php echo $_link1['link'] ?>"><?php echo $_link1['title'] ?></a>
+								<?php } ?>
+							</li>
+						<?php } ?>
+					<?php } ?>
+				<?php } else { ?>
+					<?php if (isset($_link['class']) || isset($_link['title']) || isset($_link['link'])) { ?>
+			        	<li <?php if (isset($_link['class'])): ?>class="<?php echo $_link['class'] ?>"<?php endif; ?>>
+			        		<?php if (isset($_link['link']) && $_link['title']) { ?>
+			        			<a <?php if (isset($_link['target'])): ?>target="<?php echo $_link['target'] ?>"<?php endif; ?> href="<?php echo $_link['link'] ?>"><?php echo $_link['title'] ?></a>
+			        		<?php } ?>
+			        	</li>
+		        	<?php } ?>
+	        	<?php } ?>
+	        <?php } ?>
+	    </ul>
+	</div>
+<?php } else { ?>
+<div class="page-title-wrapper<?= $titleClass ?>">
+    <h1 class="page-title"<?= $titleId ?>><?= $title ?></h1>
+    <?= $block->getChildHtml() ?>
+</div>
+<?php } ?>
+<script>
+	require(['jquery'], function($) {
+		$('body').addClass('mgz-extention');
+	});
+</script>

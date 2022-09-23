@@ -1,0 +1,23 @@
+{
+    "name": "amasty/checkout-pro-customization",
+    "description": "Checkout Pro Customization",
+    "require": {
+        "php": ">=7.3",
+        "amasty/base": "*",
+        "amasty/module-single-step-checkout": ">=4.1.0"
+    },
+    "homepage": "https://amasty.com/",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\CheckoutProCustomization\\": ""
+        }
+    }
+}

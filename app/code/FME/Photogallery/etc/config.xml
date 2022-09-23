@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <photogallery>
+            <general>
+                <enable_module>1</enable_module>
+            </general>
+            <imgsettings>
+                <thumb_width>284</thumb_width>
+                <thumb_height>177</thumb_height>
+                <bg_color>#ffffff</bg_color>
+                <frame_thumb>1</frame_thumb>
+                <aspect_ration>1</aspect_ration>
+            </imgsettings>
+            <photogallerymainpagesettings>
+                <page_title>Photogallery</page_title>
+                <seo_url_identifier>photogallery</seo_url_identifier>
+                <seo_url_suffix>.html</seo_url_suffix>
+                <meta_keywords>Meta Keywords</meta_keywords>
+                <meta_desp>Meta Keywords</meta_desp>
+                <gallerytype>fme_gallery</gallerytype>
+            </photogallerymainpagesettings>
+            <photogallerysettings> 
+                <enable_thumbs>0</enable_thumbs>
+                <images_per_page>10</images_per_page>
+                <ajexloader>auto</ajexloader>
+                <page_button_text>Load More</page_button_text>
+                <enable_tabs>0</enable_tabs>
+                <enablepaginition>1</enablepaginition>
+                <filter>1</filter>
+                <enable_paginationwithoutFilter>1</enable_paginationwithoutFilter>
+                <enable_Column>final</enable_Column>
+                <full_w_gallery>0</full_w_gallery>
+                <grid_size>10</grid_size>
+                <disable_grid_size_below>800</disable_grid_size_below>
+            </photogallerysettings>
+            <photogallerytilesettings> 
+                <caption>1</caption>
+                <caption_position>caption-middle</caption_position>
+                <caption_animation>caption-slide-from-top</caption_animation>
+                <caption_align>caption-center</caption_align>
+                <caption_colorscheme>caption-color-dark</caption_colorscheme>
+                <icons>1</icons>
+                <icons_list>fa fa-heart</icons_list>
+                <zoom>1</zoom>
+                <zoom_effect>effect-zoom-in</zoom_effect>
+                <zoom_speed>effect-speed-very-slow</zoom_speed>
+                <margin>1</margin>
+                <margin_list>20</margin_list>
+                <social_media>1</social_media>
+                <social_media_icon_pos>social-icons-right</social_media_icon_pos>
+                <social_media_icon_style>social-icons-circle</social_media_icon_style>
+                <allow_enlargment>1</allow_enlargment>
+                <mintilewidth>200</mintilewidth>
+ 
+            </photogallerytilesettings>
+            <photogallerypopusetting>
+                <popuooptions>popup</popuooptions>
+                <enablepopupgallery>1</enablepopupgallery>
+                <enablepopupgalleryclick>1</enablepopupgalleryclick>
+                <popuptime>1000</popuptime>
+            </photogallerypopusetting>
+            <productsettings>
+                 <enabled>1</enabled>
+                 
+            </productsettings>
+            
+            <catsettings>
+                 <enabled>1</enabled>
+                 <position>top</position>
+            </catsettings>
+            <crouselsettings>
+                <enabled_c_button>1</enabled_c_button>
+                <rotation>1</rotation>
+                <time_playing>5000</time_playing>
+                <citems>5</citems>
+            </crouselsettings>
+            <misarygallery>
+                <btnsize>40</btnsize>
+                <btnstyle>square</btnstyle>
+                <arrowposition>attached</arrowposition>
+                <arrowstyle>svelt</arrowstyle>
+                <arrowicons>angle</arrowicons>
+                <arrowhovereffect>shrink</arrowhovereffect>
+                <imageradius>20</imageradius>
+                <imagebackgroundopacity>0.99</imagebackgroundopacity>
+            </misarygallery>
+            <nanogalllerySetting>
+                <enable_module>thumb</enable_module>
+                <inbulitlayouts>cl</inbulitlayouts>
+                <gallerylayout>
+                    <layouts>mosaic</layouts>
+                    <width>300</width>
+                    <height>300</height>
+                    <justheight>400</justheight>
+                    <cascadingwidth>400</cascadingwidth>
+                    <mosaicwidth>300</mosaicwidth>
+                    <mosaicheight>300</mosaicheight>
+                    <mosaictextarea>[ { "c": 1, "r": 1, "w": 2, "h": 2 }, 
+                    { "c": 3, "r": 1, "w": 1, "h": 1 }, 
+                    { "c": 3, "r": 2, "w": 1, "h": 1 },
+                    { "c": 4, "r": 1, "w": 1, "h": 1 },
+                    { "c": 4, "r": 2, "w": 1, "h": 1 },
+                    { "c": 5, "r": 1, "w": 2, "h": 2 }
+                    ]
+                    </mosaictextarea>
+                    <thumbnailBorderHorizontal>2</thumbnailBorderHorizontal>
+                    <thumbnailBorderVertical>2</thumbnailBorderVertical>
+                    <bg_color>#00022e</bg_color>
+                    <thumbnailGutterWidth>0</thumbnailGutterWidth>
+                    <thumbnailGutterHeight>0</thumbnailGutterHeight>
+                    <thumnsallign>right</thumnsallign>
+                    <thumbnailDisplayInterval>500</thumbnailDisplayInterval>
+                    <thumbnailDisplayTransition>slideRight</thumbnailDisplayTransition>
+                    <thumbnailDisplayTransitionDuration>1000</thumbnailDisplayTransitionDuration>
+                </gallerylayout>
+                <paginitionsettings>
+                    <paginitionType>pbtoon</paginitionType>
+                    <galleryLastRowFull>1</galleryLastRowFull>
+                    <allowgalleryMaxRows>1</allowgalleryMaxRows>
+                    <galleryMaxRows>1</galleryMaxRows>
+                    <galleryDisplayMoreStep>3</galleryDisplayMoreStep>
+                    <dotgalleryMaxRows>3</dotgalleryMaxRows>
+                    <numgalleryMaxRows>3</numgalleryMaxRows>
+                    <rectgalleryMaxRows>3</rectgalleryMaxRows>
+                </paginitionsettings>
+                <labelSetting>
+                    <position>overImageOnMiddle</position>
+                    <align>right</align>
+                    <display>1</display>
+                </labelSetting>
+                <thumbnailtools>
+                    <topLeft>download,cart</topLeft>
+                    <topRight></topRight>
+                    <bottomLeft></bottomLeft>
+                    <bottomRight></bottomRight>
+                </thumbnailtools>
+                <hovereffect>
+                    <thumbnailHoverEffect2>'thumbnail_translateZ_0px_100px_easeOutQuad_400 | thumbnail_rotateX_0deg_10deg_easeOutBack_200 | thumbnail_rotateX_10deg_0deg_delay250_keyframe_hoverin_easeOutBack_400'</thumbnailHoverEffect2>
+                </hovereffect>
+                <lightBox>
+                    <topLeft>label</topLeft>
+                    <topRight>playPauseButton, zoomButton, fullscreenButton, closeButton</topRight>
+                    <viewerToolbarstandard>minimizeButton, label, shareButton, fullscreenButton</viewerToolbarstandard>
+                    <viewerToolbarminimize>minimizeButton, label, fullscreenButton, downloadButton, infoButton</viewerToolbarminimize>
+                </lightBox>
+            </nanogalllerySetting>
+        </photogallery>
+    </default>
+</config>

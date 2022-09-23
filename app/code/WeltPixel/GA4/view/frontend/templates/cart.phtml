@@ -1,0 +1,57 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php if ($this->isEnabled()) : ?>
+    <?php $helper = $this->helper('WeltPixel\GA4\Helper\Data'); ?>
+    <?php
+        $products = $this->getProducts();
+        $this->setDataLayerOption('event', 'view_cart');
+        $this->setDataLayerOption('cart_total', number_format($this->getCartTotal(), 2, '.', ''));
+        $this->setDataLayerOption('currency', $this->getCurrencyCode());
+        $this->setEcommerceData('items', $products);
+    ?>
+
+
+        <?php
+        $crosselProductsCollection = $this->getCrosselProductCollection();
+        $productImpressions = [];
+
+        if (count($crosselProductsCollection)) :
+            $i = 1;
+            foreach ($crosselProductsCollection as $_product) :
+                $crosselProduct = [];
+                $crosselProduct['item_name'] = html_entity_decode($_product->getName());
+                $crosselProduct['item_id'] = $helper->getGtmProductId($_product);
+                $crosselProduct['price'] = number_format($_product->getPriceInfo()->getPrice('final_price')->getValue(), 2, '.', '');
+                if ($helper->isBrandEnabled()) :
+                    $crosselProduct['item_brand'] = $helper->getGtmBrand($_product);
+                endif;
+                $ga4Categories = $helper->getGA4CategoriesFromCategoryIds($_product->getCategoryIds());
+                $crosselProduct = array_merge($crosselProduct, $ga4Categories);
+                $crosselProduct['item_list_name'] = __('Crossel Products');
+                $crosselProduct['item_list_id'] = __('crossel_products');
+                $crosselProduct['index'] = $i;
+                $crosselProduct['currency'] = $this->getCurrencyCode();
+                $productImpressions[] = $crosselProduct;
+                $i++;
+            endforeach;
+        endif;
+
+        if (count($productImpressions)) :
+            $impressionData = [];
+            $impressionData['event'] = 'view_item_list';
+            $impressionData['ecommerce'] = [];
+            $impressionData['ecommerce']['items'] = $productImpressions;
+            $this->setAdditionalDataLayerData($impressionData);
+        endif;
+
+        if ($helper->isAdWordsRemarketingEnabled()):
+            $remarketingData = [];
+            $remarketingData['ecomm_pagetype'] = \WeltPixel\GA4\Model\Api\Remarketing::ECOMM_PAGETYPE_CART;
+            $remarketingData['ecomm_prodid'] = $this->getProductIds();
+            $remarketingData['ecomm_totalvalue'] = number_format($this->getCartTotal(), 2, '.', '');
+            $this->setDataLayerOption('google_tag_params', $remarketingData);
+        endif;
+
+        ?>
+<?php endif; ?>

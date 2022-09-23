@@ -1,0 +1,53 @@
+<ul class="ammenu-items -root -account-links"
+    data-bind="
+        style: {
+            color: color_settings.menu_text
+        }">
+    <!-- ko ifnot: customer().fullname -->
+    <li class="ammenu-item">
+        <a class="ammenu-link" data-bind="attr: { href: settings.account.login }, i18n: 'Sign In / Register'"></a>
+    </li>
+    <!-- /ko -->
+    <!-- ko if: customer().fullname -->
+    <li class="ammenu-item">
+        <a class="ammenu-link" data-bind="attr: { href: settings.account.account }, i18n: 'My Account'"></a>
+    </li>
+    <li class="ammenu-item -wishlist">
+        <a class="ammenu-link" data-bind="attr: { href: '/wishlist' }">
+            <span data-bind="i18n: 'My Wish Lists'"></span>
+            <span class="ammenu-counter" if="wishlist().counter" data-bind="i18n: wishlist().counter"></span>
+        </a>
+    </li>
+    <li class="ammenu-item">
+        <a class="ammenu-link" data-bind="attr: { href: settings.account.logout }, i18n: 'Log Out'"></a>
+    </li>
+    <!-- /ko -->
+    <li class="ammenu-item">
+        <div class="contact-block" data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
+            <span data-bind="
+            attr: {
+                class: 'ammenu-link'
+            }" data-role="title">
+                <span class="ammenu-text" data-bind="i18n: 'Contact Us'"></span>
+            </span>
+            <div class="content" data-role="content">
+                <ul class="list-links-with-icon">
+                    <li class="contact-links phone"><a data-bind="attr: { href: 'tel:18003979378' }, i18n: 'Call'" /></li>
+                    <li class="contact-links email"><a data-bind="attr: { href: 'mailto:' }, i18n: 'Email'" /></li>
+                    <li class="contact-links chat"><a data-bind="attr: { href: '#' }, i18n: 'Chat'" /></li>
+                </ul>
+                <ul class="contact-links-list">
+                    <li class="item"><a data-bind="attr: { href: 'tel:18003979378' }, i18n: 'Toll Free: 1-800-397-9378'" /></li>
+                    <li class="item"><a data-bind="attr: { href: 'tel:18003979378' }, i18n: 'Local: 1-800-397-9378'" /></li>
+                    <li class="item"><a data-bind="attr: { href: 'tel:18003979378' }, i18n: 'Fax: 1-800-397-9378'" /></li>
+                    <li class="item"><a data-bind="attr: { href: '/find-store' }, i18n: 'Find your store'" /></li>
+                    <li class="item"><a data-bind="attr: { href: '/faq' }, i18n: 'FAQ'" /></li>
+                </ul>
+            </div>
+        </div>
+    </li>
+    <li class="ammenu-item call-us-item">
+        <span data-bind="i18n: 'Questions? Call us'"></span>
+        <a class="ammenu-link" data-bind="attr: { href: 'tel:18003979378' }, i18n: '1-800-397-9378'"></a>
+    </li>
+</ul>

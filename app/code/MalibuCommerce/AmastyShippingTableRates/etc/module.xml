@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="MalibuCommerce_AmastyShippingTableRates" setup_version="1.0.1">
+        <sequence>
+            <module name="Amasty_ShippingTableRates"/>
+            <module name="MalibuCommerce_MConnect"/>
+        </sequence>
+    </module>
+</config>

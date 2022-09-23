@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_form_template_handle"/>
+    <head>
+        <title>Create a new Business Account</title>
+    </head>
+    <body>
+        <referenceBlock name="head.components">
+            <block class="Magento\Framework\View\Element\Js\Components"
+                   name="customercustomattributes_account_create_head_components"
+                   template="Magento_CustomerCustomAttributes::js/components.phtml"/>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Magento\Customer\Block\Form\Register" name="customer_form_register"
+                   template="Magento_Customer::form/register.phtml">
+                <arguments>
+                    <argument name="attribute_data" xsi:type="object">Magento\Customer\Block\DataProviders\AddressAttributeData</argument>
+                </arguments>
+                <container name="form.additional.info" as="form_additional_info"/>
+                <container name="customer.form.register.fields.before" as="form_fields_before"
+                           label="Form Fields Before" htmlTag="div" htmlClass="customer-form-before"/>
+                <action method="setTemplate">
+                    <argument name="template" xsi:type="string">Ecommerce121_CompanyCustomer::/customer/form/register.phtml</argument>
+                </action>
+                <block class="Magento\CustomerCustomAttributes\Block\Form"
+                       template="Magento_CustomerCustomAttributes::form/userattributes.phtml"
+                       name="customer_form_user_attributes">
+                    <action method="setFormCode">
+                        <argument name="code" xsi:type="string">company_customer_account_create</argument>
+                    </action>
+                    <action method="setEntityModelClass">
+                        <argument name="code" xsi:type="string">Magento\Customer\Model\Customer</argument>
+                    </action>
+                    <arguments>
+                        <argument name="view_model" xsi:type="object">CustomerFileAttribute</argument>
+                    </arguments>a
+                </block>
+                <block class="Magento\CustomerCustomAttributes\Block\Form"
+                       template="Magento_CustomerCustomAttributes::form/userattributes.phtml"
+                       name="customer_form_address_user_attributes">
+                    <action method="setFormCode">
+                        <argument name="code" xsi:type="string">customer_register_address</argument>
+                    </action>
+                    <action method="setEntityModelClass">
+                        <argument name="code" xsi:type="string">Magento\Customer\Model\Address</argument>
+                    </action>
+                    <arguments>
+                        <argument name="view_model" xsi:type="object">AddressFileAttribute</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

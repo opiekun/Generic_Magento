@@ -1,0 +1,13 @@
+<div id="mgzreport" class="<?= $block->getAdditionalClasses() ?>" data-bind="scope:'mgzreport'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+        {
+            "#mgzreport": {
+                "Magento_Ui/js/core/app": <?= $block->getJsLayout() ?>
+            }
+        }
+    </script>
+    <script>
+        window.mgzReportsConfig = <?= $block->getConfig() ?>;
+    </script>
+</div>

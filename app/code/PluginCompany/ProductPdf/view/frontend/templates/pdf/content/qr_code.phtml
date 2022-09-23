@@ -1,0 +1,16 @@
+<?php /** @var $this \PluginCompany\ProductPdf\Block\Pdf\Content\QrCode */ ?>
+<?php if($this->getConfigFlag('add_pagebreak')){ ?>
+    <pagebreak />
+<?php } ?>
+<div class="section section-qr-code">
+    <div class="qr-code" style="text-align:center;">
+        <barcode code="<?php echo $this->getProductUrl(); ?>" type="QR" class="barcode" size="<?= $this->getSize(); ?>" error="M" disableborder="<?= $this->getConfigFlag('enable_border') ? 0 : 1; ?>" />
+    </div>
+</div>
+
+<style>
+    .qr-code {
+        margin-top: <?= $this->getConfig('margin_top') ?>px;
+        margin-bottom: <?= $this->getConfig('margin_bottom') ?>px;
+    }
+</style>

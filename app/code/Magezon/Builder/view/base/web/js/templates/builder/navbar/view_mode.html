@@ -1,0 +1,8 @@
+<div class="mgz-view-mode-wrapper">
+	<a class="mgz-navbar-btn" title="Responsive"><i class="{{ viewModes[viewMode]['icon'] }}"></i> <i class="mgz-icon mgz-icon-arrow_drop_down"></i></a>
+	<ul class="mgz-dropdown-list">
+		<li ng-repeat="(key, mode) in ::viewModes" ng-click="changeViewMode(key)" ng-class="{'active': viewMode==key}">
+			<a class="mgz-navbar-btn" title="{{ ::mode.title }}"><i class="{{ ::mode.icon }}"></i></a>
+		</li>
+	</ul>
+</div>

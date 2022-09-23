@@ -1,0 +1,51 @@
+"User Guide","User Guide"
+"Extension is disabled","Extension is disabled"
+"Incorrect API credentials","Incorrect API credentials"
+"Validation settings are correct","Validation settings are correct"
+UPS,UPS
+USPS,USPS
+Google,Google
+"Empty Google API key.","Empty Google API key."
+"Incorrect response from UPS API.","Incorrect response from UPS API."
+"Empty UPS credentials.","Empty UPS credentials."
+"Only addresses from USA can be checked","Only addresses from USA can be checked"
+"Empty USPS Account ID.","Empty USPS Account ID."
+"Incorrect response from USPS API.","Incorrect response from USPS API."
+"Please enter all required address fields","Please enter all required address fields"
+"Validation mode <' . . '> is not supported","Validation mode <' . . '> is not supported"
+"[XML2Array] Error parsing the XML string.","[XML2Array] Error parsing the XML string."
+"[XML2Array] The input XML object should be of type: DOMDocument.","[XML2Array] The input XML object should be of type: DOMDocument."
+"'[XMLParser] Illegal character in attribute name. attribute: ' . . ' in node: ' .","'[XMLParser] Illegal character in attribute name. attribute: ' . . ' in node: ' ."
+"'[XMLParser] Illegal character in tag name. tag: ' . . ' in node: ' .","'[XMLParser] Illegal character in tag name. tag: ' . . ' in node: ' ."
+"Please review your address and make any necessary changes.","Please review your address and make any necessary changes."
+"Suggested Address ...","Suggested Address ..."
+"Address Validation Failed","Address Validation Failed"
+Continue,Continue
+"Address Validation","Address Validation"
+"IWD Agency","IWD Agency"
+Info,Info
+Version,Version
+Documentation,Documentation
+General,General
+Enable,Enable
+"Allow Invalid Address Checkout","Allow Invalid Address Checkout"
+"If yes, then customers with an invalid address will be able to place their order. If no, customer will have to provide a valid address to place order.","If yes, then customers with an invalid address will be able to place their order. If no, customer will have to provide a valid address to place order."
+Content,Content
+"Validation Pop-up Title","Validation Pop-up Title"
+"Invalid Address Message","Invalid Address Message"
+"Original Address","Original Address"
+"Suggested Address","Suggested Address"
+"Validation Settings","Validation Settings"
+"Validation Service","Validation Service"
+"Test Mode","Test Mode"
+Login,Login
+Password,Password
+"Access Key","Access Key"
+"Display Address Type","Display Address Type"
+"Allow to display type (Residential/Commercial) of suggested address in validation pop-up.","Allow to display type (Residential/Commercial) of suggested address in validation pop-up."
+"Account ID","Account ID"
+"API Key","API Key"
+"<a href=""https://developers.google.com/maps/documentation/geocoding/get-api-key"" target=""_blank"">Get a Key for Google Maps Geocoding API.</a>","<a href=""https://developers.google.com/maps/documentation/geocoding/get-api-key"" target=""_blank"">Get a Key for Google Maps Geocoding API.</a>"
+"Use Original Address","Use Original Address"
+"Use Suggested Address","Use Suggested Address"
+"Please review your billing address and make any necessary changes.","Please review your billing address and make any necessary changes."

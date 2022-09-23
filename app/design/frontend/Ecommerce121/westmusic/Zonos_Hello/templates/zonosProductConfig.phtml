@@ -1,0 +1,38 @@
+<?php
+
+use Zonos\Hello\Block\Includes;
+use Magento\Catalog\Model\Product\Interceptor;
+
+$moduleEnablePath = Includes::ZONOS_HELLO_GROUP_ID . '/' . Includes::ZONOS_HELLO_MODULE_ENABLE_ID;
+$siteKeyPath = Includes::ZONOS_HELLO_GROUP_ID . '/' . Includes::ZONOS_HELLO_SITE_KEY_ID;
+
+/** \Zonos\Hello\Block\ProductConfig $block */
+if ($block->getConfigValue($moduleEnablePath, false)) {
+
+    /** @var Interceptor $currentProduct */
+    $currentProduct = $block->getCurrentProduct();
+
+    try {
+        $name = $currentProduct->getName();
+        $price = $currentProduct->getFinalPrice('$');
+        $url = $currentProduct->getProductUrl();
+        $imgurl = $block->getImageUrl($currentProduct, 'product_page_image_large');
+    } catch (Exception $e) {
+        $name = null;
+        $price = null;
+        $url = null;
+        $imgurl = null;
+    }
+
+    echo "<script>
+        var productCheckExist = setInterval(function() {
+        try{
+           if (zonos) {
+              zonos.quote({ items: [{ price: '" . $price . "', name: '" . str_replace("'", '', $name) . "', url: '" . $url . "', image: '" . $imgurl . "'}]})
+              clearInterval(productCheckExist);
+           }
+        }catch(e){}
+        }, 100);
+    </script>";
+}
+?>

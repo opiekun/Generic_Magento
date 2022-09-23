@@ -1,0 +1,66 @@
+"Element name %1 not exist","Element name %1 not exist"
+"New Option","New Option"
+Styling,Styling
+"Border Color","Border Color"
+"Border Style","Border Style"
+"Theme Default","Theme Default"
+"Background Color","Background Color"
+"Background Image","Background Image"
+"Background Position","Background Position"
+Default,Default
+"Custom Background Position","Custom Background Position"
+"Background Repeat","Background Repeat"
+"Background Size","Background Size"
+"Custom Background Size","Custom Background Size"
+"Border Radius","Border Radius"
+"Box Shadow","Box Shadow"
+Color,Color
+Horizontal,Horizontal
+Vertical,Vertical
+Blur,Blur
+Spread,Spread
+Position,Position
+"Custom Class","Custom Class"
+"Custom CSS","Custom CSS"
+Solid,Solid
+Dotted,Dotted
+Dashed,Dashed
+None,None
+Hidden,Hidden
+Double,Double
+Groove,Groove
+Ridge,Ridge
+Inset,Inset
+Outset,Outset
+Initial,Initial
+Inherit,Inherit
+"Top Left","Top Left"
+"Top Center","Top Center"
+"Top Right","Top Right"
+"Center Left","Center Left"
+"Center Center","Center Center"
+"Center Right","Center Right"
+"Bottom Left","Bottom Left"
+"Bottom Center","Bottom Center"
+"Bottom Right","Bottom Right"
+Custom,Custom
+No-repeat,No-repeat
+Repeat,Repeat
+Repeat-x,Repeat-x
+Repeat-y,Repeat-y
+Auto,Auto
+Cover,Cover
+Contain,Contain
+Inside,Inside
+Outline,Outline
+"WYSIWYG Editor","WYSIWYG Editor"
+"Changes have been made to this section that have not been saved.","Changes have been made to this section that have not been saved."
+"This tab contains invalid data. Please resolve this before saving.","This tab contains invalid data. Please resolve this before saving."
+"CSS box","CSS box"
+"Simplify controls","Simplify controls"
+margin,margin
+border,border
+padding,padding
+Close,Close
+Cancel,Cancel
+Submit,Submit

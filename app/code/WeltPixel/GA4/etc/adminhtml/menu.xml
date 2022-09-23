@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+                id="WeltPixel_GA4::GA4_Label"
+                title="Google Analytics 4 Ecommerce"
+                module="WeltPixel_GA4"
+                sortOrder="65"
+                parent="WeltPixel_Backend::WeltPixel"
+                resource="WeltPixel_GA4::GA4_Label"
+        />
+        <add
+                id="WeltPixel_GA4::GA4"
+                title="Google Analytics 4 Ecommerce GTM Settings"
+                module="WeltPixel_GA4"
+                action="adminhtml/system_config/edit/section/weltpixel_ga4/"
+                sortOrder="10"
+                parent="WeltPixel_GA4::GA4_Label"
+                resource="WeltPixel_GA4::GA4"
+        />
+    </menu>
+</config>

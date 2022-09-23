@@ -1,0 +1,24 @@
+<?php if($this->getGroupConfigFlag('gallery/add_pagebreak')){ ?>
+    <pagebreak />
+<?php } ?>
+<div class="section section-media-gallery">
+    <div class="media-gallery">
+        <h3 class="section-title media-gallery-title"><?php echo __('Product Images');?></h3>
+        <?php echo $this->getGalleryImagesHtml(); ?>
+    </div>
+</div>
+
+<style>
+    <?php if(!$this->getConfigFlag('add_gallery_border')){ ?>
+        table.gallery {
+            border-spacing:0px!important;
+        }
+        table.gallery td.centerimage{
+            border:0px solid #fff!important;
+            border-collapse:separate;
+        }
+    <?php } ?>
+    table.gallery td.centerimage {
+        border-color: #<?php echo $this->getConfig('gallery_border_color'); ?> !important;
+    }
+</style>

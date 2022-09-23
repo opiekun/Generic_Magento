@@ -1,0 +1,9 @@
+<div class="inner-content" 
+	ng-class="{'mgz-container': element.row_type=='full_width_row'}" 
+	ng-include="::$root.magezonBuilderUrl.getViewFileUrl('Magezon_Builder/js/templates/builder/element/list.html')"
+	dnd-disable-builder="!element.builder.is_collection"
+	dnd-disable-if="element.builder.dndDisabled" 
+	dnd-list="element.elements"
+	dnd-drop="mgz.dropElement(item, index, element)"
+	dnd-allowed-types="::element.builder.allowed_types"
+></div>

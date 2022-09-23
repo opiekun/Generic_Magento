@@ -1,0 +1,146 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Yes/no switcher
+//  _____________________________________________
+
+//
+//  Variables
+//  _____________________________________________
+@mgz-toggle-color-gray89: #e3e3e3;
+@mgz-toggle-color-white: #fff;
+@mgz-toggle-color-green-apple: #79a22e;
+@mgz-toggle-disabled__opacity: .5;
+@mgz-toggle-color-gray65-lighten: #aaa6a0;
+@mgz-toggle-action__height: 3.2rem;
+@mgz-toggle-field-size__m: 34rem;
+@mgz-toggle-actions-switcher-speed: .2s;
+@mgz-toggle-color-blue-pure: #007bdb;
+@mgz-toggle-field-control__focus__border-color: @mgz-toggle-color-blue-pure;
+@mgz-toggle-color-tomato-brick: #e22626;
+@mgz-toggle-field-error-control__border-color: @mgz-toggle-color-tomato-brick;
+
+@mgz-toggle-actions-switcher__background-color: @mgz-toggle-color-gray89;
+@mgz-toggle-actions-switcher__border-radius: 12px;
+@mgz-toggle-actions-switcher__border: 1px solid @mgz-toggle-color-gray65-lighten;
+@mgz-toggle-actions-switcher__height: 22px;
+@mgz-toggle-actions-switcher__width: 37px;
+
+@mgz-toggle-actions-switcher-control__background-color: @mgz-toggle-color-white;
+
+@mgz-toggle-actions-switcher-handler__background-color: @mgz-toggle-color-white;
+@mgz-toggle-actions-switcher-handler__height: @mgz-toggle-actions-switcher__height;
+@mgz-toggle-actions-switcher-handler__width: @mgz-toggle-actions-switcher__height;
+
+//
+
+.mgz__actions-switch {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+
+    .admin__field-control & {
+        line-height: @mgz-toggle-action__height;
+    }
+
+    + .admin__field-service {
+        min-width: @mgz-toggle-field-size__m;
+    }
+}
+
+.mgz__actions-switch-checkbox {
+    &:extend(.abs-visually-hidden all);
+    position: absolute !important;
+
+    ._disabled &,
+    &.disabled {
+        + .mgz__actions-switch-label {
+            cursor: not-allowed;
+            opacity: @mgz-toggle-disabled__opacity;
+            pointer-events: none;
+        }
+    }
+
+    &:checked {
+        + .mgz__actions-switch-label {
+            &:before {
+                left: (@mgz-toggle-actions-switcher__width - @mgz-toggle-actions-switcher-handler__width);
+            }
+
+            &:after {
+                background: @mgz-toggle-color-green-apple;
+            }
+
+            .mgz__actions-switch-text {
+                &:before {
+                    content: attr(data-text-on);
+                }
+            }
+        }
+    }
+
+    ._error & {
+        + .mgz__actions-switch-label {
+            &:before,
+            &:after {
+                border-color: @mgz-toggle-field-error-control__border-color;
+            }
+        }
+    }
+}
+
+.mgz__actions-switch-label {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+    display: inline-block;
+    height: @mgz-toggle-actions-switcher__height;
+    line-height: @mgz-toggle-actions-switcher__height;
+    position: relative;
+    user-select: none;
+    vertical-align: middle;
+
+    &:before,
+    &:after {
+        left: 0;
+        position: absolute;
+        right: auto;
+        top: 0;
+    }
+
+    &:before {
+        background: @mgz-toggle-actions-switcher-handler__background-color;
+        border: @mgz-toggle-actions-switcher__border;
+        border-radius: 100%;
+        content: '';
+        display: block;
+        height: @mgz-toggle-actions-switcher-handler__height;
+        transition: left @mgz-toggle-actions-switcher-speed ease-in 0s;
+        width: @mgz-toggle-actions-switcher-handler__width;
+        z-index: 1;
+    }
+
+    &:after {
+        background: @mgz-toggle-actions-switcher__background-color;
+        border: @mgz-toggle-actions-switcher__border;
+        border-radius: @mgz-toggle-actions-switcher__border-radius;
+        content: '';
+        display: block;
+        height: @mgz-toggle-actions-switcher__height;
+        transition: background @mgz-toggle-actions-switcher-speed ease-in 0s;
+        width: @mgz-toggle-actions-switcher__width;
+        z-index: 0;
+    }
+}
+
+.mgz__actions-switch-text {
+    &:before {
+        content: attr(data-text-off);
+        padding-left: (@mgz-toggle-actions-switcher__width + 10);
+        white-space: nowrap;
+    }
+}

@@ -1,0 +1,769 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://www.magezon.com/license.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_Builder
+ * @copyright Copyright (C) 2019 Magezon (https://www.magezon.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<!-- 2.2.9 -->
+	<preference for="Magento\Framework\HTTP\ClientInterface" type="Magento\Framework\HTTP\Client\Curl" />
+	<type name="Magezon\Builder\Model\CompositeConfigProvider">
+		<arguments>
+			<argument name="configProviders" xsi:type="array">
+				<item name="default" xsi:type="object">Magezon\Builder\Model\DefaultConfigProvider</item>
+				<item name="directives" xsi:type="array">
+					<item name="home" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/navbar/home.html</item>
+						<item name="group" xsi:type="string">navbar</item>
+						<item name="sortOrder" xsi:type="number">10</item>
+					</item>
+					<item name="add-element" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/builder/navbar/add</item>
+						<item name="group" xsi:type="string">navbar</item>
+						<item name="sortOrder" xsi:type="number">20</item>
+					</item>
+					<item name="my-templates" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/builder/navbar/my-templates</item>
+						<item name="group" xsi:type="string">navbar</item>
+						<item name="additionalClasses" xsi:type="string">mgz-mytemplaes</item>
+						<item name="sortOrder" xsi:type="number">30</item>
+					</item>
+					<item name="fullscreen" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/builder/navbar/fullscreen</item>
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/navbar/fullscreen.html</item>
+						<item name="group" xsi:type="string">navbar</item>
+						<item name="additionalClasses" xsi:type="string">mgz-pull-right</item>
+						<item name="sortOrder" xsi:type="number">40</item>
+					</item>
+					<item name="view-mode" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/builder/navbar/view_mode</item>
+						<item name="group" xsi:type="string">navbar</item>
+						<item name="additionalClasses" xsi:type="string">mgz-pull-right mgz-dropdown mgz-view-mode</item>
+						<item name="sortOrder" xsi:type="number">50</item>
+					</item>
+					<item name="settings" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/builder/navbar/settings</item>
+						<item name="group" xsi:type="string">navbar</item>
+						<item name="additionalClasses" xsi:type="string">mgz-profile-settings mgz-pull-right</item>
+						<item name="sortOrder" xsi:type="number">60</item>
+					</item>
+					<item name="clear_layout" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/builder/navbar/clear</item>
+						<item name="group" xsi:type="string">navbar</item>
+						<item name="additionalClasses" xsi:type="string">mgz-pull-right</item>
+						<item name="sortOrder" xsi:type="number">65</item>
+					</item>
+					<item name="shortcode" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/builder/navbar/shortcode</item>
+						<item name="group" xsi:type="string">navbar</item>
+						<item name="additionalClasses" xsi:type="string">mgz-pull-right</item>
+						<item name="sortOrder" xsi:type="number">70</item>
+					</item>
+					<item name="history" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/builder/navbar/history</item>
+						<item name="group" xsi:type="string">navbar</item>
+						<item name="additionalClasses" xsi:type="string">mgz-pull-right</item>
+						<item name="sortOrder" xsi:type="number">80</item>
+					</item>
+					<item name="navigator" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/builder/navbar/navigator</item>
+						<item name="group" xsi:type="string">navbar</item>
+						<item name="additionalClasses" xsi:type="string">mgz-pull-right</item>
+						<item name="sortOrder" xsi:type="number">90</item>
+					</item>
+					<item name="helper" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/builder/helper</item>
+						<item name="group" xsi:type="string">after-builder-list</item>
+						<item name="sortOrder" xsi:type="number">10</item>
+					</item>
+					<item name="modal_title" xsi:type="array">
+						<item name="group" xsi:type="string">modal-header</item>
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/block/title</item>
+						<item name="sortOrder" xsi:type="number">10</item>
+					</item>
+					<item name="modal_minimize" xsi:type="array">
+						<item name="tag" xsi:type="array">
+							<item name="element_modal" xsi:type="string">modal-element-header</item>
+							<item name="history_modal" xsi:type="string">modal-history-header</item>
+						</item>
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/button/minimize</item>
+						<item name="sortOrder" xsi:type="number">900</item>
+					</item>
+					<item name="modal_close" xsi:type="array">
+						<item name="group" xsi:type="string">modal-header</item>
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/modal/button/close.html</item>
+						<item name="sortOrder" xsi:type="number">1000</item>
+					</item>
+					<item name="modal_elements_search" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/block/elements_search</item>
+						<item name="tag" xsi:type="string">modal-elements-header</item>
+						<item name="additionalClasses" xsi:type="string">mgz-modal-search</item>
+						<item name="sortOrder" xsi:type="number">900</item>
+					</item>
+					<item name="modal_element_replace" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/button/replace</item>
+						<item name="tag" xsi:type="array">
+							<item name="element_modal" xsi:type="string">modal-element-footer</item>
+						</item>
+						<item name="additionalClasses" xsi:type="string">mgz-pull-left</item>
+						<item name="sortOrder" xsi:type="number">90</item>
+					</item>
+					<item name="modal_save" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/button/save</item>
+						<item name="tag" xsi:type="array">
+							<item name="element" xsi:type="string">modal-element-footer</item>
+							<item name="profileshortcode" xsi:type="string">modal-profileShortcode-footer</item>
+							<item name="shortcode" xsi:type="string">modal-shortcode-footer</item>
+							<item name="settings" xsi:type="string">modal-settings-footer</item>
+							<item name="link" xsi:type="string">modal-link-footer</item>
+						</item>
+						<item name="additionalClasses" xsi:type="string">mgz-pull-right</item>
+						<item name="sortOrder" xsi:type="number">100</item>
+					</item>
+					<item name="modal_footer_close" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/modal/button/footer_close.html</item>
+						<item name="tag" xsi:type="array">
+							<item name="element" xsi:type="string">modal-element-footer</item>
+							<item name="profileshortcode" xsi:type="string">modal-profileShortcode-footer</item>
+							<item name="shortcode" xsi:type="string">modal-shortcode-footer</item>
+							<item name="settings" xsi:type="string">modal-settings-footer</item>
+						</item>
+						<item name="additionalClasses" xsi:type="string">mgz-pull-right</item>
+						<item name="sortOrder" xsi:type="number">110</item>
+					</item>
+					<item name="modal_yes" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/button/save</item>
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/modal/button/yes.html</item>
+						<item name="tag" xsi:type="array">
+							<item name="clear_layout" xsi:type="string">modal-clear_layout-footer</item>
+						</item>
+						<item name="additionalClasses" xsi:type="string">mgz-pull-right</item>
+						<item name="sortOrder" xsi:type="number">100</item>
+					</item>
+					<item name="modal_no" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/modal/button/no.html</item>
+						<item name="tag" xsi:type="array">
+							<item name="clear_layout" xsi:type="string">modal-clear_layout-footer</item>
+						</item>
+						<item name="additionalClasses" xsi:type="string">mgz-pull-right</item>
+						<item name="sortOrder" xsi:type="number">110</item>
+					</item>
+					<item name="modal_navigator_toggle" xsi:type="array">
+						<item name="tag" xsi:type="array">
+							<item name="navigator_modal" xsi:type="string">modal-navigator-header</item>
+						</item>
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/button/navigator_toggle</item>
+						<item name="sortOrder" xsi:type="number">5</item>
+					</item>
+					<item name="control_add_child" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/control/add_child.html</item>
+						<item name="group" xsi:type="string">elemControl</item>
+						<item name="sortOrder" xsi:type="number">10</item>
+					</item>
+					<item name="control_add" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/control/add.html</item>
+						<item name="group" xsi:type="string">elemControl</item>
+						<item name="sortOrder" xsi:type="number">20</item>
+					</item>
+					<item name="control_edit" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/control/edit.html</item>
+						<item name="group" xsi:type="string">elemControl</item>
+						<item name="sortOrder" xsi:type="number">30</item>
+					</item>
+					<item name="control_edit_design" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/control/edit_design.html</item>
+						<item name="group" xsi:type="string">elemControl</item>
+						<item name="sortOrder" xsi:type="number">40</item>
+					</item>
+					<item name="control_row_layout" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/control/row_layout.html</item>
+						<item name="group" xsi:type="string">elemControl</item>
+						<item name="sortOrder" xsi:type="number">50</item>
+					</item>
+					<item name="control_duplicate" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/control/duplicate.html</item>
+						<item name="group" xsi:type="string">elemControl</item>
+						<item name="sortOrder" xsi:type="number">60</item>
+					</item>
+					<item name="control_replace" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/control/replace.html</item>
+						<item name="group" xsi:type="string">elemControl</item>
+						<item name="sortOrder" xsi:type="number">70</item>
+					</item>
+					<item name="control_insert_before" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/control/insert_before.html</item>
+						<item name="group" xsi:type="string">elemControl</item>
+						<item name="sortOrder" xsi:type="number">80</item>
+					</item>
+					<item name="control_insert_after" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/control/insert_after.html</item>
+						<item name="group" xsi:type="string">elemControl</item>
+						<item name="sortOrder" xsi:type="number">90</item>
+					</item>
+					<item name="control_remove" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/control/remove.html</item>
+						<item name="group" xsi:type="string">elemControl</item>
+						<item name="sortOrder" xsi:type="number">100</item>
+					</item>
+					<item name="control_navigator" xsi:type="array">
+						<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/control/navigator.html</item>
+						<item name="group" xsi:type="string">elemControl</item>
+						<item name="sortOrder" xsi:type="number">110</item>
+					</item>
+					<item name="move_updown" xsi:type="array">
+						<item name="element" xsi:type="string">Magezon_Builder/js/builder/control/updown</item>
+						<item name="group" xsi:type="string">controlTop</item>
+						<item name="sortOrder" xsi:type="number">10</item>
+					</item>
+				</item>
+				<item name="modals" xsi:type="array">
+					<item name="navigator" xsi:type="array">
+						<item name="name" xsi:type="string" translate="true">Navigator</item>
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/navigator</item>
+						<item name="resizable" xsi:type="boolean">true</item>
+						<item name="position" xsi:type="array">
+							<item name="right" xsi:type="string">10px</item>
+						</item>
+						<item name="size" xsi:type="array">
+							<item name="width" xsi:type="number">500</item>
+							<item name="height" xsi:type="string">98%</item>
+						</item>
+					</item>
+					<item name="elements" xsi:type="array">
+						<item name="name" xsi:type="string" translate="true">Elements</item>
+						<item name="title" xsi:type="string" translate="true">Add Element</item>
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/elements</item>
+						<item name="form" xsi:type="boolean">true</item>
+						<item name="size" xsi:type="array">
+							<item name="maxWidth" xsi:type="number">1200</item>
+						</item>
+					</item>
+					<item name="element" xsi:type="array">
+						<item name="name" xsi:type="string" translate="true">Element</item>
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/element</item>
+						<item name="resizable" xsi:type="boolean">true</item>
+						<item name="form" xsi:type="boolean">true</item>
+						<item name="size" xsi:type="array">
+							<item name="width" xsi:type="number">650</item>
+						</item>
+					</item>
+					<item name="settings" xsi:type="array">
+						<item name="name" xsi:type="string" translate="true">Settings</item>
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/settings</item>
+						<item name="class" xsi:type="string">Magezon\Builder\Data\Modal\Profile</item>
+						<item name="form" xsi:type="boolean">true</item>
+						<item name="size" xsi:type="array">
+							<item name="width" xsi:type="number">650</item>
+						</item>
+					</item>
+					<item name="clear_layout" xsi:type="array">
+						<item name="name" xsi:type="string" translate="true">Clear Layout</item>
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/clearLayout</item>
+						<item name="size" xsi:type="array">
+							<item name="width" xsi:type="number">650</item>
+							<item name="height" xsi:type="string">auto</item>
+						</item>
+					</item>
+					<item name="templates" xsi:type="array">
+						<item name="name" xsi:type="string" translate="true">Templates</item>
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/templates</item>
+						<item name="class" xsi:type="string">Magezon\Builder\Data\Modal\Templates</item>
+						<item name="form" xsi:type="boolean">true</item>
+						<item name="size" xsi:type="array">
+							<item name="width" xsi:type="number">1000</item>
+						</item>
+					</item>
+					<item name="profileShortcode" xsi:type="array">
+						<item name="name" xsi:type="string" translate="true">ShortCode</item>
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/profileShortcode</item>
+						<item name="class" xsi:type="string">Magezon\Builder\Data\Modal\Shortcode</item>
+						<item name="form" xsi:type="boolean">true</item>
+						<item name="size" xsi:type="array">
+							<item name="width" xsi:type="number">650</item>
+						</item>
+					</item>
+					<item name="history" xsi:type="array">
+						<item name="name" xsi:type="string" translate="true">History</item>
+						<item name="element" xsi:type="string">Magezon_Builder/js/modal/history</item>
+						<item name="resizable" xsi:type="boolean">true</item>
+						<item name="position" xsi:type="array">
+							<item name="right" xsi:type="string">10px</item>
+						</item>
+						<item name="size" xsi:type="array">
+							<item name="width" xsi:type="number">500</item>
+							<item name="height" xsi:type="string">98%</item>
+						</item>
+					</item>
+					<item name="link" xsi:type="array">
+						<item name="name" xsi:type="string" translate="true">Link</item>
+						<item name="title" xsi:type="string" translate="true">Insert/edit link</item>
+						<item name="class" xsi:type="string">Magezon\Builder\Data\Modal\Link</item>
+						<item name="form" xsi:type="boolean">true</item>
+						<item name="size" xsi:type="array">
+							<item name="width" xsi:type="number">650</item>
+						</item>
+					</item>
+				</item>
+				<item name="fonts" xsi:type="array">
+					<item name="awesome" xsi:type="array">
+						<item name="label" xsi:type="string" translate="true">Awesome 5</item>
+						<item name="value" xsi:type="string" translate="true">awesome</item>
+						<item name="class" xsi:type="string">Magezon\Builder\Model\Source\FontAwesomeList</item>
+					</item>
+					<item name="openiconic" xsi:type="array">
+						<item name="label" xsi:type="string" translate="true">Open Iconic</item>
+						<item name="value" xsi:type="string" translate="true">openiconic</item>
+						<item name="class" xsi:type="string">Magezon\Builder\Model\Source\OpenIconic</item>
+					</item>
+				</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Magezon\Builder\Data\Sources">
+		<arguments>
+			<argument name="types" xsi:type="array">
+				<item name="category" xsi:type="string">Magezon\Builder\Model\Source\CategoryList</item>
+				<item name="product" xsi:type="string">Magezon\Builder\Model\Source\ProductList</item>
+				<item name="page" xsi:type="string">Magezon\Builder\Model\Source\PageList</item>
+				<item name="block" xsi:type="string">Magezon\Builder\Model\Source\BlockList</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Magezon\Builder\Data\Groups">
+		<arguments>
+			<argument name="groups" xsi:type="array">
+				<item name="content" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Content</item>
+					<item name="sortOrder" xsi:type="number">10</item>
+				</item>
+				<item name="layout" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Layout</item>
+					<item name="sortOrder" xsi:type="number">20</item>
+				</item>
+				<item name="structure" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Structure</item>
+					<item name="sortOrder" xsi:type="number">30</item>
+				</item>
+				<item name="social" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Social</item>
+					<item name="sortOrder" xsi:type="number">40</item>
+				</item>
+				<item name="magento" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Magento</item>
+					<item name="sortOrder" xsi:type="number">50</item>
+				</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Magezon\Builder\Data\Elements">
+		<arguments>
+			<argument name="elements" xsi:type="array">
+				<item name="row" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Row</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\Row</item>
+					<item name="element" xsi:type="string">Magezon_Builder/js/builder/element/row</item>
+					<item name="block" xsi:type="string">Magezon\Builder\Block\Element\Row</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/row.phtml</item>
+					<item name="sortOrder" xsi:type="number">10</item>
+					<item name="icon" xsi:type="string">fas mgz-fa-plus</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">#3590fc</item>
+					</item>
+					<item name="allowed_types" xsi:type="string">column</item>
+					<item name="children" xsi:type="string">column</item>
+					<item name="group" xsi:type="string">structure</item>
+					<item name="description" xsi:type="string">Place content elements inside the row</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/rows-and-columns</item>
+					<item name="is_collection" xsi:type="boolean">true</item>
+					<!-- <item name="documentation" xsi:type="string">https://google.com</item> -->
+				</item>
+				<item name="column" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Column</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\Column</item>
+					<item name="block" xsi:type="string">Magezon\Builder\Block\Element\Column</item>
+					<item name="element" xsi:type="string">Magezon_Builder/js/builder/element/column</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/list.phtml</item>
+					<item name="sortOrder" xsi:type="number">20</item>
+					<item name="excluded_types" xsi:type="string">column</item>
+					<item name="modalVisible" xsi:type="boolean">false</item>
+					<item name="resizable" xsi:type="boolean">true</item>
+					<item name="is_collection" xsi:type="boolean">true</item>
+					<item name="icon" xsi:type="string">mgz-icon mgz-icon-column</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">#3590fc</item>
+					</item>
+				</item>
+				<item name="text" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Text Block</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\Text</item>
+					<item name="element" xsi:type="string">Magezon_Builder/js/builder/element/text</item>
+					<item name="toolbar" xsi:type="string">Magezon_Builder/js/builder/element/text/toolbar</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/text.phtml</item>
+					<item name="sortOrder" xsi:type="number">20</item>
+					<item name="icon" xsi:type="string">fas mgz-fa-font</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">#3590fc</item>
+					</item>
+					<item name="group" xsi:type="string">content</item>
+					<item name="description" xsi:type="string">A block of text with WYSIWYG editor</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/text-block</item>
+				</item>
+				<item name="section" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Section</item>
+					<item name="title" xsi:type="string">Section</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\Section</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/list.phtml</item>
+					<item name="sortOrder" xsi:type="number">30</item>
+					<item name="icon" xsi:type="string">fas mgz-fa-plus</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">#53576b</item>
+					</item>
+					<item name="is_collection" xsi:type="boolean">true</item>
+					<item name="group" xsi:type="string">structure</item>
+					<item name="description" xsi:type="string">Group multiple elements in section</item>
+				</item>
+				<item name="heading" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Heading</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\Headding</item>
+					<item name="block" xsi:type="string">Magezon\Builder\Block\Element\Heading</item>
+					<item name="element" xsi:type="string">Magezon_Builder/js/builder/element/heading</item>
+					<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/element/heading.html</item>
+					<item name="toolbar" xsi:type="string">Magezon_Builder/js/builder/element/heading/toolbar</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/heading.phtml</item>
+					<item name="sortOrder" xsi:type="number">40</item>
+					<item name="icon" xsi:type="string">fas mgz-fa-heading</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">transparent</item>
+						<item name="color" xsi:type="string">#3590fc</item>
+						<item name="font-size" xsi:type="string">26px</item>
+					</item>
+					<item name="group" xsi:type="string">content</item>
+					<item name="description" xsi:type="string">Create stylish title headings</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/heading</item>
+				</item>
+				<item name="separator" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Separator</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\Separator</item>
+					<item name="block" xsi:type="string">Magezon\Builder\Block\Element\Separator</item>
+					<item name="element" xsi:type="string">Magezon_Builder/js/builder/element/separator</item>
+					<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/element/separator.html</item>
+					<item name="toolbar" xsi:type="string">Magezon_Builder/js/builder/element/separator/toolbar</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/separator.phtml</item>
+					<item name="sortOrder" xsi:type="number">50</item>
+					<item name="icon" xsi:type="string">mgz-icon mgz-icon-divider</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">transparent</item>
+						<item name="color" xsi:type="string">#53576b</item>
+						<item name="font-size" xsi:type="string">26px</item>
+					</item>
+					<item name="group" xsi:type="string">content</item>
+					<item name="description" xsi:type="string">Horizontal separator line</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/separator</item>
+				</item>
+				<item name="empty_space" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Empty Space</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\EmptySpace</item>
+					<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/element/empty_space.html</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/empty_space.phtml</item>
+					<item name="block" xsi:type="string">Magezon\Builder\Block\Element\EmptySpace</item>
+					<item name="sortOrder" xsi:type="number">60</item>
+					<item name="icon" xsi:type="string">far mgz-fa-square</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">transparent</item>
+						<item name="color" xsi:type="string">#53576b</item>
+						<item name="font-size" xsi:type="string">30px</item>
+					</item>
+					<item name="group" xsi:type="string">content</item>
+					<item name="description" xsi:type="string">Blank space with custom height</item>
+					<item name="builder_description" xsi:type="string">{{ element.height ? 'Height: ' + element.height : '' }}</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/empty-space</item>
+				</item>
+				<item name="tabs" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Tabs</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\Tabs</item>
+					<item name="element" xsi:type="string">Magezon_Builder/js/builder/element/tabs</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/tabs.phtml</item>
+					<item name="block" xsi:type="string">Magezon\Builder\Block\Element\Tabs</item>
+					<item name="sortOrder" xsi:type="number">70</item>
+					<item name="icon" xsi:type="string">mgz-icon mgz-icon-tabs</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">transparent</item>
+						<item name="color" xsi:type="string">#47ae68</item>
+						<item name="font-size" xsi:type="string">30px</item>
+					</item>
+					<item name="allowed_types" xsi:type="string">tab</item>
+					<item name="children" xsi:type="string">tab</item>
+					<item name="childrenCount" xsi:type="string">2</item>
+					<item name="group" xsi:type="string">content</item>
+					<item name="description" xsi:type="string">Tabbed content</item>
+					<item name="disabled" xsi:type="boolean">true</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/tabs</item>
+					<item name="is_collection" xsi:type="boolean">true</item>
+				</item>
+				<item name="tab" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Tab</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\Tab</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/list.phtml</item>
+					<item name="sortOrder" xsi:type="number">90</item>
+					<item name="excluded_types" xsi:type="string">tab</item>
+					<item name="modalVisible" xsi:type="boolean">false</item>
+					<item name="is_collection" xsi:type="boolean">true</item>
+				</item>
+				<item name="generate_block" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Generate Block</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\CustomBlock</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/custom_block.phtml</item>
+					<item name="sortOrder" xsi:type="number">500</item>
+					<item name="icon" xsi:type="string">fab mgz-fa-magento</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">transparent</item>
+						<item name="color" xsi:type="string">#f26322</item>
+						<item name="font-size" xsi:type="string">32px</item>
+					</item>
+					<item name="group" xsi:type="string">magento</item>
+					<item name="builder_description" xsi:type="string">{{ element.block_name ? 'Block Name: ' + element.block_name : '' }}</item>
+					<item name="description" xsi:type="string">Generate block by name</item>
+					<item name="requiredFields" xsi:type="array">
+						<item name="block_name" xsi:type="boolean">true</item>
+					</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/generate-block</item>
+				</item>
+				<item name="sidebar" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Sidebar</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/sidebar.phtml</item>
+					<item name="sortOrder" xsi:type="number">510</item>
+					<item name="icon" xsi:type="string">fab mgz-fa-magento</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">transparent</item>
+						<item name="color" xsi:type="string">#f26322</item>
+						<item name="font-size" xsi:type="string">32px</item>
+					</item>
+					<item name="group" xsi:type="string">magento</item>
+					<item name="description" xsi:type="string">Display sidebar</item>
+					<item name="disabled" xsi:type="boolean">true</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/sidebar</item>
+				</item>
+				<item name="magento_widget" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Magento Widget</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\MagentoWidget</item>
+					<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/element/magento_widget.html</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/magento_widgget.phtml</item>
+					<item name="sortOrder" xsi:type="number">520</item>
+					<item name="icon" xsi:type="string">fab mgz-fa-magento</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">transparent</item>
+						<item name="color" xsi:type="string">#f26322</item>
+						<item name="font-size" xsi:type="string">32px</item>
+					</item>
+					<item name="group" xsi:type="string">magento</item>
+					<item name="description" xsi:type="string">Insert Magento widgets or 3rd-party extensions</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/magento-widget</item>
+				</item>
+				<item name="gmaps" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Google Maps</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\Gmaps</item>
+					<item name="element" xsi:type="string">Magezon_Builder/js/builder/element/gmaps</item>
+					<item name="block" xsi:type="string">Magezon\Builder\Block\Element\Gmaps</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/gmaps.phtml</item>
+					<item name="sortOrder" xsi:type="number">190</item>
+					<item name="icon" xsi:type="string">mgz-builder-gmaps-icon</item>
+					<item name="group" xsi:type="string">content</item>
+					<item name="description" xsi:type="string">Map block</item>
+					<item name="disabled" xsi:type="boolean">true</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/google-maps</item>
+				</item>
+				<item name="single_image" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Single Image</item>
+					<item name="block" xsi:type="string">Magezon\Builder\Block\Element\SingleImage</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\SingleImage</item>
+					<item name="element" xsi:type="string">Magezon_Builder/js/builder/element/single-image</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/single_image.phtml</item>
+					<item name="sortOrder" xsi:type="number">110</item>
+					<item name="icon" xsi:type="string">mgz-builder-single_image-icon</item>
+					<item name="group" xsi:type="string">content</item>
+					<item name="description" xsi:type="string">Single image with CSS animation</item>
+					<item name="disabled" xsi:type="boolean">true</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/single-image</item>
+				</item>
+				<item name="social_icons" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Social Icons</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\SocialIcons</item>
+					<item name="block" xsi:type="string">Magezon\Builder\Block\Element\SocialIcons</item>
+					<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/element/social_icons.html</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/social_icons.phtml</item>
+					<item name="sortOrder" xsi:type="number">180</item>
+					<item name="description" xsi:type="string">Display a set of social icons</item>
+					<item name="icon" xsi:type="string">mgz-icon mgz-icon-social-icons</item>
+					<item name="disabled" xsi:type="boolean">true</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">#3590fc</item>
+						<item name="font-size" xsi:type="string">26px</item>
+					</item>
+					<item name="group" xsi:type="string">social</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/social-icons</item>
+				</item>
+				<item name="search_form" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Search Form</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\SearchForm</item>
+					<item name="block" xsi:type="string">Magezon\Builder\Block\Element\SearchForm</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/search_form.phtml</item>
+					<item name="sortOrder" xsi:type="number">540</item>
+					<item name="description" xsi:type="string">A search form for your site</item>
+					<item name="icon" xsi:type="string">fab mgz-fa-magento</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">transparent</item>
+						<item name="color" xsi:type="string">#f26322</item>
+						<item name="font-size" xsi:type="string">32px</item>
+					</item>
+					<item name="group" xsi:type="string">magento</item>
+					<item name="builder_description" xsi:type="string">{{ element.placeholder ? 'Placeholder: ' + element.placeholder : '' }} {{ element.form_width ? 'Width: ' + element.form_width : '' }}</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/search-form</item>
+					<item name="disabled" xsi:type="boolean">true</item>
+				</item>
+				<item name="button" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Button</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\Button</item>
+					<item name="block" xsi:type="string">Magezon\Builder\Block\Element\Button</item>
+					<item name="templateUrl" xsi:type="string">Magezon_Builder/js/templates/builder/element/button.html</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/button.phtml</item>
+					<item name="sortOrder" xsi:type="number">125</item>
+					<item name="icon" xsi:type="string">fas mgz-fa-bold</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">#f6492f</item>
+					</item>
+					<item name="disabled" xsi:type="boolean">true</item>
+					<item name="group" xsi:type="string">content</item>
+					<item name="description" xsi:type="string">Eye catching button</item>
+					<item name="builder_description" xsi:type="string">{{ element.title ? 'Text: ' + element.title : '' }}</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/button</item>
+				</item>
+				<item name="countdown" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Countdown</item>
+					<item name="class" xsi:type="string">Magezon\Builder\Data\Element\Countdown</item>
+					<item name="block" xsi:type="string">Magezon\Builder\Block\Element\Countdown</item>
+					<item name="element" xsi:type="string">Magezon_Builder/js/builder/element/countdown</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/countdown.phtml</item>
+					<item name="sortOrder" xsi:type="number">205</item>
+					<item name="description" xsi:type="string">Add coundown timer with 2 types</item>
+					<item name="icon" xsi:type="string">mgz-icon mgz-icon-countdown</item>
+					<item name="disabled" xsi:type="boolean">true</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">transparent</item>
+						<item name="color" xsi:type="string">#47ae68</item>
+						<item name="font-size" xsi:type="string">32px</item>
+					</item>
+					<item name="group" xsi:type="string">content</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/countdown</item>
+				</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Magento\Cms\Model\Wysiwyg\CompositeConfigProvider">
+		<arguments>
+			<argument name="variablePluginConfigProvider" xsi:type="array">
+				<item name="default" xsi:type="string">Magento\Variable\Model\Variable\ConfigProvider</item>
+			</argument>
+			<argument name="widgetPluginConfigProvider" xsi:type="array">
+				<item name="default" xsi:type="string">Magento\Widget\Model\Widget\Config</item>
+			</argument>
+			<argument name="wysiwygConfigPostProcessor" xsi:type="array">
+				<item name="default" xsi:type="string">Magento\Cms\Model\Wysiwyg\DefaultConfigProvider</item>
+			</argument>
+			<argument name="galleryConfigProvider" xsi:type="array">
+				<item name="default" xsi:type="string">Magento\Cms\Model\Wysiwyg\Gallery\DefaultConfigProvider</item>
+			</argument>
+		</arguments>
+	</type>
+	<virtualType name="Magezon\Builder\Ui\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+		<arguments>
+			<argument name="modifiers" xsi:type="array">
+				<item name="common" xsi:type="array">
+					<item name="class" xsi:type="string">Magezon\Builder\Ui\DataProvider\LinkBuilder\Modifier\LinkModal</item>
+					<item name="sortOrder" xsi:type="number">10</item>
+				</item>
+			</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magezon\Builder\Ui\DataProvider\LinkBuilder\FormDataProvider">
+		<arguments>
+			<argument name="pool" xsi:type="object">Magezon\Builder\Ui\Form\Modifier\Pool</argument>
+		</arguments>
+	</type>
+	<type name="Magezon\Builder\Model\WysiwygConfigProvider">
+		<arguments>
+			<argument name="settings" xsi:type="array">
+				<item name="fixed_toolbar_container" xsi:type="string">.mgz-builder-content-type</item>
+				<item name="fontsize_formats" xsi:type="string">10px 12px 14px 16px 18px 20px 24px 26px 28px 32px 34px 36px 38px 40px 42px 48px 52px 56px 64px 72px</item>
+				<item name="lineheight_formats" xsi:type="string">10px 12px 14px 16px 18px 20px 24px 26px 28px 32px 34px 36px 38px 40px 42px 48px 52px 56px 64px 72px</item>
+				<item name="formats" xsi:type="array">
+					<item name="paragraph" xsi:type="array">
+						<item name="title" xsi:type="string">Paragraph</item>
+						<item name="block" xsi:type="string">p</item>
+					</item>
+					<item name="heading1" xsi:type="array">
+						<item name="title" xsi:type="string">Heading 1</item>
+						<item name="block" xsi:type="string">h1</item>
+					</item>
+					<item name="heading2" xsi:type="array">
+						<item name="title" xsi:type="string">Heading 2</item>
+						<item name="block" xsi:type="string">h2</item>
+					</item>
+					<item name="heading3" xsi:type="array">
+						<item name="title" xsi:type="string">Heading 3</item>
+						<item name="block" xsi:type="string">h3</item>
+					</item>
+					<item name="heading4" xsi:type="array">
+						<item name="title" xsi:type="string">Heading 4</item>
+						<item name="block" xsi:type="string">h4</item>
+					</item>
+					<item name="heading5" xsi:type="array">
+						<item name="title" xsi:type="string">Heading 5</item>
+						<item name="block" xsi:type="string">h5</item>
+					</item>
+					<item name="heading6" xsi:type="array">
+						<item name="title" xsi:type="string">Heading 6</item>
+						<item name="block" xsi:type="string">h6</item>
+					</item>
+					<item name="important" xsi:type="array">
+						<item name="title" xsi:type="string">Important</item>
+						<item name="block" xsi:type="string">div</item>
+						<item name="classes" xsi:type="string">mgz-builder-content-important</item>
+					</item>
+					<item name="preformatted" xsi:type="array">
+						<item name="title" xsi:type="string">Preformatted</item>
+						<item name="block" xsi:type="string">pre</item>
+					</item>
+				</item>
+				<item name="fonts" xsi:type="array">
+					<item name="andale" xsi:type="string">Andale Mono=andale mono,times</item>
+					<item name="arial" xsi:type="string">Arial=arial,helvetica,sans-serif</item>
+					<item name="arial_black" xsi:type="string">Arial Black=arial black,avant garde</item>
+					<item name="antiqua" xsi:type="string">Book Antiqua=book antiqua,palatino</item>
+					<item name="comic" xsi:type="string">Comic Sans MS=comic sans ms,sans-serif</item>
+					<item name="courier" xsi:type="string">Courier New=courier new,courier</item>
+					<item name="georgia" xsi:type="string">Georgia=georgia,palatino</item>
+					<item name="helvetica" xsi:type="string">Helvetica=helvetica</item>
+					<item name="impact" xsi:type="string">Impact=impact,chicago</item>
+					<item name="symbol" xsi:type="string">Symbol=symbol</item>
+					<item name="tahoma" xsi:type="string">Tahoma=tahoma,arial,helvetica,sans-serif</item>
+					<item name="terminal" xsi:type="string">Terminal=terminal,monaco</item>
+					<item name="times" xsi:type="string">Times New Roman=times new roman,times</item>
+					<item name="trebuchet" xsi:type="string">Trebuchet MS=trebuchet ms,geneva</item>
+					<item name="verdana" xsi:type="string">Verdana=verdana,geneva</item>
+					<item name="webdings" xsi:type="string">Webdings=webdings</item>
+					<item name="wingdings" xsi:type="string">Wingdings=wingdings,zapf dingbats</item>
+				</item>
+			</argument>
+		</arguments>
+	</type>
+	<preference for="Magento\CatalogWidget\Model\Rule\Condition\Product" type="Magezon\Builder\Model\Rule\Condition\Product" />
+</config>

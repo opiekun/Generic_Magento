@@ -1,0 +1,491 @@
+<?php
+/**
+ * @var $block \Magezon\CustomerAttachments\Block\Adminhtml\Customer\Edit\Attachments
+ */
+$attachments = $block->getAttachmentData();
+$total       = count($attachments);
+?>
+<?php $block->getConfigJson() ?>
+<div class="mca-top">
+    <div class="message message-notice notice"><div data-ui-id="messages-message-notice"><?php echo $block->getMaxUploadSizeMessage(); ?></div></div>
+    <?php echo $block->getAddButtonHtml() ?>
+</div>
+<form action="post" id="mca-attachment" method="post" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}' enctype="multipart/form-data">
+    <input type="hidden" name="customer_id" value="<?php echo $block->getCustomerId() ?>"/>
+    <fieldset class="admin__fieldset" data-ui-id="downloadable-attachments">
+        <div class="admin__field admin__field-wide">
+            <div class="admin__field-control">
+                <div class="admin__control-table-wrapper">
+                    <table class="admin__control-table">
+                        <thead>
+                            <tr>
+                                <th class="col-sort"></th>
+                                <th class="col-title"><span><?php echo __('Title & Description') ?></span></th>
+                                <th class="col-file"><span><?php echo __('File') ?></span></th>
+                                <th class="col-actions"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="attachment_items_body">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="admin__field-note">
+                    <span><?php echo __('Alphanumeric, dash and underscore characters are recommended for filenames. Improper characters are replaced with \'_\'.')?></span>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<script>
+    require([
+        'jquery',
+        'uiRegistry',
+        'mage/template',
+        'Magento_Ui/js/modal/alert',
+        'mage/mage',
+        'prototype'
+        ], function (jQuery, registry, mageTemplate, alert) {
+
+//<![CDATA[>
+var uploaderTemplate = '<div class="no-display" id="[[idName]]-template">' +
+'</div>' +
+'<div class="no-display" id="[[idName]]-template-progress">' +
+'<%- data.percent %>% <%- data.uploaded %> / <%- data.total %>' +
+'</div>',
+
+fileListTemplate = '<span class="file-info">' +
+'<span class="file-info-name"><% if (data.url) { %><a href="<%= data.url %>" target="_blank"><% } %><%= data.name %><% if (data.url) { %></a><% } %></span>' +
+' ' +
+'<span class="file-info-size">(<%- data.size %>)</span>' +
+'</span>';
+window.Attachment = {
+    uploaderObj : $H({}),
+    objCount : 0,
+    setUploaderObj : function(type, key, obj){
+        if (!this.uploaderObj.get(type)) {
+            this.uploaderObj.set(type, $H({}));
+        }
+        this.uploaderObj.get(type).set(key, obj);
+    },
+    getUploaderObj : function(type, key){
+        try {
+            return this.uploaderObj.get(type).get(key);
+        } catch (e) {
+            try {
+                console.log(e);
+            } catch (e2) {
+                alert({
+                    content: e.name + '\n' + e.message
+                });
+            }
+        }
+    },
+    unsetUploaderObj : function(type, key){
+        try {
+            this.uploaderObj.get(type).unset(key);
+        } catch (e) {
+            try {
+                console.log(e);
+            } catch (e2) {
+                alert({
+                    content: e.name + '\n' + e.message
+                });
+            }
+        }
+    },
+    massUploadByType : function(type){
+        try {
+            alert(type)
+            this.uploaderObj.get(type).each(function(item){
+                container = item.value.container.up('tr');
+                if (container.visible() && !container.hasClassName('no-display')) {
+                    item.value.upload();
+                } else {
+                    Attachment.unsetUploaderObj(type, item.key);
+                }
+            });
+        } catch (e) {
+            try {
+                console.log(e);
+            } catch (e2) {
+                alert({
+                    content: e.name + '\n' + e.message
+                });
+            }
+        }
+    }
+};
+
+Attachment.FileUploader = Class.create();
+Attachment.FileUploader.prototype = {
+    type : null,
+        key : null, //key, identifier of uploader obj
+        elmContainer : null, //insert Flex object and templates to elmContainer
+        fileValueName : null, //name of field of JSON data of saved file
+        fileValue : null,
+        idName : null, //id name of elements for unique uploader
+        uploaderText: uploaderTemplate,
+        uploaderSyntax : /(^|.|\r|\n)(\[\[(\w+)\]\])/,
+        uploaderObj : $H({}),
+        config : null,
+        initialize: function (type, key, elmContainer, fileValueName, fileValue ,idName, config) {
+            this.type = type;
+            this.key = key;
+            this.elmContainer = elmContainer;
+            this.fileValueName = fileValueName;
+            this.fileValue = fileValue;
+            this.idName = idName;
+            this.config = config;
+            uploaderTemplate = new Template(this.uploaderText, this.uploaderSyntax);
+            Element.insert(
+                elmContainer,
+                {
+                    'top' : uploaderTemplate.evaluate({
+                    'idName' : this.idName,
+                    'fileValueName' : this.fileValueName,
+                    'uploaderObj' : 'Attachment.getUploaderObj(\''+this.type+'\', \''+this.key+'\')'
+                })
+            }
+            );
+            var elementSave = $(this.idName+'_save');
+            if (elementSave) {
+                elementSave.value = this.fileValue.toJSON
+                ? this.fileValue.toJSON()
+                : Object.toJSON(this.fileValue);
+            }
+            Attachment.setUploaderObj(
+                this.type,
+                this.key,
+                null
+                );
+            new Attachment.FileList(this.idName, null);
+        }
+    };
+
+    Attachment.FileList = Class.create();
+    Attachment.FileList.prototype = {
+        file: [],
+        containerId: '',
+        container: null,
+        uploader: null,
+        fileListTemplate: fileListTemplate,
+        listTemplate : null,
+        initialize: function (containerId, uploader) {
+            this.containerId  = containerId,
+            this.container = $(this.containerId);
+            this.uploader = uploader;
+            this.file = this.getElement('save').value.evalJSON();
+            this.listTemplate = mageTemplate(this.fileListTemplate);
+            this.updateFiles();
+        },
+        handleFileRemoveAll: function(fileId) {
+            $(this.containerId+'-new').hide();
+            $(this.containerId+'-old').show();
+        },
+        handleFileSelect: function() {
+            $(this.containerId+'_type').checked = true;
+        },
+        getElement: function (name) {
+            return $(this.containerId + '_' + name);
+        },
+        handleUploadComplete: function (file) {
+            if (file.error) {
+                return;
+            }
+
+            var newFile = {};
+            newFile.file   = file.file;
+            newFile.name   = file.name;
+            newFile.size   = file.size;
+            newFile.url    = file.url;
+            newFile.status = 'new';
+            this.file[0]   = newFile;
+            this.updateFiles();
+        },
+        updateFiles: function() {
+            this.getElement('save').value = this.file.toJSON
+            ? this.file.toJSON()
+            : Object.toJSON(this.file);
+            this.file.each(function(row){
+                row.size = byteConvert(row.size);
+                $(this.containerId + '-old').innerHTML = this.listTemplate({data: row});
+                $(this.containerId + '-new').hide();
+                $(this.containerId + '-old').show();
+            }.bind(this));
+        }
+    };
+
+    var alertAlreadyDisplayed = false;
+
+    window.uploaderTemplate = uploaderTemplate;
+
+    window.alertAlreadyDisplayed = alertAlreadyDisplayed;
+
+    registry.set('downloadable', Attachment);
+//]]>
+
+});
+</script>
+
+<script>
+    require([
+        'jquery',
+        'uiRegistry',
+        'mage/template',
+        'jquery/file-uploader',
+        'mage/mage',
+        'prototype',
+        'mage/validation'
+        ], function(jQuery, registry, mageTemplate) {
+            var updateAttachments = function() {
+                jQuery('.mca-attachment-input input').val(jQuery("#mca-attachment").serialize()).trigger('change');
+            }
+
+            registry.get('downloadable', function (Attachment) {
+                var attachmentTemplate = '<tr class="data-row">'+
+                '<td class="col-sort" data-role="draggable-handle"><input data-container="sort-order" type="hidden" ' +
+                'name="attachments[<%- ' +
+                'data.id' +
+                ' %>][sort_order]" ' +
+                'value="<%- data.sort_order %>" class="input-text admin__control-text sort" />' +
+                '<span class="draggable-handle" title="<?= $block->escapeHtml(__('Sort Variations')) ?>"></span>' +
+                '<% if (data.attachment_id) { %><a href="<%- data.edit_link %>" target="_blank"><?php echo __('Edit'); ?></a><% } %>' +
+                '</td>'+
+                '<td class="col-name">'+
+                '<input type="hidden" class="__delete__" name="attachments[<%- data.id %>][is_delete]" value="" />'+
+                '<input type="hidden" name="attachments[<%- data.id %>][attachment_id]" value="<%- data.attachment_id %>" />'+
+                '<input type="hidden" name="attachments[<%- data.id %>][attachment_hash]" value="<%- data.attachment_hash %>" />'+
+                '<input type="text" class="required-entry input-text admin__control-text" name="attachments[<%- data.id %>][name]" value="<%- data.name %>" placeholder="Tittle"/><textarea style="margin-top: 5px;" name="attachments[<%- data.id %>][description]" class="admin__control-textarea" placeholder="Description"><%- data.description %></textarea>'+
+                '</td>'+
+                '<td class="col-file mca-attachment">'+
+                '<div class="admin__field admin__field-option">'+
+                '<div class="mca-attachment_left">' +
+                '<input type="radio" class="admin__control-radio validate-one-required-by-name" id="mca_attachment_<%- data.id %>_attachment_type" name="attachments[<%- data.id %>][attachment_type]" value="file"<%- data.file_checked %> />' +
+                '<label for="mca_attachment_<%- data.id %>_attachment_type" class="admin__field-label"><span><?php echo __('File'); ?></span></label>'+
+                '<input type="hidden" class="validate-downloadable-file" id="mca_attachment_<%- data.id %>_file_save" name="attachments[<%- data.id %>][attachment_file]" value="<%- data.file_save %>" />'+
+                '</div>' +
+                '<div class="mca-attachment_right admin__field-uploader file-uploader">'+
+                '<div id="mca_attachment_<%- data.id %>_file-old" class="file-row-info"></div>'+
+                '<div id="mca_attachment_<%- data.id %>_file-new" class="file-row-info new-file"></div>'+
+                '<div class="file-uploader-area">'+
+                '<input id="mca_attachment_<%- data.id %>_file" type="file" name="<?php echo 'attachments' ?>">' +
+                '<label class="file-uploader-button action-secondary" for="mca_attachment_<%- data.id %>_file"><?php echo __('Browse Files...') ?></label> <span class="file-uploader-spinner"></span>' +
+                '<script>' +
+                'attachmentsUploader("#mca_attachment_<%- data.id %>_file", "<?php echo $block->getUploadUrl('attachments') ?>"); ' +
+                '</scr'+'ipt>'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '<div class="admin__field admin__field-option admin__field-file-url">'+
+                '<div class="mca-attachment_left">' +
+                '<input type="radio" class="admin__control-radio validate-one-required-by-name" id="mca_attachment_<%- data.id %>_url_type" name="attachments[<%- data.id %>][attachment_type]" value="url"<%- data.url_checked %> />' +
+                '<label for="mca_attachment_<%- data.id %>_url_type" class="admin__field-label"><span><?php echo __('URL'); ?></span></label>' +
+                '</div>' +
+                '<div class="mca-attachment_right">' +
+                '<input type="text" class="validate-downloadable-url validate-url admin__control-text" name="attachments[<%- data.id %>][attachment_url]" value="<%- data.attachment_url %>" placeholder="<?php echo __('URL'); ?>" />'+
+                '</div>'+
+                '</div>'+
+                '<div>'+
+                '<span id="mca_attachment_<%- data.id %>_attachment_container"></span>'+
+                '</div>'+
+                '</td>'+
+                '<td class="col-action">'+
+                '<button id="mca_attachment_<%- data.id %>_delete_button" type="button" class="action-delete" title="<?=  $block->escapeHtml(__('Delete')) ?>"><span><?php echo __('Delete'); ?></span></button>'+
+                '</td>'+
+                '</tr>';
+
+                var attachmentItems = {
+                    tbody : $('attachment_items_body'),
+                    templateText : attachmentTemplate,
+                    itemCount : 0,
+                    add: function(data) {
+                        alertAlreadyDisplayed = false;
+                        this.template = mageTemplate(this.templateText);
+
+                        if (!data.attachment_id) {
+                            data                 = {};
+                            data.attachment_id   = 0;
+                            data.attachment_type = 'file';
+                            data.sample_type     = 'none';
+                            data.sort_order      = this.itemCount + 1;
+                        }
+
+                        data.id = this.itemCount;
+
+                        if (data.attachment_type == 'url') {
+                            data.url_checked = ' checked="checked"';
+                        } else if (data.attachment_type == 'file') {
+                            data.file_checked = ' checked="checked"';
+                        }
+                        if (data.sample_type == 'url') {
+                            data.sample_url_checked = ' checked="checked"';
+                        } else if (data.sample_type == 'file') {
+                            data.sample_file_checked = ' checked="checked"';
+                        }
+
+                        var rowElement = Element.insert(this.tbody, {
+                            'top': this.template({data: data})
+                        });
+
+                        downloadsElm  = $('mca_attachment_'+data.id+'_downloads');
+                        sampleUrl     = $('mca_attachment_'+data.id+'_sample_url_type');
+                        attachmentUrl = $('mca_attachment_'+data.id+'_url_type');
+
+                        if (!data.file_save) {
+                            data.file_save = [];
+                        }
+                        if (!data.sample_file_save) {
+                            data.sample_file_save = [];
+                        }
+                        new Attachment.FileUploader(
+                            'attachments',
+                            'attachments_'+data.id,
+                            attachmentUrl.up('td'),
+                            'attachments['+data.id+']',
+                            data.file_save,
+                            'mca_attachment_'+data.id+'_file',
+                            <?php echo $block->getConfigJson() ?>
+                        );
+
+                        attachmentFile                  = $('mca_attachment_'+data.id+'_attachment_type');
+                        attachmentFile.advaiceContainer = 'mca_attachment_'+data.id+'_attachment_container';
+                        attachmentUrl.advaiceContainer  = 'mca_attachment_'+data.id+'_attachment_container';
+                        $('mca_attachment_'+data.id+'_file_save').advaiceContainer = 'mca_attachment_'+data.id+'_attachment_container';
+                        this.itemCount++;
+                        this.bindRemoveButtons();
+
+                        if (this.itemCount == <?php echo $total ?>) {
+                            updateAttachments();
+                        }
+                    },
+                    sorting: function () {
+                        var self = this;
+                        var list = jQuery(this.tbody);
+                        list.sortable({
+                            axis: 'y',
+                            handle: '[data-role=draggable-handle]',
+                            items: 'tr',
+                            update: function (event, data) {
+                                list.find('[data-container=sort-order]').each(function (i, el) {
+                                    jQuery(el).val(i + 1);
+                                });
+                                updateAttachments();
+                            },
+                            tolerance: 'pointer'
+                        });
+                    },
+                    remove : function(event) {
+                        var element = $(Event.findElement(event, 'tr'));
+                        alertAlreadyDisplayed = false;
+                        if(element){
+                            element.down('input[type="hidden"].__delete__').value = '1';
+                            Element.select(element, 'div.flex').each(function(elm){
+                                elm.remove();
+                            });
+                            element.addClassName('no-display');
+                            element.addClassName('ignore-validate');
+                            element.hide();
+                        }
+                    },
+                    bindRemoveButtons : function() {
+                        var buttons = $$('tbody#attachment_items_body .action-delete');
+                        for(var i=0;i<buttons.length;i++){
+                            if(!$(buttons[i]).binded && !$(buttons[i]).hasClassName('disabled')){
+                                $(buttons[i]).binded = true;
+                                Event.observe(buttons[i], 'click', this.remove.bind(this));
+                            }
+                        }
+                    }
+                };
+
+                attachmentItems.sorting();
+                attachmentItems.bindRemoveButtons();
+
+                attachmentsUploader = function (id, url) {
+                    (function ($) {
+                        $(id).fileupload({
+                            dataType: 'json',
+                            url: url,
+                            sequentialUploads: true,
+                            maxFileSize: 2000000,
+                            add: function (e, data) {
+                                $(this).parents('.file-uploader').addClass('_loading');
+                                var progressTmpl = mageTemplate(id + '-template'),
+                                fileSize,
+                                tmpl;
+
+                                $.each(data.files, function (index, file) {
+                                    if ($(id + ' .progressbar-container').length) {
+                                        $(id + ' .progressbar-container').parent().remove();
+                                    }
+
+                                    fileSize = typeof file.size == "undefined" ?
+                                    $.mage.__('We could not detect a size.') :
+                                    byteConvert(file.size);
+
+                                    data.fileId = Math.random().toString(36).substr(2, 9);
+
+                                    tmpl = progressTmpl({
+                                        data: {
+                                            name: file.name,
+                                            size: fileSize,
+                                            id: data.fileId,
+                                            url: data.url
+                                        }
+                                    });
+
+                                    $(tmpl).appendTo(id);
+                                });
+
+                                $(this).fileupload('process', data).done(function () {
+                                    data.submit();
+                                });
+                            },
+                            done: function (e, data) {
+                                $(this).parents('.file-uploader').removeClass('_loading');
+                                var progressSelector = '#' + data.fileId + ' .progressbar-container .progressbar';
+                                $(progressSelector).css('width', '100%');
+                                if (data.result && !data.result.hasOwnProperty('errorcode')) {
+                                    $(progressSelector).removeClass('upload-progress').addClass('upload-success');
+                                    new Attachment.FileList(id.substr(1), null).handleUploadComplete(data.result);
+                                } else {
+                                    $(progressSelector).removeClass('upload-progress').addClass('upload-failure');
+                                    var errorMsg = '<span class="file-info-error">' + data.result.error + '</span>';
+                                    $('#' + data.fileId + ' .file-info').append(errorMsg);
+                                }
+                            },
+                            progress: function (e, data) {
+                                var progress = parseInt(data.loaded / data.total * 100, 10);
+                                var progressSelector = '#' + data.fileId + ' .progressbar-container .progressbar';
+                                $(progressSelector).css('width', progress + '%');
+                            },
+                            fail: function (e, data) {
+                                $(this).parents('.file-uploader').removeClass('_loading');
+                                var progressSelector = '#' + data.fileId + ' .progressbar-container .progressbar';
+                                $(progressSelector).removeClass('upload-progress').addClass('upload-failure');
+                                if (data.result && data.result.hasOwnProperty('errorcode')) {
+                                    var errorMsg = '<span class="file-info-error">' + data.result.error + '</span>';
+                                    $('#' + data.fileId + ' .file-info').append(errorMsg);
+                                }
+                            }
+                        });
+                    })(jQuery);
+                };
+
+                if($('add_attachment')) {
+                    Event.observe('add_attachment', 'click', attachmentItems.add.bind(attachmentItems));
+                }
+
+            <?php foreach ($attachments as $item): ?>
+                attachmentItems.add(<?php echo $item->toJson()?>);
+            <?php endforeach; ?>
+
+            $(document).on('click', '#save_and_continue,#save', function() {
+                updateAttachments();
+            });
+
+        });
+
+});
+</script>

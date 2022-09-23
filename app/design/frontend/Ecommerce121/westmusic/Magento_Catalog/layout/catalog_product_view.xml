@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <container name="product.info.media.block" htmlTag="div" htmlClass="product-info-media-block" before="-">
+                <container name="page.title.mobile.wrapper" htmlTag="div" htmlClass="page-title-mobile-wrapper" before="-">
+                    <block class="Magento\Theme\Block\Html\Title"
+                           name="page.main.title.mobile"
+                           template="Magento_Theme::html/title.phtml" />
+                </container>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="product.info.stock.sku">
+            <container name="product.info.codes" htmlTag="div" htmlClass="product-info-codes" before="-">
+                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.model.no" template="Magento_Catalog::product/view/attribute.phtml">
+                    <arguments>
+                        <argument name="at_call" xsi:type="string">getModelno</argument>
+                        <argument name="at_code" xsi:type="string">modelno</argument>
+                        <argument name="css_class" xsi:type="string">modelno</argument>
+                        <argument name="at_label" xsi:type="string">Alt. Part #</argument>
+                        <argument name="add_attribute" xsi:type="string">itemprop="modelno"</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.upc.code" template="Magento_Catalog::product/view/attribute.phtml">
+                    <arguments>
+                        <argument name="at_call" xsi:type="string">getBarcodeupca</argument>
+                        <argument name="at_code" xsi:type="string">barcodeupca</argument>
+                        <argument name="css_class" xsi:type="string">barcodeupca</argument>
+                        <argument name="at_label" xsi:type="string">UPC Code</argument>
+                        <argument name="add_attribute" xsi:type="string">itemprop="barcodeupca"</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="product.info.addto">
+            <container name="product.actions.block" htmlTag="div" htmlClass="product-actions-block" after="-">
+                <block class="Magento\GiftRegistry\Block\Cart\Link" name="giftregistry.product.link" template="Magento_GiftRegistry::product/link.phtml" before="-"/>
+            </container>
+        </referenceContainer>
+        <referenceBlock name="product.info.sku">
+            <arguments>
+                <argument name="at_label" xsi:type="string">Item No.</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="product.info.price">
+            <block class="Magento\Catalog\Block\Product\View" name="product.flat.rate.info" template="Magento_Catalog::product/view/flat-rate-info.phtml" after="product.price.final" />
+        </referenceContainer>
+        <referenceBlock name="productalert.stock">
+            <action method="setSignupLabel">
+                <argument translate="true" name="value" xsi:type="string">Notify me when in stock</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.short-desc" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getOurpespectivewm</argument>
+                    <argument name="at_code" xsi:type="string">ourpespectivewm</argument>
+                    <argument name="css_class" xsi:type="string">short-description</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="title" translate="true" xsi:type="string">Expert Perspective</argument>
+                    <argument name="sort_order" xsi:type="string">10</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="product.info.description">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string">Description</argument>
+                <argument name="sort_order" xsi:type="string">20</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="product.attributes">
+            <arguments>
+                <argument translate="true" name="title" xsi:type="string">Specifications</argument>
+                <argument name="sort_order" xsi:type="string">40</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="reviews.tab">
+            <arguments>
+                <argument name="sort_order" xsi:type="string">50</argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceContainer name="product.info.social">
+            <block name="social" template="Magento_Catalog::product/view/social.phtml"/>
+        </referenceContainer>
+
+        <move element="product.info.sku" destination="product.info.main" before="-" />
+        <move element="page.main.title" destination="product.info.main" before="product.info.price" />
+        <move element="product.info.review" destination="product.info.stock.sku" after="-" />
+        <move element="product.info.addto" destination="product.info.price" after="product.info.stock.sku" />
+        <move element="productalert.stock" destination="product.info.addto" before="-" />
+        <move element="view.addto.wishlist" destination="product.actions.block" after="giftregistry.product.link" />
+        <move element="amlocator.link" destination="product.info.form.content" after="-" />
+        <move element="product.info.options.wrapper" destination="product.info.form.options" after="product.info.options.wrapper.bottom" />
+        <move element="product.info.main" destination="product.info.media.block" after="page.title.mobile.wrapper" />
+        <move element="product.info.media" destination="product.info.media.block" after="product.info.main" />
+<!--        <move element="amasty_sources_breakdown" destination="product.info.form.content" after="-" />-->
+
+<!--        <referenceBlock name="amasty_sources_breakdown" remove="true" />-->
+        <referenceBlock name="catalog.compare.link" remove="true" />
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="catalogsearch.product.addto.compare" remove="true"/>
+        <referenceBlock name="category.product.addto.compare" remove="true"/>
+        <referenceBlock name="crosssell.product.addto.compare" remove="true" />
+        <referenceBlock name="related.product.addto.compare" remove="true" />
+        <referenceBlock name="upsell.product.addto.compare" remove="true" />
+
+        <referenceBlock name="product.info.overview" remove="true" />
+        <referenceBlock name="amasty_faq_product_tab" remove="true" />
+        <referenceBlock name="view.addto.compare" remove="true" />
+        <referenceBlock name="pdf_link" remove="true" />
+        <referenceBlock name="product.info.extras" remove="true" />
+    </body>
+</page>

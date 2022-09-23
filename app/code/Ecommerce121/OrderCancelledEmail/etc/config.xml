@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sales_email>
+            <cancelled>
+                <enabled>1</enabled>
+                <identity>sales</identity>
+                <template>sales_email_cancelled_template</template>
+                <guest_template>sales_email_cancelled_guest_template</guest_template>
+            </cancelled>
+        </sales_email>
+    </default>
+</config>

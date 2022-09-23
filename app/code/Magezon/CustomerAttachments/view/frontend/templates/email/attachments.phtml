@@ -1,0 +1,41 @@
+<?php
+/**
+ * @var $block \Magento\Framework\View\Element\Template
+ */
+$helper      = $this->helper('Magezon\CustomerAttachments\Helper\Data');
+$attachments = $block->getAttachments();
+$store       = $block->getStore();
+?>
+<?php if (count($attachments)) { ?>
+<table id="mca-attachments" class="mgz-email-grid">
+	<thead>
+		<tr>
+			<th class="col-name"><?php echo __('Name') ?></th>
+			<th class="col-date a-center"><?php echo __('Date') ?></th>
+			<th class="col-action a-center"><?php echo __('Action') ?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php $x=0; ?>
+		<?php foreach ($attachments as $_attachment): ?>
+			<tr class="<?php echo ($x%2==0) ? 'even' : 'odd' ?>">
+				<td data-th="<?php echo $block->escapeHtml(__('Name')) ?>" class="first col-name">
+					<strong><?php echo $block->escapeHtml($_attachment->getName()) ?></strong>
+					<?php if ($description = $_attachment->getDescription()) { ?>
+						<p><?php echo $description ?></p>
+					<?php } ?>
+				</td>
+				<td data-th="<?php echo $block->escapeHtml(__('Date')) ?>" class="last col-date a-center">
+					<?php echo $block->formatDate($_attachment->getCreationTime()) ?>
+				</td>
+				<td data-th="<?php echo $block->escapeHtml(__('Download')) ?>" class="last col-action a-center">
+					<?php if ($_attachment->getAttachmentKey()) {  ?>
+						<a href="<?php echo $store->getBaseUrl() . $helper->getRoute()  . '/file/download/id/' . $_attachment->getAttachmentKey() ?>" title="<?php echo $block->escapeHtml(__('Download')) ?>" class="action download"><?php echo __('Download'); ?></a>
+					<?php } else { ?>---<?php } ?>
+				</td>
+			</tr>
+			<?php $x++; ?>
+		<?php endforeach; ?>
+	</tbody>
+</table>
+<?php } ?>

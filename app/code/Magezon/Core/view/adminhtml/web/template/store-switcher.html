@@ -1,0 +1,42 @@
+<div id="mgzreport-store">
+	<div class="admin__action-dropdown-wrap" data-bind="click: function(data, event) {
+                toggleListVisible(data, event)
+            },
+            css: {
+	            active: listVisible
+	        },
+			outerClick: outerClick.bind($data)">
+		<button class="admin__action-dropdown" type="button" data-toggle="dropdown">
+			<span class="admin__action-dropdown-text">
+				<span data-bind="text: setCaption()"/>
+			</span>
+		</button>
+		<ul class="admin__action-dropdown-menu" data-target="dropdown">
+            <!-- ko foreach: { data: options, as: 'option'}  -->
+            <li class="admin__action-multiselect-menu-inner-item _root"
+                data-bind="css: { _parent: $data.optgroup }"
+                data-role="option-group">
+                <div class="action-menu-item"
+                     data-bind="
+                        css: {
+                            _selected: $parent.isSelected(option.value),
+                            _hover: $parent.isHovered(option, $element)
+                        },
+                        click: function(data, event){
+                            $parent.toggleOptionSelected($data, $index(), event);
+                        },
+                        clickBubble: false
+                ">
+                    <label class="admin__action-multiselect-label">
+                        <span data-bind="text: option.label"></span>
+                    </label>
+                </div>
+                <!-- ko if: $data.optgroup -->
+                <!-- ko template: {name: $parent.optgroupTmpl, data: {root: $parent, current: $data}} -->
+                <!-- /ko -->
+                <!-- /ko-->
+            </li>
+            <!-- /ko -->
+        </ul>
+    </div>
+</div>

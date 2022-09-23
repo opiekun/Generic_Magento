@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\Stockstatus\Block\Adminhtml\Product\Attribute\Edit\Form\StockstatusSettings"
+                type="Ecommerce121\StockStatus\Block\Adminhtml\Product\Attribute\Edit\Form\StockStatus" />
+
+    <preference for="Amasty\Stockstatus\Model\Stockstatus\Information"
+                type="Ecommerce121\StockStatus\Model\StockStatus\Information"/>
+
+    <preference for="Amasty\Stockstatus\Model\Stockstatus\Processor"
+                type="Ecommerce121\StockStatus\Model\StockStatus\Processor"/>
+
+    <preference for="Amasty\Stockstatus\Block\CustomStockStatus"
+                type="Ecommerce121\StockStatus\Block\CustomStockStatus"/>
+</config>

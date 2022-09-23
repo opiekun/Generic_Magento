@@ -1,0 +1,22 @@
+<div class="admin__field"
+    visible="visible"
+    css="$data.additionalClasses"
+    attr="'data-index': index">
+    <label class="admin__field-label" if="$data.label" visible="$data.labelVisible">
+        <span translate="label" attr="'data-config-scope': $data.scopeLabel"/>
+    </label>
+<div class="admin__field-control">
+    <div class="uibuilder-tab" css="additionalClasses">
+        <div class="uibuilder-tab-title" data-bind="foreach: {data: elems, as: 'elem'}">
+            <div class="uibuilder-tab-title-item" click="function(){$parent.activeTab(elem)}" css="{active: $data.opened()}" visible="!disabled">
+                <span translate="elem.label"/>
+            </div>
+        </div>
+        <div class="uibuilder-tab-content" data-bind="foreach: {data: elems, as: 'elem'}" afterRender="onElementRender">
+            <div class="uibuilder-tab-content-item" attr="id: elem.index" css="{active: $data.opened()}" if="visible">
+                <fieldset template="elem.template"></fieldset>
+                <!-- ko afterRender: $data.onElementRender --><!-- /ko -->
+            </div>
+        </div>
+    </div>
+</div>

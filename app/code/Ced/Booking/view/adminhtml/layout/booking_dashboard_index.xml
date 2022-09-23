@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * https://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_Booking
+  * @author      CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+  * @license      https://cedcommerce.com/license-agreement.txt
+  */
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Ced_Booking::css/fullcalendar.min.css" />
+        <css src="Ced_Booking::css/booking-dashboard.css"/>
+        <css src="Ced_Booking::css/icomoon.css" />
+        <css src="Ced_Booking::css/font-awesome/4.3.0/css/font-awesome.min.css" />
+    </head>
+    <body>
+        <referenceContainer name="content" >
+            <block class="Ced\Booking\Block\Adminhtml\Dashboard\Dashboard" name="ced_booking_dashboard" template="Ced_Booking::dashboard/dashboard.phtml" cacheable="false"/>
+            <block class="Ced\Booking\Block\Adminhtml\Dashboard\Info" name="ced_booking_dashboard_info_booking" as="admin_booking_info" template="Ced_Booking::dashboard/info.phtml"  cacheable="false" />
+            <block class="Ced\Booking\Block\Adminhtml\Dashboard\Calendar" name="ced_booking_dashboard_calendar_booking" as="calendar_booking" template="Ced_Booking::dashboard/calendar.phtml"  cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,21 @@
+<div class="mgz-control-inner">
+	<a ng-if="children=$root.elementManager.getElement(element.builder.children).resizable" 
+		class="mgz-control-btn mgz-control-layout mgz-dropdown" 
+		title="{{ element.builder.name }} Layout">
+		<i class="mgz-icon mgz-icon-row"></i> <span>Row Layout</span>
+	</a>
+	<ul class="mgz-dropdown-list">
+		<li ng-click="$root.$broadcast('changeElementLayout', { elem: element, type: '11'})"><a><i class="mgz-icon mgz-icon-1-1"></i> <span>1/1</span></a></li>
+		<li ng-click="$root.$broadcast('changeElementLayout', { elem: element, type: '12_12'})"><a><i class="mgz-icon mgz-icon-1-2_1-2"></i> <span>1/2 + 1/2</span></a></li>
+		<li ng-click="$root.$broadcast('changeElementLayout', { elem: element, type: '23_13'})"><a><i class="mgz-icon mgz-icon-2-3_1-3"></i> <span>2/3 + 1/3</span></a></li>
+		<li ng-click="$root.$broadcast('changeElementLayout', { elem: element, type: '13_13_13'})"><a><i class="mgz-icon mgz-icon-1-3_1-3_1-3"></i> <span>1/3 + 1/3 + 1/3</span></a></li>
+		<li ng-click="$root.$broadcast('changeElementLayout', { elem: element, type: '14_14_14_14'})"><a><i class="mgz-icon mgz-icon-1-4_1-4_1-4_1-4"></i> <span>1/4 + 1/4 + 1/4 + 1/4</span></a></li>
+		<li ng-click="$root.$broadcast('changeElementLayout', { elem: element, type: '14_34'})"><a><i class="mgz-icon mgz-icon-1-4_3-4"></i> <span>1/4 + 3/4</span></a></li>
+		<li ng-click="$root.$broadcast('changeElementLayout', { elem: element, type: '14_12_14'})"><a><i class="mgz-icon mgz-icon-1-4_1-2_1-4"></i> <span>1/4 + 1/2 + 1/4</span></a></li>
+		<li ng-click="$root.$broadcast('changeElementLayout', { elem: element, type: '56_16'})"><a><i class="mgz-icon mgz-icon-5-6_1-6"></i> <span>5/6 + 1/6</span></a></li>
+		<li ng-click="$root.$broadcast('changeElementLayout', { elem: element, type: '16_16_16_16_16_16'})"><a><i class="mgz-icon mgz-icon-1-6_1-6_1-6_1-6_1-6_1-6"></i> <span>1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6</span></a></li>
+		<li ng-click="$root.$broadcast('changeElementLayout', { elem: element, type: '16_23_16'})"><a><i class="mgz-icon mgz-icon-1-6_2-3_1-6"></i> <span>1/6 + 4/6 + 1/6</span></a></li>
+		<li ng-click="$root.$broadcast('changeElementLayout', { elem: element, type: '16_16_16_12'})"><a><i class="mgz-icon mgz-icon-1-6_1-6_1-6_1-2"></i> <span>1/6 + 1/6 + 1/6 + 1/2</span></a></li>
+		<li ng-click="$root.$broadcast('changeElementLayout', { elem: element, type: '15_15_15_15_15'})"><a><i class="mgz-icon mgz-icon-l_15_15_15_15_15"></i> <span>1/5 + 1/5 + 1/5 + 1/5 + 1/5</span></a></li>
+	</ul>
+</div>

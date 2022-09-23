@@ -1,0 +1,28 @@
+<?php $apiKey = $this->helper('Ced\Booking\Helper\Data')->getStoreConfig(\Ced\Booking\Helper\Data::XML_PATH_MAP_API_KEY);?>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=<?= $apiKey ?>"
+        type="text/javascript"></script>
+<script>
+    require([
+        'jquery'
+    ],function ($) {
+
+        var BookingLocation = setInterval(function () {
+            if ($('input[name="product[booking_location]"]').length >0)
+            {
+                /** @note autocomplete booking location **/
+                var input = document.getElementsByName('product[booking_location]')[0];
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                    var place = autocomplete.getPlace();
+                    if (!place.geometry) {
+                    }
+                    input.value = place.formatted_address;
+                    var event = new Event('change');
+                    input.dispatchEvent(event);
+                });
+                /** end of autocomplete booking location **/
+                clearInterval(BookingLocation);
+            }
+        },500);
+    });
+</script>

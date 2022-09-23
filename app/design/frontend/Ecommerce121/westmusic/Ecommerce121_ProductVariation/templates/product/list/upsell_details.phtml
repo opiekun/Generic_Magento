@@ -1,0 +1,152 @@
+<?php
+
+use Magento\Catalog\ViewModel\Product\Listing\PreparePostData;
+use Magento\Framework\App\ActionInterface;
+
+/* @var $block \Magento\Catalog\Block\Product\AbstractProduct */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+?>
+
+<?php
+$type = $block->getType();
+$parentProduct = $block->getProduct();
+
+if ($type == 'upsell') {
+    $exist = count($block->getItemCollection()->getItems());
+    $limit = $block->getItemLimit('upsell');
+    $shuffle = 0;
+    $isWeightedRandom = 0;
+    $items = $block->getItemCollection()->getItems();
+} else {
+    $exist = $block->hasItems();
+    $limit = $block->getPositionLimit();
+    $shuffle = (int) $block->isShuffled();
+    $isWeightedRandom = (int) $block->getRotation()->isWeightedRandom($block->getProductListType());
+    $items = $block->getAllItems();
+}
+$canItemsAddToCart = true;
+$childVariationBlock = $block->getChildBlock('ecommerce121.upsell.products.variation');
+?>
+
+<?php if ($exist): ?>
+<div id="extras-sidebar"
+     class="block <?= $block->escapeHtmlAttr('crosssell') ?>"
+     data-mage-init='{"extrasProducts":{"extrasCheckbox":".extras.checkbox"}}'>
+
+<div class="block upsell"
+     data-mage-init='{"upsellProducts":{}}'
+     data-limit="<?= $block->escapeHtmlAttr($limit) ?>"
+     data-shuffle="<?= /* @noEscape */ $shuffle ?>"
+     data-shuffle-weighted="<?= /* @noEscape */ $isWeightedRandom ?>">
+
+    <div class="block-title title">
+        <strong id="block-upsell-heading" role="heading"
+                aria-level="2"><?= $block->escapeHtml("Upsells") ?></strong>
+    </div>
+    <div class="block-content content" aria-labelledby="block-upsell-heading">
+                <div class="products wrapper grid products-grid products-<?= $block->escapeHtmlAttr($type) ?>">
+                    <div class="products wrapper grid products-grid products-upsell">
+                        <ol class="products list items">
+                            <?php foreach ($items as $item):?>
+                                <?php if ($childVariationBlock): ?>
+                                    <?php $variations = $childVariationBlock
+                                        ->setProduct($item)
+                                        ->setParentProduct($parentProduct)
+                                        ->isProductVariation();?>
+                            <?php endif; ?>
+                                <?php if ($childVariationBlock && $variations): ?>
+                                <div class="upsell-item">
+                                    <?php if ($canItemsAddToCart && $item->isSaleable()):?>
+                                        <div class="field box-tocart extras">
+                                            <input
+                                                type="checkbox"
+                                                class="checkbox extras
+                                                <?= $item->getRequiredOptions() ? 'options': '' ?>"
+                                                id="extras-checkbox-<?= $block->escapeHtmlAttr($item->getId()) ?>"
+                                                name="extras_products[]"
+                                                value="<?= $block->escapeHtmlAttr($item->getId()) ?>"
+                                            />
+                                            <input type="number" disabled hidden
+                                                   name="extras_qty[<?= $block->escapeHtmlAttr($item->getId()) ?>]"
+                                                   id="qty<?= $block->escapeHtmlAttr($item->getId()) ?>"
+                                                   min="1"
+                                                   value="1"
+                                                   title="Qty"
+                                                   class="input-text qty"
+                                                   data-validate='{"required-number":true,
+                                                   "validate-item-quantity":{"minAllowed":1,"maxAllowed":10000}}'>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?= $childVariationBlock->toHtml();?>
+                                </div>
+                            <?php else: ?>
+                                <?php $available = ''; ?>
+                            <li class="item product product-item"
+                                id="product-item_<?= /* @noEscape */ $item->getId() ?>"
+                                data-shuffle-group="<?= $block->escapeHtmlAttr($item->getPriority()) ?>" >
+                                <?= /* @noEscape */ $secureRenderer->renderStyleAsTag(
+                                    'display:none;',
+                                    'li#product-item_' . $item->getId()
+                                ) ?>
+
+                                <div class="product-item-info <?= /* @noEscape */ $available ?>">
+
+                                        <?php if ($canItemsAddToCart && $item->isSaleable()):?>
+                                            <div class="field box-tocart extras-type">
+                                                <input
+                                                    type="checkbox"
+                                                    class="checkbox extras
+                                                    <?= $item->getRequiredOptions() ? 'options': '' ?>"
+                                                    id="extras-checkbox-<?= $block->escapeHtmlAttr($item->getId()) ?>"
+                                                    name="extras_products[]"
+                                                    value="<?= $block->escapeHtmlAttr($item->getId()) ?>"
+                                                />
+                                                <input type="number" disabled hidden
+                                                       name="extras_qty[<?= $block->escapeHtmlAttr($item->getId()) ?>]"
+                                                       id="qty<?= $block->escapeHtmlAttr($item->getId()) ?>"
+                                                       min="1"
+                                                       value="1"
+                                                       title="Qty"
+                                                       class="input-text qty"
+                                                       data-validate='{"required-number":true,
+                                                       "validate-item-quantity":{"minAllowed":1,"maxAllowed":10000}}'>
+                                            </div>
+                                        <?php endif; ?>
+                                    <a href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>"
+                                       class="product photo product-item-photo">
+                                        <?= $block->getImage($item, 'cart_cross_sell_products')->toHtml() ?>
+                                    </a>
+                                    <div class="product details product-item-details">
+                                        <strong class="product name product-item-name"><a
+                                                class="product-item-link"
+                                                title="<?= $block->escapeHtmlAttr($item->getName()) ?>"
+                                                href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>">
+                                                <?= $block->escapeHtml($item->getName()) ?></a>
+                                        </strong>
+
+                                        <?= /* @noEscape */ $block->getProductPrice($item) ?>
+
+                                    </div>
+                                </div>
+
+                                <?php if (!$block->isRedirectToCartEnabled() && $item):?>
+                                    <script type="text/x-magento-init">
+                                    {
+                                        "[data-role=tocart-form], .form.map.checkout": {
+                                            "catalogAddToCart": {
+                                                "product_sku": "<?= $block->escapeJs($item->getSku()) ?>"
+                                            }
+                                        }
+                                    }
+                                    </script>
+                                <?php endif;?>
+                    </li>
+                    <?php endif; ?>
+                    <?php endforeach ?>
+                    </ol>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

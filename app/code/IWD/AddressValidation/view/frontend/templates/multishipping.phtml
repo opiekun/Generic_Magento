@@ -1,0 +1,19 @@
+<script type="text/javascript">
+    // <![CDATA[
+    require(['IWD_AddressValidation/js/multishipping'],
+        function(iwdAddressValidation) {
+            var addressValidation = new iwdAddressValidation();
+            addressValidation.init({
+                urlValidation: '<?php echo $this->getValidateUrl(); ?>',
+                allowInvalidAddress: '<?php echo $this->getAllowNotValidAddress(); ?>',
+                content: {
+                    'header' : '<?php echo addslashes(__($this->getHelper()->getContentHeader())) ?>',
+                    'makeChoice' : 'Please select an option',
+                    'updateAddress' : 'Please, recheck and update address before continue.',
+                    'validatingAddress' : 'Validating address ...'
+                }
+            });
+        }
+    );
+    // ]]>
+</script>

@@ -1,0 +1,10 @@
+.config-nav-block.plugin-company-config-tab strong:before {
+    content: "\e900";
+    display: inline-block;
+    margin-right: 12px;
+    font-family: plugincompany;
+    color: #129ad5;
+    font-size: 1em;
+    vertical-align: top;
+    font-weight:500;
+}

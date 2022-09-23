@@ -1,0 +1,314 @@
+#mgzreport {
+
+	.mgzreport-header {
+		.mgz-clearfix();
+		background: #f8f8f8;
+		border-bottom: 1px solid #e3e3e3;
+		border-top: 1px solid #e3e3e3;
+		padding: 1.5rem;
+		margin: 0 0 3rem;
+
+		> div {
+			margin-right: 10px;
+			float: left;
+			cursor: pointer;
+		}
+
+		.admin__action-multiselect-wrap {
+			display: inline-block;
+			min-width: 200px;
+
+			.action-menu {
+				min-width: 400px;
+			}
+		}
+	}
+}
+
+// Stores
+#mgzreport-store {
+	display: inline-block;
+
+	.admin__action-multiselect-dropdown:before {
+		display: none;
+	}
+
+	.admin__action-dropdown-wrap {
+		z-index: 99;
+	}
+
+	.admin__action-dropdown-menu {
+		min-width: 220px;
+		left: 0;
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	li > ul {
+		padding-left: 2.2rem;
+	}
+
+	.admin__action-dropdown-menu {
+		padding-left: 1rem;
+		padding-right: 1rem;
+		margin-bottom: 0;
+
+		li {
+			> .action-menu-item {
+				.action-dropdown-menu-link-pattern();
+				padding-left: .5em;
+				padding-right: 1.8rem;
+				white-space: nowrap;
+				cursor: pointer;
+				transition: @smooth__background-color;
+				padding: @action-dropdown-menu-link__padding-vertical @action-dropdown-menu-link__padding-horizontal;
+
+				&:hover {
+					background-color: @user-account-menu__hover__background-color;
+					color: @action-dropdown__color;
+				}
+			}
+
+			&._parent > .action-menu-item {
+				color: #adadad;
+
+				&:hover {
+					background: transparent;
+				}
+			}
+		}
+	}
+
+	.admin__action-dropdown-wrap {
+		.admin__action-dropdown {
+			background: #fff;
+			border: 1px solid #adadad;
+			border-radius: 2px;
+			padding: .6rem 2.5em .6rem 1rem;
+			font-size: 1.4rem;
+			font-weight: 400;
+			max-width: 180px;
+		}
+
+		&.active {
+			.admin__action-dropdown {
+				border: 1px solid #007bdb;
+				box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+			}
+
+			.admin__action-dropdown-text:after {
+				left: 0;
+			}
+		}
+	}
+}
+
+#mgzreports-datepicker {
+	box-sizing: border-box;
+	display: none;
+	opacity: @component-modal__opacity;
+	padding: @ui-datepicker__padding + @ui-datepicker__indent  @ui-datepicker__padding;
+	width: auto;
+	z-index: 999999 !important;
+	margin: 0;
+
+	&:before {
+		background: @ui-datepicker__background;
+		border: @ui-datepicker__border;
+		bottom: @ui-datepicker__indent;
+		box-shadow: @ui-datepicker__shadow;
+		content: '';
+		display: block;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: @ui-datepicker__indent;
+		z-index: -1;
+	}
+
+	&:after {
+		display: none;
+	}
+
+	.calendar-time {
+		.hourselect,
+		.minuteselect,
+		.ampmselect {
+			font-size: 14px;
+		}
+	}
+
+	select.monthselect,
+	select.yearselect {
+		&:extend(.admin__control-select all);
+	}
+
+	select.monthselect {
+		margin-right: 6%;
+	}
+
+	&.daterangepicker {
+		.calendar-table {
+			th, td {
+				width: 38px;
+				height: 38px;
+				font-size: 14px;
+				font-weight: 600;
+			}
+
+			thead {
+				tr th {
+					font-weight: 700;
+				}
+			}
+
+			tbody {
+				td {
+					border: 1px solid #adadad;
+				}
+			}
+
+			.next span,
+			.prev span {
+				padding: 5px;
+			}
+		}
+
+		td.available:hover,
+		th.available:hover {
+			//background-color: transparent;
+		}
+
+		td.off,
+		td.disabled,
+		option.disabled {
+			background: #f5f5f5;
+			color: #999999;
+			text-decoration: none;
+			cursor: default;
+		}
+
+		.drp-calendar {
+			max-width: 100%;
+		}
+
+		td {
+			&.in-range,
+			&.active,
+			&.active:hover {
+				background: #007dbd;
+				color: #FFF;
+			}
+
+			&.active,
+			&.start-date,
+			&.end-date {
+				border-radius: 0;
+			}
+		}
+	}
+
+	.drp-selected {
+		font-size: @font-size__base;
+	}
+
+	.drp-buttons {
+		padding-top: 20px;
+
+		.btn {
+			font-size: @font-size__base;
+			padding: 0.6rem 1em 0.6rem;
+		}
+	}
+
+	.ranges {
+		li {
+			&.active {
+				background: #007dbd;
+			}
+		}
+	}
+}
+
+// Date Range Picker
+.mgzreport-daterangepicker {
+	display: inline-block;
+	margin-right: 10px;
+	position: relative;
+
+	.admin__control-text {
+		border-radius: 2px;
+		display: block !important;
+	}
+
+	.datepicker-active {
+		border-color: #007bdb;
+	}
+
+	.arrow {
+		display: block;
+		float: right;
+		margin-left: 10px;
+		margin-top: 2px;
+
+		&:after {
+			background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBmaWxsPSIjMDEwMjAyIiBkPSJNMCA2aDN2M0gwVjZ6bTQgM2gzVjZINHYzem00IDBoM1Y2SDh2M3ptNCAwaDNWNmgtM3Yzem0wLTd2M2gzVjJoLTN6TTggNWgzVjJIOHYzek00IDVoM1YySDR2M3ptLTQgOGgzdi0zSDB2M3ptNCAwaDN2LTNINHYzem00IDBoM3YtM0g4djN6Ii8+PC9zdmc+");
+			content: ' ';
+			display: block;
+			width: 16px;
+			height: 16px
+		}
+	}
+}
+
+.mgzreport-chart-wrapper {
+	width: 800px;
+	margin: 0 auto 5rem auto;
+	position: relative;
+}
+
+.mgzreport-chart-header {
+	text-align: center;
+
+	> div {
+		padding: 2.75em 0;
+		height: 26%;
+		text-align: center;
+		width: 22%;
+		display: inline-block;
+
+		.one {
+			-webkit-font-smoothing: antialiased;
+			text-rendering: optimizeLegibility;
+			-moz-osx-font-smoothing: grayscale;
+			display: block;
+			font-size: 2em;
+		}
+	}
+
+	.mgzreport-views {
+		.two {
+			color: #ed8542;
+		}
+	}
+
+	.mgzreport-clicks {
+		.two {
+			color: #6497f3;
+		}
+	}
+
+	.mgzreport-closes {
+		.two {
+			color: #34D7A1;
+		}
+	}
+
+	.mgzreport-conversion {
+		.two {
+			color: #5da85d;
+		}
+	}
+}

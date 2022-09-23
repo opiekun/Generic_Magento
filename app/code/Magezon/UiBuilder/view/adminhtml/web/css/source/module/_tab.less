@@ -1,0 +1,24 @@
+.uibuilder-tab {
+	.uibuilder-tab-title {
+		overflow: hidden;
+
+		.uibuilder-tab-title-item {
+			cursor: pointer;
+			float: left;
+			margin: 0;
+			padding: 0;
+		}	
+	}
+	
+	.uibuilder-tab-content {
+		padding: 15px;
+
+		.uibuilder-tab-content-item {
+			display: none;
+
+			&.active {
+				display: block;
+			}
+		}
+	}
+}

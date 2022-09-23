@@ -1,0 +1,61 @@
+<div ng-repeat="elem in ::controls" 
+	ng-class="mgz.getControlClasses(elem, $lass)" 
+	ng-init="_bElem=elem.builder;_bElemChild=mgz.getBuilderElement(_bElem.children);listVisible=false"
+	class="{{ listVisible ? '' : 'mgz-element-control-hovered' }}"
+	ng-mouseenter="listVisible=true;$root.$broadcast('activeElement', elem)"
+	ng-mouseleave="listVisible=false;$root.$broadcast('deactiveElement')">
+	<a class="mgz-control-btn mgz-control-move" 
+		dnd-draggable-parent="elem" 
+		dnd-effect-allowed="move" 
+		dnd-type="elem.type" 
+		dnd-moved="$root.$broadcast('removeElement', elem)" 
+		dnd-dragstart="mgz.onDragstart(elem)" 
+		dnd-canceled="mgz.onCanceled(elem)"
+		dnd-dragend="mgz.onDragend(elem)">
+		<span class="ng-btn-content"><i class="mgz-icon mgz-icon-dragndrop"></i> {{ _bElem.name }}</span>
+	</a>
+	<div class="mgz-element-control-dropdown" ng-if="listVisible">
+		<ul magezon-builder-directive-list group="elemControl" tag="{{ element.type }}-elemControl" html-tag="li" element="elem"></ul>
+	</div>
+	<ul class="mgz-element-control-top" ng-if="listVisible" magezon-builder-directive-list group="controlTop" html-tag="li" element="elem"></ul>
+	<i class="mgz-icon mgz-icon-arrow_drop_right mgz-icon-separator" ng-if="!$last"></i>
+</div>
+<div ng-class="mgz.getControlClasses(elem, $lass)" 
+	ng-init="elem=element;_bElem=elem.builder;_bElemChild=mgz.getBuilderElement(_bElem.children);listVisible=false"
+	ng-mouseenter="listVisible=true;$root.$broadcast('activeElement', elem)"
+	ng-mouseleave="listVisible=false;$root.$broadcast('deactiveElement')">
+	<a class="mgz-control-btn mgz-control-move" 
+		dnd-draggable-parent="elem" 
+		dnd-effect-allowed="move" 
+		dnd-type="elem.type" 
+		dnd-moved="$root.$broadcast('removeElement', elem)" 
+		dnd-dragstart="mgz.onDragstart(elem)" 
+		dnd-canceled="mgz.onCanceled(elem)"
+		dnd-dragend="mgz.onDragend(elem)">
+		<span class="ng-btn-content"><i class="mgz-icon mgz-icon-dragndrop"></i> {{ _bElem.name }}</span>
+	</a>
+	<div class="mgz-element-control-dropdown" ng-if="listVisible">
+		<ul magezon-builder-directive-list group="elemControl" tag="{{ element.type }}-elemControl" html-tag="li" element="element"></ul>
+	</div>
+	<ul class="mgz-element-control-top" ng-if="listVisible" magezon-builder-directive-list group="controlTop" html-tag="li" element="element"></ul>
+</div>
+<div class="mgz-element-control mgz-element-control-green">
+	<a class="mgz-control-btn mgz-control-edit" title="Edit {{ element.builder.name }}"
+		ng-click="mgz.editElement(element)"
+		ng-mouseenter="$root.$broadcast('activeElement', element)"
+		ng-mouseleave="$root.$broadcast('deactiveElement')">
+		<span class="ng-btn-content">
+			<i class="mgz-icon mgz-icon-edit"></i>
+		</span>
+	</a>
+</div>
+<div class="mgz-element-control mgz-element-control-green">
+	<a class="mgz-control-btn mgz-control-remove" title="Remove {{ element.builder.name }}"
+		ng-click="$root.$broadcast('removeElement', element)"
+		ng-mouseenter="$root.$broadcast('activeElement', element)"
+		ng-mouseleave="$root.$broadcast('deactiveElement')">
+		<span class="ng-btn-content">
+			<i class="mgz-icon mgz-icon-remove"></i>
+		</span>
+	</a>
+</div>

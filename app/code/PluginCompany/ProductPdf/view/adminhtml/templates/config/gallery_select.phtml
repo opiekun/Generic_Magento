@@ -1,0 +1,80 @@
+<div class="pc-gallery-select">
+    <?php foreach($this->getGalleryData() as $galleryData){ ?>
+        <div data-identifier="<?php echo $galleryData['identifier']; ?>"
+             class="select-image select-image-<?php echo $galleryData['identifier']; ?>">
+            <img src='<?php echo $galleryData['image']; ?>'>
+        </div>
+    <?php } ?>
+</div>
+<style>
+    .pc-gallery-select {
+        float:left;
+        clear:both;
+        max-height:400px;
+        width:280px;
+        overflow-y:scroll;
+        position:relative;
+        padding:5px;
+        background:#b9b9b9;
+    }
+    .pc-gallery-select .select-image {
+        float:left;
+        clear:both;
+        width:100%;
+        box-sizing:border-box;
+        overflow:hidden;
+        border:5px solid #b9b9b9;
+    }
+    .pc-gallery-select .select-image.selected {
+        border:5px solid #7cdbff;
+        /*border-radius:4px;*/
+    }
+    .pc-gallery-select img {
+        float:left;
+        clear:both;
+        width:100%;
+    }
+</style>
+
+<script type="text/javascript">
+require(["jquery"], function($) {
+    var currentValue = $('#<?php echo $block->getElementHtmlId(); ?>').val();
+    var currentSelectedEm = $('#<?php echo $block->getElementHtmlId(); ?>')
+        .parent()
+        .find('.select-image-' + currentValue);
+
+    if(currentSelectedEm.length) {
+        currentSelectedEm.addClass('selected');
+    }
+
+    function scrollToSelectedEm(){
+        var gallery = $('#<?php echo $block->getElementHtmlId(); ?>')
+            .parent()
+            .find('.pc-gallery-select');
+        if(gallery.find('.selected').length){
+            gallery
+                .scrollTop(0)
+                .scrollTop(gallery.find('.selected').position().top - 5);
+        }
+    }
+
+    $(document).ready(function(){
+        scrollToSelectedEm();
+    })
+
+    $('#<?php echo $block->getElementHtmlId(); ?>')
+        .closest('.section-config').find('a').first()
+        .click(function(){
+            scrollToSelectedEm()
+        })
+
+
+    $('#<?php echo $block->getElementHtmlId(); ?>').parent().find('.select-image')
+        .click(function(){
+            $(this).parent().children().removeClass('selected');
+            $(this).addClass('selected');
+            $('#<?php echo $block->getElementHtmlId(); ?>').val($(this).data('identifier'));
+        })
+
+});
+</script>

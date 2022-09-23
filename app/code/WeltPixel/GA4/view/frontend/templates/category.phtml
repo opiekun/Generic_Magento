@@ -1,0 +1,41 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php if($this->isEnabled()) : ?>
+    <?php $helper = $this->helper('WeltPixel\GA4\Helper\Data'); ?>
+    <?php $category = $this->getCurrentCategory(); ?>
+    <?php $gtmCategoryLabel = $helper->getGtmCategory($category); ?>
+    <?php $ga4Categories = $helper->getGA4Categories($category); ?>
+    <?php $productCollection = $this->getProductCollection(); ?>
+    <?php if (count($productCollection)) : ?>
+        <?php $categoryProducts = []; ?>
+        <?php $i = 1; ?>
+        <?php foreach($productCollection as $product) : ?>
+            <?php $categoryProduct = []; ?>
+            <?php $categoryProduct['item_name'] = html_entity_decode($product->getName()); ?>
+            <?php $categoryProduct['item_id'] = $helper->getGtmProductId($product); ?>
+            <?php $categoryProduct['price'] = number_format($product->getPriceInfo()->getPrice('final_price')->getValue(), 2, '.', ''); ?>
+            <?php if ($helper->isBrandEnabled()) : ?>
+            <?php $categoryProduct['item_brand'] = $helper->getGtmBrand($product); ?>
+            <?php endif;?>
+            <?php $categoryProduct = array_merge($categoryProduct, $ga4Categories); ?>
+            <?php $categoryProduct['item_list_name'] = $gtmCategoryLabel; ?>
+            <?php $categoryProduct['item_list_id'] = $category->getId(); ?>
+            <?php $categoryProduct['index'] = $i; ?>
+            <?php $categoryProduct['currency'] = $this->getCurrencyCode(); ?>
+            <?php $categoryProducts[] = $categoryProduct; ?>
+            <?php $i++ ; ?>
+        <?php endforeach; ?>
+        <?php $this->setEcommerceData('items', $categoryProducts); ?>
+        <?php $this->setDataLayerOption('event', 'view_item_list'); ?>
+    <?php endif; ?>
+
+    <?php if ($helper->isAdWordsRemarketingEnabled()): ?>
+        <?php
+            $remarketingData = [];
+            $remarketingData['ecomm_pagetype'] = \WeltPixel\GA4\Model\Api\Remarketing::ECOMM_PAGETYPE_CATEGORY;
+            $remarketingData['ecomm_category'] = $gtmCategoryLabel;
+        ?>
+        <?php $this->setDataLayerOption('google_tag_params', $remarketingData); ?>
+    <?php endif; ?>
+<?php endif; ?>

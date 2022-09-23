@@ -1,0 +1,386 @@
+
+<?php if($this->_helper->enableModule()):?>
+	<?php if($this->_helper->getGalleryType()=="fme_gallery"):?>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> 
+		<!-- Tabs are Off  -->
+		<?php  if (!$this->_helper->enableTabs()): ?>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">        
+			<?php
+			$collection=[];
+			if ($this->_helper->enablePaginitionWithoutFilter())
+			{
+				
+				$collection=$this->getAllPhotogallery();
+			}
+			else
+			{
+				
+				$collection=$this->getAllPhotoGalleryImages();
+			}
+			?>
+			<script>
+				require(['jquery','finaltilesgallery','finalmagpop','photolighbox'], function($){
+					<?php if ($this->_helper->enableFullWidthGallery()): ?>
+						$(window).load(function() {
+							$('.page-main').css({'max-width': "100%"});
+						});
+					<?php endif; ?>
+					<?php if ($this->_helper->enableFilter()): ?>
+						
+					<?php endif; ?>
+					$("#gallery").finalTilesGallery(
+						{
+						<?php if ($this->_helper->enableThumbsInColuumn()=="col"): ?>
+							layout: 'columns',
+						<?php endif; ?>
+						<?php if ($this->_helper->enableThumbsInColuumn()=="final"): ?>
+							layout: 'final',
+						<?php endif; ?>
+						<?php if ($this->_helper->enableMargin()): ?>
+							margin: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getMarginSize() ?>"),
+						<?php endif; ?>	
+							selectedFilter: 'all',
+							minTileWidth :parseInt("<?= /* @escapeNotVerified */ $this->_helper->minTileWidth() ?>"),
+							disableGridSizeBelow:parseInt("<?= /* @escapeNotVerified */ $this->_helper->getGridSizeBelow() ?>"),
+							gridSize:parseInt("<?= /* @escapeNotVerified */ $this->_helper->getGridSize() ?>"),
+						<?php if ($this->_helper->enableEnlargeMent()): ?>
+							allowEnlargement:true,
+						<?php else: ?>
+							allowEnlargement:false,
+						<?php endif; ?>	
+
+						<?php if ($this->_helper->enablePaginitionWithoutFilter()): ?>
+							onLoading: function () {
+								$('.cbp-l-loadMore-button-link').text('Loading...');
+								$('.loader').css({'display': 'block'});
+								
+							},
+							onUpdate: function () {
+								
+								$('.cbp-l-loadMore-button-link').text('<?= /* @escapeNotVerified */ $this->_helper->getButtonText() ?>');
+								$('.loader').css({'display': 'none'});
+							},
+
+							autoLoadURL: "photogallery/index/getimageswofilter",
+						<?php endif; ?>		
+							
+						}
+					);
+					<?php if ($this->_helper->getMagniferOption()=="popup"): ?>
+						$('.final-tiles-gallery').magnificPopup({
+							
+								type: 'image',
+								
+								delegate: '.tile:not(.ftg-hidden) .tile-inner',
+							
+								gallery: {
+								<?php if ($this->_helper->enablegalonPopUp()): ?>
+								enabled: true,
+								<?php else: ?>
+								enabled: false,
+								<?php endif; ?>	
+
+								preload: [0,2],	
+								<?php if ($this->_helper->enablePopupNavOnCLick()): ?>
+								navigateByImgClick: true,
+								<?php else: ?>
+								navigateByImgClick: false,
+								<?php endif; ?>	
+								},
+								zoom: {
+									enabled: true,
+									duration: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getPopupTime() ?>"),
+									easing: 'ease-in-out',
+									opener: function(openerElement) {
+									return openerElement.is('img') ? openerElement : openerElement.find('img');
+									}
+								},
+								callbacks: {
+									change: function() {
+										if (this.isOpen) {
+											this.wrap.addClass('mfp-open');
+										}
+									}
+								},
+								image: {
+								titleSrc: function(item) {
+									return item.el.parents('.tile').find('h4').html() +   item.el.parents('.tile').find('h5').html();
+									}
+							},
+								fixedContentPos: true,
+						});
+					<?php endif; ?> 
+				});	        
+			</script>
+			<?php if (count($collection)>0): ?>
+				<?php echo $this->photogalleryHtml($collection); ?>
+				<?php endif; ?>
+				<?php if ($this->_helper->enablePaginitionWithoutFilter()): ?>				
+						<?php  if ($this->_helper->paginitionType()=="manual"): ?>
+							<div class="cbp-l-loadMore-button">
+								<a class="cbp-l-loadMore-button-link"><?php echo $this->_helper->getButtonText()?></a>
+							</div>
+						<?php else: ?>	
+							<div class="loader"></div>
+						<?php endif; ?>
+				<?php endif; ?>
+				</div>
+			<?php endif; ?>
+		<!-- Tabs are ON -->
+		<?php  if ($this->_helper->enableTabs()): ?>
+		<?php 
+			$collection=[];
+			if ($this->_helper->enablepaginationonFrontend())
+			{
+				$collection=$this->getAllPhotogallery();
+			}
+			else
+			{
+				$collection=$this->getAllPhotoGalleryImages();
+			}
+		?>
+
+		<?php if (count($collection)>0): ?>	
+			<script>
+				require(['jquery','finaltilesgallery','finalmagpop','photolighbox'], function($){
+						<?php if ($this->_helper->enableFullWidthGallery()): ?>
+							$('.page-main').css({'max-width': "100%"});
+						<?php endif; ?>
+				});
+			</script>
+			<?php $gallery_labels = $this->getGalleryHeadings();?>
+			<!--gENERATING tAB Heading -->
+			<div class="tab">
+				<button class="tablinks" id="defaultOpen" onclick="openCity(event, 'gal_all')" btn-id="all">All</button>
+				<?php foreach ($gallery_labels as $gallery_label ): ?>                	
+					<?php if($gallery_label['show_in']=="1" ||$gallery_label['show_in']=="3"): ?>
+						<button btn-id="<?php  echo $gallery_label['photogallery_id']?>" class="tablinks" onclick="openCity(event, 'gal_<?php  echo $gallery_label['photogallery_id']?>')"><?php echo $gallery_label['gal_name']?></button>      
+					<?php endif; ?>
+				<?php endforeach; ?>
+			</div>
+			<!--gENERATING tAB Content -->
+			<div id="gal_all" gal-id="all" class="tabcontent">
+			<?php echo $this->photogalleryHtmlduplicate($collection,""); ?>
+			</div>
+				<!-- other tabs -->
+			<?php foreach ($gallery_labels as $gallery_label ): ?>                	
+				<?php if($gallery_label['show_in']=="1" ||$gallery_label['show_in']=="3"): ?>
+					
+					<div id="gal_<?php  echo $gallery_label['photogallery_id']?>" gal-id="<?php  echo $gallery_label['photogallery_id']?>"  class="tabcontent">
+						
+						<?php echo $this->photogalleryHtmlduplicate($this->getotherPhotogallery($gallery_label['photogallery_id']),$gallery_label['photogallery_id']); ?>
+					</div> 	    
+				<?php endif; ?>
+			<?php endforeach; ?>
+			<?php if ($this->_helper->enablepaginationonFrontend()): ?>				
+					<?php  if ($this->_helper->paginitionType()=="manual"): ?>
+						
+					<?php else: ?>	
+						<div class="loader"></div>
+					<?php endif; ?>
+			<?php endif; ?>
+			<!--gENERATING For gallery-->
+			<script>
+				function openCity(evt, cityName) {
+					var i, tabcontent, tablinks;
+					tabcontent = document.getElementsByClassName("tabcontent");
+					for (i = 0; i < tabcontent.length; i++) {
+						tabcontent[i].style.display = "none";
+					}
+					tablinks = document.getElementsByClassName("tablinks");
+					for (i = 0; i < tablinks.length; i++) {
+						tablinks[i].className = tablinks[i].className.replace(" active", "");
+					}
+					document.getElementById(cityName).style.display = "block";
+					evt.currentTarget.className += " active";
+					require(['jquery','finaltilesgallery','finalmagpop','photolighbox'], function($){
+						<?php if ($this->_helper->enableFullWidthGallery()): ?>
+							$(window).load(function() {
+								$('.page-main').css({'max-width': "100%"});
+								
+							});
+						<?php endif; ?>
+						
+						var id=$('.tab > button.active').attr('btn-id')
+						if(id=="all")
+						{
+							$('#gallery_').finalTilesGallery({
+								<?php if ($this->_helper->enableThumbsInColuumn()=="col"): ?>
+									layout: 'columns',
+								<?php endif; ?>
+								<?php if ($this->_helper->enableThumbsInColuumn()=="final"): ?>
+									layout: 'final',
+								<?php endif; ?>
+								<?php if ($this->_helper->enableMargin()): ?>
+									margin: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getMarginSize() ?>"),
+								<?php endif; ?>	
+									selectedFilter: 'all',
+									minTileWidth :parseInt("<?= /* @escapeNotVerified */ $this->_helper->minTileWidth() ?>"),
+									disableGridSizeBelow:parseInt("<?= /* @escapeNotVerified */ $this->_helper->getGridSizeBelow() ?>"),
+									gridSize:parseInt("<?= /* @escapeNotVerified */ $this->_helper->getGridSize() ?>"),
+								<?php if ($this->_helper->enableEnlargeMent()): ?>
+									allowEnlargement:true,
+								<?php else: ?>
+									allowEnlargement:false,
+								<?php endif; ?>	
+								<?php if ($this->_helper->enablepaginationonFrontend()): ?>
+								onLoading: function () {
+									$('.cbp-l-loadMore-button-link').text('Loading...');
+									$('.loader').css({'display': 'block'});
+									
+								},
+								onUpdate: function () {
+									$('.cbp-l-loadMore-button-link').text('<?= /* @escapeNotVerified */ $this->_helper->getButtonText() ?>');
+									$('.loader').css({'display': 'none'});
+								},
+									autoLoadURL: "photogallery/index/getimages?tabid=all"
+								<?php endif; ?>	
+							});
+							<?php if ($this->_helper->getMagniferOption()=="popup"): ?>
+								$('#gallery_').magnificPopup({
+									delegate: '.tile:not(.ftg-hidden) .tile-inner',
+									type: 'image',
+									gallery: {
+
+										enabled: true,
+										navigateByImgClick: true,
+										preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+									},
+									gallery: {
+										<?php if ($this->_helper->enablegalonPopUp()): ?>
+										enabled: true,
+										<?php else: ?>
+										enabled: false,
+										<?php endif; ?>	
+
+										preload: [0,2],	
+										<?php if ($this->_helper->enablePopupNavOnCLick()): ?>
+										navigateByImgClick: true,
+										<?php else: ?>
+										navigateByImgClick: false,
+										<?php endif; ?>	
+										},
+										zoom: {
+											enabled: true,
+											duration: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getPopupTime() ?>"),
+											easing: 'ease-in-out',
+											opener: function(openerElement) {
+											return openerElement.is('img') ? openerElement : openerElement.find('img');
+											}
+										},
+									image: {
+										titleSrc: function(item) {
+											return item.el.parents('.tile').find('h4').html() +   item.el.parents('.tile').find('h5').html();
+											}
+									},
+										fixedContentPos: true,
+
+								});
+							<?php endif; ?>
+
+
+
+						} else {
+							$('#gallery_'+id).finalTilesGallery({
+								<?php if ($this->_helper->enableThumbsInColuumn()=="col"): ?>
+									layout: 'columns',
+								<?php endif; ?>
+								<?php if ($this->_helper->enableThumbsInColuumn()=="final"): ?>
+									layout: 'final',
+								<?php endif; ?>
+								<?php if ($this->_helper->enableMargin()): ?>
+									margin: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getMarginSize() ?>"),
+								<?php endif; ?>	
+									
+									minTileWidth :parseInt("<?= /* @escapeNotVerified */ $this->_helper->minTileWidth() ?>"),
+									disableGridSizeBelow:parseInt("<?= /* @escapeNotVerified */ $this->_helper->getGridSizeBelow() ?>"),
+									gridSize:parseInt("<?= /* @escapeNotVerified */ $this->_helper->getGridSize() ?>"),
+								<?php if ($this->_helper->enableEnlargeMent()): ?>
+									allowEnlargement:true,
+								<?php else: ?>
+									allowEnlargement:false,
+								<?php endif; ?>	
+								<?php if ($this->_helper->enablepaginationonFrontend()): ?>
+								onLoading: function () {
+									$('.cbp-l-loadMore-button-link').text('Loading...');
+									$('.loader').css({'display': 'block'});
+									
+								},
+								onUpdate: function () {
+									$('.cbp-l-loadMore-button-link').text('<?= /* @escapeNotVerified */ $this->_helper->getButtonText() ?>');
+									$('.loader').css({'display': 'none'});
+								},
+								autoLoadURL: "photogallery/index/getimages?tabid="+id
+								<?php endif; ?>	
+							});
+							<?php if ($this->_helper->getMagniferOption()=="popup"): ?>
+								$('#gallery_'+id).magnificPopup({
+									delegate: '.tile:not(.ftg-hidden) .tile-inner',
+									type: 'image',
+									gallery: {
+
+										enabled: true,
+										navigateByImgClick: true,
+										preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+									},
+									gallery: {
+										<?php if ($this->_helper->enablegalonPopUp()): ?>
+										enabled: true,
+										<?php else: ?>
+										enabled: false,
+										<?php endif; ?>	
+
+										preload: [0,2],	
+										<?php if ($this->_helper->enablePopupNavOnCLick()): ?>
+										navigateByImgClick: true,
+										<?php else: ?>
+										navigateByImgClick: false,
+										<?php endif; ?>	
+										},
+										zoom: {
+											enabled: true,
+											duration: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getPopupTime() ?>"),
+											easing: 'ease-in-out',
+											opener: function(openerElement) {
+											return openerElement.is('img') ? openerElement : openerElement.find('img');
+											}
+										},
+									image: {
+										titleSrc: function(item) {
+											return item.el.parents('.tile').find('h4').html() +   item.el.parents('.tile').find('h5').html();
+											}
+									},
+										fixedContentPos: true,
+
+								});
+							<?php endif; ?>
+						}
+					});
+				}
+				// Get the element with id="defaultOpen" and click on it
+				document.getElementById("defaultOpen").click();
+			</script>
+			<?php endif; ?>
+		<?php endif; ?>
+	<?php endif; ?>
+	<?php if($this->_helper->getGalleryType()=="tdgallery"):?>
+		<?php
+			echo $this->getLayout()->createBlock("FME\Photogallery\Block\PList")->setTemplate("FME_Photogallery::newlist1.phtml")->toHtml();
+		?>
+	<?php endif; ?>
+	<?php if($this->_helper->getGalleryType()=="mensory"):?>
+		<?php
+			echo $this->getLayout()->createBlock("FME\Photogallery\Block\PList")->setTemplate("FME_Photogallery::newlist2.phtml")->toHtml();
+		?>
+	<?php endif; ?>
+	<?php if($this->_helper->getGalleryType()=="nanogallery"):?>
+		<?php
+			echo $this->getLayout()->createBlock("FME\Photogallery\Block\PList")->setTemplate("FME_Photogallery::newlist3.phtml")->toHtml();
+		?>
+	<?php endif; ?>
+	<?php if($this->_helper->getGalleryType()=="mediagallery"):?>
+		<?php
+			echo $this->getLayout()->createBlock("FME\Photogallery\Block\PList")->setTemplate("FME_Photogallery::newlist4.phtml")->toHtml();
+		?>
+	<?php endif; ?>
+<?php endif; ?>

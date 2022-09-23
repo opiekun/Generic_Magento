@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page  layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="FME_Photogallery::css/tabandloader.css"/> 
+        <css src="FME_Photogallery::css/3d/common.css"/>
+        <css src="https://unpkg.com/nanogallery2@2.4.2/dist/css/nanogallery2.min.css"  src_type="url" rel="stylesheet" type="text/css"  />
+        <css src="FME_Photogallery::css/unite-gallery.css" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="photogallery" class="FME\Photogallery\Block\PList" template="FME_Photogallery::newlist.phtml">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Sales\Block\Adminhtml\Order\Create\Totals">
+        <plugin name="addressValidationPlugin" type="IWD\AddressValidation\Block\Adminhtml\Plugin\Reinit" disabled="false" sortOrder="10"/>
+    </type>
+    <type name="Magento\Paypal\Model\AbstractConfig">
+        <plugin name="iwd_addressvalidation_ce_paypal_config" type="IWD\AddressValidation\Plugin\Payments\Paypal\Config"/>
+    </type>
+</config>

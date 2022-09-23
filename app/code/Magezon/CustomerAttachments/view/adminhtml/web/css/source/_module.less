@@ -1,0 +1,215 @@
+@font-face {
+	font-family: 'MUI-Icons';
+	src: url('../Magezon_Core/fonts/MUI-Icons/MUI-Icons.eot');
+	src: url('../Magezon_Core/fonts/MUI-Icons/MUI-Icons.eot?#iefix') format('embedded-opentype'), url('../Magezon_Core/fonts/MUI-Icons/MUI-Icons.woff2') format('woff2'), url('../Magezon_Core/fonts/MUI-Icons/MUI-Icons.woff') format('woff'), url('../Magezon_Core/fonts/MUI-Icons/MUI-Icons.ttf') format('truetype'), url('../Magezon_Core/fonts/MUI-Icons/MUI-Icons.svg#MUI-Icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.customerattachments-attachment-edit {
+	.file-uploader .file-uploader-filename {
+		max-width: 100%;
+	}
+
+	.file-uploader .file-uploader-meta {
+		color: #666666;
+	}
+
+	.file-uploader-spinner {
+		position: absolute;
+		left: 45px;
+		top: 40px;
+		background-size: 100%;
+		z-index: 99;
+		background-repeat: no-repeat;
+		display: none;
+		width: 65px;
+		height: 65px;
+		margin: 0;
+	}
+
+
+	.file-uploader-button {
+		background: #ffffff;
+		box-sizing: border-box;
+		display: inline-block;
+		position: relative;
+		vertical-align: top;
+		width: 150px;
+		height: 150px;
+		box-shadow: none;
+		text-shadow: none;
+		border-color: #cccccc;
+		color: #008bdb;
+		font-weight: normal;
+		margin-bottom: 5px;
+
+		&:before {
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			font-size: 6rem;
+			line-height: inherit;
+			color: #cccccc;
+			content: "\e06f";
+			font-family: 'MUI-Icons';
+			vertical-align: middle;
+			display: inline-block;
+			font-weight: normal;
+			overflow: hidden;
+			speak: none;
+			text-align: center;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 8px;
+			z-index: 1;
+		}
+
+		span {
+			bottom: 0;
+			color: #008bdb;
+			font-size: 1.3rem;
+			left: 0;
+			line-height: 1.333;
+			margin-bottom: 15%;
+			padding: 0 1rem;
+			position: absolute;
+			right: 0;
+			text-align: center;
+		}
+	}
+
+	.file-uploader-preview {
+		height: auto;
+		border: 0;
+		width: 100%;
+		overflow: visible;
+		
+
+		a {
+			padding-right: 10px;
+		}
+
+		.action-remove {
+			bottom: -5px;
+			right: 0;
+			left: auto;
+		}
+	}
+
+	#save-button {
+		width: 110px;
+	}
+
+	.admin__data-grid-wrap-static .data-grid-checkbox-cell-inner {
+		margin-top: 0;
+	}
+
+	.col-position {
+		padding: 1%;
+	}
+
+	.admin__fieldset-wrapper-content .admin__fieldset {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.attachment-url {
+		textarea {
+			min-height: auto;
+		}
+	}
+
+	.customerattachments-attachment-file-type {
+		select {
+			width: 150px;
+		}
+	}
+}
+
+#mca-attachment {
+	.admin__control-table .col-sort {
+		padding-top: 1.5rem;
+	}
+
+	.mca-attachment {
+
+		.mca-attachment_left {
+			float: left;
+			width: 60px;
+			.admin__control-radio + label {
+				margin-bottom: 10px;
+			}
+		}
+
+		.mca-attachment_right {
+			margin-left: 60px;
+
+			.file-info {
+				display: block;
+				margin-bottom: 6px;
+			}
+		}
+
+		input[type="radio"] {
+			cursor: pointer;
+			opacity: .01;
+			overflow: hidden;
+			position: absolute;
+			vertical-align: top;
+		}
+	}
+
+	.admin__fieldset {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.col-sort {
+		width: 1%;
+
+		span {
+			display: block;
+			margin-bottom: 10px;
+		}
+	}
+
+	.col-action {
+		text-align: center;
+	}
+
+	textarea {
+		min-height: 60px;
+	}
+}
+
+.mca-top {
+	text-align: right;
+	overflow: hidden;
+
+	&:before,
+	&:after {
+		display: table;
+		line-height: 0;
+		content: "";
+	}
+
+	> .message {
+		margin-bottom: 0;
+		float: left;
+		text-align: left;
+		padding: 1.2rem 4rem 1.2rem 5.5rem;
+
+		&.message-notice:before {
+			top: 1rem;
+		}
+	}
+
+	.action-secondary {
+		line-height: 2;
+	}
+}
+
+#attachment_customersauto {
+	margin-top: 20px;
+}

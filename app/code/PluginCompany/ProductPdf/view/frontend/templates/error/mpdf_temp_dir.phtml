@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mPDF error</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div style="margin-top:30px" class="alert alert-danger">
+                <b>mPDF temporary directory is not writable by the webserver user</b>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>You can resolve this issue by following the steps below</h4>
+            <p>Update the permissions of the following directory <code>{magento_root}/vendor/mpdf/mpdf/tmp</code> to allow the web server write access</p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Using SSH</h4>
+            <p>You can do this by logging onto your server using SSH and navigating to your magento root folder</p>
+            <p>Run the following command: <code>mkdir --parents ./var/cache/tmp/mpdf; chmod -Rf 777 ./var/cache/tmp/mpdf</code></p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Using FTP software</h4>
+            <p>Open your FTP software and navigate to the following directory on your server: <code>{magento_root}/var/cache/tmp/mpdf</code></p>
+            <p>Right click the <code>tmp</code> folder and update permissions to write access for the web server user</p>
+            <p>If the directory doesn't exist, create it first.</p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Clear the full page cache</h4>
+            <p>After changing the directory permissions, please don't forget to clear the Magento cache.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

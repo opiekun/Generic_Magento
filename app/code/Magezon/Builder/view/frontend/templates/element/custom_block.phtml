@@ -1,0 +1,14 @@
+<?php
+/**
+ * @var $block \Magezon\Builder\Block\CustomBlock
+ */
+?>
+<?php
+$element   = $this->getElement();
+$blockName = $element->getBlockName();
+?>
+<?php if ($blockName) { ?>
+	<div class="mgz-element-custom-block-<?= $blockName ?>">
+		<?= $block->renderElement($blockName) ?>
+	</div>
+<?php } ?>

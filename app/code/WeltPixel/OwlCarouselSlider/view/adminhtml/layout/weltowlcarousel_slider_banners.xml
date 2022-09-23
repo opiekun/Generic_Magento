@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <container name="root" label="Root">
+        <block class="WeltPixel\OwlCarouselSlider\Block\Adminhtml\Slider\Edit\Tab\Banners" name="owlcarouselslider.slider.edit.tab.banners"/>
+        <block class="Magento\Backend\Block\Widget\Grid\Serializer" name="crosssell_grid_serializer">
+            <arguments>
+                <argument name="input_names" xsi:type="string">sort_order</argument>
+                <argument name="grid_block" xsi:type="string">owlcarouselslider.slider.edit.tab.banners</argument>
+                <argument name="callback" xsi:type="string">getSelectedSliderBanners</argument>
+                <argument name="input_element_name" xsi:type="string">slider_banner</argument>
+                <argument name="reload_param_name" xsi:type="string">banner</argument>
+            </arguments>
+        </block>
+    </container>
+</layout>

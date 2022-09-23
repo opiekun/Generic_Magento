@@ -1,0 +1,35 @@
+{
+    "tax_calculation_rate_tmp": {
+        "column": {
+            "tax_calculation_rate_id": true,
+            "tax_country_id": true,
+            "tax_region_id": true,
+            "tax_postcode": true,
+            "code": true,
+            "rate": true,
+            "zip_is_range": true,
+            "zip_from": true,
+            "zip_to": true
+        },
+        "index": {
+            "TAX_CALC_RATE_TMP_TAX_COUNTRY_ID_TAX_REGION_ID_TAX_POSTCODE": true,
+            "TAX_CALCULATION_RATE_TMP_CODE": true,
+            "IDX_3DB3E9DA8BF2B9EDF08BD0A21AAC17B4": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "ecommerce121_tig_tax_logs": {
+        "column": {
+            "id": true,
+            "request": true,
+            "code": true,
+            "body": true,
+            "created_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

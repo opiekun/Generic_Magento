@@ -1,0 +1,32 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Booking
+ * @author      CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+?>
+<div class="row">
+    <div class="col-lg-12">
+        <p class="hello"><strong><?php  echo __('Hello,') ?></strong></p>
+        <p><?= __('From your Dashboard you have the ability to view a snapshot of your total bookings , total sales.') ?></p>
+    </div>
+</div>
+<div class="row">
+    <?php  echo $block->getChildHtml('admin_booking_info') ?>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <?php  echo $block->getChildHtml('calendar_booking') ?>
+    </div>
+</div>

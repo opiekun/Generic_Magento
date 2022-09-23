@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="url_rewrite" resource="default" engine="innodb" comment="Url Rewrites">
+        <column xsi:type="varchar" name="request_path" nullable="true" length="1000" comment="Request Path"/>
+        <column xsi:type="varchar" name="target_path" nullable="true" length="1000" comment="Target Path"/>
+	</table>
+</schema>

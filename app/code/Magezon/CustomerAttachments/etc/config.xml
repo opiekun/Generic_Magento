@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://magezon.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_CustomerAttachments
+ * @copyright Copyright (C) 2018 Magezon (https://magezon.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<customerattachments>
+			<general>
+				<enable>1</enable>
+				<route>attachments</route>
+				<hide_without_file>0</hide_without_file>
+				<show_toplink>1</show_toplink>
+				<title>My Files</title>
+				<sort_by>position</sort_by>
+			</general>
+			<email>
+				<sender_email_identity>general</sender_email_identity>
+				<new_attachment>mca_new_attachment</new_attachment>
+			</email>
+		</customerattachments>
+	</default>
+</config>

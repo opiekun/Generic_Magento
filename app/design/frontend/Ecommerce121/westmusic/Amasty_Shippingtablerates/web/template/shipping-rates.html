@@ -1,0 +1,48 @@
+<form id="co-shipping-method-form"
+      class="amrates-shipping-rates"
+      data-bind="blockLoader: isLoading, visible: isVisible()">
+    <p class="field note" data-bind="visible: (shippingRates().length <= 0)">
+        <!-- ko text: $t('Sorry, no quotes are available for this order at this time')--><!-- /ko -->
+    </p>
+    <fieldset class="fieldset rate" data-bind="visible: (shippingRates().length > 0)">
+        <dl class="items methods" data-bind="foreach: shippingRateGroups">
+            <dt class="item-title"><span data-bind="text: $data"></span></dt>
+            <dd class="item-options" data-bind="foreach: { data:$parent.getRatesForGroup($data), as: 'method' }">
+                <div data-bind="css: {'field choice item': available, 'message error': !available} ">
+                    <!-- ko ifnot: (available) -->
+                    <div data-bind="text: error_message"></div>
+                    <!-- /ko -->
+                    <!-- ko if: (available) -->
+                    <input type="radio"
+                           class="radio"
+                           data-bind="
+                                click: $parents[1].selectShippingMethod,
+                                checked: $parents[1].selectedShippingMethod,
+                                attr: {
+                                        value: carrier_code + '_' + method_code,
+                                        id: 's_method_' + carrier_code + '_' + method_code
+                                        }
+                                "/>
+                    <label class="label" data-bind="attr: {for: 's_method_' + carrier_code + '_' + method_code}">
+                        <!-- ko text: $data.method_title --><!-- /ko -->
+                        <each args="element.getRegion('price')" render=""></each>
+                        <!-- ko ifnot: element.getRegion('price')-->
+                        <!-- ko text: $parents[1].getFormattedPrice(amount) --><!-- /ko -->
+                        <!-- /ko -->
+                    </label>
+                    <!-- /ko -->
+                </div>
+                <!-- ko if: $data.extension_attributes && $data.extension_attributes.amstartes_comment -->
+                <div>
+                    <label class="label" data-bind="html: extension_attributes.amstartes_comment"></label>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: (!$data.extension_attributes || !$data.extension_attributes.amstartes_comment) && $data.comment-->
+                <div>
+                    <label class="label" data-bind="html: $data.comment"></label>
+                </div>
+                <!-- /ko -->
+            </dd>
+        </dl>
+    </fieldset>
+</form>

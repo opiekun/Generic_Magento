@@ -1,0 +1,55 @@
+.mgz-builder.ninjamenus .level0 {
+  float: left;
+  width: auto;
+}
+.mgz-builder.ninjamenus .level0:hover {
+  outline: 1px dashed rgba(125, 125, 125, 0.4);
+}
+.mgz-builder.ninjamenus .mgz-element-profile > .mgz-placeholder {
+  min-height: 50px;
+  width: 100px;
+  margin: 0;
+  float: left;
+}
+.ninjamenus-menu-edit .ninjamenus {
+  padding-bottom: 100vw;
+}
+.ninjamenus-menu-edit .ninjamenus .mgz-element-profile > .nav-item > a {
+  line-height: 50px;
+  font-weight: 600;
+}
+.ninjamenus-menu-edit .ninjamenus .mgz-element-profile > .nav-item > .opener {
+  height: 50px;
+  width: 50px;
+}
+.ninjamenus-menu-edit .mgz-builder-content-inner {
+  margin-top: 20px !important;
+  background: #fafafa;
+  border: 1px solid #dfdfdf;
+  min-height: 50px;
+  position: relative;
+  float: left;
+  width: 100%;
+}
+.ninjamenus-menu-edit .mgz-builder-content-inner .item-submenu {
+  position: absolute;
+  display: block;
+}
+.ninjamenus-menu-edit .ninjamenus-submenu-actived > a {
+  background: #dfdfdf;
+}
+.ninjamenus-menu-edit .right_vertical_full_height > .item-submenu {
+  left: auto !important;
+  top: auto !important;
+}
+.ninjamenus-menu-edit .left_vertical_full_height > .item-submenu {
+  right: auto !important;
+  top: auto !important;
+}
+.ninjamenus-menu-edit .right_edge_parent_item > .item-submenu {
+  left: 0 !important;
+}
+.ninjamenus-menu-edit .left_vertical_full_height,
+.ninjamenus-menu-edit .right_vertical_full_height {
+  position: relative !important;
+}

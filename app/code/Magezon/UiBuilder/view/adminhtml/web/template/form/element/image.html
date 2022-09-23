@@ -1,0 +1,36 @@
+<div class="uibuilder-element-image">
+	<div class="uibuilder-element-image-preview file-image-preview" click="openPreview" data-bind="clickBubble: false">
+		<!--ko ifnot: value -->
+			<div class="uibuilder-element-image-insert" click="openFileManager" data-bind="clickBubble: false">
+				<span html="buttonLabel"></span>
+			</div>
+		<!-- /ko -->
+		<!--ko if: value -->
+			<img data-bind="attr: {'src': value}"/>
+			<div class="actions">
+	            <button
+	                type="button"
+	                class="action-remove"
+	                attr="title: $t('Delete image')"
+	                click="removeImage" data-bind="clickBubble: false">
+	                <span translate="'Delete image'"/>
+	            </button>
+				<button type="button" class="action-insert" attr="title: $t('Insert image')" click="openFileManager" data-bind="clickBubble: false"><span translate="'Insert image'"/></button>
+	        </div>
+        <!-- /ko -->
+	</div>
+
+	<input class="admin__control-text" type="hidden"
+	   data-bind="
+	    event: {change: loadImage},
+	    hasFocus: focused,
+	    valueUpdate: valueUpdate,
+	    attr: {
+	        name: inputName,
+	        placeholder: placeholder,
+	        'aria-describedby': noticeId,
+	        id: getPreviewUid(),
+	        disabled: disabled
+	}"/>
+	<input data-bind="value: value" class="admin__control-text uibuilder-element-image-link" placeholder="Image Url"/>
+</div>

@@ -1,0 +1,51 @@
+<?php
+/** @var \PluginCompany\ProductPdf\Block\Pdf\Content\BundleOptions $this */
+?>
+<?php if($this->getGroupConfigFlag('bundle_product/add_pagebreak')){ ?>
+    <pagebreak />
+<?php } ?>
+<div class="section section-configurable-options attribute-options">
+    <h3 class="section-title">
+        <?php echo __('Product Options');?>
+    </h3>
+    <?php
+    foreach ($this->getOptions() as $optionGroup) {
+        if(!$optionGroup->getSelections()) {
+            continue;
+        }
+    ?>
+        <table autosize="1" class="product-options bundle-options-table">
+            <tr>
+                <td class="bundle-option-subsection-title" colspan="2">
+                    <b><?php echo __($optionGroup->getTitle()); ?></b>
+                </td>
+            </tr>
+            <?php $i = 0;
+            foreach($optionGroup->getSelections() as $item){ ?>
+                <tr class="<?php echo $this->getRowClass($i); ?>">
+                    <td>
+                        <img class="bundle-option-image" src="<?php echo $this->getFullImageUrl($item->getThumbnail()); ?>" />
+                    </td>
+                    <td>
+                        <table class="bundle-option-details">
+                            <tr>
+                                <td class="bundle-option-name">
+                                    <?php echo $item->getName(); ?>
+                                </td>
+                                <td class="bundle-option-price">
+                                    <?php echo ($this->canShowPrice()) ? $this->getFormattedItemPrice($item): ''; ?>
+                                </td>
+                            </tr>
+                            <tr class="<?php echo $this->getRowClass($i); ?>">
+                                <td class="bundle-option-description">
+                                    <?php echo __($item->getShortDescription()); ?>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <?php $i++;} ?>
+        </table>
+    <?php } ?>
+</div>

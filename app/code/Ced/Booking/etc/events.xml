@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Booking
+ * @author      CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="ced_booking_sales_model_service_quote_submit_before" instance="Ced\Booking\Observer\SalesModelServiceQuoteSubmitBeforeObserver" />
+    </event>
+
+    <!-- set data in ren_order table after place order -->
+    <event name="sales_order_place_after">
+        <observer name="ced_booking_order_place_after" instance="Ced\Booking\Observer\PlaceOrderAfter" />
+    </event>
+
+    <!-- invoice save after observer -->
+    <event name="sales_order_invoice_save_after">
+        <observer name="ced_booking_invoice_save_after" instance="Ced\Booking\Observer\InvoiceSaveAfter"/>
+    </event>
+
+    <!-- order cancel after observer -->
+    <event name="order_cancel_after">
+        <observer name="ced_booking_cancel_order_after" instance="Ced\Booking\Observer\CancelOrderAfter"/>
+    </event>
+
+    <!-- creditmemo after observer -->
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="ced_booking_creditmemo_save_after" instance="Ced\Booking\Observer\CreditmemoSaveAfter"/>
+    </event>
+
+    <event name="catalog_product_save_before">
+        <observer name="ced_event_catalog_product_save_before" instance="Ced\Booking\Observer\ProductSaveBefore"/>
+    </event>
+
+    <event name="sales_order_place_before">
+        <observer name="ced_appointment_order_place_before" instance="Ced\Booking\Observer\PlaceOrderBefore" />
+    </event>
+
+
+</config>

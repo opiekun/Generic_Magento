@@ -1,0 +1,21 @@
+{
+    "name": "weltpixel/m2-weltpixel-backend",
+    "description": "WeltPixel Backend Module",
+    "require": {
+        "magento/module-admin-notification": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.10.17",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "WeltPixel\\Backend\\": ""
+        }
+    }
+}

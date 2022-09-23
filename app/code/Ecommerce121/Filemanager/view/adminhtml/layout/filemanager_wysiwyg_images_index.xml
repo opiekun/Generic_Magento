@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<page layout="admin-1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Ecommerce121\Filemanager\Block\Adminhtml\Files\View" name="files.view"
+                   template="Ecommerce121_Filemanager::files/view.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

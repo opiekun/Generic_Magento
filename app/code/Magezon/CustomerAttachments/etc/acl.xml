@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://magezon.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_CustomerAttachments
+ * @copyright Copyright (C) 2018 Magezon (https://magezon.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magezon_Core::extensions" title="Magezon">
+                    <resource id="Magezon_CustomerAttachments::customerattachments" title="CustomerAttachments" sortOrder="10">
+                        <resource id="Magezon_CustomerAttachments::attachment" title="Attachment" translate="title" sortOrder="10">
+                            <resource id="Magezon_CustomerAttachments::attachment_save" title="Save Attachment" sortOrder="10" />
+                            <resource id="Magezon_CustomerAttachments::attachment_delete" title="Delete Attachment" sortOrder="20" />
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Magezon_CustomerAttachments::settings" title="CustomerAttachments" translate="title" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

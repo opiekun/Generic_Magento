@@ -1,0 +1,314 @@
+
+//
+//  Varialbes
+//  _____________________________________________
+
+@mobile-navigation-section__background: #CF202E;
+@mobile-navigation-list__background: @color-white;
+@mobile-navigation-link__font-size: 1.4rem;
+@mobile-navigation-link__color: @color-black;
+@mobile-navigation-link__border-color: #666666;
+@mobile-navigation-account-link__border-color: @color-white;
+@mobile-navigation-account-link__color: @color-white;
+@mobile-navigation-contact-link__border-color: #EDEDEE;
+@mobile-navigation-contact-link__color: @color-black;
+@mobile-navigation-call-us-text__font-size: 1.6rem;
+@mobile-navigation-call-us-link__font-size: 1.9rem;
+
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .ammenu-menu-wrapper {
+        .ammenu-menu-overlay {
+            background: #00000099;
+            top: 99px;
+            height: calc(~'100vh - 99px');
+        }
+    }
+    .ammenu-nav-sections {
+        &.-mobile {
+            max-width: 325px;
+            top: 99px;
+            background: @mobile-navigation-section__background;
+            height: calc(~'100vh - 99px');
+
+            .ammenu-items.-root {
+                background: @mobile-navigation-list__background;
+
+                &.-drill {
+                    padding-bottom: 0;
+                }
+                &.-account-links {
+                    background: transparent;
+                    margin-top: 5px;
+
+                    &> .ammenu-item {
+                        border-color: @mobile-navigation-account-link__border-color;
+
+                        .ammenu-link {
+                            color: @mobile-navigation-account-link__color;
+                            font-weight: 600;
+                            padding: 0 14px;
+                        }
+                        .ammenu-text {
+                            color: @mobile-navigation-account-link__color;
+                            position: relative;
+                            padding-right: 25px;
+                        }
+                        .contact-block {
+                            &._active {
+                                .ammenu-text {
+                                    &:before {
+                                        transform: translateY(-50%) rotate(180deg);
+                                    }
+                                }
+                            }
+                            .ammenu-text {
+                                &:before {
+                                    content: '\f107';
+                                    font-family: 'Font Awesome 5 Free';
+                                    font-size: 1.8rem;
+                                    font-weight: 900;
+                                    position: absolute;
+                                    top: 50%;
+                                    right: 0;
+                                    transform: translateY(-50%);
+                                }
+                            }
+                            .content {
+                                background: @mobile-navigation-list__background;
+                                padding: 10px 14px;
+
+                                .list-links-with-icon {
+                                    display: flex;
+                                    flex-wrap: nowrap;
+                                    justify-content: center;
+                                    padding-left: 0;
+
+                                    .contact-links {
+                                        color: @mobile-navigation-account-link__color;
+                                        font-weight: 700;
+                                        padding: 7px 15px 4px;
+                                        background: @mobile-navigation-section__background;
+                                        display: block;
+                                        margin-right: 10px;
+                                        text-align: center;
+
+                                        a {
+                                            color: @mobile-navigation-account-link__color;
+
+                                            &:active, &:hover {
+                                                color: @mobile-navigation-account-link__color;
+                                            }
+                                        }
+                                        &:last-child {
+                                            margin-right: 0;
+                                        }
+                                        &:before {
+                                            display: block;
+                                            font-family: "Font Awesome 5 Free";
+                                            font-size: @mobile-navigation-link__font-size;
+                                        }
+                                        &.phone {
+                                            &:before {
+                                                content: '\f3cd';
+                                            }
+                                        }
+                                        &.email {
+                                            &:before {
+                                                content: '\f0e0';
+                                                font-weight: 400;
+                                            }
+                                        }
+                                        &.chat {
+                                            &:before {
+                                                content: '\f086';
+                                                font-weight: 400;
+                                            }
+                                        }
+                                    }
+                                }
+                                .contact-links-list {
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    justify-content: center;
+                                    border-top: 1px solid @mobile-navigation-contact-link__border-color;
+                                    padding-top: 8px;
+                                    padding-left: 0;
+
+                                    .item {
+                                        display: block;
+                                        width: 100%;
+                                        line-height: 1.9rem;
+                                        padding-bottom: 9px;
+                                        margin-bottom: 0;
+
+                                        a {
+                                            color: @mobile-navigation-contact-link__color;
+
+                                            &:active, &:hover {
+                                                color: @mobile-navigation-contact-link__color;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        &.call-us-item {
+                            padding-top: 14px;
+                            border-bottom: none;
+                            font-size: @mobile-navigation-call-us-text__font-size;
+                            line-height: 2.2rem;
+                            font-weight: 400;
+
+                            span {
+                                color: @mobile-navigation-account-link__color;
+                                padding: 0 14px;
+                            }
+                            .ammenu-link {
+                                padding-top: 0;
+                                font-size: @mobile-navigation-call-us-link__font-size;
+                                line-height: 2.5rem;
+                                font-weight: 800;
+                                min-height: 0;
+                            }
+                        }
+                    }
+                }
+                &> .ammenu-item {
+                    border-color: @mobile-navigation-link__border-color;
+
+                    &> .ammenu-link {
+                        text-transform: none;
+                        font-size: @mobile-navigation-link__font-size;
+                        line-height: 1.9rem;
+                        font-weight: 600;
+                        color: @mobile-navigation-link__color;
+                        min-height: 41px;
+                        padding: 0 14px;
+                    }
+                }
+            }
+            .ammenu-text {
+                padding: 12px 0 11px;
+                text-transform: none;
+                color: @mobile-navigation-link__color;
+            }
+            &:not(.-has-icons) {
+                .ammenu-items.-root {
+                    & > .ammenu-item {
+                        & > .ammenu-link {
+                            &:before {
+                                content: none;
+                            }
+                        }
+                    }
+                }
+            }
+            .ammenu-toggle {
+                margin-left: 5px;
+                margin-bottom: 2px;
+
+                .ammenu-icon {
+                    transform: rotate(45deg);
+                    width: 8px;
+                    height: 8px;
+                }
+            }
+            &.-drill {
+                .ammenu-active-level {
+                    .ammenu-head {
+                        padding: 0 15px;
+                        background: @mobile-navigation-list__background;
+
+                        .ammenu-link {
+                            text-transform: none;
+                            font-size: @mobile-navigation-link__font-size;
+                            line-height: 2rem;
+                            font-weight: 700;
+                            color: @mobile-navigation-link__color;
+                            padding: 12px 0;
+
+                            &:before {
+                                content: '\f104';
+                                font-family: 'Font Awesome 5 Free';
+                                font-size: 20px;
+                                line-height: 20px;
+                                display: inline-block;
+                                margin-right: 13px;
+                            }
+                        }
+                        .ammenu-button {
+                            width: auto;
+                            height: auto;
+
+                            &.-prev {
+                                svg {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                    .ammenu-items {
+                        padding: 7px 17px 0 14px;
+                        background: @mobile-navigation-list__background;
+
+                        .ammenu-item {
+                            height: auto;
+                            border-color: @mobile-navigation-link__border-color;
+
+                            &:last-child {
+                                border-bottom: none;
+                            }
+                            .ammenu-link {
+                                justify-content: space-between;
+                                padding: 0;
+                            }
+                            .ammenu-toggle {
+                                width: 10px;
+                            }
+                            .ammenu-icon {
+                                color: @mobile-navigation-link__color;
+                                transform: rotate(315deg);
+                            }
+                            &:first-child {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                .ammenu-button {
+                    &.-go-main {
+                        display: none;
+                    }
+                    & + .ammenu-active-level {
+                        .ammenu-head {
+                            border-bottom: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .ammenu-tabs-list {
+        display: none;
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .ammenu-submenu-block {
+        &.-simple,
+        &.-builder.-root {
+            background: @color-white;
+            & {
+                background: @color-white;
+            }
+        }
+    }
+}

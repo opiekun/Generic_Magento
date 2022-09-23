@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="plugincompany" translate="label" sortOrder="20000" class="plugin-company-config-tab">
+            <label>Plugin Company</label>
+        </tab>
+        <section id="plugincompany_licensemanager" translate="label" sortOrder="0" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>License Manager</label>
+            <class>separator-top</class>
+            <tab>plugincompany</tab>
+            <resource>PluginCompany_LicenseManager::system_config</resource>
+            <group id="licenseManager"
+                   translate="label"
+                   type="text"
+                   showInDefault="1"
+            >
+                <frontend_model>PluginCompany\LicenseManager\Block\Adminhtml\System\Config\LicenseManagerFieldset</frontend_model>
+                <label>License Manager</label>
+            </group>
+        </section>
+    </system>
+</config>

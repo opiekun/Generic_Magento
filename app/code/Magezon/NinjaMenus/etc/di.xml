@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://www.magezon.com/license.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_NinjaMenus
+ * @copyright Copyright (C) 2019 Magezon (https://www.magezon.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magezon\NinjaMenus\Api\Data\MenuInterface" type="Magezon\NinjaMenus\Model\Menu" />
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Magezon\NinjaMenus\Api\Data\MenuInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">mgz_ninjamenus_menu</item>
+                    <item name="identifierField" xsi:type="string">menu_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Magezon\NinjaMenus\Api\Data\MenuInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="Magezon\NinjaMenus\Api\Data\MenuInterface" xsi:type="string">Magezon\NinjaMenus\Api\MenuRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Plugin\Model\Attribute\Backend\AttributeValidation">
+        <arguments>
+            <argument name="allowedEntityTypes" xsi:type="array">
+                <item name="ninjamenusMenu" xsi:type="string">Magezon\NinjaMenus\Api\Data\MenuInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Magezon\NinjaMenus\Api\Data\MenuInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="store" xsi:type="string">Magezon\NinjaMenus\Model\ResourceModel\Menu\Relation\Store\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="store" xsi:type="string">Magezon\NinjaMenus\Model\ResourceModel\Menu\Relation\Store\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="store" xsi:type="string">Magezon\NinjaMenus\Model\ResourceModel\Menu\Relation\Store\SaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magezon\NinjaMenus\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="default" xsi:type="object">Magezon\NinjaMenus\Model\DefaultConfigProvider</item>
+                <item name="modals" xsi:type="array">
+                    <item name="importCategories" xsi:type="array">
+                        <item name="name" xsi:type="string" translate="true">Import Categories</item>
+                        <item name="element" xsi:type="string">Magezon_NinjaMenus/js/modal/import-categories</item>
+                        <item name="class" xsi:type="string">Magezon\NinjaMenus\Data\Modal\ImportCategories</item>
+                        <item name="form" xsi:type="boolean">true</item>
+                        <item name="size" xsi:type="array">
+                            <item name="width" xsi:type="number">650</item>
+                        </item>
+                    </item>
+                </item>
+                <item name="directives" xsi:type="array">
+                    <item name="add-element" xsi:type="array">
+                        <item name="element" xsi:type="string">Magezon_NinjaMenus/js/builder/navbar/add</item>
+                        <item name="group" xsi:type="string">navbar</item>
+                        <item name="sortOrder" xsi:type="number">20</item>
+                    </item>
+                    <item name="import-categories" xsi:type="array">
+                        <item name="element" xsi:type="string">Magezon_NinjaMenus/js/builder/navbar/import-categories</item>
+                        <item name="group" xsi:type="string">navbar</item>
+                        <item name="sortOrder" xsi:type="number">30</item>
+                    </item>
+                    <item name="helper" xsi:type="array">
+                        <item name="disabled" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="modal_save" xsi:type="array">
+                        <item name="tag" xsi:type="array">
+                            <item name="importCategories" xsi:type="string">modal-importCategories-footer</item>
+                        </item>
+                    </item>
+                    <item name="modal_footer_close" xsi:type="array">
+                        <item name="tag" xsi:type="array">
+                            <item name="importCategories" xsi:type="string">modal-importCategories-footer</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magezon\Builder\Data\Groups">
+        <arguments>
+            <argument name="groups" xsi:type="array">
+                <item name="menu" xsi:type="array">
+                    <item name="name" xsi:type="string" translate="true">Menu</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magezon\Builder\Data\Elements">
+        <arguments>
+            <argument name="elements" xsi:type="array">
+                <item name="tabs" xsi:type="array">
+                    <item name="disabled" xsi:type="boolean">false</item>
+                </item>
+                <item name="single_image" xsi:type="array">
+                    <item name="disabled" xsi:type="boolean">false</item>
+                </item>
+                <item name="menu_item" xsi:type="array">
+                    <item name="name" xsi:type="string" translate="true">Menu Item</item>
+                    <item name="class" xsi:type="string">Magezon\NinjaMenus\Data\Element\Item</item>
+                    <item name="element" xsi:type="string">Magezon_NinjaMenus/js/builder/element/item</item>
+                    <item name="block" xsi:type="string">Magezon\NinjaMenus\Block\Element\Item</item>
+                    <item name="template" xsi:type="string">Magezon_NinjaMenus::element/item.phtml</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="icon" xsi:type="string">fas mgz-fa-bars</item>
+                    <item name="is_collection" xsi:type="boolean">true</item>
+                    <item name="icon_styles" xsi:type="array">
+                        <item name="background-color" xsi:type="string">#ed1d24</item>
+                    </item>
+                    <item name="group" xsi:type="string">content</item>
+                    <item name="area" xsi:type="string">menu</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

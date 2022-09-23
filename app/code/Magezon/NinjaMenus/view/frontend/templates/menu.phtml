@@ -1,0 +1,88 @@
+<?php
+$coreHelper                            = $this->helper('\Magezon\Core\Helper\Data');
+$builderHelper                         = $this->helper('\Magezon\Builder\Helper\Data');
+$menu                                  = $this->getCurrentMenu();
+$id                                    = $menu->getRandomId();
+$html                                  = $this->getProfileHtml();
+$type                                  = $menu->getType();
+$mobileType                            = $menu->getMobileType();
+$mobileBreakpoint                      = (int) $menu->getMobileBreakpoint() ? (int) $menu->getMobileBreakpoint() : 768;
+$sticky                                = $menu->getSticky();
+$hoverDelayTimeout                     = $menu->getHoverDelayTimeout();
+$hamburger                             = $menu->getHamburger();
+$haumburgerTitle                       = $menu->getHamburgerTitle();
+$customCss                             = $menu->getCustomCss();
+$mainColors['color']                   = $builderHelper->getStyleColor($menu->getData('main_color'));
+$mainColors['background-color']        = $builderHelper->getStyleColor($menu->getData('main_background_color'));
+$mainColors['font-size']               = $builderHelper->getStyleProperty($menu->getData('main_font_size'));
+$mainColors['font-weight']             = $menu->getData('main_font_weight');
+$mainStyles                            = $builderHelper->parseStyles($mainColors);
+$mainHoverColors['color']              = $builderHelper->getStyleColor($menu->getData('main_hover_color'));
+$mainHoverColors['background-color']   = $builderHelper->getStyleColor($menu->getData('main_hover_background_color'));
+$mainHoverStyles                       = $builderHelper->parseStyles($mainHoverColors);
+$secondColors['color']                 = $builderHelper->getStyleColor($menu->getData('secondary_color'));
+$secondColors['background-color']      = $builderHelper->getStyleColor($menu->getData('secondary_background_color'));
+$secondStyles                          = $builderHelper->parseStyles($secondColors);
+$secondHoverColors['color']            = $builderHelper->getStyleColor($menu->getData('secondary_hover_color'));
+$secondHoverColors['background-color'] = $builderHelper->getStyleColor($menu->getData('secondary_hover_background_color'));
+$secondHoverStyles                     = $builderHelper->parseStyles($secondHoverColors);
+?>
+<?php if ($menu->getId()) { ?>
+<?php if ($hamburger) { ?>
+	<div class="ninjamenus-hamburger-trigger">
+		<div class="menu-trigger-inner">
+			<span class="trigger-icon">
+				<span class="line"></span>
+				<span class="line"></span>
+				<span class="line"></span>
+			</span>
+			<?php if ($haumburgerTitle) { ?>
+				<span class="label"><?= $haumburgerTitle ?></span>
+			<?php } ?>
+		</div>
+	</div>
+<?php } ?>
+<div id="<?= $id ?>" class="ninjamenus <?= ($hamburger) ? 'ninjamenus-hamburger-menu' : '' ?> ninjamenus-<?= $type ?> ninjamenus-mobile-<?= $mobileType ?> ninjamenus-desktop <?= $menu->getCssClasses() ?> <?= $this->getCustomClasses() ?>" data-type="<?= $type ?>" data-mobile-type="<?= $mobileType ?>" data-mage-init='{"ninjamenus": {"id": "<?= $id ?>","mobileBreakpoint": <?= $mobileBreakpoint ?>, "stick": <?= $sticky ? 'true' : 'false' ?><?= !$coreHelper->isNull($hoverDelayTimeout) ? ',"hoverDelayTimeout":' . $hoverDelayTimeout : '' ?>}}'>
+	<?php if ($type == 'drilldown' || $mobileType == 'drilldown') { ?>
+	<div class="drilldown-root <?= $id ?>-drilldown-container">
+		<div class="drilldown-root <?= $id ?>-drilldown-root">
+	<?php } ?>
+    	<?= $html ?>
+    <?php if ($type == 'drilldown' || $mobileType == 'drilldown') { ?>
+		</div>
+	</div>
+	<?php } ?>
+	<?php if ($customCss) { ?><style><?= $customCss ?></style><?php } ?>
+</div>
+<?php if ($mainStyles || $mainHoverStyles || $secondStyles || $secondHoverStyles) { ?>
+<style class="mgz-style">
+	<?php if ($mainStyles) { ?>
+	#<?= $id ?>.ninjamenus.ninjamenus-desktop .level0 > a {<?= $mainStyles ?>}
+	<?php } ?>
+	<?php if ($mainHoverStyles) { ?>
+	#<?= $id ?>.ninjamenus.ninjamenus-desktop .level0:hover > a {<?= $mainHoverStyles ?>}
+	<?php } ?>
+	<?php if ($secondStyles) { ?>
+	#<?= $id ?>.ninjamenus.ninjamenus-desktop .level0 .item-submenu .nav-item > a{<?= $secondStyles ?>}
+	<?php } ?>
+	<?php if ($secondHoverStyles) { ?>
+	#<?= $id ?>.ninjamenus.ninjamenus-desktop .level0 .item-submenu .nav-item > a:hover,#<?= $id ?> .level0 .item-submenu .nav-item.active > a:hover {<?= $secondHoverStyles ?>}
+	<?php } ?>
+</style>
+<?php } ?>
+<?php } ?>
+<?php if ($menu->getIdentifier() == 'top-menu' && $menu->getOverlay()) { ?>
+<div class="ninjamenus-top-overlay" <?= $menu->getOverlayOpacity() ? 'style="opacity: ' . (float)$menu->getOverlayOpacity() . '"' : '' ?>></div>
+<script type="text/javascript">
+	require(['jquery'], function($) {
+		$('.ninjamenus-top-overlay').appendTo('.page-wrapper');
+		$('.ninjamenus-top').hover(function() {
+			$('.nav-sections').css('z-index', 999);
+			$('.ninjamenus-top-overlay').fadeIn(400);
+		}, function() {
+			$('.nav-sections').css('z-index', '');
+			$('.ninjamenus-top-overlay').fadeOut(400);
+		});
+	})
+</script>
+<?php } ?>

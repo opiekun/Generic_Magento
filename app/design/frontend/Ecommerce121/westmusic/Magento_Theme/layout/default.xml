@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_width" xsi:type="number">300</argument>
+                <argument name="logo_height" xsi:type="number">70</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Cms\Block\Block" name="header_call_us_block" after="header_contact_us_block">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header_call_us_block</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="header_contact_us_block" after="minicart">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header_contact_us_block</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="header.container">
+            <container name="navbar.panel.wrapper"  htmlTag="div" htmlClass="navbar-panel-wrapper">
+                <container name="navbar.panel" htmlTag="div" htmlClass="navbar-panel">
+                    <container name="navbar.user.links" htmlTag="div" htmlClass="user-links" after="-"/>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <referenceContainer name="cms_footer_links_container">
+            <block class="Magento\Cms\Block\Block" name="footer_links_block">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">footer_links_block</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <container name="footer.panel.bottom.container" htmlTag="div" htmlClass="footer-bottom-container">
+                <container name="footer.panel.bottom" htmlTag="div" htmlClass="footer-bottom">
+                    <block class="Magento\Cms\Block\Block" name="footer_bottom_links" after="-">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer_bottom_links</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+        <referenceBlock name="form.subscribe">
+            <block class="Magento\Cms\Block\Block" name="footer_social_media" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">footer_social_media</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="register-link">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Create a Personal Account</argument>
+                <argument name="class" xsi:type="string" translate="true">create-account</argument>
+                <argument name="sortOrder" xsi:type="number">10</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="register-company-customer" template="Magento_Theme::link.phtml">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Create a Business Account</argument>
+                <argument name="class" xsi:type="string" translate="true">create-b2b-account</argument>
+                <argument name="sortOrder" xsi:type="number">20</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="footer_links" remove="true" />
+        <referenceBlock name="report.bugs" remove="true"/>
+
+        <move element="copyright" destination="footer.panel.bottom" before="-"/>
+        <move element="navigation.sections" destination="navbar.panel" before="-" />
+        <move element="authorization-link" destination="navbar.user.links" before="-" />
+        <move element="top.links" destination="navbar.user.links" after="-" />
+    </body>
+</page>

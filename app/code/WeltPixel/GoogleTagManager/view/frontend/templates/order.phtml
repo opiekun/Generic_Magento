@@ -1,0 +1,43 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php if($this->isEnabled()) : ?>
+    <?php
+
+    $helper = $this->helper('WeltPixel\GoogleTagManager\Helper\Data');
+    $order = $this->getOrder();
+
+    if ($this->isFreeOrderTrackingAllowedForGoogleAnalytics()) :
+        $products = $this->getProducts();
+
+        $purchaseData = [];
+        $purchaseData['actionField'] = [
+            'id' => $order->getIncrementId(),
+            'affiliation' => $helper->getAffiliationName(),
+            'revenue' => $this->getOrderTotal(),
+            'coupon' => (string)$order->getCouponCode(),
+            'tax' => $order->getTaxAmount(),
+            'shipping' => $order->getShippingAmount()
+        ];
+
+        $purchaseData['products'] = $products;
+
+        $this->setEcommerceData('purchase', $purchaseData);
+        $this->setEcommerceData('currencyCode', $this->getCurrencyCode());
+    endif;
+
+    if ($helper->isAdWordConversionTrackingEnabled() && $this->isFreeOrderAllowedForAdwordsConversionTracking()) :
+        $this->setDataLayerOption(\WeltPixel\GoogleTagManager\Model\Api\ConversionTracking::FIELD_CONVERSION_TRACKING_CONVERSION_VALUE, $this->getOrderTotal());
+        $this->setDataLayerOption(\WeltPixel\GoogleTagManager\Model\Api\ConversionTracking::FIELD_CONVERSION_TRACKING_ORDER_ID, $order->getIncrementId());
+    endif;
+
+    if ($helper->isAdWordsRemarketingEnabled() && $this->isFreeOrderAllowedForAdwordsRemarketing()):
+        $remarketingData = [];
+        $remarketingData['ecomm_pagetype'] = \WeltPixel\GoogleTagManager\Model\Api\Remarketing::ECOMM_PAGETYPE_PURCHASE;
+        $remarketingData['ecomm_prodid'] = $this->getProductIds();
+        $remarketingData['ecomm_totalvalue'] = number_format($this->getOrderTotal(), 2, '.', '');
+        $this->setDataLayerOption('google_tag_params', $remarketingData);
+    endif;
+
+    ?>
+<?php endif; ?>

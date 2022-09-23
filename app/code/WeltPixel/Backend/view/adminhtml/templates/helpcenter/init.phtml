@@ -1,0 +1,11 @@
+<div>
+    <input type="hidden" name="wp_base_url_jscolor" id="wp_base_url_jscolor" value="<?php echo $this->getViewFileUrl('WeltPixel_Backend::jscolor'); ?>" />
+</div>
+<script>
+    requirejs(['jquery' ],
+        function ($) {
+            $(document).ready(function() {
+                $('.item-weltpixel-helpcenter a').attr('href', 'https://support.weltpixel.com/hc/en-us').attr('target', '_blank');
+            });
+        });
+</script>

@@ -1,0 +1,23 @@
+<?php /** @var $block Ecommerce121\CompanyCustomer\Block\Form\Login\Info */ ?>
+<div class="block block-new-company">
+    <div class="block-title">
+        <strong role="heading" aria-level="2"><?= $block->escapeHtml(__('New Company Registration')) ?></strong>
+    </div>
+    <div class="block-content" aria-labelledby="block-new-company-heading">
+        <p>
+            <?= $block->escapeHtml(__(
+                'If you represent a school, company, or institution, please create a business account. ' .
+                'Creating a business account grants you access to B2B features like quoting, tax ' .
+                'exemption, and purchase orders.'
+            )) ?>
+        </p>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <a href="<?= $block->escapeUrl($block->getHref()) ?>"
+                   class="action create primary">
+                    <span><?= $block->escapeHtml(__('Create Company Account')) ?></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

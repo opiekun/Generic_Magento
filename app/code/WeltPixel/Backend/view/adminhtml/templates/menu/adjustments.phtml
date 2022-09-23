@@ -1,0 +1,38 @@
+<script>
+    requirejs(['jquery' ],
+        function   ($) {
+            $(document).ready(function() {
+                var wpSubmenu = $('#menu-weltpixel-backend-weltpixel > .submenu');
+                function wpAdjustMenuWidth() {
+                    var windowWidth = $(window).width() - 80;
+
+                    if (wpSubmenu && wpSubmenu.length) {
+                        if (wpSubmenu[0].scrollWidth > windowWidth) {
+                            wpSubmenu.css({
+                                'overflow-x': 'scroll',
+                                'width': windowWidth - 20,
+                                'max-width': windowWidth - 20
+                            });
+                        } else {
+                            wpSubmenu.css({
+                                'overflow-x': 'initial',
+                                'width': 'initial',
+                                'max-width': 'initial'
+                            });
+                        }
+                    }
+                }
+
+
+                wpAdjustMenuWidth();
+                $(window).resize(function(){
+                    wpAdjustMenuWidth();
+                });
+
+                $(wpSubmenu).on('scroll', function(event) {
+                    $('.action-close').css('right', ( -1 * wpSubmenu.scrollLeft()) + 'px');
+                });
+
+            });
+        });
+</script>

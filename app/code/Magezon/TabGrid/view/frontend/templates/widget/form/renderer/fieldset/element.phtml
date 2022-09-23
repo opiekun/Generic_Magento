@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/* @var $block \Magezon\TabGrid\Block\Widget\Form\Renderer\Fieldset\Element */
+$element = $block->getElement();
+$note = $element->getNote() ? '<div class="note mgz__field-note" id="' . $element->getId() . '-note">' . $element->getNote() . '</div>' : '';
+$elementBeforeLabel = $element->getExtType() == 'checkbox mgz__control-checkbox' || $element->getExtType() == 'radio mgz__control-radio';
+$addOn = ($element->getBeforeElementHtml() || $element->getAfterElementHtml()) && !$element->getNoWrapAsAddon();
+$fieldId = ($element->getHtmlContainerId()) ? ' id="' . $element->getHtmlContainerId() . '"' : '';
+$fieldClass = "mgz__field field field-{$element->getId()} {$element->getCssClass()}";
+$fieldClass .= ($elementBeforeLabel) ? ' choice' : '';
+$fieldClass .= ($addOn) ? ' with-addon' : '';
+$fieldClass .= ($element->getRequired()) ? ' required _required' : '';
+$fieldClass .= ($note) ? ' with-note' : '';
+$fieldClass .= (!$element->getLabelHtml()) ? ' no-label' : '';
+
+$fieldAttributes = $fieldId . ' class="' . $fieldClass . '" '
+    . $block->getUiId('form-field', $element->getId())
+    . ($element->getFieldExtraAttributes() ? ' ' . $element->getFieldExtraAttributes() : '');
+
+$classes = ['mgz__control-text', 'mgz__control-textarea', 'mgz__control-select', 'mgz__control-multiselect'];
+foreach ($classes as $_class) {
+    $element->removeClass($_class);
+}
+$elementLabel = str_replace("mgz__field-label", "", $element->getLabelHtml('', $element->getScopeLabel()));
+
+?>
+
+<?php if (!$element->getNoDisplay()): ?>
+    <?php if ($element->getType() == 'hidden'): ?>
+        <?php echo $element->getElementHtml() ?>
+    <?php else: ?>
+    <div<?php /* @escapeNotVerified */ echo $fieldAttributes ?>>
+        <?php if ($elementBeforeLabel): ?>
+            <?php echo $element->getElementHtml() ?>
+            <?php echo $elementLabel ?>
+            <?php /* @escapeNotVerified */ echo $note ?>
+        <?php else: ?>
+            <?php echo $elementLabel ?>
+            <div class="mgz__field-control control">
+                <?php /* @escapeNotVerified */ echo($addOn) ? '<div class="mgz__field">' . str_replace("mgz__", "mgz__", $element->getElementHtml()) . '</div>' : str_replace("mgz__", "mgz__", $element->getElementHtml()); ?>
+                <?php /* @escapeNotVerified */ echo $note ?>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php endif; ?>
+<?php endif; ?>

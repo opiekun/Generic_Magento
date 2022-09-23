@@ -1,0 +1,41 @@
+<table autosize="2" class="gallery medium-main-2c-side-3c-bottom single-image-medium">
+    <tr>
+        <td class="centerimage main-image-medium-2col col-sm-8">
+            <img class="img-responsive" src="<?php echo $this->getMainImageUrl(); ?>" />
+        </td>
+        <td class="col-sm-4">
+            <table class="gallery col2-right-gallery">
+                <?php
+                $i = 0;
+                foreach($this->getMediaGalleryImagesSelection(1,6) as $image){ ?>
+                    <?php if($i % 2 == 0){ ?>
+                        <tr>
+                    <?php } ?>
+                    <td class="centerimage col-sm-6" style="max-width:150px;">
+                        <img class="img-responsive" style="max-width:150px" src="<?php echo $image->getUrl(); ?>" />
+                    </td>
+                    <?php if($i % 2 == 1 || $i == ($this->getSelectionImageCount(1, 6) - 1)){ ?>
+                        </tr>
+                    <?php }
+                    $i++;
+                } ?>
+            </table>
+        </td>
+    </tr>
+</table>
+<table class="gallery medium-main-2c-side-3c-bottom bottom-gallery">
+    <?php
+    $i = 0;
+    foreach($this->getMediaGalleryImagesSelection(7, 100) as $image){ ?>
+        <?php if($i % 3 == 0){ ?>
+            <tr>
+        <?php } ?>
+        <td class="centerimage col-sm-4">
+            <img class="img-responsive" style="max-width:33.33%" src="<?php echo $image->getUrl(); ?>" />
+        </td>
+        <?php if($i % 3 == 1 || $i == ($this->getSelectionImageCount(5, 100) - 1)){ ?>
+            </tr>
+        <?php }
+        $i++;
+    } ?>
+</table>

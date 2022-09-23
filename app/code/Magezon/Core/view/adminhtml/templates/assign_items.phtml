@@ -1,0 +1,28 @@
+<?php
+ /**
+ * @var $block dynamic|\Magento\Backend\Block\Template
+ */
+$blockGrid        = $block->getBlockGrid();
+$gridJsObjectName = $blockGrid->getJsObjectName();
+$id               = 'in_items' . time() . uniqid();
+?>
+<?= $block->getGridHtml() ?>
+<?php if ($block->getElementName() && $block->getFormPart()): ?>
+<input type="hidden" name="<?php echo $block->getElementName(); ?>" id="<?php echo $id ?>" data-form-part="<?php echo $block->getFormPart() ?>" value="" />
+<script type="text/x-magento-init">
+    {
+        "*": {
+        "Magezon_Core/js/form/assign-items": {
+                "selectedItems": <?= /* @escapeNotVerified */ $block->getJson() ?>,
+                "gridJsObjectName": <?= /* @escapeNotVerified */ '"' . $gridJsObjectName . '"' ?: '{}' ?>,
+                "selector": "<?php echo $id ?>",
+                "ajaxParam": "<?php echo $block->getAjaxParam() ? $block->getAjaxParam() : 'selected_products' ?>"
+            }
+        }
+    }
+</script>
+<!-- @todo remove when "UI components" will support such initialization -->
+<script>
+    require('mage/apply/main').apply();
+</script>
+<?php endif; ?>

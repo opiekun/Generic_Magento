@@ -1,0 +1,41 @@
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+	.columns {
+		.column.main {
+			max-width: 100%;
+		}
+	}
+	.owl-carousel {
+		.owl-item {
+			.product-item {
+				.product-item-info {
+					background: none transparent !important;
+					box-shadow: none;
+					-o-box-shadow: none;
+					-ms-box-shadow: none;
+					-moz-box-shadow: none;
+					-webkit-box-shadow: none;
+				}
+			}
+		}
+	}
+}
+
+.block.crosssell{
+	.owl-stage{
+		.owl-item{
+			.product-item{
+				width: 89% !important;
+			}
+		}
+	}
+}
+
+.clearfix {
+	*zoom: 1;
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+		height: 0;
+	}
+}

@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /** @var $block \Magento\Catalog\Block\Product\Image */ ?>
+
+<img class="photo image <?php if ($block->getLazyLoad()): echo 'owl-lazy'; endif; ?>"
+     <?php /* @escapeNotVerified */ echo $block->getCustomAttributes(); ?>
+     <?php if (!$block->getLazyLoad()): ?>
+     src="<?php /* @escapeNotVerified */ echo $block->getImageUrl(); ?>"
+     <?php endif; ?>
+     <?php if ($block->getHoverImageUrl()) :  ?>
+     data-hoversrc="<?php /* @escapeNotVerified */ echo $block->getHoverImageUrl(); ?>"
+     onmouseover="this.setAttribute('data-tmp', this.src);this.src=this.getAttribute('data-hoversrc');"
+     onmouseout="this.src=this.getAttribute('data-tmp')"
+     onmousemove="if (this.getAttribute('data-hoversrc') != this.src) this.setAttribute('data-tmp', this.src)"
+     <?php endif; ?>
+     width="<?php /* @escapeNotVerified */ echo $block->getWidth(); ?>"
+     height="<?php /* @escapeNotVerified */ echo $block->getHeight(); ?>"
+     alt="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>"
+    <?php if ($block->getLazyLoad()): ?>
+    data-src="<?php /* @escapeNotVerified */ echo $block->getImageUrl(); ?>"
+    data-src-retina="<?php /* @escapeNotVerified */ echo $block->getImageUrl(); ?>"
+    <?php endif; ?>
+/>

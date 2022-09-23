@@ -1,0 +1,80 @@
+<?php
+/** @var \Magento\Catalog\Block\Product\View\Details $block */
+?>
+<?php if ($detailedInfoGroup = $block->getGroupSortedChildNames('detailed_info', 'getChildHtml')) :?>
+    <div class="product info detailed">
+        <?php $layout = $block->getLayout(); ?>
+        <div class="product data items">
+            <div class="product-details-title-wrapper">
+                <div class="titles-content">
+                <?php foreach ($detailedInfoGroup as $name) :?>
+                    <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                    ?>
+                    <div class="data item title"
+                         data-role="collapsible"
+                         role="tab" id="tab-label-<?= $block->escapeHtmlAttr($alias) ?>">
+                        <a class="data switch"
+                           tabindex="-1"
+                           data-toggle="trigger"
+                           href="#<?= $block->escapeUrl($alias) ?>"
+                           id="tab-label-<?= $block->escapeHtmlAttr($alias) ?>-title">
+                            <?= /* @noEscape */ $label ?>
+                        </a>
+                    </div>
+                <?php endforeach;?>
+                </div>
+            </div>
+            <div class="product-details-content-wrapper">
+                <?php foreach ($detailedInfoGroup as $name) :?>
+                    <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                    ?>
+                    <div class="data item content"
+                         aria-labelledby="tab-label-<?= $block->escapeHtmlAttr($alias) ?>-title" id="<?= $block->escapeHtmlAttr($alias) ?>" data-role="content">
+                        <div class="content-block">
+                            <h2 class="<?= $block->escapeHtmlAttr($alias) ?>-title"><span><?= /* @noEscape */ $label ?></span></h2>
+                            <?= /* @noEscape */ $html ?>
+                        </div>
+                    </div>
+                <?php endforeach;?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script>
+    require(['jquery'], function($) {
+        var urlHash = window.location.hash;
+        $('#tab-label-' + urlHash.substring(1, urlHash.length)).addClass('active');
+        console.log(urlHash);
+
+        if(urlHash) {
+            $('html, body').animate({
+                scrollTop: $("#" + urlHash.substring(1, urlHash.length)).offset().top - 61
+            }, 600);
+        }
+
+        var dataTitle = $('.product .data.title');
+        dataTitle.on('click', function () {
+            dataTitle.removeClass('active');
+            $(this).addClass('active');
+            var anchor = $(this).find('a').attr('href');
+            anchor = anchor.substring(1, anchor.length);
+
+            $('html, body').animate({
+                scrollTop: $("#" + anchor).offset().top - 61
+            }, 600);
+        })
+    });
+</script>

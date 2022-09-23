@@ -1,0 +1,12 @@
+<label class="mgz__field-label" for="{{ ::id }}" ng-if="to.label" ng-class="{'mgz__collapsible-title': to.collapsible, '_show': to.opend}" ng-click="to.opend=!to.opend">
+	<span>{{ ::to.label }}</span>
+</label>
+<div formly-form 
+	model="model"
+   	fields="options.fieldGroup"
+   	options="options.options"
+   	form="options.form"
+   	ng-class="{'mgz__collapsible-content': to.collapsible, '_show': to.opend}"
+   	ng-if="to.opend||!to.collapsible"
+   	class="mgz__field-group-columns mgz__control-group-equal {{ ::to.additionalClasses }}" >
+</div>

@@ -1,0 +1,15 @@
+.different-slot-for-weekdays-container .admin__field-complex-elements {
+float: none;
+max-width: 100%;
+}
+
+.different-slot-for-weekdays-container > .admin__field-complex-elements .admin__field-complex-title {
+width: 18%;
+float: left;
+margin-left: 80px;
+}
+.different-slot-for-weekdays-container > .admin__field-complex-elements .admin__field-complex-elements {
+max-width: 70%;
+float: left;
+width: 100%;
+}

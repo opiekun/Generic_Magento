@@ -1,0 +1,22 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Booking
+ * @author      CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+?>
+<?php if ($this->helper('Ced\Booking\Helper\Data')->getStoreConfig('booking/booking_config/enable')) : ?>
+    <?php $_product = $block->getProduct(); ?>
+    <?= $this->helper('Magento\Catalog\Helper\Output')->productAttribute($_product, $_product->getBookingTermsAndCondition(), 'booking_terms_and_condition'); ?>
+<?php endif; ?>

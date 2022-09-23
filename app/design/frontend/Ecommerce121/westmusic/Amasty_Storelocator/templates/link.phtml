@@ -1,0 +1,15 @@
+<?php
+/** @var \Amasty\Storelocator\Block\Location $block */
+if ($block->getProduct()) {
+    if (!$block->getRequest()->getParam("product")) {
+        $productId = $block->getProduct()->getId();
+    }
+    $locationCollection = $block->getLocationCollection();
+
+    if (count($locationCollection) > 0 && $block->isNeedToShowLink($locationCollection, $block->getProduct())) {
+        $target = $block->getTarget();
+        $linkText = $block->getLinkText();
+        echo '<div class="store-locator-link"><a href="' . $block->escapeHtml($block->getLinkToMap(["product" => $productId]))
+            . '"' . $block->escapeHtml($target) . '>' . $block->escapeHtml(__($linkText)) . '</a></div>';
+    }
+}

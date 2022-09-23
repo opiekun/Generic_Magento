@@ -1,0 +1,26 @@
+<script type="text/javascript">
+    // <![CDATA[
+    require([
+            'IWD_AddressValidation/js/opc',
+            'Magento_Checkout/js/model/payment/additional-validators',
+            'IWD_AddressValidation/js/model/address-validator'
+        ],
+        function (iwdAddressValidation, additionalValidators, addressValidator) {
+            var addressValidation = new iwdAddressValidation();
+            addressValidation.init({
+                addressValidationProcessor: '<?php echo $this->getAddressValidationProcessor() ?>',
+                urlValidation: '<?php echo $this->getValidateUrl(); ?>',
+                allowInvalidAddress: Boolean('<?php echo (int)$this->getAllowNotValidAddress(); ?>'),
+                content: {
+                    'header': '<?php echo __($this->getHelper()->getContentHeader()) ?>',
+                    'makeChoice': '',
+                    'updateAddress': '',
+                    'validatingAddress': ''
+                }
+            });
+            additionalValidators.registerValidator(addressValidator);
+
+        }
+    );
+    // ]]>
+</script>

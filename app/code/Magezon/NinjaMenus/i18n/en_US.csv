@@ -1,0 +1,154 @@
+Back,Back
+Delete,Delete
+"Are you sure you want to do this?","Are you sure you want to do this?"
+Save,Save
+"Save & New","Save & New"
+"Save & Duplicate","Save & Duplicate"
+"Save & Close","Save & Close"
+Identifier,Identifier
+Name,Name
+Status,Status
+Disabled,Disabled
+Enabled,Enabled
+"Add New Menu","Add New Menu"
+"Manage Menus","Manage Menus"
+Settings,Settings
+"User Guide","User Guide"
+"Change Log","Change Log"
+"Get Support","Get Support"
+Home,Home
+"Go to Home Page","Go to Home Page"
+"The menu has been deleted.","The menu has been deleted."
+"We can't find a menu to delete.","We can't find a menu to delete."
+"Ninja Menus","Ninja Menus"
+"This menu no longer exists.","This menu no longer exists."
+"Edit Menu","Edit Menu"
+"New Menu","New Menu"
+Menus,Menus
+"Manager Menus","Manager Menus"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"Menu not found.","Menu not found."
+"A total of %1 record(s) have been disabled.","A total of %1 record(s) have been disabled."
+"A total of %1 record(s) have been enabled.","A total of %1 record(s) have been enabled."
+"You saved the menu.","You saved the menu."
+"You duplicated the menu","You duplicated the menu"
+"Something went wrong while saving the menu.","Something went wrong while saving the menu."
+Title,Title
+"Sub Title","Sub Title"
+Type,Type
+"Use Category Name","Use Category Name"
+Category,Category
+"Search category by name","Search category by name"
+Page,Page
+"Search page by name","Search page by name"
+Product,Product
+"Search product by name","Search product by name"
+"Custom Link","Custom Link"
+Label,Label
+"Label Position","Label Position"
+Caret,Caret
+"Caret on Hover","Caret on Hover"
+"Hide below breakpoint","Hide below breakpoint"
+"Hide above breakpoint","Hide above breakpoint"
+"Add nofollow option to link","Add nofollow option to link"
+"Open New Tab","Open New Tab"
+"Hide on Sticky","Hide on Sticky"
+"Scroll To","Scroll To"
+"The selector for an item to scroll to when clicked, if present. Example: #section-1","The selector for an item to scroll to when clicked, if present. Example: #section-1"
+Alignment,Alignment
+Style,Style
+"Item Padding","Item Padding"
+"Item Font Size","Item Font Size"
+"Item Font Weight","Item Font Weight"
+"Item Colors","Item Colors"
+Normal,Normal
+"Text Color","Text Color"
+"Background Color","Background Color"
+Hover,Hover
+Active,Active
+"Label Colors","Label Colors"
+"Item Inline CSS","Item Inline CSS"
+Icon,Icon
+"Show Icon","Show Icon"
+Position,Position
+"Icon on Hover","Icon on Hover"
+"Icon Color","Icon Color"
+"Custom Classes","Custom Classes"
+Submenu,Submenu
+Width,Width
+"Submenu Desktop Padding","Submenu Desktop Padding"
+"Submenu Mobile Padding","Submenu Mobile Padding"
+"Animation In","Animation In"
+"Animation Out","Animation Out"
+"Animation Duration(s)","Animation Duration(s)"
+"Inline CSS","Inline CSS"
+"Submenu Design","Submenu Design"
+"Category Link","Category Link"
+"Product Link","Product Link"
+"CMS Page Link","CMS Page Link"
+"Mega Submenu","Mega Submenu"
+"Stack Submenu","Stack Submenu"
+Center,Center
+"Left Edge of Menu Bar","Left Edge of Menu Bar"
+"Right Edge of Menu Bar","Right Edge of Menu Bar"
+"Left Edge of Parent Item","Left Edge of Parent Item"
+"Right Edge of Parent Item","Right Edge of Parent Item"
+"Left - Vertical - Full Height","Left - Vertical - Full Height"
+"Right - Vertical - Full Height","Right - Vertical - Full Height"
+"Top Left","Top Left"
+"Top Right","Top Right"
+Left,Left
+Right,Right
+General,General
+"Import Subcategories","Import Subcategories"
+"A menu url with the same properties already exists in the selected store.","A menu url with the same properties already exists in the selected store."
+Horizontal,Horizontal
+Vertical,Vertical
+Accordion,Accordion
+Drilldown,Drilldown
+Edit,Edit
+"Delete %1","Delete %1"
+"Are you sure you want to delete a %1 record?","Are you sure you want to delete a %1 record?"
+"Enable Menu","Enable Menu"
+"Menu Name","Menu Name"
+"Use <b>top-menu</b> to replace top navigation.","Use <b>top-menu</b> to replace top navigation."
+"Desktop Type","Desktop Type"
+"Mobile Type","Mobile Type"
+"Store View","Store View"
+"Advanced Settings","Advanced Settings"
+"Mobile Breakpoint(px)","Mobile Breakpoint(px)"
+"Enable Sticky Menu","Enable Sticky Menu"
+"Hamburger on Mobile","Hamburger on Mobile"
+"Hamburger Title","Hamburger Title"
+"CSS Classes","CSS Classes"
+"Custom CSS","Custom CSS"
+Styling,Styling
+"Main Font Size","Main Font Size"
+"Main Font Weight","Main Font Weight"
+"Main Color","Main Color"
+"Main Background Color","Main Background Color"
+"Main Hover Color","Main Hover Color"
+"Main Hover Background Color","Main Hover Background Color"
+"Secondary Color","Secondary Color"
+"Secondary Background Color","Secondary Background Color"
+"Secondary Hover Color","Secondary Hover Color"
+"Secondary Hover Background Color","Secondary Hover Background Color"
+Menu,Menu
+"General Settings","General Settings"
+"Current Version","Current Version"
+"Enable Ninja Menus","Enable Ninja Menus"
+"Import Categories","Import Categories"
+"Menu Item","Menu Item"
+"NinjaMenus Menu","NinjaMenus Menu"
+"Select Menu...","Select Menu..."
+"Menu Information","Menu Information"
+"Menu Builder","Menu Builder"
+"All Store Views","All Store Views"
+"Delete items","Delete items"
+"Are you sure you wan't to delete selected items?","Are you sure you wan't to delete selected items?"
+Enable,Enable
+Disable,Disable
+ID,ID
+Created,Created
+Modified,Modified
+top-menu,top-menu

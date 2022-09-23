@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+                id="WeltPixel_OwlCarouselSlider::owlcarouselslider"
+                title="Carousels Pro"
+                module="WeltPixel_OwlCarouselSlider"
+                sortOrder="130"
+                parent="WeltPixel_Backend::WeltPixel"
+                resource="WeltPixel_OwlCarouselSlider::owlcarouselslider"
+        />
+        <add
+                id="WeltPixel_OwlCarouselSlider::owlcarouselslider_general_configuration_carousel"
+                title="General Settings"
+                module="WeltPixel_OwlCarouselSlider"
+                action="adminhtml/system_config/edit/section/weltpixel_owl_slider_config/"
+                sortOrder="5"
+                parent="WeltPixel_OwlCarouselSlider::owlcarouselslider"
+                resource="WeltPixel_OwlCarouselSlider::owlcarouselslider_general_configuration_carousel"
+        />
+        <add
+                id="WeltPixel_OwlCarouselSlider::owlcarouselslider_products_sliders"
+                title="OWL Product Carousels"
+                module="WeltPixel_OwlCarouselSlider"
+                action="adminhtml/system_config/edit/section/weltpixel_owl_carousel_config/"
+                sortOrder="10"
+                parent="WeltPixel_OwlCarouselSlider::owlcarouselslider"
+                resource="WeltPixel_OwlCarouselSlider::owlcarouselslider_products_sliders"
+        />
+        <add
+                id="WeltPixel_OwlCarouselSlider::owlsliders"
+                title="Sliders Pro"
+                module="WeltPixel_OwlCarouselSlider"
+                sortOrder="140"
+                parent="WeltPixel_Backend::WeltPixel"
+                resource="WeltPixel_OwlCarouselSlider::owlcarouselslider"
+        />
+        <add
+                id="WeltPixel_OwlCarouselSlider::owlcarouselslider_general_configuration_slider"
+                title="General Settings"
+                module="WeltPixel_OwlCarouselSlider"
+                action="adminhtml/system_config/edit/section/weltpixel_owl_slider_config/"
+                sortOrder="5"
+                parent="WeltPixel_OwlCarouselSlider::owlsliders"
+                resource="WeltPixel_OwlCarouselSlider::owlcarouselslider_general_configuration_slider"
+        />
+        <add
+                id="WeltPixel_OwlCarouselSlider::owlcarouselslider_custom_banners"
+                title="Banners for Sliders"
+                module="WeltPixel_OwlCarouselSlider"
+                action="weltowlcarousel/banner"
+                sortOrder="10"
+                parent="WeltPixel_OwlCarouselSlider::owlsliders"
+                resource="WeltPixel_OwlCarouselSlider::owlcarouselslider_custom_banners"
+        />
+        <add
+                id="WeltPixel_OwlCarouselSlider::owlcarouselslider_custom_sliders"
+                title="Sliders Manager"
+                module="WeltPixel_OwlCarouselSlider"
+                action="weltowlcarousel/slider"
+                sortOrder="20"
+                parent="WeltPixel_OwlCarouselSlider::owlsliders"
+                resource="WeltPixel_OwlCarouselSlider::owlcarouselslider_custom_sliders"
+        />
+    </menu>
+</config>

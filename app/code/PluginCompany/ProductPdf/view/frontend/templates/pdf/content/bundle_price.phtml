@@ -1,0 +1,20 @@
+<?php /** @var $this \PluginCompany\ProductPdf\Block\Pdf\Content\Bundle\Price */ ?>
+<div class="price-box">
+    <div class="row">
+        <div class="from-label bundle-price-label col-sm-3">
+            <?php echo __('From: '); ?>
+        </div>
+        <div class="from-price price bundle-price col-sm-7">
+            <?php echo $this->getFormattedMinimalPrice(); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="to-label bundle-price-label col-sm-3">
+            <?php echo __('To: '); ?>
+        </div>
+        <div class="to-price price bundle-price col-sm-7">
+            <?php echo $this->getFormattedMaximalPrice(); ?>
+        </div>
+    </div>
+</div>
+

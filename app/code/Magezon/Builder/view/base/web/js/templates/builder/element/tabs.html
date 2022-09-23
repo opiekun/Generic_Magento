@@ -1,0 +1,56 @@
+<div ng-class="getClassess()" data-spacing="{{ getSpacing() }}" data-gap="{{ getGap() }}">
+	<div class="mgz-tabs-nav" 
+		dnd-list="element.elements" 
+		dnd-drop="mgz.dropElement(item, index, element)" 
+		dnd-allowed-types="[element.builder.children]">
+		<div ng-repeat="element in element.elements"
+			dnd-draggable="element" 
+			dnd-external-sources="false"
+			dnd-horizontal-list="true"
+			ng-class="{'mgz-active': element.builder.visible}"
+			ng-click="activeElement(element)"
+			dnd-effect-allowed="move"
+			dnd-type="element.type"
+			dnd-dragstart="mgz.onDragstart(element)"
+			dnd-dragend="mgz.onDragend(element)"
+			dnd-moved="mgz.onMoved(element)"
+			class="mgz-tabs-tab-title">
+			<a>
+				<i class="mgz-icon-element {{ element.icon }}" ng-if="element.add_icon&&element.icon&&element.icon_position=='left'"></i>
+				<span>{{ element.title }}</span>
+				<i class="mgz-icon-element {{ element.icon }}" ng-if="element.add_icon&&element.icon&&element.icon_position=='right'"></i>
+			</a>
+		</div>
+		<div class="dndPlaceholder mgz-placeholder" ng-class="getPlaceHolderClassess()"><a>PlaceHolder</a></div>
+		<div class="mgz-tabs-tab-title mgz-tabs-tab-add" 
+			ng-click="$root.$broadcast('addElement', {elem: element, type: element.builder.children, openModal: false })">
+			<a>
+				<i class="mgz-icon mgz-icon-add"></i>
+			</a>
+		</div>
+	</div>
+	<div class="mgz-tabs-content">
+		<div ng-repeat="element in element.elements"
+			ng-class="mgz.getWrapperClasses()"
+			ng-mouseenter="mgz.onMouseEnter($event)"
+			ng-mouseleave="mgz.onMouseLeave($event)"
+			dnd-effect-allowed="move"
+			dnd-type="element.type"
+			dnd-dragstart="mgz.onDragstart(element)"
+			dnd-dragend="mgz.onDragend(element)"
+			dnd-moved="mgz.onMoved(element)"
+			ng-if="element.builder.visible">
+			<div class="mgz-element-inner {{ mgz.getStyleHtmlId() }}"
+				dynamic-directive
+				element="element" 
+				element-name="mgz-element-{{ ::element.type }}"
+				dnd-disable-builder="!element.builder.is_collection"
+				dnd-disable-if="element.builder.dndDisabled" 
+				dnd-list="element.elements"
+				dnd-drop="mgz.dropElement(item, index, element)"
+				dnd-allowed-types="::element.builder.allowed_types"
+				>
+			</div>
+		</div>
+	</div>
+</div>

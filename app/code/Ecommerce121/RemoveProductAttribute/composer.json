@@ -1,0 +1,20 @@
+{
+    "name": "ecommerce121/module-remove-product-attribute",
+    "description": "n/a",
+    "version": "1.0.0",
+    "license": [
+        "proprietary"
+    ],
+    "type": "magento2-module",
+    "require": {
+        "php": "^7.4.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Ecommerce121\\RemoveProductAttribute\\": ""
+        }
+    }
+}

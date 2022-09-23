@@ -1,0 +1,142 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Booking
+ * @author      CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+?>
+<div class="panel panel-default">
+    <div class="panel-heading" style="margin:0">
+        <i class="fa fa-calendar-o"></i> <?= __('Booking Calendar'); ?>
+    </div>
+    <div class="panel-body">
+        <div id='booking_calendar'></div>
+    </div>
+</div>
+
+
+<div id="popup-modal" style="display: none;">
+    <div id="eventContent" title="Event Details">
+        Start: <span id="startTime"></span><br>
+        End: <span id="endTime"></span><br><br>
+        <p id="eventInfo"></p>
+        <p><strong><a id="eventLink" href="" target="_blank">Read More</a></strong></p>
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-4"><?= __('# Order'); ?></div>
+                    <div class="col-sm-8" id="booking_order"></div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-4"><?= __('Product'); ?></div>
+                    <div class="col-sm-8" id="product_details"></div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-4"><?= __('Booking From'); ?></div>
+                    <div class="col-sm-8" id="booking_from"></div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-4"><?= __('Booking To'); ?></div>
+                    <div class="col-sm-8" id="booking_to"></div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-4"><?= __('Qty'); ?></div>
+                    <div class="col-sm-8" id="booking_qty"></div>
+                </div>
+            </li>
+
+        </ul>
+
+
+    </div>
+</div>
+
+
+<div id="booking-popup-modal" style="display: none"></div>
+
+<script>
+
+    require([
+        'jquery',
+        'ced_fullcalendar',
+        'ced_moment',
+        "Magento_Ui/js/modal/modal"
+    ], function ($, fullCalendar, moment, modal) {
+
+
+        $('#booking_calendar').fullCalendar({
+            eventSources: [
+                {
+                    url: '<?= $this->getUrl('booking/dashboard/bookingStatusCalendar'); ?>?isAjax=true&form_key=<?= $block->getFormKey(); ?>',
+                    type: 'POST',
+                    showLoader: true,
+                    cache: true,
+                    error: function () {
+                        alert('there was an error while fetching events!');
+                    },
+
+                }
+            ],
+            header: {
+                left: '',
+                center: 'prev title next',
+                right: ''
+            },
+            eventClick: function (event) {
+                $.ajax({
+                    url: '<?= $this->getUrl('booking/dashboard/bookingDetails'); ?>',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: {
+                        order_id: event.booking_order_id,
+                        order_type: event.order_type,
+                        form_key: '<?= $block->getFormKey(); ?>'
+                    },
+                    showLoader: true,
+                    success: function (res) {
+                        $('#booking-popup-modal').css('display', 'block');
+                        $('#booking-popup-modal').html(res.template);
+                        var options = {
+                            responsive: true,
+                            innerScroll: true,
+                            title: 'Booking Details',
+                            buttons: [{
+                                text: $.mage.__('Close'),
+                                class: 'modal-btn',
+                                click: function () {
+                                    this.closeModal();
+                                }
+                            }]
+                        };
+                        var popup = modal(options, $('#booking-popup-modal'));
+
+                        $('#booking-popup-modal').modal('openModal');
+                    },
+                    error: function () {
+
+                    }
+                });
+            }
+        });
+    });
+</script>

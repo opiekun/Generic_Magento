@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="tigtax_zones_and_rates" instance="Ecommerce121\TigTax\Cron\TaxZonesAndRates" method="execute" >
+            <config_path>tax/tigtax/cron_expr</config_path>
+        </job>
+    </group>
+</config>

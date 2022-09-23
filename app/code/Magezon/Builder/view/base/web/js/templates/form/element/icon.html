@@ -1,0 +1,29 @@
+<div class="mgz-builder-icon-left">
+	<label class="mgz__field-label" for="{{::id}}" ng-if="to.label">
+		<span>{{to.label}} <span class="mgz-spinner" ng-if="to.loading"><i></i></span></span>
+	</label>
+	<div outside-click="outsideClick()">
+		<div class="mgz-icon-toolbar" ng-class="{'mgz-active': listVisible}">
+			<div class="mgz-selected-icon"><i class="{{ model[options.key] }}"></i><span class="mgz-icon mgz-icon-delete mgz-control-delete" ng-click="removeIcon()" ng-if="model[options.key]"></span></div>
+			<div class="mgz-selector-button" ng-click="listVisible = !listVisible"><i class="fas mgz-fa-arrow-up" ng-class="{'fa-arrow-down': listVisible,'fa-arrow-up': !listVisible}"></i></div>
+		</div>
+		<div class="mgz-icon-list" ng-show="listVisible">
+			<ui-select tagging="tagHandler" close="close" ng-model="model[options.key]" theme="bootstrap" class="mgz__control-uiselect" search-enabled="true">
+				<ui-select-match placeholder="{{to.placeholder}}"></ui-select-match>
+				<ui-select-choices ng-class="{'actvie': option[to.valueProp || 'value'] == model[options.key]}" repeat="option[to.valueProp || 'value'] as option in to.options | filter: $select.search"
+					refresh="to.refresh($select.search, options)"
+					refresh-delay="{{to.refreshDelay}}" position="down">
+					<i class="{{ option['value'] }}" title="{{ option[to.labelProp || 'label'] }}"></i>
+				</ui-select-choices>
+			</ui-select>
+		</div>
+	</div>
+</div>
+<div class="mgz-builder-icon-right">
+	<label class="mgz__field-label" for="{{::id}}-library" ng-if="to.label">
+		<span>{{to.iconLibraryLabel}}</span>
+	</label>
+	<div>
+		<select ng-model="font" class="mgz__control-select" id="{{::id}}-library" ng-options="option.value as option.label for option in fonts"></select>
+	</div>
+</div>

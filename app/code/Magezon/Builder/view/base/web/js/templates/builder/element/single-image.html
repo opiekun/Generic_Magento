@@ -1,0 +1,12 @@
+<div class="mgz-image-hovers">
+	<div class="mgz-single-image-wrapper {{ element.image_style }} {{ element.display_on_hover ? 'item-content-hover' : '' }}">
+		<div class="mgz-single-image-inner {{ element.content_position ? 'mgz-flex-position-' + element.content_position : '' }} {{ element.image_hover_effect ? 'hover-type-' + element.image_hover_effect : ''  }}">
+			<img ng-if="getSrc()" ng-src="{{ getSrc() }}" width="{{ element.image_width }}" height="{{ element.image_height }}"/>
+			<div ng-if="(element.title || element.description) && element.content_position && element.content_position != 'never'" class="image-content">
+				<div class="image-title" ng-if="element.title" ng-bind-html="element.title"></div>
+				<div class="image-description" ng-if="element.description" ng-bind-html="element.description"></div>
+			</div>
+		</div>
+		<div class="mgz-overlay" ng-if="element.overlay_color"></div>
+	</div>
+</div>

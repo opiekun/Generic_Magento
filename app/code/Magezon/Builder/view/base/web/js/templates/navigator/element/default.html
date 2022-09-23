@@ -1,0 +1,13 @@
+<div class="mgz-navigator-element-inner" 
+		ng-style="mgz.getStype()"
+		ng-init="elem=element;_bElem=elem.builder;_bElemChild=mgz.getBuilderElement(_bElem.children);"
+		ng-mouseenter="element.builder.navigator.controlVisible=true;$root.$broadcast('activeElement', element)"
+		ng-mouseleave="element.builder.navigator.controlVisible=false;$root.$broadcast('deactiveElement')"
+		ng-dblclick="$root.$broadcast('gotoElement', element, true)"
+	>
+	<i class="fas mgz-fa-ellipsis-v"></i>
+	<div class="mgz-navigator-element-title"><span content-editable="true" ng-model="element.builder.name"></span> <i class="fas mgz-fa-eye-slash"></i></div>
+	<div class="mgz-navigator-controls" ng-if="element.builder.navigator.controlVisible">
+		<ul magezon-builder-directive-list group="elemControl" tag="{{ element.type }}-elemControl" html-tag="li" element="elem"></ul>
+	</div>
+</div>

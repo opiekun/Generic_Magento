@@ -1,0 +1,8 @@
+<ul class="mgz-socialicons">
+	<li ng-repeat="item in element.items">
+		<a href="#" title="#">
+			<i id="{{ element.id }}-mgz-socialicons-item{{ $index }}" class="{{ item.icon }}"></i>
+		</a>
+		<a href="#" ng-if="element.follow_button" class="mgz-socialicons-follow-button">Follow</a>
+	</li>	
+</ul>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://magezon.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_CustomerAttachments
+ * @copyright Copyright (C) 2018 Magezon (https://magezon.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+    	<job name="attachmentrule_apply_all" instance="Magezon\CustomerAttachments\Model\Attachment\RuleCustomerProcessor" method="applyAllRules">
+			<schedule>0 1 * * *</schedule>
+		</job>
+		<job name="mca_delete_unusued_attachments" instance="Magezon\CustomerAttachments\Cron\CleanAttachments" method="execute">
+			<schedule>0 1 * * *</schedule>
+		</job>
+    </group>
+</config>

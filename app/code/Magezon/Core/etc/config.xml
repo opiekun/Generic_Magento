@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://www.magezon.com/license.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_Core
+ * @copyright Copyright (C) 2019 Magezon (https://www.magezon.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<mgz_chooser_widget>
+			<chooser_defaults>
+				<catalog_product_widget_chooser>
+					<input_label>Product</input_label>
+					<button_text>Select Product...</button_text>
+				</catalog_product_widget_chooser>
+				<catalog_category_widget_chooser>
+					<input_label>Category</input_label>
+					<button_text>Select Category...</button_text>
+				</catalog_category_widget_chooser>
+				<cms_block_widget_chooser>
+					<input_label>Block</input_label>
+					<button_text>Select Block...</button_text>
+				</cms_block_widget_chooser>
+				<cms_page_widget_chooser>
+					<input_label>CMS Page</input_label>
+					<button_text>Select CMS Page...</button_text>
+				</cms_page_widget_chooser>
+				<default>
+					<input_label>Element</input_label>
+					<button_text>Select...</button_text>
+				</default>
+			</chooser_defaults>
+		</mgz_chooser_widget>
+	</default>
+</config>

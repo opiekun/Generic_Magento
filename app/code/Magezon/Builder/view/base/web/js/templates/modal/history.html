@@ -1,0 +1,5 @@
+<div class="mgz-builder-history-item mgz-builder-history-item__action__{{ item.type }}" ng-repeat="item in $root.history | orderBy:'-'" ng-click="previewItem(item)" ng-class="{'mgz-builder-history-item_selected': item.selected}">
+	<span ng-bind-html="item.title"></span>
+	<span class="mgz-builder-history-item__date" title="{{ getDateTimeTitle(item) }}">{{ getDateTime(item) }}</span>
+	<span class="mgz-builder-history-item__apply" ng-click="applyItem(item)">Apply</span>
+</div>

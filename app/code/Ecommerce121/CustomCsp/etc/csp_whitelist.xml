@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="default-src">
+            <values>
+                <value id="aptrinsic-default-src" type="host">*.aptrinsic.com</value>
+                <value id="demdex-default-src" type="host">*.demdex.net</value>
+                <value id="demdex-default-src" type="host">assets.adobedtm.com</value>
+                <value id="demdex-default-src" type="host">*.typekit.net</value>
+                <value id="demdex-default-src" type="host">commerce.adobe.net</value>
+                <value id="demdex-default-src" type="host">amcglobal.sc.omtrdc.net</value>
+                <value id="demdex-default-src" type="host">fonts.googleapis.com</value>
+                <value id="demdex-default-src" type="host">fonts.gstatic.com</value>
+                <value id="demdex-default-src" type="host">*.adobe.io</value>
+                <value id="bc0a-src" type="host">*.bc0a.com</value>
+                <value id="data" type="host">data:</value>
+            </values>
+        </policy>
+        <policy id="script-src">
+            <values>
+                <value id="aptrinsic-script-src" type="host">*.aptrinsic.com</value>
+                <value id="demdex-script-src" type="host">*.demdex.net</value>
+                <value id="demdex-default-src" type="host">*.typekit.net</value>
+                <value id="demdex-default-src" type="host">commerce.adobe.net</value>
+                <value id="demdex-default-src" type="host">amcglobal.sc.omtrdc.net</value>
+                <value id="demdex-default-src" type="host">fonts.googleapis.com</value>
+                <value id="demdex-default-src" type="host">fonts.gstatic.com</value>
+                <value id="demdex-default-src" type="host">*.adobe.io</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="aptrinsic-connect-src" type="host">*.aptrinsic.com</value>
+                <value id="demdex-connect-src" type="host">*.demdex.net</value>
+                <value id="demdex-default-src" type="host">*.typekit.net</value>
+                <value id="demdex-default-src" type="host">commerce.adobe.net</value>
+                <value id="demdex-default-src" type="host">amcglobal.sc.omtrdc.net</value>
+                <value id="demdex-default-src" type="host">fonts.googleapis.com</value>
+                <value id="demdex-default-src" type="host">fonts.gstatic.com</value>
+                <value id="demdex-default-src" type="host">*.adobe.io</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="gravatar-src" type="host">*.gravatar.com</value>
+                <value id="zonos-src" type="host">*.zonos.com</value>
+                <value id="wp-src" type="host">*.wp.com</value>
+                <value id="bc0a-src" type="host">*.bc0a.com</value>
+            </values>
+        </policy>
+        <policy id="style-src">
+            <values>
+                <value id="unpkg-src" type="host">*.unpkg.com</value>
+            </values>
+        </policy>
+        <policy id="font-src">
+            <values>
+                <value id="data" type="host">data:</value>
+                <value id="unpkg-src" type="host">*.unpkg.com</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

@@ -1,0 +1,43 @@
+"Select Date","Select Date"
+Back,Back
+Reset,Reset
+Delete,Delete
+"Are you sure you want to do this?","Are you sure you want to do this?"
+Save,Save
+"Export block for grid %1 is not defined","Export block for grid %1 is not defined"
+"Reset Filter","Reset Filter"
+Search,Search
+Any,Any
+Yes,Yes
+No,No
+"All Countries","All Countries"
+From,From
+To,To
+"Date selector","Date selector"
+"All Store Views","All Store Views"
+"[ deleted ]","[ deleted ]"
+"Select All","Select All"
+" [deleted]"," [deleted]"
+"We couldn't find any records.","We couldn't find any records."
+"Add New","Add New"
+"Invalid export type supplied for grid export block","Invalid export type supplied for grid export block"
+Export,Export
+"Please correct the column format and try again.","Please correct the column format and try again."
+"Please select items.","Please select items."
+Submit,Submit
+"Unknown block type","Unknown block type"
+"Please correct the tab configuration and try again. Tab Id should be not empty","Please correct the tab configuration and try again. Tab Id should be not empty"
+"Please correct the tab configuration and try again.","Please correct the tab configuration and try again."
+"Additional Settings","Additional Settings"
+"Export to:","Export to:"
+"records found","records found"
+selected,selected
+"per page","per page"
+"Previous page","Previous page"
+"of %1","of %1"
+"Next page","Next page"
+Actions,Actions
+"Mass Actions","Mass Actions"
+"Unselect All","Unselect All"
+"Select Visible","Select Visible"
+"Unselect Visible","Unselect Visible"

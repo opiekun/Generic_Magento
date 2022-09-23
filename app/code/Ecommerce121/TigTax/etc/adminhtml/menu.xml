@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ecommerce121_TigTax::tigtax"
+             title="TigTax"
+             translate="title"
+             module="Ecommerce121_TigTax"
+             sortOrder="80"
+             parent="Magento_Backend::system"
+             dependsOnModule="Magento_AsynchronousOperations"
+             resource="Ecommerce121_TigTax::tigtax_error_logs" />
+
+        <add id="Ecommerce121_TigTax::tigtax_error_logs"
+             title="Error Logs"
+             translate="title"
+             module="Ecommerce121_TigTax"
+             sortOrder="10"
+             parent="Ecommerce121_TigTax::tigtax"
+             action="tigtax/error/messages"
+             resource="Ecommerce121_TigTax::tigtax_error_logs" />
+    </menu>
+</config>

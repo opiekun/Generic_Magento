@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <head>
+
+
+        <link src="Clearsale_Integration::js/clearsale/integration/jquery-2.1.1.min.js"/>
+        <link src="Clearsale_Integration::js/clearsale/integration/noconflict.js"/>
+        <link src="Clearsale_Integration::js/clearsale/integration/bootstrap.min.js"/>
+        <link src="Clearsale_Integration::js/clearsale/integration/formats.js"/>
+      <!--  <link src="Clearsale_Integration::js/clearsale/integration/timeago.js"/>
+        <link src="Clearsale_Integration::js/clearsale/integration/Plugin/morris.min.js"/>
+        <link src="Clearsale_Integration::js/clearsale/integration/Plugin/raphael.min.js"/>-->
+        <link src="Clearsale_Integration::js/clearsale/integration/Graphs/graph-data.js"/>
+
+         <css src="Clearsale_Integration::clearsale/integration/bootstrap.min.css"/>
+         <css src="Clearsale_Integration::clearsale/integration/dashboard.css"/>
+         <css src="Clearsale_Integration::clearsale/integration/app.css"/>
+         <css src="Clearsale_Integration::clearsale/integration/material-design-iconic-font.min.css"/>
+         <title>
+            Clearsale
+        </title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block template="Clearsale_Integration::integration/totalbackend.phtml" class="Clearsale\Integration\Block\Adminhtml\Totalbackend" name="totalbackend"/>
+        </referenceContainer>
+    </body>
+</page>

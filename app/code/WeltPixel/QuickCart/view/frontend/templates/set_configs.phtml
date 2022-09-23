@@ -1,0 +1,14 @@
+<?php $_helper = $this->helper('WeltPixel\QuickCart\Helper\Data'); ?>
+<?php if ($_helper->quicartIsEnabled()): ?>
+    <script>
+        window.openMinicart = '<?php /* @escapeNotVerified */ echo $_helper->openMinicart(); ?>';
+        window.shouldOpenMinicart = '1';
+        window.openMinicartDisplayOptions = '<?php /* @escapeNotVerified */ echo $_helper->getQuickCartDisplayOptions(); ?>';
+        requirejs(['jquery', 'weltpixel_quickcart' ], function($, quickcart) {
+            $(document).ready(function() {
+                var mobileBreakpoint = <?= ($_helper->getMobileBreakPoint() !== '' ? $_helper->getMobileBreakPoint() : '768' ); ?>;
+                quickcart.initialize(mobileBreakpoint);
+            });
+        });
+    </script>
+<?php endif; ?>

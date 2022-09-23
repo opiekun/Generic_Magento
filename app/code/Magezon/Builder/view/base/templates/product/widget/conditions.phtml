@@ -1,0 +1,26 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\CatalogWidget\Block\Product\Widget\Conditions $block */
+
+$fieldId         = ' id="' . uniqid() . time() . '"';
+$fieldClass      = 'field admin__field';
+$fieldAttributes = $fieldId . ' class="' . $fieldClass . '"';
+?>
+<div<?= /* @noEscape */ $fieldAttributes ?>>
+    <div class="control admin__field-control">
+        <div class="rule-tree">
+            <div class="rule-tree-wrapper">
+                <?= $block->getInputHtml() ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        "Magento_Rule/rules",
+        "prototype"
+    ], function(VarienRulesForm){
+        window.<?= $block->escapeJs($block->getHtmlId()) ?> = new VarienRulesForm('<?= $block->escapeJs($block->getHtmlId()) ?>', '<?= $block->escapeUrl($block->getNewChildUrl()) ?>');
+    });
+</script>

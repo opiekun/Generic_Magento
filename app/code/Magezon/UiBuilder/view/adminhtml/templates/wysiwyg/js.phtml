@@ -1,0 +1,129 @@
+<div class="uibuilder-loading" id="uibuilder-element-loading">
+    <div class="mgz__spinner">
+        <div class="spinner-item spinner-item-1"></div>
+        <div class="spinner-item spinner-item-2"></div>
+        <div class="spinner-item spinner-item-3"></div>
+        <div class="spinner-item spinner-item-4"></div>
+        <div class="spinner-item spinner-item-5"></div>
+        <div class="spinner-item spinner-item-6"></div>
+        <div class="spinner-item spinner-item-7"></div>
+        <div class="spinner-item spinner-item-8"></div>
+    </div>
+</div>
+<script>
+require([
+    "jquery",
+    "Magento_Ui/js/modal/modal",
+    "mage/adminhtml/wysiwyg/tiny_mce/setup",
+    "Magezon_Core/js/mage/browser",
+    "prototype",
+    "mage/adminhtml/events"
+], function(jQuery, modal) {
+
+//<![CDATA[
+
+Window.keepMultiModalWindow = true;
+var mgzUiBuilderWysiwygEditor = {
+    overlayShowEffectOptions : null,
+    overlayHideEffectOptions : null,
+    modal: null,
+    currentElementId: null,
+    open : function(editorUrl, elementId) {
+        this.currentElementId = elementId;
+        if (editorUrl && elementId) {
+           jQuery.ajax({
+                url: editorUrl,
+                data: {
+                    element_id: elementId + '_editor',
+                    store_id: '<?= /* @escapeNotVerified */ $block->getStoreId() ?>'
+                },
+                showLoader: true,
+                dataType: 'html',
+                success: function(data, textStatus, transport) {
+                    this.openDialogWindow(data, elementId);
+                }.bind(this)
+            });
+        }
+    },
+    openDialogWindow : function(data, elementId) {
+        var self = this;
+
+        if (this.modal) {
+            this.modal.html(jQuery(data).html());
+        } else {
+            this.modal = jQuery(data).modal({
+                title: '<?= /* @escapeNotVerified */ __('WYSIWYG Editor') ?>',
+                modalClass: 'magento',
+                type: 'slide',
+                firedElementId: elementId,
+                buttons: [{
+                    text: jQuery.mage.__('Cancel'),
+                    click: function () {
+                        self.closeDialogWindow(this);
+                    }
+                },{
+                    text: jQuery.mage.__('Submit'),
+                    click: function () {
+                        self.okDialogWindow(this);
+                    }
+                }],
+                close: function () {
+                    self.closeDialogWindow(this);
+                }
+            });
+        }
+        this.modal.modal('openModal');
+        $(elementId + '_editor').value = $(elementId).value;
+    },
+    okDialogWindow : function(dialogWindow) {
+        var $firedElement = jQuery('#' + this.currentElementId),
+            $editorElement = jQuery('#' + this.currentElementId + '_editor'),
+            firedElementId = this.currentElementId,
+            wysiwygObj = window['wysiwyg' + firedElementId + '_editor'];
+
+        if ($firedElement.length) {
+            wysiwygObj.turnOff();
+            if (tinyMCE.get(wysiwygObj.id)) {
+                $firedElement.val(tinyMCE.get(wysiwygObj.id).getContent()).change();
+            } else {
+                $firedElement.val($editorElement.val()).change();
+            }
+            if (tinyMCE.get(firedElementId)) {
+                tinyMCE.get(firedElementId).load();
+            }
+            if (typeof varienGlobalEvents != undefined) {
+                varienGlobalEvents.fireEvent('tinymceChange');
+            }
+        }
+        this.closeDialogWindow(dialogWindow);
+    },
+    closeDialogWindow : function(dialogWindow) {
+        // remove form validation event after closing editor to prevent errors during save main form
+        if (typeof varienGlobalEvents != undefined && editorFormValidationHandler) {
+            varienGlobalEvents.removeEventHandler('formSubmit', editorFormValidationHandler);
+        }
+
+        //IE fix - blocked form fields after closing
+        try {
+            $(this.currentElementId).focus();
+        } catch (e) {
+            //ie8 cannot focus hidden elements
+        }
+
+        //destroy the instance of editor
+        wysiwygObj = eval('wysiwyg' + this.currentElementId + '_editor');
+        if (tinyMCE.get(wysiwygObj.id)) {
+           tinyMCE.execCommand('mceRemoveControl', true, wysiwygObj.id);
+        }
+
+        dialogWindow.closeModal();
+        Windows.overlayShowEffectOptions = this.overlayShowEffectOptions;
+        Windows.overlayHideEffectOptions = this.overlayHideEffectOptions;
+    }
+};
+
+window.mgzUiBuilderWysiwygEditor = mgzUiBuilderWysiwygEditor;
+//]]>
+
+});
+</script>

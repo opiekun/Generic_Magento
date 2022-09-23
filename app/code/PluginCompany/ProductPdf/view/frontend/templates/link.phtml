@@ -1,0 +1,21 @@
+<?php /** @var \PluginCompany\ProductPdf\Block\Link $this */ ?>
+<?php if($this->isEnabled()){ ?>
+<a  data-mage-init='{"PluginCompany_ProductPdf/js/link": <?php echo $this->getJsOptionsJSON(); ?>}'
+    class="<?php echo $this->getLinkClasses();?> plugincompany productpdf pc-pdf-link"
+    href="<?php echo $this->getPdfUrl();?>"
+    target="_blank"
+    id="pc_pdf_link"
+    style="<?php echo $this->getLinkCss();?>"
+    >
+
+    <?php if($this->displayIcon()){ ?>
+        <img title="<?php echo $this->getLinkText();?>"
+             alt="<?php echo $this->getLinkText(); ?>"
+             src="<?php echo $this->getIconUrl();?>"
+             style="<?php echo $this->getIconCss();?>" />
+    <?php } ?>
+    <?php if($this->displayLink()){ ?>
+        <span><?php echo $this->getLinkText();?></span>
+    <?php }?>
+</a>
+<?php } ?>

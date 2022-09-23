@@ -1,0 +1,130 @@
+Name,Name
+Date,Date
+"Remaining Downloads","Remaining Downloads"
+Position,Position
+Action,Action
+Expired,Expired
+Unlimited,Unlimited
+Back,Back
+"Delete Attachment","Delete Attachment"
+"Are you sure you want to do this?","Are you sure you want to do this?"
+Reset,Reset
+Save,Save
+"Save & Send Email","Save & Send Email"
+"Save & New","Save & New"
+"Save & Duplicate","Save & Duplicate"
+"Save & Close","Save & Close"
+"Save and Apply","Save and Apply"
+Conditions,Conditions
+"Conditions (don't add conditions if rule is applied to all products)","Conditions (don't add conditions if rule is applied to all products)"
+ID,ID
+Email,Email
+Gender,Gender
+Group,Group
+Downloads,Downloads
+Attachments,Attachments
+"Attachments (%1)","Attachments (%1)"
+"Add New Attachment","Add New Attachment"
+"All Attachment","All Attachment"
+"Manage Attachments","Manage Attachments"
+Settings,Settings
+"User Guide","User Guide"
+"Change Log","Change Log"
+"Get Support","Get Support"
+"We can't apply the rules.","We can't apply the rules."
+"The attachment has been deleted.","The attachment has been deleted."
+"We can't find a attachment to delete.","We can't find a attachment to delete."
+"Something went wrong while getting the requested content.","Something went wrong while getting the requested content."
+"This attachment no longer exists.","This attachment no longer exists."
+CustomerAttachments,CustomerAttachments
+"Edit Attachment","Edit Attachment"
+"New Attachment","New Attachment"
+"Please correct the data sent.","Please correct the data sent."
+"Something went wrong while saving the attachment.","Something went wrong while saving the attachment."
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"A total of %1 record(s) have been updated.","A total of %1 record(s) have been updated."
+"Something went wrong while updating the attachment(s) status.","Something went wrong while updating the attachment(s) status."
+"You sent the new attachment email.","You sent the new attachment email."
+"You saved the attachment.","You saved the attachment."
+"We can't find the file you requested.","We can't find the file you requested."
+"The file has expired.","The file has expired."
+"My Files","My Files"
+"Something went wrong while saving the file(s).","Something went wrong while saving the file(s)."
+"Conditions Combination","Conditions Combination"
+Customer,Customer
+"Lifetime Sales","Lifetime Sales"
+"Number of Orders","Number of Orders"
+"Is Subscriber of Newsletter","Is Subscriber of Newsletter"
+is,is
+"is not","is not"
+"equals or greater than","equals or greater than"
+"equals or less than","equals or less than"
+"greater than","greater than"
+"less than","less than"
+contains,contains
+"does not contain","does not contain"
+"is one of","is one of"
+"is not one of","is not one of"
+like,like
+"Unknown condition operator","Unknown condition operator"
+"Updated rules applied.","Updated rules applied."
+File,File
+URL,URL
+"Could not save the attachment: %1","Could not save the attachment: %1"
+"Attachment with id ""%1"" does not exist.","Attachment with id ""%1"" does not exist."
+"Could not delete the attachment: %1","Could not delete the attachment: %1"
+"%1 (Default)","%1 (Default)"
+Alphabetical,Alphabetical
+Attachment,Attachment
+"Can't delete the page","Can't delete the page"
+Exception,Exception
+Edit,Edit
+Delete,Delete
+"Delete %1","Delete %1"
+"Are you sure you want to delete a %1 record?","Are you sure you want to delete a %1 record?"
+"* Required Fields","* Required Fields"
+"Title & Description","Title & Description"
+"Alphanumeric, dash and underscore characters are recommended for filenames. Improper characters are replaced with '_'.","Alphanumeric, dash and underscore characters are recommended for filenames. Improper characters are replaced with '_'."
+"Sort Variations","Sort Variations"
+"Browse Files...","Browse Files..."
+Download,Download
+"%store_name: New File Upload","%store_name: New File Upload"
+"Hi %name,","Hi %name,"
+"%number_of_file file(s) have been uploaded to your account.","%number_of_file file(s) have been uploaded to your account."
+"You can check the files by logging into <a href=""%customer_url"">your account</a>.","You can check the files by logging into <a href=""%customer_url"">your account</a>."
+"Your files details are as below. If you have questions about the files uploaded, you can email us at %contact_email","Your files details are as below. If you have questions about the files uploaded, you can email us at %contact_email"
+"We could not detect a size.","We could not detect a size."
+"Customer Attachments","Customer Attachments"
+"General Settings","General Settings"
+"Current Version","Current Version"
+Enabled,Enabled
+Route,Route
+https://domain.com/<b>ROUTE</b>,https://domain.com/<b>ROUTE</b>
+"Show in Top Link","Show in Top Link"
+Title,Title
+"Hide Title without Files","Hide Title without Files"
+"Order By","Order By"
+"Email Settings","Email Settings"
+"Email Sender","Email Sender"
+"Contact Email","Contact Email"
+"Page Information","Page Information"
+"General Information","General Information"
+"Enable Attachment","Enable Attachment"
+Description,Description
+Type,Type
+"Max. Downloads","Max. Downloads"
+Websites,Websites
+"Fixed Customers","Fixed Customers"
+"Downloads Report","Downloads Report"
+"Apply Rules","Apply Rules"
+"Are you sure you want to delete selected items?","Are you sure you want to delete selected items?"
+"Delete items","Delete items"
+"Change status","Change status"
+Enable,Enable
+Disable,Disable
+"From Date","From Date"
+"To Date","To Date"
+Status,Status
+Created,Created
+Modified,Modified
+"Web Site","Web Site"

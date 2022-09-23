@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <iwd_addressvalidation>
+            <general>
+                <enable>0</enable>
+                <allow_not_valid_address>1</allow_not_valid_address>
+            </general>
+            <content>
+                <header>Address Validation</header>
+                <message>Please review your address and make any necessary changes.</message>
+                <origin_address>Use Original Address</origin_address>
+                <suggested_address>Use Suggested Address</suggested_address>
+            </content>
+            <api_settings>
+                <mode>ups</mode>
+            </api_settings>
+        </iwd_addressvalidation>
+    </default>
+</config>

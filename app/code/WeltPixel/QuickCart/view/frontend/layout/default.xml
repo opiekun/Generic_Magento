@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="WeltPixel\QuickCart\Block\Template" name="set.configs" template="WeltPixel_QuickCart::set_configs.phtml" />
+        </referenceContainer>
+        <referenceBlock name="minicart">
+            <action ifconfig="weltpixel_quick_cart/general/enable" method="setTemplate">
+                <argument name="template" xsi:type="string">WeltPixel_QuickCart::cart/minicart.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

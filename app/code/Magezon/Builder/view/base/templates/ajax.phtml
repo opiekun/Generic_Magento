@@ -1,0 +1,27 @@
+<?php
+$id                 = time() . uniqid();
+$htmlId             = 'magezon' . $id;
+$targetId           = $block->getTargetId();
+$ajaxData           = $block->getAjaxData() ? $block->getAjaxData() : [];
+$ajaxData['handle'] = $block->getRequest()->getFullActionName();
+?>
+<?php if (isset($ajaxData['load_builder_url']) && $ajaxData['load_builder_url']) { ?>
+<div class="mgz-spinner mgz-profile-spinner <?= $htmlId ?>-spinner"><i></i></div>
+<div id="<?= $id ?>-wrapper"></div>
+<script type="text/javascript">
+	require(['jquery'], function($) {
+		var parent = $('#<?= $targetId ?>').parent().parent();
+		var data = <?= json_encode($ajaxData, JSON_FORCE_OBJECT) ?>;
+		data['target_id']    = '<?= $targetId ?>';
+		data['html_id']      = '<?= $htmlId ?>';
+		$.ajax({
+            url: '<?= $this->getUrl($ajaxData['load_builder_url']) ?>',
+            type:'POST',
+            data: data,
+            success: function(html) {
+            	$('#<?= $id ?>-wrapper').html(html);
+            }
+        });
+	});
+</script>
+<?php } ?>

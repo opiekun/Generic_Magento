@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Customer\Controller\Account\CreatePost"
+                type="Ecommerce121\Customer\Preferences\Magento\Customer\Controller\Account\CreatePost"/>
+    <type name="\Magento\Customer\Controller\Account\LoginPost">
+        <plugin name="Ecommerce121_Customer::magento-customer-controller-account-loginpost"
+                type="Ecommerce121\Customer\Plugin\Magento\Customer\Controller\Account\LoginPost" sortOrder="1" />
+    </type>
+</config>

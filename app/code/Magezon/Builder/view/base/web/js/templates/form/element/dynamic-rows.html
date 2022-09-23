@@ -1,0 +1,12 @@
+<div class="mgz-dynamicrows">
+	<div class="mgz-dynamicrows-item mgz-dynamicrows-disable" ng-repeat="element in model[options.key]" ng-init="fields = copyFields(to.children)">
+		<span class="mgz-dynamicrows-item-index" ng-if="to.displayIndex">{{ $index + 1 }}</span>
+		<formly-form fields="fields"
+			model="element"
+			form="form">
+		</formly-form>
+	</div>
+	<div class="mgz-dynamicrows-add" ng-if="to.addButton">
+		<button type="button" class="action-secondary" ng-click="addNew()" >{{ to.addButtonLabel }}</button>
+	</div>
+</div>

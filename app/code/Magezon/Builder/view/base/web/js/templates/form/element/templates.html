@@ -1,0 +1,24 @@
+<div class="mgz-spinner" ng-if="loading"><i></i></div>
+<div class="mgz-mytemplates-list">
+	<div class="mgz-mytemplates-item" ng-repeat="item in to.options" ng-class="{'mgz-active': item.active}" ng-init="profile=item">
+		<div class="mgz-mytemplates-item-toolbar">
+			<div class="mgz-mytemplates-item-name" ng-click="openElements(item)">
+				{{ item.name }}
+			</div>
+			<ul class="mgz-mytemplates-item-actions">
+				<li>
+					<a ng-click="importItem(item)" class="mgz-navbar-btn" title="Add template"><i class="mgz-icon mgz-icon-add" ng-if="!item.importing"></i></a>
+					<div class="mgz-spinner" ng-if="item.importing"><i></i></div>
+				</li>
+				<li ng-if="item.url"><a ng-href="{{ item.url }}" target="_blank" class="mgz-navbar-btn" title="Edit template"><i class="mgz-icon mgz-icon-edit"></i></a></li>
+				<li><a ng-click="openElements(item)" class="mgz-navbar-btn" title="Preview template"><i class="mgz-icon " ng-class="{'mgz-icon-arrow_drop_down': !item.active,'mgz-icon-arrow_drop_up': item.active}"></i></a></li>
+			</ul>
+		</div>
+		<div class="mgz-mytemplates-item-content" ng-if="item.active" ng-style="{'text-align': item.img ? 'center' : 'left' }">
+			<div class="mgz-mytemplates-overlay"></div>
+			<div class="mgz-mytemplates-empty" ng-if="!item.img&&!item.elements.length">Empty Template</div>
+			<img ng-src="{{ item.img }}" ng-if="item.img&&!item.elements.length"/>
+			<magezon-builder-profile element="item" ng-if="item.elements.length"></magezon-builder-profile>
+		</div>
+	</div>
+</div>

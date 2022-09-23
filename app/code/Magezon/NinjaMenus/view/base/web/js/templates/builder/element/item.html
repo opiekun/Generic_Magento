@@ -1,0 +1,11 @@
+<a ng-click="activeElement($event)">
+	<i class="mgz-icon-element item-icon {{ element.icon }}" ng-if="element.show_icon&&element.icon&&element.icon_position=='left'"></i>
+	<span class="label" ng-bind-html="element.label" ng-if="element.label&&element.label_position=='left'"></span>
+	<span class="title-wrapper">
+		<spann class="title" ng-bind-html="element.title"></spann>
+		<span class="subtitle" ng-if="element.sub_title" ng-bind-html="element.sub_title"></span>
+	</span>
+	<span class="label" ng-bind-html="element.label" ng-if="element.label&&element.label_position!='left'"></span>
+	<i class="mgz-icon-element {{ element.icon }}" ng-if="element.show_icon&&element.icon&&element.icon_position=='right'"></i>
+	<i class="caret {{ element.caret }}" ng-if="element.elements.length"></i>
+</a>

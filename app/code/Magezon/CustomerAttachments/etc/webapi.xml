@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://magezon.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_CustomerAttachments
+ * @copyright Copyright (C) 2018 Magezon (https://magezon.com)
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- Attachment -->
+    <route url="/V1/customerAttachment/:attachmentId" method="GET">
+        <service class="Magezon\CustomerAttachments\Api\AttachmentRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Magezon_CustomerAttachments::attachment"/>
+        </resources>
+    </route>
+     <route url="/V1/customerAttachment/:customerId/customer" method="GET">
+        <service class="Magezon\CustomerAttachments\Api\AttachmentRepositoryInterface" method="getByCustomerId"/>
+        <resources>
+            <resource ref="Magezon_CustomerAttachments::attachment"/>
+        </resources>
+    </route>
+    <route url="/V1/customerAttachment/search" method="GET">
+        <service class="Magezon\CustomerAttachments\Api\AttachmentRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Magezon_CustomerAttachments::attachment"/>
+        </resources>
+    </route>
+    <route url="/V1/customerAttachment" method="POST">
+        <service class="Magezon\CustomerAttachments\Api\AttachmentRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magezon_CustomerAttachments::attachment"/>
+        </resources>
+    </route>
+    <route url="/V1/customerAttachment/:id" method="PUT">
+        <service class="Magezon\CustomerAttachments\Api\AttachmentRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magezon_CustomerAttachments::attachment"/>
+        </resources>
+    </route>
+    <route url="/V1/customerAttachment/:attachmentId" method="DELETE">
+        <service class="Magezon\CustomerAttachments\Api\AttachmentRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Magezon_CustomerAttachments::attachment"/>
+        </resources>
+    </route>
+</routes>

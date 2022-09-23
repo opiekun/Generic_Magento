@@ -1,0 +1,42 @@
+<?php if($this->getGroupConfigFlag('grouped_product/add_pagebreak')){ ?>
+    <pagebreak />
+<?php } ?>
+<div class="section section-grouped-options grouped-options">
+    <h3 class="section-title">
+        <?php echo __('Products in this set');?>
+    </h3>
+    <table autosize="1" class="product-options bundle-options-table">
+        <?php $i = 0;
+        foreach($this->getAssociatedProducts() as $item){
+            /** @var $item \Magento\Catalog\Model\Product */
+            $image =
+            $item->getImage();
+            $item->afterLoad();
+            $bla = 1;
+            ?>
+            <tr class="<?php echo $this->getRowClass($i); ?>">
+                <td>
+                    <img class="bundle-option-image" src="<?php echo $this->getFullImageUrl($item); ?>" />
+                </td>
+                <td>
+                    <table class="bundle-option-details">
+                        <tr>
+                            <td class="bundle-option-name">
+                                <?php echo $item->getName(); ?>
+                            </td>
+                            <td class="bundle-option-price">
+                                <?php echo ($this->canShowPrice()) ? $this->getFormattedItemPrice($item): ''; ?>
+                            </td>
+                        </tr>
+                        <tr class="<?php echo $this->getRowClass($i); ?>">
+                            <td class="bundle-option-description">
+                                <?php echo __($item->getShortDescription()); ?>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <?php $i++;} ?>
+    </table>
+</div>

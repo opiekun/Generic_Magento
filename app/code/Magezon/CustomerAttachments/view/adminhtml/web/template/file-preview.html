@@ -1,0 +1,35 @@
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://magezon.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_CustomerAttachments
+ * @copyright Copyright (C) 2018 Magezon (https://magezon.com)
+ */
+-->
+<div class="file-uploader-summary">
+    <div class="file-uploader-preview">
+        <a attr="href: $parent.getFilePreview($file)" target="_blank">
+            <span text="$file.name"/>
+        </a>
+
+        <div class="actions">
+            <button
+                type="button"
+                class="action-remove"
+                data-role="delete-button"
+                attr="title: $t('Delete image')"
+                click="$parent.removeFile.bind($parent, $file)">
+                <span translate="'Delete image'"/>
+            </button>
+        </div>
+    </div>
+    <div class="file-uploader-meta">
+        <text args="$parent.formatSize($file.size)"/>
+    </div>
+</div>

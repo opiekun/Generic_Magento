@@ -1,0 +1,18 @@
+<div>
+    <hr/>
+    <button id="generate_gtm_api_json" title="<?php echo __("Generate Json for Variables, Triggers and Tags") ?>" type="button" class="action-default scalable save primary ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">
+        <span class="ui-button-text"><span><?php echo __("Generate Json for Variables, Triggers and Tags") ?></span></span>
+    </button>
+    <a id="download_gtm_json" target="_blank" href="<?php echo $this->getUrlForItemsJsonDownload() ?>" class="action-default scalable  ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" >
+        <span class="ui-button-text"><span><?php echo __("Download Json") ?></span></span>
+    </a>
+    <input type="hidden" value="<?php echo $block->getFormKey(); ?>" name="api_form_key" id="api_form_key" />
+</div>
+<script>
+    requirejs(['jquery', 'WeltPixel_GoogleTagManager/js/gtmApi' ],
+        function   ($, gtmApi) {
+            $(document).ready(function() {
+                gtmApi.initializeJsonGeneration('<?php echo $this->getUrlForItemsJsonGeneration() ?>');
+            });
+        });
+</script>

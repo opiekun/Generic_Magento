@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * https://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_Appointment
+  * @author      CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+  * @license      https://cedcommerce.com/license-agreement.txt
+  */
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/system_file.xsd">
+    <system>
+        <section id="booking" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="appointment_config" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Appointment Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enable Appointment System</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="appointment_link_enabled" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Show Appointment Top Link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="appointment_link_title" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Appointment Top link Title</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="appointment_link_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="appointment_banner" translate="label comment" type="image" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Appointment Banner</label>
+                    <backend_model>Ced\Booking\Model\Config\Backend\Banner</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">booking/store/banner</upload_dir>
+                    <base_url type="media" scope_info="1">booking/store/banner</base_url>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                </field>
+                <field id="banner_width" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Banner Image Width</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>[px]</comment>
+                </field>
+                <field id="banner_height" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Banner Height</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>[px]</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

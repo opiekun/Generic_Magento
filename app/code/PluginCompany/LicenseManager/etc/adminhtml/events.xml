@@ -1,0 +1,7 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_postdispatch_adminhtml_system_config_save">
+        <observer name="admin_system_config_changed_section_plugincompany_licensemanager"
+                  instance="PluginCompany\LicenseManager\Observer\ConfigSave"
+        />
+    </event>
+</config>

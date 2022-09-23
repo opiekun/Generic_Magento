@@ -1,0 +1,61 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<div class="admin__field mgz-filemanager" visible="visible" css="$data.additionalClasses">
+    <label class="admin__field-label" if="$data.label" attr="for: uid">
+        <span translate="label" attr="'data-config-scope': $data.scopeLabel" click="$data.chooseImage"/>
+    </label>
+
+    <div class="admin__field-control" css="'_with-tooltip': $data.tooltip">
+        <div class="file-uploader" data-role="drop-zone">
+            <div class="file-uploader-area">
+                <input type="hidden" event="change: reloadImage" data-bind="value: value" attr="id: uid, name: inputName" disable="disabled"/>
+                <button class="action-default scalable action-secondary" attr="for: uid" text="chooseBtnLabel" click="$data.chooseImage"/>
+            </div>
+
+            <render args="tooltipTpl" if="$data.tooltip"/>
+
+            <div class="admin__field-note" if="$data.notice" attr="id: noticeId">
+                <span html="notice"/>
+            </div>
+
+            <label class="admin__field-error" if="error" attr="for: uid" text="error"/>
+
+            <div class="file-uploader-summary" visible="showPreview">
+                <div class="file-uploader-preview">
+                    <a attr="href: fileUrl" target="_blank">
+                        <img
+                            class="preview-image"
+                            event="load: onPreviewLoad"
+                            attr="
+                                src: fileUrl,
+                                alt: fileName">
+                    </a>
+
+                    <div class="actions">
+                        <button
+                            type="button"
+                            class="action-remove"
+                            data-role="delete-button"
+                            attr="title: $t('Delete image')"
+                            click="removeFile">
+                            <span translate="'Delete image'"/>
+                        </button>
+                    </div>
+                </div>
+
+                <div text="fileName"/>
+                    <div class="file-uploader-meta">
+                        <text args="previewWidth"/>x<text args="previewHeight"/>
+                        <text args="fileSize"/>
+                    </div>
+                </div>
+            </div>
+
+        <render args="$data.service.template" if="$data.hasService()"/>
+    </div>
+</div>

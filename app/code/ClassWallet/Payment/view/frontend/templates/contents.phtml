@@ -1,0 +1,22 @@
+<div class='instamojo'>
+	<div class='errors'>
+		<?php if($this->getMessages()): ?>
+			<?php foreach($this->getMessages() as $message): ?>
+				<div class='alert alert-danger'><p style='color:red'><?= $message ?></p></div>
+			<?php endforeach; ?>
+		<?php else: ?>
+			<div style="width:200px;margin:auto;margin-top:20px">
+				<img style="width:100%" src="<?php echo $block->getViewFileUrl('ClassWallet_Payment::images/spinner.gif'); ?>">
+				<center><?php echo __("Redirecting you to Classwallet"); ?></center>
+			</div>
+			<?php 
+				$url 			=	$this->getBaseUrl();
+				$endPointCW 	= 	'https://app.classwallet.com/payby-checkout/';	
+				$action 		=	$block->redirectUrl();
+			?>
+			<script>
+				window.location.href = "<?php echo $action; ?>";
+			</script>
+		<?php endif; ?>
+	</div>
+</div>

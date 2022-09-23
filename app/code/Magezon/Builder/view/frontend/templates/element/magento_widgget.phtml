@@ -1,0 +1,10 @@
+<?php
+/**
+ * @var $block \Magezon\Builder\Block\Element
+ */
+?>
+<?php
+$coreHelper = $this->helper('\Magezon\Core\Helper\Data');
+$element    = $this->getElement();
+?>
+<?= $coreHelper->filter($element->getData('magento_widget')) ?>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="FME_Photogallery::css/photogallery/owl.carousel.css"/>
+        <css src="FME_Photogallery::css/photogallery/media.css"/>
+        <css src="FME_Photogallery::css/photogallery/shadowbox.css"/>
+        <css src="FME_Photogallery::css/tabandloader.css"/>
+        <css src="FME_Photogallery::css/finaltilesgallery.css"/>
+        <css src="FME_Photogallery::css/lightbox2.css"/>
+        <css src="FME_Photogallery::css/magnific-popup.css"/>
+        <css src="FME_Photogallery::css/photogallery/cubeportfoliocss.css"/>
+        <css src="FME_Photogallery::css/3d/common.css"/>
+        <css src="https://unpkg.com/nanogallery2@2.4.2/dist/css/nanogallery2.min.css"  src_type="url" rel="stylesheet" type="text/css"  />
+        <css src="FME_Photogallery::css/unite-gallery.css" />
+    </head>
+    <body>
+        <referenceBlock name="top.links">
+            <block class="FME\Photogallery\Block\Link" name="photogallery-url-link" ifconfig="photogallery/general/enable_module">
+               <arguments>
+                    <argument name="label" xsi:type="string">Photogallery</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <move element="photogallery-url-link" destination="header.links" before="-"/>
+    </body>
+</page>

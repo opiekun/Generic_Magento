@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="FME\Photogallery\Model\ResourceModel\Photogallery\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">photogallery</argument>
+            <argument name="eventPrefixPhotogallery" xsi:type="string">photogallery_grid_collection</argument>
+            <argument name="eventObjectPhotogallery" xsi:type="string">photogallery_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">FME\Photogallery\Model\ResourceModel\Photogallery</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="photogallery_listing_data_source" xsi:type="string">FME\Photogallery\Model\ResourceModel\Photogallery\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="PhotogalleryGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="PhotogalleryGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">FME\Photogallery\Model\ResourceModel\Photogallery\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">PhotogalleryGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+</config>

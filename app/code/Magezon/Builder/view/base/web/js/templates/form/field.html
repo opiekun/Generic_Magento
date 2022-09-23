@@ -1,0 +1,11 @@
+<label class="mgz__field-label" for="{{ ::id }}" ng-if="to.label">
+	<span>{{ ::to.label }} <span class="mgz-spinner" ng-if="to.loading"><i></i></span></span>
+	<div class="mgz__tooltip {{ to.tooltipClass ? to.tooltipClass : 'tooltip-top' }}" ng-if="to.tooltip">
+		<span class="mgz__tooltip-help"><span></span></span>
+		<div class="mgz__tooltip-content" ng-bind-html="to.tooltip" ng-style="to.tooltipStyle"></div>
+	</div>
+</label>
+<div class="mgz__field-control">
+	<formly-transclude></formly-transclude>
+	<div class="mgz__field-note" ng-if="to.note" ng-bind-html="to.note"></div>
+</div>

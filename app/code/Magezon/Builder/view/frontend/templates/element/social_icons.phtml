@@ -1,0 +1,26 @@
+<?php
+$coreHelper   = $this->helper('\Magezon\Core\Helper\Data');
+$element      = $this->getElement();
+$id           = $element->getHtmlId();
+$items        = $this->toObjectArray($element->getItems());
+$linkTarget   = $element->getData('link_target');
+$followButton = $element->getData('follow_button');
+?>
+<?php if ($items) { ?>
+	<ul class="mgz-socialicons">
+	<?php foreach ($items as $i => $item) { ?>
+		<?php
+		$label = $this->getSocialLabel($item['icon']);
+		$link  = $coreHelper->filter($item['link'] ? $item['link'] : '#');
+		?>
+		<li>
+			<a href="<?= $link ?>" target="<?= $linkTarget ?>" rel="noreferrer" title="<?= __('Follow on %1', $label) ?>">
+				<i id="<?= $id ?>-mgz-socialicons-item<?= $i ?>" class="<?= $item['icon'] ?>"></i>
+			</a>
+			<?php if ($followButton) { ?>
+				<a href="<?= $link ?>" class="mgz-socialicons-follow-button" title="<?= $block->escapeHtml($label) ?>"><?= __('Follow') ?></a>
+			<?php } ?>
+		</li>	
+	<?php } ?>
+	</ul>
+<?php } ?>

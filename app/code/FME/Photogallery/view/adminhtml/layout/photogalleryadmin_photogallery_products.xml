@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/layout_generic.xsd">
+<body>
+   <container name="root">
+      <block name="photogallery.edit.tab.products" class="FME\Photogallery\Block\Adminhtml\Photogallery\Edit\Tab\Products"/>
+      <block class="Magento\Backend\Block\Widget\Grid\Serializer" name="related_grid_serializer">
+            <arguments>
+                <argument name="grid_block" xsi:type="string">photogallery.edit.tab.products</argument>
+                <argument name="callback" xsi:type="string">_getSelectedProducts</argument>
+                <argument name="input_element_name" xsi:type="string">links[related]</argument>
+                <argument name="reload_param_name" xsi:type="string">products_related</argument>
+            </arguments>
+      </block>
+   </container>
+</body>
+</layout>

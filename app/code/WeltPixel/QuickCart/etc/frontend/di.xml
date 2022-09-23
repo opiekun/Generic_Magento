@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\CustomerData\Cart">
+        <plugin name="weltpixel-quickcart-custom-message" type="WeltPixel\QuickCart\Plugin\Checkout\CustomerData\Cart" />
+    </type>
+    <type name="Magento\Weee\Block\Item\Price\Renderer">
+        <plugin name="weltpixel-quickcart-item-price-renderer" type="WeltPixel\QuickCart\Plugin\Item\Price\Renderer" />
+    </type>
+</config>

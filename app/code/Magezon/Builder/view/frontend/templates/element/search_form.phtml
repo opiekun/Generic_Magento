@@ -1,0 +1,6 @@
+<?php
+$element = $this->getElement();
+$html    = $block->renderElement('top.search');
+$html    = str_replace('search_mini_form', 'search_mini_form' . uniqid() . time(), $html);
+$html    = str_replace('<input', '<input placeholder="' . $element->getData('placeholder') . '"', $html);
+echo $html;

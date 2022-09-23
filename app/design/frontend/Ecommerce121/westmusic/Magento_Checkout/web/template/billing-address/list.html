@@ -1,0 +1,13 @@
+<div class="field field-select-billing">
+    <label class="label">
+        <h3 class="billing-address" data-bind="i18n: 'Billing Address'"></h3>
+    </label>
+    <div class="control" data-bind="if: (addressOptions.length > 1)">
+        <select class="select" name="billing_address_id" data-bind="
+        options: addressOptions,
+        optionsText: addressOptionsText,
+        value: selectedAddress,
+        event: {change: onAddressChange(selectedAddress())};
+    "></select>
+    </div>
+</div>

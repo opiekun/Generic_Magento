@@ -1,0 +1,3 @@
+<span if="$data.selectedPlaceholders.defaultPlaceholder&&value().length&&$data.showRemove" data-bind="click: removeValue" class="uibuilder-select-remove">x</span>
+<button class="uibuilder-field-animation-btn" type="button" data-bind="i18n: 'Animate it', css: animateClass(), attr: {disabled: !value().length}" click="loadAnimate"></button>
+<div class="admin__additional-info" if="$data.additionalInfo" html="$data.additionalInfo"></div>

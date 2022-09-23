@@ -1,0 +1,328 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+@filter-option-title__background: #F8F8F8;
+@filter-option-title__border-color: #CCCCCC;
+@filter-option-checkbox__border-color: #DDDCDC;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .block.filter {
+        margin-bottom: 0;
+
+        .filter-title {
+            display: none;
+        }
+    }
+
+    .block-subtitle {
+        display: block;
+        margin-bottom: 17px;
+        .lib-font-size(18);
+        .lib-line-height(24);
+        font-weight: 700;
+        color: @theme__color__seven;
+        padding: 6px 0;
+    }
+
+    .filter-current {
+        display: none;
+
+        .item {
+            margin-bottom: @indent__s;
+        }
+
+        .filter-label {
+            display: block;
+            font-weight: @font-weight__bold;
+
+            &:after {
+                content: ':';
+            }
+        }
+
+        + .filter-actions {
+            margin-bottom: @indent__l;
+            display: none;
+        }
+    }
+
+    .filter-options-content {
+        .filter-count-label {
+            &:extend(.abs-visually-hidden all);
+        }
+    }
+
+    .filter-options {
+        margin: 0;
+
+        .filter-options-title {
+            word-break: break-all;
+            display: block;
+            box-sizing: border-box;
+            min-height: 50px;
+            width: 100%;
+            background: @filter-option-title__background;
+            border: 1px solid @filter-option-title__border-color;
+            .lib-font-size(16);
+            .lib-line-height(21);
+            font-weight: 700;
+            color: @theme__color__seven;
+            text-transform: uppercase;
+            margin-bottom: 0;
+            cursor: pointer;
+
+            span {
+                display: block;
+                padding: 14px 45px 14px 9px;
+                position: relative;
+
+                &:before {
+                    content: '';
+                    width: 17px;
+                    height: 10px;
+                    background: url(../images/icon-angel-up.svg) no-repeat;
+                    background-size: 17px 10px;
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    right: 20px;
+                    transform: translateY(-50%) rotate(180deg);
+                }
+            }
+            &.active {
+                span {
+                    &:before {
+                        transform: translateY(-50%);
+                    }
+                }
+            }
+        }
+
+        .filter-options-content {
+            padding: 18px 9px 11px;
+            margin-bottom: 0;
+
+            .item {
+                margin-bottom: 13px;
+                margin-left: 0 !important;
+                padding: 0;
+
+                .am-collapse-icon {
+                    display: inherit;
+
+                    &:after {
+                        position: absolute;
+                        z-index: 9999;
+                        left: -17px;
+                    }
+                }
+                > a {
+                    .lib-font-size(16);
+                    .lib-line-height(21);
+                    font-weight: 400 !important;
+                    color: @theme__color__secondary;
+                    padding-left: 20px;
+
+                    &:hover, &.am_shopby_link_selected {
+                        color: @theme__color__primary;
+
+                        .count {
+                            color: @theme__color__primary;
+                        }
+                    }
+                }
+                /*&:hover {
+                    input[type='checkbox'] {
+                        & + .amshopby-choice {
+                            &:before {
+                                border-color: @theme__color__primary;
+                            }
+                        }
+                    }
+                }*/
+            }
+            .items {
+                &.-am-multiselect {
+                    [class*='am-filter-item'] {
+                        &:hover {
+                            color: @theme__color__primary;
+                            ~ .amshopby-choice:before {
+                                border-color: @theme__color__primary;                                
+                            }
+                            .count {
+                                color: @theme__color__primary;
+                            }
+                        }
+                    }
+                    .amshopby-choice {
+                        &:hover {
+                            ~ [class*='am-filter-item'] {
+                                color: @theme__color__primary;
+                                .count {
+                                    color: @theme__color__primary;
+                                }                                
+                            }
+                        }
+                    }
+                }
+            }
+            input[type='checkbox'] {
+                &+ .amshopby-choice {
+                    left: 0 !important;
+
+                    &:before {
+                        width: 14px;
+                        height: 14px;
+                        border-color: @filter-option-checkbox__border-color;
+                        top: -2px;
+                    }
+                    &:after {
+                        width: 14px;
+                        height: 14px;
+                        background-size: 14px;
+                        background-color: @theme__color__primary;
+                        top: -2px;
+                        border-radius: 2px;
+                    }
+                    &:hover {
+                        &:before {
+                            border-color: @theme__color__primary;
+                        }
+                    }
+                }
+            }
+        }
+
+        .count {
+            .lib-css(color, @text__color__muted);
+
+            &:before {
+                content: '(';
+            }
+
+            &:after {
+                content: ')';
+            }
+        }
+    }
+
+    .am_shopby_apply_filters {
+        .amshopby-button {
+            background: @theme__color__primary;
+        }
+    }
+    .amshopby-filter-current {
+        .item {
+            color: @theme__color__seven;
+        }
+        .amshopby-remove {
+            &:after, &:before {
+                background-color: @theme__color__seven;
+            }
+        }
+    }
+    .filter-actions {
+        .filter-clear {
+            color: @theme__color__secondary;
+            text-decoration: underline;
+
+            &:hover {
+                text-decoration: none;
+                color: @theme__color__secondary;
+            }
+        }
+    }
+
+    .items {
+        &:extend(.abs-reset-list all);
+    }
+
+    .filtered {
+        .items {
+            margin: 15px 0;
+        }
+
+        .item {
+            margin-bottom: 6px;
+            padding-left: 22px;
+            position: relative;
+
+            .label {
+                font-weight: @font-weight__bold;
+            }
+
+            .action.remove {
+                &:extend(.abs-remove-button-for-blocks all);
+                left: -6px;
+                position: absolute;
+                top: 0;
+            }
+        }
+
+        & + .actions {
+            margin-bottom: 35px;
+        }
+    }
+
+    .filter-options {
+        .items:not(.items-children).-am-multiselect {
+            & > .item.-is-by-click .items-children.-folding {
+                padding-left: 20px;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .page-with-filter {
+        .columns {
+            .sidebar-main {
+                .lib-vendor-prefix-order(0);
+            }
+        }
+    }
+
+    .block.filter {
+        padding-top: 20px;
+
+        .block-subtitle:not(.filter-current-subtitle) {
+            border: 1px solid @theme__color__secondary;
+            border-radius: 3px;
+            padding: 12px 25px 11px 11px;
+            .lib-font-size(16);
+            .lib-line-height(21);
+            display: inline-block;
+            position: relative;
+
+            &:before {
+                content: '\f107';
+                font-family: "Font Awesome 5 Free";
+                .lib-font-size(14);
+                font-weight: 900;
+                position: absolute;
+                top: 50%;
+                right: 12px;
+                transform: translateY(-50%);
+            }
+            &.active {
+                &:before {
+                    transform: translateY(-50%) rotate(180deg);
+                }
+            }
+        }
+        .filter-options {
+            padding-bottom: 17px;
+        }
+    }
+}

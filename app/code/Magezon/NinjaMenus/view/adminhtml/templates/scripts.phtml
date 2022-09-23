@@ -1,0 +1,41 @@
+<?php
+/**
+ * @var \Magezon\NinjaMenus\Block\Adminhtml\Menu\Scripts $block
+ */
+$builderConfig['categories'] = $block->getStoreCategories();
+?>
+<script>
+	window.ninjamenus = <?= json_encode($builderConfig) ?>;
+</script>
+<script>
+    require(
+        [
+            'Magento_Ui/js/lib/validation/validator',
+            'jquery',
+            'mage/translate',
+            'uiRegistry'
+        ],
+        function (validator, $, $t, uiRegistry) {
+            validator.addRule(
+                'validation-number-0-1',
+                function (value) {
+                   if (value < 0 || value > 1) {
+                       return false;
+                   } return true;
+                }
+                ,
+                $.mage.__('The value is not within the specified range.')
+            );
+            validator.addRule(
+                'validation-number-separated',
+                function (value) {
+                    if (value.includes(",")) {
+                        return false;
+                    } return true;
+                }
+                ,
+                $.mage.__('Dots-separated')
+            );
+        }
+    );
+</script>

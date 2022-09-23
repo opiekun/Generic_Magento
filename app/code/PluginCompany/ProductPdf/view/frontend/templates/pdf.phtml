@@ -1,0 +1,47 @@
+<?php /** @var $this \PluginCompany\ProductPdf\Block\Pdf */ ?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><?php echo $this->getProduct()->getName(); ?> PDF</title>
+    <link rel="stylesheet" type="text/css"
+          href="<?php echo $this->getViewFileUrl('PluginCompany_ProductPdf::css/bootstrap/css/bootstrap_unminified.css'); ?>">
+    <link rel="stylesheet" type="text/css"
+          href="<?php echo $this->getViewFileUrl('PluginCompany_ProductPdf::css/pdf.css'); ?>">
+</head>
+<body>
+<?php
+if ($this->canShowHeader()){
+    echo $this->getHeaderHtml();
+}
+echo $this->getContentHtml();
+?>
+
+<style>
+    body {
+        font-size:<?php echo $this->getConfig('default_fontsize'); ?>;
+        color:#<?php echo $this->getConfig('default_fontcolor'); ?>;
+        font-family:<?php echo $this->getDefaultFont(); ?>;
+    }
+    .footer .product-link,
+    .footer .timestamp
+    {
+        font-family: <?php echo $this->getFooterFontFamily(); ?>;
+        font-size:<?php echo $this->getFooterConfig('footer_fontsize'); ?>;
+        color:#<?php echo $this->getFooterConfig('footer_fontcolor'); ?>;
+    }
+    .footer .page-number {
+        font-family: <?php echo $this->getPageNumberFontFamily(); ?>!important;
+        background-color:#<?php echo $this->getFooterConfig('pagenumber_background'); ?>;
+    }
+    .footer .page-number span {
+        font-family: <?php echo $this->getPageNumberFontFamily(); ?>!important;
+        color:#<?php echo $this->getFooterConfig('pagenumber_fontcolor'); ?>;
+    }
+    <?= $this->getConfig('custom_css'); ?>
+</style>
+</body>
+</html>

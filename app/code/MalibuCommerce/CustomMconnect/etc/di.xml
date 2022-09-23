@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MalibuCommerce\MConnect\Model\Queue\Customer">
+        <plugin name="QuoteCustomerIntercept"
+                type="MalibuCommerce\CustomMconnect\Plugin\Queue\CustomerIntercept"
+                sortOrder="10" />
+    </type>
+    <type name="MalibuCommerce\MConnect\Model\Navision\Customer">
+        <plugin name="NavisionCustomerIntercept"
+                type="MalibuCommerce\CustomMconnect\Plugin\Navision\CustomerIntercept"
+                sortOrder="10" />
+    </type>
+    <preference for="MalibuCommerce\MConnect\Model\Queue\Inventory\SourceItemsProcessor"
+                type="MalibuCommerce\CustomMconnect\Model\Queue\Inventory\SourceItemsProcessor" />
+</config>

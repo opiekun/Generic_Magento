@@ -1,0 +1,45 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php if($this->isEnabled()) : ?>
+    <?php
+
+    $helper = $this->helper('WeltPixel\GA4\Helper\Data');
+    $order = $this->getOrder();
+
+    if ($this->isFreeOrderTrackingAllowedForGoogleAnalytics()) :
+        $products = $this->getProducts();
+
+        $purchaseData = [
+            'transaction_id' => $order->getIncrementId(),
+            'affiliation' => $helper->getAffiliationName(),
+            'value' => number_format($this->getOrderTotal(), 2, '.', ''),
+            'coupon' => (string)$order->getCouponCode(),
+            'tax' => number_format($order->getTaxAmount(), 2, '.', ''),
+            'shipping' => number_format($order->getShippingAmount(), 2, '.', ''),
+            'currency' => $this->getCurrencyCode(),
+            'total_order_count' => $this->getTotalOrderCount(),
+            'total_lifetime_value' => number_format($this->getTotalLifetimeValue(), 2, '.', '')
+        ];
+
+        $purchaseData['items'] = $products;
+
+        $this->setEcommerceData('purchase', $purchaseData);
+        $this->setDataLayerOption('event', 'purchase');
+    endif;
+
+    if ($helper->isAdWordConversionTrackingEnabled() && $this->isFreeOrderAllowedForAdwordsConversionTracking()) :
+        $this->setDataLayerOption(\WeltPixel\GA4\Model\Api\ConversionTracking::FIELD_CONVERSION_TRACKING_CONVERSION_VALUE, $this->getOrderTotal());
+        $this->setDataLayerOption(\WeltPixel\GA4\Model\Api\ConversionTracking::FIELD_CONVERSION_TRACKING_ORDER_ID, $order->getIncrementId());
+    endif;
+
+    if ($helper->isAdWordsRemarketingEnabled() && $this->isFreeOrderAllowedForAdwordsRemarketing()):
+        $remarketingData = [];
+        $remarketingData['ecomm_pagetype'] = \WeltPixel\GA4\Model\Api\Remarketing::ECOMM_PAGETYPE_PURCHASE;
+        $remarketingData['ecomm_prodid'] = $this->getProductIds();
+        $remarketingData['ecomm_totalvalue'] = number_format($this->getOrderTotal(), 2, '.', '');
+        $this->setDataLayerOption('google_tag_params', $remarketingData);
+    endif;
+
+    ?>
+<?php endif; ?>

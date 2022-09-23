@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <container name="root" label="Root">
+        <block class="WeltPixel\OwlCarouselSlider\Block\Adminhtml\Slider\Edit\Tab\Banners" name="owlcarouselslider.slider.edit.tab.banners"/>
+    </container>
+</layout>

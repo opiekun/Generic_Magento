@@ -1,0 +1,22 @@
+{
+  "name": "ecommerce121/order-cancelled-email",
+  "version": "1.0.0",
+  "description": "N/A",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "magento/module-email": "101.1.*",
+    "magento/module-sales": "103.0.*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Ecommerce121\\OrderCanceledEmail\\": ""
+    }
+  }
+}

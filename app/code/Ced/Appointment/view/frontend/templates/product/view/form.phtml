@@ -1,0 +1,379 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Appointment
+ * @author      CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+?>
+<?php use Ced\Booking\Helper\Data; ?>
+<?php $_product = $block->getProduct(); ?>
+<?php $serviceType = $this->helper('Ced\Appointment\Helper\Data')->getServiceTypeByOptionId($_product->getServiceType()); ?>
+<?php $getAppointmentSlotsUrl = $this->getUrl('appointment/product_view/appointmentslots');  ?>
+<?php if ($this->getRequest()->getParam('id') && $this->getRequest()->getControllerName() == 'cart' &&
+    $this->getRequest()->getActionName() == 'configure') : ?>
+    <?php $productCustomOption = $block->getCustomOption($this->getRequest()->getParam('id')); ?>
+<?php endif; ?>
+
+<div class="booking-facilities ced-form-control">
+    <?php $facilities = $this->helper('Ced\Booking\Helper\Data')->getProductFacilities($_product); ?>
+    <?php if ($facilities) : ?>
+        <?php foreach ($facilities as $facility) : ?>
+            <?php $facilityhtml = '';
+            switch ($facility->getImageType()) :
+                case 'image' :  $facilityhtml = '<img title="'.$facility->getTitle().'" width="50px"
+                                                           src="'.$this->helper('Ced\Booking\Helper\Data')->getImageUrl($facility->getImageValue()).'"
+                                                           alt="'.$facility->getTitle().'">';
+                    break;
+                case 'icon'  : $facilityhtml = '<i title="'.$facility->getTitle().'"
+                                                         class="ace-icon '.$facility->getImageValue().' fa-2x"></i>';
+                    break;
+            endswitch;
+            echo $facilityhtml;
+            ?>
+        <?php endforeach;?>
+    <?php endif;?>
+</div>
+<?php /** service type section (Home or branch) */ ?>
+    <div class="appointment-service-type-wrapper">
+        <?php if(__($serviceType) == __('Both')) : ?>
+            <div class="ced-form-control">
+                <span class="ced-booking-label ced-appointment-service-label ced-title"><?= __('What suits you?'); ?>:</span>
+                <select required id="service-type" name="service_type">
+                    <option value=""><?= __('Please select');?></option>
+                    <option value="branch"><?= __('Branch');?></option>
+                    <option value="home_service"><?= __('Home Service');?></option>
+                </select>
+            </div>
+        <?php endif; ?>
+        <div id="home-service-wrapper" style="display: none;">
+            <div class="ced-form-control">
+                <span class="ced-title"><?= __('Service'); ?>:</span>
+                <span><?= __('At Your Home'); ?></span>
+            </div>
+            <div class="ced-form-control" id="location-wrapper">
+                <span class="ced-title"><?= __('Home Location'); ?>:</span>
+                <input required id="location-input" type="text" placeholder="<?= __('Enter your home location'); ?>" name="home_service_location">
+            </div>
+            <div class="ced-form-control">
+                <div id="locationinfo-content">
+                    <img src="" width="16" height="16" id="place-icon">
+                    <span id="place-name" class="title"></span><br>
+                    <span id="place-address"></span>
+                </div>
+                <div id="home-service-map" style="width:100%;height:300px"></div>
+            </div>
+        </div>
+        <div id="branch-service-wrapper" style="display: none;">
+            <div class="ced-form-control">
+                <span class="ced-title ced-booking-label ced-appointment-service-label"><?= __('Service'); ?>:</span>
+                <span><?= __(' At Shop'); ?></span>
+            </div>
+            <div class="ced-form-control">
+                <input type="hidden" name="branch" value="<?= $_product->getBookingLocation(); ?>"/>
+                <span class="ced-title"><?= __('Shop Location'); ?>:</span>
+                <?php if ($_product->getBookingLocation()) : ?>
+                    <strong class="distance location-li">
+                        <i class="fa fa-map-marker-alt" aria-hidden="true"></i>
+                            <a target="_blank"
+                                href="https://www.google.com/maps/place/<?= urlencode($_product->getBookingLocation()) ?>"><?= $_product->getBookingLocation(); ?></a>
+                    </strong>
+                <?php else : ?>
+                    <strong class="distance location-li"><?= __('Not defined');?></strong>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <script>
+        require(['jquery'],function($){
+            <?php if (__($serviceType) == __('Home Service')) { ?>
+                $('#home-service-wrapper').show();
+                $('#branch-service-wrapper').hide();
+            <?php } elseif(__($serviceType) == __('Branch')) { ?>
+                $('#home-service-wrapper').hide();
+                $('#branch-service-wrapper').show();
+            <?php } ?>
+
+            if ($('#service-type').length > 0)
+            {
+                $('#service-type').on('change',function(value){
+                    if ($(this).val() == 'branch')
+                    {
+                        $('#home-service-wrapper').hide();
+                        $('#branch-service-wrapper').show();
+                    } else if ($(this).val() == 'home_service')
+                    {
+                        $('#home-service-wrapper').show();
+                        $('#branch-service-wrapper').hide();
+                    } else {
+                        $('#home-service-wrapper').hide();
+                        $('#branch-service-wrapper').hide();
+                    }
+                });
+            }
+         });
+    </script>
+    <script>
+        function initialize() {
+
+            var defaultZoom = 10;
+
+            var map = new google.maps.Map(document.getElementById('home-service-map'), {
+                center: {lat: -33.8688, lng: 151.2195},
+                zoom: defaultZoom
+            });
+
+            var geocoder = new google.maps.Geocoder();
+            var locationWrapper = document.getElementById('location-wrapper');
+            var input = document.getElementById('location-input');
+            var types = document.getElementById('type-selector');
+            var strictBounds = document.getElementById('strict-bounds-selector');
+
+            /** information window **/
+            var infowindow = new google.maps.InfoWindow();
+            var infowindowContent = document.getElementById('locationinfo-content');
+            infowindow.setContent(infowindowContent);
+            var marker = new google.maps.Marker({
+                map: map,
+                draggable: true,
+                title: "<?= __('You are here! Drag the marker to the exact location.'); ?>",
+                anchorPoint: new google.maps.Point(0, -29)
+            });
+
+            /** marker drag start **/
+            google.maps.event.addListener(marker, 'dragstart', function () {
+                updateMarkerAddress('Loading...');
+            });
+
+            /** marker drag end **/
+            google.maps.event.addListener(marker, 'dragend', function () {
+                geocodePosition(marker.getPosition());
+                map.panTo(marker.getPosition());
+            });
+
+            /** on click map **/
+            google.maps.event.addListener(map, 'click', function (e) {
+                geocodePosition(marker.getPosition());
+                marker.setPosition(e.latLng);
+                map.panTo(marker.getPosition());
+            });
+
+            /** on click marker on map **/
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+
+
+            function geocodePosition(pos) {
+                geocoder.geocode({
+                    latLng: pos
+                }, function (responses) {
+                    if (responses && responses.length > 0) {
+                        updateMarkerAddress(responses);
+                    }
+                });
+            }
+
+            /** update address in info window and location input **/
+            function updateMarkerAddress(responses) {
+
+                if (typeof(responses) != 'string') {
+                    infowindowContent.children['place-name'].textContent = responses.name;
+                    infowindowContent.children['place-address'].textContent = responses[0].formatted_address;
+                    document.getElementById('location-input').value = responses[0].formatted_address;
+                } else {
+                    document.getElementById('location-input').value =responses;
+                }
+            }
+
+            /** google autocomplete */
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo('bounds', map);
+
+            autocomplete.addListener('place_changed', function () {
+                infowindow.close();
+                marker.setVisible(false);
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(defaultZoom);
+                }
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+
+                var address = '';
+                if (place.address_components) {
+                    address = [
+                        (place.address_components[0] && place.address_components[0].short_name || ''),
+                        (place.address_components[1] && place.address_components[1].short_name || ''),
+                        (place.address_components[2] && place.address_components[2].short_name || '')
+                    ].join(' ');
+                }
+
+                infowindowContent.children['place-name'].textContent = place.name;
+                infowindowContent.children['place-address'].textContent = address;
+                infowindow.open(map, marker);
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+<?php /** end of service type section */ ?>
+
+
+<?php /** appointment form start */ ?>
+<?php /** Book appointment for single date only */ ?>
+    <div class="ced-appointment-form-wrapper">
+        <div class="ced-form-control ced-appointment-date-wrapper">
+            <label><span><?= __('Select Date'); ?></span></label>
+            <input required class="control" type="text" id="appointment-date" value="<?php if (isset($productCustomOption)) { echo $productCustomOption['appointment_selected_date']; } ?>" name="appointment_selected_date"/>
+        </div>
+        <div style="display: none" class="ced-form-control ced-appointment-slot-wrapper">
+            <label><span><?= __('Select Time'); ?></span></label>
+            <select required class="control" id="slots-options" name="appointment_selected_time"></select>
+        </div>
+        <div style="display: none" class="ced-form-control ced-appointment-qty-wrapper">
+            <label><span><?= __('Select Qty'); ?></span></label>
+            <select required class="control" id="slot-qty" name="qty"></select>
+        </div>
+        <div style="display: none" class="ced-form-control error message" id="ced-appointment-error-msg"></div>
+        <div class="ced-form-control addtocart-wrapper">
+            <?= $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View')->setTemplate('Ced_Booking::product/view/addtocart.phtml')->toHtml(); ?>
+        </div>
+    </div>
+    <script>
+        require([
+                'jquery',
+                "mage/calendar",
+            ],
+            function ($) {
+                var productId = "<?= $_product->getId(); ?>";
+                var dateToday = new Date();
+                var appointmentTime = '';
+                var isProductEdit = false;
+
+                <?php if (isset($productCustomOption)) { ?>
+                    var appointmentDate = '<?= $productCustomOption['appointment_selected_date'] ?>';
+                    appointmentTime = '<?= $productCustomOption['appointment_selected_time'] ?>';
+                    var qty ='<?= $productCustomOption['qty'] ?>';
+                    isProductEdit = true;
+                    getAppointmentSlots(appointmentDate,productId);
+                    getQty(qty);
+                <?php } ?>
+
+
+                /** select appointment date , on select date send ajax to show the available time slots **/
+                $("#appointment-date").datepicker({
+                    minDate: dateToday,
+                    dateFormat: '<?= Data::JS_DATE_FORMAT; ?>',
+                    onSelect: function (selectedDate, inst) {
+
+                        /** on change date, slot and qty html set to null and disable add to cart button **/
+                        $('.ced-appointment-slot-wrapper').hide();
+                        $('.ced-appointment-qty-wrapper').hide();
+                        $('#ced-appointment-error-msg').hide();
+                        $('#slots-options').html('');
+                        $('#slot-qty').html('');
+                        $('#product-addtocart-button').prop('disabled', true);
+
+
+                        var date = $.datepicker.parseDate(inst.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, inst.settings);
+                        var dateText = $.datepicker.formatDate("<?= Data::JS_DATE_FORMAT; ?>", date, inst.settings);
+
+                       getAppointmentSlots(selectedDate);
+
+                    }
+                });
+
+                function getAppointmentSlots(selectedDate) {
+
+                    /** ajax to get all availablre time slots **/
+                    $.ajax({
+                        url: '<?= $getAppointmentSlotsUrl;?>',
+                        dataType: 'json',
+                        type: 'POST',
+                        data: {selected_date: selectedDate, product_id: productId},
+                        showLoader: true,
+                        success: function (res) {
+                            if (res.success) {
+                                $('.ced-appointment-slot-wrapper').show();
+                                $('.ced-appointment-qty-wrapper').show();
+                                $('#ced-appointment-error-msg').hide();
+                                if (res.slots.length > 0) {
+                                    var slotOptionsHtml = '<option value="">--<?= __('Select Slot');?>--</option>';
+                                    for (slot = 0; slot < res.slots.length; slot++) {
+                                        var slotSelected = '';
+                                        var availabilityLabel = '';
+                                        var availabilityClass = '';
+                                        if (res.slots[slot].qty > 0) {
+                                            availabilityLabel = ' (' + res.slots[slot].qty + '<?= __(' available') ?>' + ')';
+                                            availabilityClass = 'ced-slot-available';
+                                        } else {
+                                            availabilityLabel = ' (' + '<?= __('Unavailable') ?>' + ') ';
+                                            availabilityClass = 'ced-slot-unavailable';
+                                        }
+                                        if (appointmentTime == res.slots[slot].title)
+                                        {
+                                            slotSelected = 'selected="selected"';
+                                        }
+                                        slotOptionsHtml += '<option  class="' + availabilityClass + '"'+slotSelected+' qty="' + res.slots[slot].qty + '" value="' + res.slots[slot].title + '">' + res.slots[slot].title + availabilityLabel + '</option>';
+                                    }
+                                    $('#slots-options').html(slotOptionsHtml);
+                                }
+                            } else {
+                                $('.ced-appointment-slot-wrapper').hide();
+                                $('.ced-appointment-qty-wrapper').hide();
+                                $('#ced-appointment-error-msg').show();
+                                $('#ced-appointment-error-msg').html(res.message);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            var err = eval("(" + xhr.responseText + ")");
+                            alert(error);
+                        }
+                    });
+                }
+
+                /** on change slot show available qty and enable add to cart **/
+                $('#slots-options').on('change', function (option) {
+                    var qty = $('option:selected', this).attr('qty');
+                    isProductEdit = false;
+                    getQty(qty);
+                });
+
+                function getQty(qty) {
+                    if (qty > 0) {
+                        var qtyHtml = '';
+                        for (q = 1; q <= qty; q++) {
+                            qtyHtml += '<option value="' + q + '">' + q + '</option>';
+                        }
+                        $('#slot-qty').html(qtyHtml);
+                        if (isProductEdit)
+                            $('#product-addtocart-button').prop('disabled', true);
+                        else
+                            $('#product-addtocart-button').prop('disabled', false);
+                    } else {
+                        $('#slot-qty').html('');
+                        $('#product-addtocart-button').prop('disabled', true);
+                    }
+                }
+            });
+    </script>
+<?php /** appointment form end */ ?>

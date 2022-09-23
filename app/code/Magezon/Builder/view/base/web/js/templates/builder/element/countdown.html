@@ -1,0 +1,140 @@
+<div class="mgz-countdown mgz-countdown-{{ element.layout }} {{ element.show_separator ? 'mgz-countdown-separator-' + element.separator_type : '' }} {{ element.text_inline ? 'mgz-countdown-text-inline' : '' }}" >
+
+    <div class="mgz-countdown-heading-wrapper" ng-if="element.heading_text || element.sub_heading_text">
+        <div class="mgz-countdown-subheading" ng-if="element.sub_heading_text" ng-bind-html="element.sub_heading_text"></div>
+        <div class="mgz-countdown-heading" ng-if="element.heading_text" ng-bind-html="element.heading_text"></div>
+    </div>
+    <div class="mgz-countdown-counter-wrapper">
+        <div class="mgz-countdown-number mgz-countdown-days">
+            <div class="mgz-countdown-unit">
+                <span class="mgz-countdown-unit-number"></span>
+                <div class="mgz-countdown-unit-label" data-label='{"singular":"Day","plural":"Days"}'>Day</div>
+            </div>
+            <div class="mgz-countdown-circle-container" ng-if="element.layout=='circle'">
+                <div class="svg-container">
+                    <svg class="svg" ng-attr-viewBox="0 0 {{ $root.parseInt(element.circle_size) }} {{ $root.parseInt(element.circle_size) }}" version="1.1" preserveAspectRatio="xMinYMin meet">
+                        <circle class="mgz-element-bar-bg" 
+                            ng-attr-stroke="{{ element.circle_color2 }}" 
+                            ng-attr-stroke-width="{{ element.circle_dash_width }}" 
+                            ng-attr-fill="{{ element.circle_background_color }}" 
+                            ng-attr-r="{{ ($root.parseInt(element.circle_size) / 2) - $root.parseInt(element.circle_dash_width) }}" 
+                            ng-attr-cx="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            ng-attr-cy="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            fill="transparent" 
+                            ng-attr-stroke-dasharray="{{ $root.parseInt(element.circle_size) * $root.$window.Math.PI }}" 
+                            stroke-dashoffset="0"></circle>
+                        <circle class="mgz-element-bar" 
+                            ng-attr-stroke="{{ element.circle_color1 }}" 
+                            ng-attr-stroke-width="{{ element.circle_dash_width }}" 
+                            ng-attr-r="{{ ($root.parseInt(element.circle_size) / 2) - $root.parseInt(element.circle_dash_width) }}" 
+                            ng-attr-cx="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            ng-attr-cy="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            fill="transparent" 
+                            ng-attr-stroke-dasharray="{{ $root.parseInt(element.circle_size) * $root.$window.Math.PI }}" 
+                            ng-attr-stroke-dashoffset="{{ $root.parseInt(element.circle_size) * $root.$window.Math.PI }}" 
+                            ng-attr-transform="rotate(-90 {{ $root.parseInt(element.circle_size) / 2 }} {{ $root.parseInt(element.circle_size) / 2 }})"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="mgz-countdown-number mgz-countdown-hours">
+            <div class="mgz-countdown-unit">
+                <span class="mgz-countdown-unit-number"></span>
+                <div class="mgz-countdown-unit-label" data-label='{"singular":"Hour","plural":"Hours"}'>Hour</div>
+            </div>
+            <div class="mgz-countdown-circle-container" ng-if="element.layout=='circle'">
+                <div class="svg-container">
+                    <svg class="svg" ng-attr-viewBox="0 0 {{ $root.parseInt(element.circle_size) }} {{ $root.parseInt(element.circle_size) }}" version="1.1" preserveAspectRatio="xMinYMin meet">
+                        <circle class="mgz-element-bar-bg" 
+                            ng-attr-stroke="{{ element.circle_color2 }}" 
+                            ng-attr-stroke-width="{{ element.circle_dash_width }}" 
+                            ng-attr-fill="{{ element.circle_background_color }}" 
+                            ng-attr-r="{{ ($root.parseInt(element.circle_size) / 2) - $root.parseInt(element.circle_dash_width) }}" 
+                            ng-attr-cx="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            ng-attr-cy="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            fill="transparent" 
+                            ng-attr-stroke-dasharray="{{ $root.parseInt(element.circle_size) * $root.$window.Math.PI }}" 
+                            stroke-dashoffset="0"></circle>
+                        <circle class="mgz-element-bar" 
+                            ng-attr-stroke="{{ element.circle_color1 }}" 
+                            ng-attr-stroke-width="{{ element.circle_dash_width }}" 
+                            ng-attr-r="{{ ($root.parseInt(element.circle_size) / 2) - $root.parseInt(element.circle_dash_width) }}" 
+                            ng-attr-cx="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            ng-attr-cy="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            fill="transparent" 
+                            ng-attr-stroke-dasharray="{{ $root.parseInt(element.circle_size) * $root.$window.Math.PI }}" 
+                            ng-attr-stroke-dashoffset="{{ $root.parseInt(element.circle_size) * $root.$window.Math.PI }}" 
+                            ng-attr-transform="rotate(-90 {{ $root.parseInt(element.circle_size) / 2 }} {{ $root.parseInt(element.circle_size) / 2 }})"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="mgz-countdown-number mgz-countdown-minutes">
+            <div class="mgz-countdown-unit">
+                <span class="mgz-countdown-unit-number"></span>
+                <div class="mgz-countdown-unit-label" data-label='{"singular":"Minute","plural":"Minutes"}'>Minute</div>
+            </div>
+            <div class="mgz-countdown-circle-container" ng-if="element.layout=='circle'">
+                <div class="svg-container">
+                    <svg class="svg" ng-attr-viewBox="0 0 {{ $root.parseInt(element.circle_size) }} {{ $root.parseInt(element.circle_size) }}" version="1.1" preserveAspectRatio="xMinYMin meet">
+                        <circle class="mgz-element-bar-bg" 
+                            ng-attr-stroke="{{ element.circle_color2 }}" 
+                            ng-attr-stroke-width="{{ element.circle_dash_width }}" 
+                            ng-attr-fill="{{ element.circle_background_color }}" 
+                            ng-attr-r="{{ ($root.parseInt(element.circle_size) / 2) - $root.parseInt(element.circle_dash_width) }}" 
+                            ng-attr-cx="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            ng-attr-cy="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            fill="transparent" 
+                            ng-attr-stroke-dasharray="{{ $root.parseInt(element.circle_size) * $root.$window.Math.PI }}" 
+                            stroke-dashoffset="0"></circle>
+                        <circle class="mgz-element-bar" 
+                            ng-attr-stroke="{{ element.circle_color1 }}" 
+                            ng-attr-stroke-width="{{ element.circle_dash_width }}" 
+                            ng-attr-r="{{ ($root.parseInt(element.circle_size) / 2) - $root.parseInt(element.circle_dash_width) }}" 
+                            ng-attr-cx="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            ng-attr-cy="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            fill="transparent" 
+                            ng-attr-stroke-dasharray="{{ $root.parseInt(element.circle_size) * $root.$window.Math.PI }}" 
+                            ng-attr-stroke-dashoffset="{{ $root.parseInt(element.circle_size) * $root.$window.Math.PI }}" 
+                            ng-attr-transform="rotate(-90 {{ $root.parseInt(element.circle_size) / 2 }} {{ $root.parseInt(element.circle_size) / 2 }})"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="mgz-countdown-number mgz-countdown-seconds">
+            <div class="mgz-countdown-unit">
+                <span class="mgz-countdown-unit-number"></span>
+                <div class="mgz-countdown-unit-label" data-label='{"singular":"Second","plural":"Seconds"}'>Second</div>
+            </div>
+            <div class="mgz-countdown-circle-container" ng-if="element.layout=='circle'">
+                <div class="svg-container">
+                    <svg class="svg" ng-attr-viewBox="0 0 {{ $root.parseInt(element.circle_size) }} {{ $root.parseInt(element.circle_size) }}" version="1.1" preserveAspectRatio="xMinYMin meet">
+                        <circle class="mgz-element-bar-bg" 
+                            ng-attr-stroke="{{ element.circle_color2 }}" 
+                            ng-attr-stroke-width="{{ element.circle_dash_width }}" 
+                            ng-attr-fill="{{ element.circle_background_color }}" 
+                            ng-attr-r="{{ ($root.parseInt(element.circle_size) / 2) - $root.parseInt(element.circle_dash_width) }}" 
+                            ng-attr-cx="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            ng-attr-cy="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            fill="transparent" 
+                            ng-attr-stroke-dasharray="{{ $root.parseInt(element.circle_size) * $root.$window.Math.PI }}" 
+                            stroke-dashoffset="0"></circle>
+                        <circle class="mgz-element-bar" 
+                            ng-attr-stroke="{{ element.circle_color1 }}" 
+                            ng-attr-stroke-width="{{ element.circle_dash_width }}" 
+                            ng-attr-r="{{ ($root.parseInt(element.circle_size) / 2) - $root.parseInt(element.circle_dash_width) }}" 
+                            ng-attr-cx="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            ng-attr-cy="{{ $root.parseInt(element.circle_size) / 2 }}" 
+                            fill="transparent" 
+                            ng-attr-stroke-dasharray="{{ $root.parseInt(element.circle_size) * $root.$window.Math.PI }}" 
+                            ng-attr-stroke-dashoffset="{{ $root.parseInt(element.circle_size) * $root.$window.Math.PI }}" 
+                            ng-attr-transform="rotate(-90 {{ $root.parseInt(element.circle_size) / 2 }} {{ $root.parseInt(element.circle_size) / 2 }})"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mgz-countdown-link-wrapper" ng-if="element.link_text">
+        <a ng-href="element.link_url" class="mgz-countdown-link" ng-bind="element.link_text"></a>
+    </div>
+</div>

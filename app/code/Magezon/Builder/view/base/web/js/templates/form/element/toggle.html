@@ -1,0 +1,9 @@
+<div class="mgz__actions-switch" data-role="switcher">
+    <input name="{{ options.key }}" type="checkbox"
+           class="mgz__actions-switch-checkbox"
+           ng-model="model[options.key]"
+           id="{{::id}}"/>
+    <label class="mgz__actions-switch-label" for="{{::id}}">
+        <span class="mgz__actions-switch-text" data-text-on="{{ to.toggleLabels.on }}" data-text-off="{{ to.toggleLabels.off }}"></span>
+    </label>
+</div>

@@ -1,0 +1,12 @@
+<div class="mgz__fieldset-wrapper-title">
+	<strong><span>{{::to.label}}</span></strong>
+</div>
+<div formly-form 
+	model="model"
+   	fields="options.fieldGroup"
+   	options="options.options"
+   	form="options.form"
+   	ng-class="{'mgz__collapsible-content': to.collapsible, '_show': to.opend}"
+   	ng-if="to.opend||!to.collapsible"
+   	class="mgz__fieldset-inner">
+</div>

@@ -1,0 +1,10 @@
+<div class="modal-dialog">
+	<header class="mgz-modal-header" magezon-builder-directive-list group="modal-header" tag="modal-{{ $parent.modal.key }}-header"></header>
+	<div class="mgz-modal-content">
+		<div class="mgz-spinner" ng-if="$parent.spinner"><i></i></div>
+		<div class="mgz-modal-content-inner">
+			<div class="modal-content" uib-modal-transclude></div>
+		</div>
+	</div>
+	<footer class="mgz-modal-footer" magezon-builder-directive-list group="modal-footer" tag="modal-{{ $parent.modal.key }}-footer"></footer>
+</div>

@@ -1,0 +1,20 @@
+"TigTax Error Messages","TigTax Error Messages"
+"TigTax integration requires your attention. Go <a href=""%1"">here</a> from more information.","TigTax integration requires your attention. Go <a href=""%1"">here</a> from more information."
+"TigTax service has failed with status: %1","TigTax service has failed with status: %1"
+"TigTax service has failed. See logs for more information.","TigTax service has failed. See logs for more information."
+TigTax,TigTax
+"Error Logs","Error Logs"
+"TigTax Settings","TigTax Settings"
+Enable,Enable
+"API URL","API URL"
+"API KEY","API KEY"
+"Application version","Application version"
+"Application name","Application name"
+"Schedule (cron syntax)","Schedule (cron syntax)"
+"Write logs","Write logs"
+"Name for Tax Rule","Name for Tax Rule"
+"Enable Stubs","Enable Stubs"
+"TigTax Postcodes response","TigTax Postcodes response"
+"TigTax Rates response","TigTax Rates response"
+ID,ID
+"Created At","Created At"

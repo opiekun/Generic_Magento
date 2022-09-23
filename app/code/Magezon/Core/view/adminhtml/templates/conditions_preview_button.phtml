@@ -1,0 +1,70 @@
+<?php
+$formName = $this->getFormName();
+?>
+<?= $this->getButtonHtml() ?>
+<script type="text/javascript">
+    require(
+        [
+            'jquery',
+            'underscore',
+            'uiRegistry'
+        ],
+        function($, _, uiRegistry) {
+
+
+            /**
+             * Collect form data.
+             *
+             * @param {Array} items
+             * @returns {Object}
+             */
+            function collectData(items) {
+                var result = {},
+                    name;
+
+                items = Array.prototype.slice.call(items);
+
+                items.forEach(function (item) {
+                    switch (item.type) {
+                        case 'checkbox':
+                            result[item.name] = +!!item.checked;
+                            break;
+
+                        case 'radio':
+                            if (item.checked) {
+                                result[item.name] = item.value;
+                            }
+                            break;
+
+                        case 'select-multiple':
+                            name = item.name.substring(0, item.name.length - 2); //remove [] from the name ending
+                            result[name] = _.pluck(item.selectedOptions, 'value');
+                            break;
+
+                        default:
+                            result[item.name] = item.value;
+                    }
+                });
+
+                return result;
+            }
+            $('#mgz_conditions_preview_btn').click(function () {
+                var data = uiRegistry.get('<?= $formName ?>.<?= $formName ?>_data_source').get('data');
+                var additionalFields = $('[data-form-part=<?= $formName ?>]');
+                var additional = collectData(additionalFields);
+                var post = {...data, ...additional};
+                post['mgz_conditions_grid_id'] = '<?= $this->getRequest()->getParam('mgz_conditions_grid_id') ?>';
+                var url = "<?= $this->getUrl('mgzcore/conditions/productlist') ?>";
+                $.ajax({
+                    type: "POST",
+                    dataType: "html",
+                    url: url,
+                    data: post,
+                    showLoader: true,
+                    success: function (html) {
+                        $('#mgz_conditions_product').replaceWith(html);
+                    }
+                });
+            });
+        });
+</script>

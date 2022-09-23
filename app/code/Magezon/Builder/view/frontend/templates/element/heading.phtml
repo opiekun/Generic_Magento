@@ -1,0 +1,28 @@
+<?php
+/**
+ * @var $block \Magezon\Builder\Block\Element
+ */
+?>
+<?php
+$coreHelper  = $this->helper('\Magezon\Core\Helper\Data');
+$element     = $this->getElement();
+$headingType = $element->getData('heading_type');
+$text        = $coreHelper->filter($element->getData('text'));
+$link        = $this->getLinkParams($element->getData('link'));
+$fontSize    = $element->getData('font_size');
+?>
+<?php if ($text) { ?>
+	<<?= $headingType ?> class="mgz-element-heading-text" 
+	<?php if ($fontSize) { ?>
+	data-inline-fontsize="true" 
+	data-fontsize="<?= $fontSize ?>" 
+	<?php } ?>>
+	<?php if ($link['url']) { ?>
+		<a href="<?= $link['url'] ?>" title="<?= $block->escapeHtml($link['title']) ?>" <?= $link['blank'] ? 'target="_blank"' : '' ?> <?= $link['nofollow'] ? 'rel="nofollow"' : '' ?>>
+	<?php } ?>
+		<?= $text ?>
+	<?php if ($link['url']) { ?>
+		</a>
+	<?php } ?>
+	</<?= $headingType ?>>
+<?php } ?>

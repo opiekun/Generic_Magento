@@ -1,0 +1,137 @@
+<div class="widget block block-static-block" if="recs().length">
+    <div class="block widget block-products-list grid">
+        <div class="block-content">
+            <div class="products wrapper grid products-grid">
+                <div each="data: recs(), afterRender: loadJsAfterKoRender">
+                    <div data-bind="attr : {'data-unit-id' : unitId }">
+                        <div class="block-title title" if="products.length">
+                            <b>
+                                <span class="block-related-heading" role="heading" aria-level="2" text="storefrontLabel"></span>
+                            </b>
+                        </div>
+
+                        <ol class="products list items product-items" each="products">
+                            <li class="item product product-item" data-bind='style: {padding: "15px"}'>
+                                <div class="product-item-info" data-container="product-grid">
+                                    <!-- ko if: $parents[1].isAlternateEnvironmentEnabled -->
+                                    <a tabindex="-1"
+                                       class="product photo product-item-photo"
+                                       data-bind="attr : {'data-sku' : sku, 'data-unit-id' : $parent.unitId, href: 'javascript:void(0);' }"
+                                    >
+                                        <img attr="src: image.url" data-bind='style: {maxHeight: "15em"}'/>
+                                    </a>
+                                    <!-- /ko -->
+
+                                    <!-- ko if: !$parents[1].isAlternateEnvironmentEnabled -->
+                                    <!-- ko if: image && image.url -->
+                                    <a tabindex="-1"
+                                       class="product photo product-item-photo"
+                                       data-bind="attr : {'data-sku' : sku, 'data-unit-id' : $parent.unitId, href: url }"
+                                    >
+                                        <img attr="src: image.url" data-bind='style: {maxHeight: "15em"}'/>
+                                    </a>
+                                    <!-- /ko -->
+
+                                    <!-- ko if: !image || !image.url -->
+                                    <a tabindex="-1"
+                                       class="product photo product-item-photo"
+                                       data-bind="attr : {'data-sku' : sku, 'data-unit-id' : $parent.unitId, href: url }"
+                                    >
+                                        <img attr="src: $parents[1].placeholderUrl" data-bind='style: {maxHeight: "15em"}'/>
+                                    </a>
+                                    <!-- /ko -->
+                                    <!-- /ko -->
+                                    <div class="product details product-item-details">
+                                        <!-- ko if: $parents[1].isAlternateEnvironmentEnabled -->
+                                        <strong class="product name product-item-name">
+                                            <a class="product-item-link"
+                                               data-bind="attr : {'data-sku' : sku, 'data-unit-id' : $parent.unitId, href: 'javascript:void(0);' }"
+                                            >
+                                                <span html="name"></span>
+                                            </a>
+                                        </strong>
+                                        <!-- /ko -->
+
+                                        <!-- ko if: !$parents[1].isAlternateEnvironmentEnabled -->
+                                        <strong class="product name product-item-name">
+                                            <a class="product-item-link"
+                                               data-bind="attr : {'data-sku' : sku, 'data-unit-id' : $parent.unitId, href: url }"
+                                            >
+                                                <span html="name"></span>
+                                            </a>
+                                        </strong>
+                                        <!-- /ko -->
+
+                                        <div class="price-box price-final_price" data-role="priceBox"
+                                        >
+                                            <!-- ko if: prices && prices.minimum && prices.minimum.final -->
+                                            <span class="final-price">
+                                                <span class="price-container price-final_price">
+                                                    <span class="price-label">Your Price</span>
+                                                    <span id="product-price" class="price-wrapper ">
+                                                        <span class="price"
+                                                              data-bind="text: $parents[1].priceUnits.formatPrice( prices.minimum.final, $parents[1].priceFormat)"
+                                                        ></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                            <br/>
+                                            <span class="old-price">
+                                                <span class="price-container price-final_price">
+                                                    <span class="price-label">MSRP</span>
+                                                    <span id="product-old-price" class="price-wrapper ">
+                                                        <span class="price"
+                                                              data-bind="text: $parents[1].priceUnits.formatPrice( prices.minimum.final, $parents[1].priceFormat)"
+                                                              data-bind="text: $parents[1].priceUnits.formatPrice( prices.maximum.final, $parents[1].priceFormat)"
+                                                        ></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                            <!-- /ko -->
+                                        </div>
+
+                                        <div class="product-item-inner" data-bind="if: $data.productId && $data.addToCartAllowed">
+                                            <div class="product-item-actions">
+                                                <div class="actions-primary">
+                                                    <form
+                                                        data-role="tocart-form"
+                                                        attr="action: addToCart.url"
+                                                        method="post"
+                                                    >
+                                                        <input
+                                                            type="hidden"
+                                                            name="product"
+                                                            attr="value: productId"
+                                                        />
+                                                        <input
+                                                            type="hidden"
+                                                            name="uenc"
+                                                            attr="value: addToCart.postUenc"
+                                                        />
+                                                        <input
+                                                            type="hidden"
+                                                            name="form_key"
+                                                            attr="value: addToCart.form_key"
+                                                        />
+                                                        <button
+                                                            type="submit"
+                                                            title="Add to Cart"
+                                                            class="action tocart primary"
+                                                            data-bind="attr : {'data-sku' : sku, 'data-unit-id': $parent.unitId }"
+                                                        >
+                                                            <span>Add to Cart</span>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

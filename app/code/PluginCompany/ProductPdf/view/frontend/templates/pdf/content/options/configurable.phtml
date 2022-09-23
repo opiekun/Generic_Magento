@@ -1,0 +1,37 @@
+<?php if($this->getGroupConfigFlag('configurable_product/add_pagebreak')){ ?>
+    <pagebreak />
+<?php } ?>
+<div class="section section-configurable-options attribute-options">
+    <h3 class="section-title configurable-options-title">
+        <?php echo __('Product Options');?>
+    </h3>
+    <table class="configurable-options product-options">
+        <?php
+        $i=0;
+        foreach ($this->getOptions() as $option) {
+            $newOption = true;
+            foreach ($option['values'] as $value) {
+                $i++;
+                ?>
+                <tr class="<?php echo ($i % 2 === 0)? 'even': 'odd'; ?>">
+                    <td>
+                        <?php if($newOption){
+                            echo __($option['label']) . ':';
+                            $newOption = false;
+                        } ?>
+                    </td>
+                    <td>
+                        <?php echo __($value['label']); ?>
+                    </td>
+                    <?php if ($this->canShowPrice() && $this->getPricingValueText($value)) { ?>
+                        <td>
+                            <?php echo __($this->getPricingValueText($value)); ?>
+                        </td>
+                    <?php } ?>
+                </tr>
+                <?php
+            }
+        }
+        ?>
+    </table>
+</div>

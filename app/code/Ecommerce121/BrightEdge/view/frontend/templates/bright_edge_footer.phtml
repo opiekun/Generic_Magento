@@ -1,0 +1,15 @@
+<?php
+/**
+ * @var $block Ecommerce121\BrightEdge\Block\BrightEdge
+ */
+$be_ixf = $block->getBeiXClient();
+?>
+<!--BE Footer: The following <div> block needs to be placed in the location where the link block will be displayed-->
+<!--BE IXF: For your website, the location is above/below... -->
+<div class="be-ix-link-block">
+    <?php
+    print $be_ixf->getBodyString("body_1");
+    print $be_ixf->close();
+    ?>
+</div>
+<!--BE IXF: end-->

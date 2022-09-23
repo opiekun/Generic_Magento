@@ -1,0 +1,14 @@
+<div class="mgz-imagemanager">
+	<div class="mgz-imagemanager-preview file-image-preview">
+		<div class="mgz-imagemanager-insert" ng-click="openFileManager()" ng-if="!getSrc()">
+			<i class="mgz-icon mgz-icon-add"></i>
+			<span html="buttonLabel"></span>
+		</div>
+		<img ng-src="{{ getSrc() }}" ng-if="getSrc()"/>
+		<div class="mgz-imagemanager-actions" ng-if="getSrc()">
+            <i class="mgz-imagemanager-action mgz-icon mgz-icon-add" ng-click="openFileManager()" title="Insert Image"></i>
+            <i class="mgz-imagemanager-action mgz-icon mgz-icon-close" ng-click="model[options.key] = ''" title="Remove Image"></i>
+        </div>
+	</div>
+    <input type="text" class="mgz__control-text" ng-model="model[options.key]" id="{{::id}}" placeholder="Image Url"/>
+</div>

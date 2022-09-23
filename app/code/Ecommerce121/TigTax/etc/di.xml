@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Ecommerce121\TigTax\Model\StoreConfig">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="enable" xsi:type="string">tax/tigtax/enable</item>
+                <item name="api_url" xsi:type="string">tax/tigtax/api_url</item>
+                <item name="api_key" xsi:type="string">tax/tigtax/api_key</item>
+                <item name="app_version" xsi:type="string">tax/tigtax/app_version</item>
+                <item name="application_name" xsi:type="string">tax/tigtax/application_name</item>
+                <item name="write_logs" xsi:type="string">tax/tigtax/write_logs</item>
+                <item name="name_for_tax_rule" xsi:type="string">tax/tigtax/name_for_tax_rule</item>
+                <item name="region_ids" xsi:type="string">tax/tigtax/region_ids</item>
+                <item name="stub_enable" xsi:type="string">tax/tigtax/stub_enable</item>
+                <item name="stub_postcodes" xsi:type="string">tax/tigtax/stub_postcodes</item>
+                <item name="stub_rates" xsi:type="string">tax/tigtax/stub_rates</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="tigtax-zones-and-rates" xsi:type="object">Ecommerce121\TigTax\Console\Command\TaxZonesAndRates</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Ecommerce121\TigTax\Model\Service\PostcodeService">
+        <plugin name="Ecommerce121_TigTax::cli-process-status"
+                type="Ecommerce121\TigTax\Plugin\CliProcessStatus"
+                sortOrder="10"/>
+        <plugin name="Ecommerce121_TigTax::postcode-service-stub"
+                type="Ecommerce121\TigTax\Plugin\PostcodeServiceStub"
+                sortOrder="20"/>
+    </type>
+    <type name="Ecommerce121\TigTax\Model\Service\RateService">
+        <plugin name="Ecommerce121_TigTax::rate-service-stub"
+                type="Ecommerce121\TigTax\Plugin\RateServiceStub"/>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="tigtax_error_logs_listing_data_source" xsi:type="string">TigTaxErrorLogsDataProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="TigTaxErrorLogsDataProvider"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ecommerce121_tig_tax_logs</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Ecommerce121\TigTax\Model\Logger\Handler"
+                 type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="filePath" xsi:type="string">var/log/</argument>
+            <argument name="fileName" xsi:type="string">tigtax.log</argument>
+        </arguments>
+    </virtualType>
+    <type name="Ecommerce121\TigTax\Model\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">tigtax</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Ecommerce121\TigTax\Model\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

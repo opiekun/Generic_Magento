@@ -1,0 +1,19 @@
+<div css="modalClass" hasFocus="focused">
+	<div class="uibuilder-modal-inner" css="additionalClasses" if="initializeDataByDefault">
+		<header class="modal-header" style="">
+            <h1 class="modal-title" data-role="title"><i attr="class: modalIcon"/> <span text="modalTitle"/></h1>
+            <button class="action-close" data-role="closeBtn" type="button" data-bind="
+		            click: function(data, event) {
+		                closeModal()
+		            }
+		    ">
+                <span data-bind="i18n: 'Close'"></span>
+            </button>
+        </header>
+		<div class="uibuilder-modal-header" each="getRegion('header')" render=""></div>
+	    <div class="uibuilder-modal-content" data-bind="foreach: {data: elems, as: 'elem'}">
+	    	<div class="uibuilder-modal-content-item" template="elem.template" if="$data.displayArea!='footer' && $data.displayArea!='header'"></div>
+		</div>
+	    <div class="uibuilder-modal-footer" each="getRegion('footer')" render=""></div>
+	</div>
+</div>

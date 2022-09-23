@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://magezon.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_CustomerAttachments
+ * @copyright Copyright (C) 2018 Magezon (https://magezon.com)
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="customer">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="source" xsi:type="string">customer</item>
+                <item name="initializeFieldsetDataByDefault" xsi:type="boolean">true</item>
+                <item name="wasActivated" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="customer_attachments" formElement="input">
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Customer Attachments</label>
+                <additionalClasses>
+                    <class name="mca-attachment-input">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+    </fieldset>
+</form>

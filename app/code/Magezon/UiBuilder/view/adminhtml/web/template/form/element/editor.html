@@ -1,0 +1,17 @@
+<textarea class="admin__control-textarea uibuilder-element-editor" data-bind="
+    value: value,
+    valueUpdate: valueUpdate,
+    hasFocus: focused,
+    attr: {
+        name: inputName,
+        cols: cols,
+        rows: rows,
+        'aria-describedby': noticeId,
+        placeholder: placeholder,
+        id: uid,
+        disabled: disabled
+    }"
+    afterRender="onElementRender"
+        />
+
+<button click="openEditor" class="uibuilder-btn uibuilder-element-editor-button" data-bind="i18n: 'WYSIWYG Editor'" if="showButton"></button>

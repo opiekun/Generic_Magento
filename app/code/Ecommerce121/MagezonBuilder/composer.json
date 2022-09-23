@@ -1,0 +1,21 @@
+{
+  "name": "ecommerce121/module-magezon-builder",
+  "version": "1.0.0",
+  "description": "N/A",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "magezon/module-builder": "1.2.*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Ecommerce121\\MagezonBuilder\\": ""
+    }
+  }
+}

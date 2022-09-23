@@ -1,0 +1,339 @@
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+    .customer-account-create,
+    .company_customer-account-create {
+        .message.error {
+            a {
+                text-decoration: underline;
+            }
+        }
+        input[type="checkbox"] {
+            margin: -9px 5px 0 0;
+        }
+        input[type="radio"] {
+            display: inline-block;
+            margin-top: -8px;
+            vertical-align: middle;
+        }
+        input[type="radio"] + label {
+            display: inline-block;
+            margin-top: -8px;
+            vertical-align: middle;
+        }
+        fieldset.fieldset {
+            &:last-of-type {
+                margin-bottom: 20px;
+            }
+        }
+        .page-title {
+            .lib-font-size(24);
+            .lib-line-height(36);
+            margin-bottom: 15px;
+            font-weight: @font-weight__bold;
+            color: @color-black;
+        }
+        .is_same {
+            label {
+                color: @color-black;
+            }
+        }
+        .actions-toolbar {
+            margin-left: 0 !important;
+            margin-top: 0 !important;
+            .action.submit {
+                color: @color-white;
+                font-weight: @font-weight__bold;
+                background-color: @theme__color__primary;
+                .lib-font-size(22);
+                .lib-line-height(22);
+                padding: 13px 31px;
+                letter-spacing: -0.015em;
+                margin-bottom: 35px;
+                border-radius: 5px;
+                display: inline-block;
+                position: relative;
+                text-transform: none;
+                &:hover {
+                    text-decoration: none;
+                    background: @color-black;
+                }
+            }
+        }
+        .amcform-button.-default, .amform-form .action.primary {
+            color: @color-white;
+            font-weight: @font-weight__bold;
+            background-color: @theme__color__primary;
+            .lib-font-size(14);
+            .lib-line-height(19);
+            padding: 5px 10px;
+            letter-spacing: -0.015em;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            display: inline-block;
+            position: relative;
+            text-transform: none;
+            height: auto;
+            max-width: 170px;
+            &:hover {
+                text-decoration: none;
+                background: @color-black;
+            }
+            &:focus {
+                box-shadow: none;
+            }
+        }
+        .amform-form .action.primary {
+            .lib-font-size(18);
+            .lib-line-height(18);
+            padding: 13px 35px;
+        }
+        .page-top {
+            align-items: center;
+            display: block;
+            margin-bottom: 48px;
+            overflow: hidden;
+            .b2blink {
+                color: @color-black;
+                font-weight: @font-weight__bold;
+                p {
+                    margin: 0;
+                }
+            }
+            .block {
+                margin: 0;
+            }
+        }
+    }
+    .amcform-popup-block.-active {
+        z-index: 9999999999;
+    }
+    .fieldset.create.info {
+        .create-wrapper {
+            .create-billing,
+            .create-shipping,
+            .create-addition  {
+                .legend {
+                    .lib-font-size(18);
+                    .lib-line-height(24);
+                    text-transform: uppercase;
+                    font-weight: @font-weight__bold;
+                    color: @color-black;
+                    margin-left: 0;
+                    margin-bottom: 5px;
+                }
+                .field {
+                    width: 100%;
+                    margin-bottom: 15px;
+                    &.fb-file {
+                        min-height: 80px;
+                    }
+                    .label {
+                        margin-bottom: 5px;
+                        .lib-font-size(14);
+                        color: @color-black;
+                        font-weight: @font-weight__regular;
+                    }
+                    select {
+                        background: @color-white;
+                    }
+                    &.choice .field-tooltip {
+                        top: 0;
+                    }
+                }
+            }
+            .create-addition {
+                padding-top: 30px;
+                .create-title {
+                    .lib-font-size(14);
+                    .lib-line-height(22);
+                    font-weight: @font-weight__bold;
+                    color: @theme__color__primary;
+                    margin-bottom: 15px;
+                }
+                .field {
+                    width: 100%;
+                    p, label {
+                        color: @color-black;
+                        max-width: 400px;
+                        .lib-font-size(13) !important;
+                        .lib-line-height(15);
+                        letter-spacing: -0.5px;
+                    }
+                    &.purchase,
+                    &.tax_exemption {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                    &.catalog_mail_list {
+                        margin-bottom: 5px;
+                    }
+                    a {
+                        color: @color-white;
+                        font-weight: @font-weight__bold;
+                        background-color: @theme__color__primary;
+                        .lib-font-size(13);
+                        .lib-line-height(15);
+                        padding: 5px;
+                        letter-spacing: -0.015em;
+                        margin-bottom: 0;
+                        border-radius: 5px;
+                        display: inline-block;
+                        position: relative;
+                        text-transform: none;
+                        text-align: center;
+                        &:hover {
+                            text-decoration: none;
+                            background: @color-black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .customer-account-logoutsuccess,
+    .customer-account-forgotpassword {
+        color: black;
+    }
+
+    .account.page-layout-2columns-left {
+        color: @color-black;
+        .fieldset .legend {
+            margin-left: 0;
+        }
+        a {
+            color: @theme__color__primary;
+            &:hover {
+            color: @theme__color__primary;
+            }
+         }
+        .sidebar-main {
+            background-color: @theme__color__primary;
+            padding: 15px;
+            a, strong {
+                color: @color-white;
+            }
+            .nav .delimiter {
+                border-color: @color-white;
+            }
+        }
+    }
+    .customer-account-login {
+        color: @color-black;
+        .login-container .fieldset:after {
+            display: none;
+        }
+        .login-container .fieldset .field.email {
+            position: relative;
+            &:after {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                content: "* Required Fields";
+                display: block;
+                letter-spacing: normal;
+                word-spacing: normal;
+                color: @theme__color__primary;
+                .lib-font-size(12);
+                .lib-line-height(20);
+            }
+        }
+        .actions-toolbar {
+            margin-left: 0 !important;
+
+            &:not(.social-btn) {
+                a {
+                    &:hover {
+                        color: @theme__color__primary;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .customer-account-create,
+    .company_customer-account-create {
+        .form-create-account {
+            width: 100% !important;
+        }
+    }
+    .fieldset.create.info {
+        .create-wrapper {
+            display: flex;
+            .create-billing,
+            .create-shipping,
+            .create-addition {
+                width: 50%;
+                margin-bottom: 0;
+                .field {
+                    width: ~'calc(100% - 25px)';
+                    max-width: 420px;
+                    &.form-group {
+                        width: 100%;
+                        max-width: none;
+                    }
+                    &.catalog_mail_list {
+                        margin-bottom: 15px;
+                    }
+                }
+            }
+            .create-addition {
+                .field {
+                    margin-bottom: 30px;
+                    p, label {
+                    }
+                    &.purchase,
+                    &.tax_exemption {
+                        max-width: 100%;
+                        a {
+                            text-align: center;
+                            margin-left: 70px;
+                        }
+                    }
+                    &.ship_complete {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
+            }
+        }
+    }
+    .customer-account-login {
+        .actions-toolbar {
+            & > .secondary {
+                &:last-child {
+                    margin-top: 0;
+                }
+            }
+            margin-left: 0 !important;
+        }
+    }
+}
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .customer-account-create,
+    .company_customer-account-create {
+        .page-top {
+            flex-direction: column;
+            .b2blink {
+                margin-bottom: 25px;
+            }
+        }
+    }
+    .account.page-layout-2columns-left {
+        .sidebar-main {
+            margin-bottom: 20px;
+        }
+    }
+}

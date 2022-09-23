@@ -1,0 +1,126 @@
+/*===========================================================
+=            Section comment Appointment listing            =
+===========================================================*/
+.appointment-search-wrapper .ced-side-filter-wrapper {
+	margin-bottom: 20px;
+}
+.appointment-search-wrapper .ced-side-filter-wrapper strong {
+	margin-bottom: 10px;
+	display: inline-block;
+}
+.booking-facilities img {
+	width: 25px;
+}
+.appointment-content-wrapper .list .item.product.product-item {
+	border-bottom: 1px solid #dddddd;
+	margin-bottom: 10px;
+}
+/*=====  End of Section comment Appointment listing  ======*/
+
+/*============================================================
+=            Section comment Booking Product page            =
+============================================================*/
+
+.appointment-service-type-wrapper {
+	margin: 10px 0;
+}
+.ced-appointment-form-wrapper .ced-appointment-date-wrapper {
+	margin-bottom: 10px;
+}
+.product-options-wrapper {
+	margin-bottom: 15px;
+}
+.ced-form-control {
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+.ced-appointment-form-wrapper .ced-form-control.addtocart-wrapper {
+	margin-top: 25px;
+}
+.ced-form-control > label, .ced-form-control > span.ced-title {
+	font-weight: 600;
+	margin-bottom: 3px;
+	display: block;
+}
+/*=====  End of Section comment Booking Product page  ======*/
+
+.event-event-index .toolbar-sorter.sorter{
+	display: none;
+}
+.event-event-index .modes{
+	display: none;
+}
+
+.booking-listing-page-wrapper .modes {
+	display: none;
+}
+.booking-listing-page-wrapper .toolbar-sorter.sorter {
+	display: none;
+}
+/*============================================================
+=            Section comment Booking Form          =
+============================================================*/
+.daily-rental-end-date-wrapper,
+.daily-rental-start-date-wrapper,
+.hourly-rental-end-time-wrapper,
+.hourly-rental-start-time-wrapper,
+.daily-rental-days-wrapper{
+	width: 48%;
+	display: inline-block;
+	margin-top: 10px;
+}
+.hourly-rental-end-time-wrapper,
+.hourly-rental-start-time-wrapper{
+	margin-bottom: 10px;
+}
+.daily-rental-start-date-wrapper,
+.hourly-rental-start-time-wrapper{
+	margin-right: 5px;
+}
+.daily-rental-end-date-wrapper label ,
+.daily-rental-start-date-wrapper label,
+.hourly-rental-end-time-wrapper label,
+.hourly-rental-start-time-wrapper label,
+.hourly-rental-start-datetime-wrapper label{
+	position: relative;
+}
+.daily-rental-end-date-wrapper input,
+.daily-rental-start-date-wrapper input,
+.hourly-rental-start-datetime-wrapper input,
+.hourly-rental-end-time-wrapper select,
+.hourly-rental-start-time-wrapper select{
+	padding-left: 26px;
+}
+.daily-rental-end-date-wrapper label::after,
+.daily-rental-start-date-wrapper label::after,
+.hourly-rental-end-time-wrapper label::after,
+.hourly-rental-start-time-wrapper label::after,
+.hourly-rental-start-datetime-wrapper label::after{
+	content: '\f073';
+	font-family: "Font Awesome 5 Free";
+	position: absolute;
+	top: 25px;
+	left: 10px;
+}
+.hourly-rental-end-time-wrapper label::after,
+.hourly-rental-start-time-wrapper label::after{
+	content: '\f017';
+}
+input:not([disabled]):focus,select:not([disabled]):focus{
+	box-shadow: none;
+}
+.total_duration{
+	display: flex;
+	flex-wrap: wrap;
+}
+.rental_qty_wrapper,.total_duration{
+	margin: 10px 0;
+}
+.rental_qty_wrapper input{
+	margin-left: 10px;
+	height: 30px;
+	width: 50px;
+}
+.total_duration p{
+	margin: 0;
+}

@@ -1,0 +1,24 @@
+<?php
+/**
+ * @var $block \Magezon\Builder\Block\Element
+ */
+?>
+<?php
+$element      = $this->getElement();
+$title        = $element->getData('title');
+$titleTag     = $element->getData('title_tag') ? $element->getData('title_tag') : 'h4';
+$titleAlign   = $element->getData('title_align') ? $element->getData('title_align') : 'center';
+$addIcon      = $element->getData('add_icon');
+$iconPosition = $element->getData('icon_position');
+$icon         = $element->getData('icon');
+?>
+<div class="mgz-element-separator-wrapper mgz-text-<?= $titleAlign ?>">
+	<?php if ($title || ($addIcon && $icon)) { ?>
+	<<?= $titleTag ?> class="title">
+		<?php if ($addIcon && $icon && $iconPosition == 'left') { ?>
+			<i class="mgz-icon-element <?= $icon ?>"></i><?php } ?><?php if ($title) { ?><span><?= $title ?></span><?php } ?><?php if ($addIcon && $icon && $iconPosition == 'right') { ?><i class="mgz-icon-element <?= $icon ?>"></i>
+		<?php } ?>
+	</<?= $titleTag ?>>
+	<?php } ?>
+	<div class="mgz-element-separator-line"></div>
+</div>

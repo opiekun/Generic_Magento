@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block ifconfig="weltpixel_ga4/general/enable" class="WeltPixel\GA4\Block\Core" name="weltpixel_gtmga4_head" before="-" template="WeltPixel_GA4::gtm_head.phtml"/>
+        </referenceBlock>
+        <referenceContainer name="after.body.start">
+            <block ifconfig="weltpixel_ga4/general/enable"
+                   name="gtmga4.nonjs.code"
+                   class="WeltPixel\GA4\Block\Core"
+                   template="WeltPixel_GA4::nonjs_code.phtml"
+                   before="-"
+            />
+        </referenceContainer>
+        <container name="ga4.before.body.end" as="ga4_before_body_end" label="Gtm Before Body End" after="before.body.end">
+            <block ifconfig="weltpixel_ga4/general/enable" class="WeltPixel\GA4\Block\Core" name="weltpixel_gtmga4_footer" after="-" template="WeltPixel_GA4::gtm_footer.phtml" ttl="0" />
+        </container>
+        <!-- impressions -->
+        <referenceBlock name="category.products.list" >
+            <action method="setTemplate" ifconfig="weltpixel_ga4/general/product_click_tracking">
+                <argument name='template' xsi:type='string'>WeltPixel_GA4::product/list.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="search_result_list" >
+            <action method="setTemplate" ifconfig="weltpixel_ga4/general/product_click_tracking">
+                <argument name='template' xsi:type='string'>WeltPixel_GA4::product/list.phtml</argument>
+            </action>
+        </referenceBlock>
+        <!-- impressions -->
+        <!-- product clicks for cross, related, upsell -->
+        <referenceBlock name="checkout.cart.crosssell" >
+            <action method="setTemplate" ifconfig="weltpixel_ga4/general/product_click_tracking">
+                <argument name='template' xsi:type='string'>WeltPixel_GA4::product/list/items.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="product.info.upsell" >
+            <action method="setTemplate" ifconfig="weltpixel_ga4/general/product_click_tracking">
+                <argument name='template' xsi:type='string'>WeltPixel_GA4::product/list/items.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="catalog.product.related" >
+            <action method="setTemplate" ifconfig="weltpixel_ga4/general/product_click_tracking">
+                <argument name='template' xsi:type='string'>WeltPixel_GA4::product/list/items.phtml</argument>
+            </action>
+        </referenceBlock>
+        <!-- product clicks for cross, related, upsell -->
+    </body>
+</page>

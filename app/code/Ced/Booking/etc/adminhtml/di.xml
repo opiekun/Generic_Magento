@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * https://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_Booking
+  * @author      CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+  * @license      https://cedcommerce.com/license-agreement.txt
+  */
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="non_working_dates" xsi:type="array">
+                    <item name="class" xsi:type="string">Ced\Booking\Ui\DataProvider\Product\Form\Modifier\NonWorkingDates</item>
+                    <item name="sortOrder" xsi:type="number">200</item>
+                </item>
+                <item name="booking_facilities" xsi:type="array">
+                    <item name="class" xsi:type="string">Ced\Booking\Ui\DataProvider\Product\Form\Modifier\BookingFacilities</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Ced\Booking\Ui\DataProvider\Product\Form\Modifier\NonWorkingDates">
+        <arguments>
+            <argument name="formName" xsi:type="string">product_form</argument>
+            <argument name="dataScopeName" xsi:type="string">product_form.product_form</argument>
+            <argument name="scopeName" xsi:type="string">product_form.product_form</argument>
+            <argument name="dataSourceName" xsi:type="string">product_form.product_form_data_source</argument>
+        </arguments>
+    </type>
+    <type name="Ced\Booking\Ui\DataProvider\Product\Form\Modifier\BookingFacilities">
+        <arguments>
+            <argument name="formName" xsi:type="string">product_form</argument>
+            <argument name="dataScopeName" xsi:type="string">product_form.product_form</argument>
+            <argument name="scopeName" xsi:type="string">product_form.product_form</argument>
+            <argument name="dataSourceName" xsi:type="string">product_form.product_form_data_source</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\MassDelete">
+        <plugin name="catalog_product_delete_after" type="Ced\Booking\Plugin\Adminhtml\Product\MassDelete"/>
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\MassStatus">
+        <plugin name="catalog_product_status_change_after" type="Ced\Booking\Plugin\Adminhtml\Product\MassStatus"/>
+    </type>
+
+    <type name="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider">
+        <plugin name="catalog_product_dataprovider" type="Ced\Booking\Plugin\Ui\DataProvider\Product\ProductDataProvider"/>
+    </type>
+
+</config>

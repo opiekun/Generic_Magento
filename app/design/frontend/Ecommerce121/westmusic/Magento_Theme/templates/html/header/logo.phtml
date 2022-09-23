@@ -1,0 +1,22 @@
+<?php
+/**
+ * @var \Magento\Theme\Block\Html\Header\Logo $block
+ */
+$storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();
+$logoDesktop = str_replace('logo.svg', 'desktop-logo.svg', $block->getLogoSrc());
+?>
+<div class="logo">
+    <a
+        href="<?= $block->escapeUrl($block->getUrl('')) ?>"
+        title="<?= $block->escapeHtmlAttr($storeName) ?>"
+        aria-label="store logo">
+        <picture>
+            <source srcset="<?= $block->escapeUrl($logoDesktop) ?>" media="(min-width: 964px)">
+            <img src="<?= $block->escapeUrl($block->getLogoSrc()) ?>"
+                title="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
+                alt="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
+            />
+        </picture>        
+
+    </a>
+</div>

@@ -1,0 +1,55 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .breadcrumbs {
+        .items {
+            color: @text__color;
+        }
+    }
+    .catalog-category-view {
+        .page-title-wrapper {
+            .page-title {
+                color: @text__color;
+            }
+        }
+    }
+    .page-products {
+        .product-item-info {
+            .product-item-name {
+                .product-item-link {
+                    color: @text__color;
+                }
+            }
+            .product-item-sku {
+                color: #656565;
+            }
+            .price-box {
+                .old-price {
+                    .price-wrapper {
+                        .price {
+                            color: @text__color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .product-info-main {
+        .page-title-wrapper .page-title {
+            color: @text__color;
+        }
+        .product-social-links {
+            a {
+                &.productpdf {
+                    background: url("../images/icon-print.svg") no-repeat;
+                    background-size: contain;
+                    img {
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
+    }
+}

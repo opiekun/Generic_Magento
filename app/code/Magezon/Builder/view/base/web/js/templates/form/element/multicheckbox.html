@@ -1,0 +1,7 @@
+<div class="mgz-radio-group">
+	<div ng-repeat="(key, option) in to.options" class="checkbox">
+		<label>
+			<input type="checkbox" id="{{id + '_'+ $index}}" ng-model="multiCheckbox.checked[$index]" ng-change="multiCheckbox.change()">      {{option[to.labelProp || 'label']}}
+		</label>
+	</div>
+</div>

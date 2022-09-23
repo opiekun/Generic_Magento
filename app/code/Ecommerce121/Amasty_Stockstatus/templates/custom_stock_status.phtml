@@ -1,0 +1,43 @@
+<?php
+/** @var \Amasty\Stockstatus\Block\CustomStockStatus $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<?php $stockStatusInformation = $block->getProduct()->getExtensionAttributes()->getStockstatusInformation() ?>
+<?php $isPopupOpened = $block->isWrapperNeed() && $block->isSourcePopupOpenedByStatus() ?>
+
+<?php if ($isPopupOpened): ?>
+<button class="amstockstatus-status-container stock amstock-button -link" data-amstock-js="open-popup">
+    <?php else: ?>
+    <div class="amstockstatus-status-container stock <?= /* @noEscape */ $block->getAvailability(); ?>">
+        <?php endif; ?>
+
+        <?php if ($block->isDefaultStatusDisplayed()): ?>
+            <?= $escaper->escapeHtml($block->getDefaultStatus()) ?>
+        <?php endif; ?>
+
+        <?= $block->getChildHtml(\Amasty\Stockstatus\Block\CustomStockStatus::BEFORE_CONTAINER) ?>
+
+        <?php if ($stockStatusInformation->getStatusIcon()): ?>
+            <img src="<?= $escaper->escapeUrl($stockStatusInformation->getStatusIcon()) ?>"
+                 class="amstockstatus_icon"
+                 alt="<?= $escaper->escapeHtml($stockStatusInformation->getStatusMessage()) ?>"
+                 title="<?= $escaper->escapeHtml($stockStatusInformation->getStatusMessage()) ?>"
+            />
+        <?php endif; ?>
+
+        <?php if (!$block->isIconOnly()): ?>
+            <span class="amstockstatus amsts_<?= $escaper->escapeHtml($stockStatusInformation->getStatusId()) ?>">
+            <?= $escaper->escapeHtml($stockStatusInformation->getStatusMessage(), ['a', 'span', 'i', 'b', 'p']) ?>
+        </span>
+        <?php endif; ?>
+
+        <?= $block->getChildHtml(\Amasty\Stockstatus\Block\CustomStockStatus::AFTER_CONTAINER) ?>
+
+        <?php if ($isPopupOpened): ?>
+</button>
+<?= /* @noEscape */ $block->getTooltipHtml($stockStatusInformation->getTooltipText()) ?>
+<?php else: ?>
+    <?= /* @noEscape */ $block->getTooltipHtml($stockStatusInformation->getTooltipText()) ?>
+    <?= /* @noEscape */ $block->getAdditionalContentHtml($stockStatusInformation->getAdditionalContent()) ?>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,174 @@
+//
+//  Common
+//  -------------------------------------------
+
+& when (@media-common = true) {
+
+    //Checkbox + radio buttons restyling
+    .amcheckout-step-container {
+
+        .amcheckout-content {
+            .address {
+                margin-top: -30px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                & > * {
+                    order: 30;
+                }
+
+                .shipping-address {
+                    order: 20;
+                    width: 100%;
+                    margin-left: 7px;
+                    font-weight: 600;
+                }
+
+                [name="shippingAddress.custom_attributes.company"] {
+                    order: 10;
+                }
+
+                [name="amastyShippingAttributes.orderingasschoolcompany"] {
+                    margin-top: 29px;
+                    order: 10;
+                }
+            }
+
+            .billing-address {
+                margin-top: 20px;
+                font-weight: 600;
+            }
+        }
+
+        .checkout-billing-address {
+            margin-top: 64px;
+        }
+
+        .amcheckout-title > .amcheckout-icon {
+            & {
+                border: 2px solid @theme__color__secondary;
+            }
+
+            &:hover,
+            &:hover:before {
+                border-color: lighten(@theme__color__secondary, 15%);
+            }
+        }
+
+        .amcheckout-title > .amcheckout-icon:before {
+            & {
+                border-right: 2px solid @theme__color__secondary;
+                border-bottom: 2px solid @theme__color__secondary;
+            }
+        }
+
+        input[type='checkbox'] + label:hover:before,
+        input[type='radio'] + label:hover:before,
+        input[type='checkbox']:checked + label:before,
+        input[type='radio']:checked + label:before {
+            border-color: @theme__color__secondary;
+            box-shadow: 0 2px 4px rgba(23, 23, 23, .4);
+        }
+
+        input[type='checkbox']:checked + label:before {
+            background: url(../images/check.svg) center no-repeat !important;
+        }
+    }
+    // Billing address block
+    .amcheckout-step-container .checkout-billing-address {
+
+        .actions-toolbar .action-cancel {
+            background: @color-white;
+            border: 1px solid @theme__color__secondary;
+            color: @theme__color__secondary;
+
+            &:hover {
+                background: @theme__color__primary;
+                border-color: @theme__color__primary;
+                color: @color-white;
+                text-decoration: none;
+            }
+        }
+
+        .actions-toolbar .action-update {
+            background: @theme__color__primary;
+            border: 1px solid @theme__color__primary;
+            color: @color_white;
+
+            &:hover {
+                background: @theme__color__primary;
+                border-color: @theme__color__primary;
+                color: @color-white;
+                text-decoration: none;
+            }
+        }
+    }
+    .checkout-index-index {
+        .amcheckout-button:not(.braintree-googlepay-button):not(.ui-datepicker-trigger):not(.gpay-card-info-container),
+        button:not(.braintree-googlepay-button):not(.action-close):not(.ui-datepicker-trigger):not(.gpay-card-info-container):not(.-close.-clear):not(.amstock-button.-link):not(.action.action-show),
+        .quote-details-items .actions-toolbar >.action:not(.braintree-googlepay-button):not(.ui-datepicker-trigger):not(.gpay-card-info-container),
+        .but-test {
+            background: @red_button_color;
+            border: 1px solid @red_button_color;
+            color: @color_white;
+            &:hover {
+                background: @theme__color__secondary;
+                border-color: @theme__color__secondary;
+                color: @color-white;
+                text-decoration: none;
+            }
+        }
+        .amcheckout-step-container {
+            .additional-options {
+                .amcheckout-checkboxes {
+                    display: flex;
+                    flex-direction: column;
+                    [data-role="checkout-agreements"] {
+                        order: 10;
+                    }
+                }
+                .checkout-agreements {
+                    .action-show {
+                        background: #8f8f8f;
+                        &:hover {
+                            background: @color-black;
+                        }
+                        span {
+                            background: inherit;
+                            border-color: transparent;
+                            color: inherit;
+                        }
+                    }
+                }
+            }
+            .order-attributes-form.fieldset.address {
+                .field:last-child {
+                    margin-top: 30px;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .amcheckout-step-container {
+        .amcheckout-form-login .actions-toolbar,
+        .form-login .actions-toolbar {
+            .secondary,
+            & > .secondary:last-child {
+                margin-top: 0;
+                a {
+                    &:hover {
+                        color: @theme__color__primary;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}

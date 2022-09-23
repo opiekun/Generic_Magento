@@ -1,0 +1,167 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .wishlist-index-index {
+        .products-grid.wishlist {
+            .product-item {
+                border-bottom: 1px solid @secondary__color;
+                margin: 0;
+                width: 100%;
+
+                &:first-child {
+                    border-top: 1px solid @secondary__color;
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .wishlist-index-index {
+        .toolbar .toolbar-amount {
+            margin-bottom: 14px;
+        }
+
+        .products-grid.wishlist {
+            .product-item {
+
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .wishlist-index-index {
+        .products-grid {
+            .product-items {
+                margin: 0;
+                display: flex;
+                flex-wrap: wrap;
+                margin-right: -25px;
+            }
+
+            .product {
+                &-item {
+                    margin-left: 0 !important;
+                    padding: 0;
+                    width: ~'calc(50% - 25px)';
+                    margin-right: 25px;
+                    &-link {
+                        .lib-line-height(23);
+                        height: 69px;
+                        overflow: hidden;
+                        display: block;
+                    }
+                }
+
+                &-reviews-summary {
+                    margin-top: -21px;
+
+                    & + .price-box {
+                        margin-top: 0;
+                    }
+
+                    .reviews-actions {
+                        margin-top: 0;
+                        .lib-line-height(20);
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .wishlist-index-index {
+        .products-grid.wishlist {
+            .product {
+                &-item {
+                    .lib-font-size(14);
+                    .lib-line-height(20);
+                    width: ~'calc(33% - 25px)';
+
+                    &-link {
+                        .lib-line-height(20);
+                        height: 60px;
+                        overflow: hidden;
+                        display: block;
+                    }
+                    &-name {
+                        margin-bottom: 21px;
+                    }
+
+                    .price-box {
+                        margin-top: 21px;
+                    }
+
+                    margin-bottom: @indent__base;
+                    &-tooltip {
+                        display: inline-block;
+                    }
+
+                    &-actions {
+                        margin: @indent__s 0 0;
+                    }
+
+                }
+                &-reviews-summary {
+                    margin-top: -21px;
+
+                    & + .price-box {
+                        margin-top: 0;
+                    }
+
+                    .reviews-actions {
+                        margin-top: 0;
+                        .lib-line-height(20);
+                    }
+                }
+            }
+        }
+    }
+
+    .sidebar.sidebar-additional {
+        .block-wishlist {
+            .subtitle {
+                margin-bottom: 15px;
+            }
+            .product-items .product-item {
+                .product-item-info {
+                    display: flex;
+                    .product-item-photo {
+                        float: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .wishlist-index-index {
+        .products-grid.wishlist {
+            .product-item {
+                width: ~'calc(25% - 25px)';
+            }
+        }
+    }
+}

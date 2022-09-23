@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <update handle="editor"/>
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+        <css src="Magento_Catalog::catalog/category-selector.css"/>
+        <css src="Magento_Catalog::product/product.css"/>
+        
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="photogallery_index_form"/>
+          <!-->  <referenceContainer name="photogallery_index_form">
+                <block name="gallery" class="Magento\Catalog\Block\Adminhtml\Product\Helper\Form\Gallery">
+                    <arguments>
+                        <argument name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Gallery Images</item>
+                            <item name="collapsible" xsi:type="boolean">true</item>
+                            <item name="opened" xsi:type="boolean">false</item>
+                            <item name="sortOrder" xsi:type="string">22</item>
+                            <item name="canShow" xsi:type="boolean">true</item>
+                            <item name="componentType" xsi:type="string">fieldset</item>
+                        </argument>
+                    </arguments>
+                    <block class="FME\Photogallery\Block\Adminhtml\Photogallery\Edit\Tab\Images" as="content">
+                        <arguments>
+                            <argument name="config" xsi:type="array">
+                                <item name="parentComponent" xsi:type="string">photogallery_index_form.photogallery_index_form.block_gallery.block_gallery</item>
+                            </argument>
+                        </arguments>
+
+                    </block>
+                </block>
+            </referenceContainer>
+            -->
+        
+        
+        </referenceContainer>
+
+    </body>
+</page>

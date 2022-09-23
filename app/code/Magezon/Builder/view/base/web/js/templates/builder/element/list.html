@@ -1,0 +1,21 @@
+<div ng-repeat="element in element.elements"
+	ng-class="mgz.getWrapperClasses()"
+	ng-mouseenter="mgz.onMouseEnter($event)"
+	ng-mouseleave="mgz.onMouseLeave($event)"
+	dnd-effect-allowed="move"
+	dnd-type="element.type"
+	dnd-dragstart="mgz.onDragstart(element)"
+	dnd-dragend="mgz.onDragend(element)"
+	dnd-moved="mgz.onMoved(element)">
+	<div ng-class="mgz.getInnerClasses()"
+		dynamic-directive
+		element="element" 
+		element-name="mgz-element-{{ ::element.type }}"
+		dnd-disable-builder="!element.builder.is_collection"
+		dnd-disable-if="element.builder.dndDisabled" 
+		dnd-list="element.elements"
+		dnd-drop="mgz.dropElement(item, index, element)"
+		dnd-allowed-types="::element.builder.allowed_types"
+		>
+	</div>
+</div>

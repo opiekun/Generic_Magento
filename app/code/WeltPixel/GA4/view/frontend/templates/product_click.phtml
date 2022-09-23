@@ -1,0 +1,46 @@
+<?php
+// @codingStandardsIgnoreFile
+/**
+ * Usage $this->helper('WeltPixel\GA4\Helper\Data')->addProductClick($_product, $index, 'List Value');
+ */
+?>
+<?php if($this->isEnabled()) : ?>
+    <?php $product = $this->getProduct(); ?>
+    <?php $helper = $this->helper('WeltPixel\GA4\Helper\Data'); ?>
+    <?php if (isset($product)) : ?>
+        <?php
+        $list = $this->getList();
+        $listId = $this->getListId();
+        $index = $this->getIndex();
+        $productDetail = [];
+        $productDetail['item_name'] = html_entity_decode($product->getName());
+        $productDetail['item_id'] = $helper->getGtmProductId($product);
+        $productDetail['price'] = number_format($product->getPriceInfo()->getPrice('final_price')->getValue(), 2, '.', '');
+        $productDetail['index'] = $index;
+        $ga4Categories = $helper->getGA4CategoriesFromCategoryIds($product->getCategoryIds());
+        $productDetail = array_merge($productDetail, $ga4Categories);
+        $productDetail['currency'] = $this->getCurrencyCode();
+        $productDetail['item_list_name'] = $list;
+        $productDetail['item_list_id'] = $listId;
+         if ($helper->isBrandEnabled()) :
+             $productDetail['item_brand'] = $helper->getGtmBrand($product);
+         endif;
+        /** Set the custom dimensions */
+        $customDimensions = $this->getProductDimensions($product, $helper);
+        foreach ($customDimensions as $name => $value) :
+            $productDetail[$name] = $value;
+        endforeach;
+
+        $data = [
+            'event' => 'select_item',
+            'ecommerce' => [
+                'action' => [
+                    'items' => [$productDetail]
+                ]
+            ]
+        ];
+
+        ?>
+        window.dataLayer.push(<?php echo $this->escapeHtml($this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($data)); ?>);
+    <?php endif; ?>
+<?php endif; ?>

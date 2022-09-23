@@ -1,0 +1,1086 @@
+
+<?php if($this->_helper->enableModule()):?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">        
+<?php if ($this->getGalType()!="mensory" || $this->getGalType()!="3D" || $this->getGalType()!="nano" || $this->getGalType()!="mediaplayer"): ?>
+	<?php 
+	echo $this->generatePhotogallery();
+	?>
+<?php endif; ?>
+<?php if ($this->getGalType()=="mensory"): ?>
+	<style>
+ul, li {
+  list-style: none;
+  padding: 0; }
+
+.grid {
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+  column-gap: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0 50px; }
+  .grid li {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+    transition: all .5s ease; }
+    .grid li:hover {
+      cursor: pointer;
+      transform: scale(1.025); }
+    .grid li img {
+      width: 100%; }
+
+:root {
+  --btnColor: #000;
+  --selector_bottom: 0px;
+  --selector_right: 0px;
+  --pos_arrows: 10px; }
+
+.WS-lightbox {
+  font-family: 'Montserrat', sans-serif;
+  position: fixed;
+  display: grid;
+  z-index:999;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: white;
+  background-color: rgba(0, 0, 0, 0.9); }
+  .WS-lightbox .WS-lightbox--bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    filter: blur(10px);
+    z-index: -1;
+    background-size: cover;
+    background-position: center; }
+  .WS-lightbox [class^="WS-lb-ctrl-"] {
+    z-index: 1; }
+  .WS-lightbox [class^="WS-lb-ctrl-"], .WS-lightbox [class^="WS-lb-arrow-"] {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    height: 30px;
+    width: 30px;
+    background-color: var(--btnColor);
+    box-sizing: border-box;
+    color: white;
+    opacity: .8;
+    transition: all .5s ease; }
+    .WS-lightbox [class^="WS-lb-ctrl-"]:hover, .WS-lightbox [class^="WS-lb-arrow-"]:hover {
+      cursor: pointer;
+      opacity: 1; }
+    .WS-lightbox [class^="WS-lb-ctrl-"][class*="-close"], .WS-lightbox [class^="WS-lb-arrow-"][class*="-close"] {
+      position: initial;
+      top: 0;
+      position: absolute;
+      right: 0; }
+  .WS-lightbox .WS-lb-arrows {
+    position: absolute;
+    width: 100%;
+    bottom: 50%; }
+    .WS-lightbox .WS-lb-arrows.outside {
+      z-index: 1; }
+    .WS-lightbox .WS-lb-arrows [class^="WS-lb-arrow-"] {
+      top: calc(50% - 15px);
+      z-index: 1; }
+      .WS-lightbox .WS-lb-arrows [class^="WS-lb-arrow-"][class*="-left"] {
+        left: var(--pos_arrows); }
+        .WS-lightbox .WS-lb-arrows [class^="WS-lb-arrow-"][class*="-left"][class*="attached-"] {
+          left: calc( (30px + var(--pos_arrows)) * -1); }
+      .WS-lightbox .WS-lb-arrows [class^="WS-lb-arrow-"][class*="-right"] {
+        right: var(--pos_arrows); }
+        .WS-lightbox .WS-lb-arrows [class^="WS-lb-arrow-"][class*="-right"][class*="attached-"] {
+          right: calc( (30px + var(--pos_arrows)) * -1); }
+      .WS-lightbox .WS-lb-arrows [class^="WS-lb-arrow-"].outside {
+        top: calc(50% - 15px - (var(--selector_bottom) * .5)); }
+  .WS-lightbox .WS-lightbox--container {
+    position: relative;
+    line-height: 0;
+    transition: all .8s ease; }
+    .WS-lightbox .WS-lightbox--container img {
+      border: 2px solid white;
+      box-sizing: border-box; }
+  .WS-lightbox .WS-lightbox--subcontainer {
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    background-color: lightgrey; }
+    .WS-lightbox .WS-lightbox--subcontainer[data-zoom-open="1"] {
+      overflow: hidden; }
+      .WS-lightbox .WS-lightbox--subcontainer[data-zoom-open="1"] img {
+        position: absolute; }
+
+[class^="WS-lb-arrow"].shrink-hover:hover {
+  transform: scale(0.8); }
+
+[class^="WS-lb-arrow"].zoom-hover:hover {
+  transform: scale(1.2); }
+
+[class^="WS-lb-arrow"][class*="-top"].translate-hover:hover {
+  transform: translateY(-10px); }
+
+[class^="WS-lb-arrow"][class*="-bottom"].translate-hover:hover {
+  transform: translateX(10px); }
+
+[class^="WS-lb-arrow"][class*="-left"] {
+  left: var(--pos_arrows); }
+  [class^="WS-lb-arrow"][class*="-left"][class*="attached-"] {
+    left: calc( (30px + var(--pos_arrows)) * -1); }
+  [class^="WS-lb-arrow"][class*="-left"].translate-hover:hover {
+    transform: translateX(-10px); }
+
+[class^="WS-lb-arrow"][class*="-right"] {
+  right: var(--pos_arrows); }
+  [class^="WS-lb-arrow"][class*="-right"][class*="attached-"] {
+    right: calc( (30px + var(--pos_arrows)) * -1); }
+  [class^="WS-lb-arrow"][class*="-right"].translate-hover:hover {
+    transform: translateX(10px); }
+
+.WS-lightbox {
+  display: none; }
+
+</style>
+	<?php
+		$collection=$this->getALlGalleryForTabWithOutFilter();
+	?>
+	<?php 
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $block = $objectManager->create('FME\Photogallery\Block\PList');
+    $helper = $objectManager->create('FME\Photogallery\Helper\Data');
+    $helperup = $objectManager->create('FME\Photogallery\Helper\Dataup');
+	?>
+
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+		integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+		crossorigin="anonymous"
+	>
+	<div class="container">
+        <ul id="WS-LiSli" class="grid">
+
+                <?php
+                foreach ($collection as $_item):
+                ?> 
+                    <li >
+                        <img class="aba" title="Title 1" src="<?php echo $helper->getMediaUrl($_item["img_name"]); ?>" data-description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ">
+                    </li>
+                <?php
+                    endforeach;
+                ?>
+        </ul>
+	</div>
+	<?php $block->getViewFileUrl('FME_Photogallery::js/mensory//_basics.js');  ?>
+	<input type="hidden" id="custId" name="custId" value="<?php echo $this->getViewFileUrl('FME_Photogallery::js/mensory/_basics.js');  ?>"> 
+	<input type="hidden" id="c_stylizer" name="custId" value="<?php echo $this->getViewFileUrl('FME_Photogallery::js/mensory/_stylizer.js');  ?>"> 
+	<script type="text/javascript">
+		require(['jquery','lightboxcolor'], function($){
+			$(function() {
+				$('#WS-LiSli').WS_lightbox_free({
+					'enable' : ['close', 'arrows'],
+					buttons : {
+						size          : <?php echo $helperup->getMensoryBSize() ?>,
+						style         : '<?php echo $helperup->getMensoryBStyle() ?>', // ( default, square, circle, rounded )
+						color         : 'black',
+						color_icon    : 'white',
+						border_width  : 0,
+						border_color  : '',
+						opacity       : .5,
+						hover_opacity : 1
+					},
+					arrows : {
+						position      : '<?php echo $helperup->getMensoryAPos() ?>', // ( inside, outside, attached )
+						style         : '<?php echo $helperup->getMensoryAStyle() ?>', // (default, square, circle, rounded, svelt)
+						icon_style    : '<?php echo $helperup->getMensoryAIcons() ?>', // (default, caret, angle, chevron)
+						icon_size     : 20,
+						opacity       : .5,
+						hover_effect  : '<?php echo $helperup->getMensoryAHoverEffects() ?>', // (zoom, shrink, translate)
+						hover_opacity : .8
+					},
+					image : {
+						border_radius : <?php echo $helperup->getMensoryImageRadius() ?>,
+						border_color : '',
+						border_width : 0,
+						bg : 'none'
+					},
+					background : {
+						filter : 'image',
+						opacity : <?php echo $helperup->getMensoryImageBackgroundOpacity() ?>
+					},
+					display_velocity : 'low',
+					slide_velocity : 'fast'
+				});
+
+			});
+		});
+	</script>
+<?php endif; ?>
+<?php if ($this->getGalType()=="3D"): ?>
+<style>
+    a {
+      color: #da2020;
+    }
+    a:hover {
+      color: #d6f300;
+    }
+    .wrap > h1 {
+      margin: 26px auto;
+    }
+    #showcase {
+      height: 460px;
+      background: #16235e;
+      background: -moz-linear-gradient(top, #16235e 0%, #020223 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#16235e), color-stop(100%,#020223)); /* Chrome, Safari4+ */
+      background: -webkit-linear-gradient(top, #16235e 0%, #020223 100%); /* Chrome10+, Safari5.1+ */
+      background: -o-linear-gradient(top, #16235e 0%, #020223 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, #16235e 0%, #020223 100%); /* IE10+ */
+      background: linear-gradient(to bottom, #16235e 0%, #020223 100%); /* W3C */
+      -webkit-box-shadow: 0px 0px 13px 5px #DB1242;
+      -moz-box-shadow: 0px 0px 13px 5px #DB1242;
+      box-shadow: 0px 0px 13px 5px #DB1242;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      border-radius: 8px;
+    }
+    #item-title {
+      color: #F31414;
+      font-size: 29px;
+      letter-spacing: 0.13em;
+      text-shadow: 1px 1px 6px #C72B2B;
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 22px;
+    }
+    #nav {
+      text-align: center;
+    }
+    #nav > button {
+      width: 64px;
+      height: 36px;
+      color: #666;
+      font: bold 16px arial;
+      text-align: center;
+      margin: 5px;
+      text-shadow: 0px 1px 0px #f5f5f5;
+      background: #f6f6f6;
+      border: solid 2px rgba(0, 0, 0, 0.4);
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      -webkit-box-shadow: 0 0 9px 1px rgba(0, 0, 0, 0.4);
+      -moz-box-shadow: 0 0 9px 1px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 9px 1px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+    }
+    #nav > button:active,
+    #nav > button.down {
+      background: #dfdfdf;
+      border: solid 2px rgba(0, 0, 0, 0.6);
+      box-shadow: none;
+    }
+    #share {
+      top: -9px;
+    }
+    #credits {
+      top: -15px;
+    }
+</style>
+<?php
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$block = $objectManager->create('FME\Photogallery\Block\PList');
+	$helper = $objectManager->create('FME\Photogallery\Helper\Data');
+?>
+<?php
+	$collection=$this->getALlGalleryForTabWithOutFilter();
+?>
+<div class="wrap">
+
+    <div id="showcase" class="noselect" style="position: relative; overflow: hidden; visibility: visible;">
+      <?php
+          foreach ($collection as $_item):
+      ?> 
+        <div class="cloud9-item" title="" style="position: absolute; width: 297px; height: 355px; overflow: hidden; transform-origin: 0px 0px; z-index: 99; transform: translate(343.488px, 89.9993px) scale(0.999997);"><img class="reflected" src="<?php echo $helper->getMediaUrl($_item["img_name"]); ?>" alt="Wyzo" style="display: block; border: 0px; width: 100%;"><canvas width="297" height="59" style="display: block; border: 0px; margin-top: 12px; width: 100%;"></canvas></div>
+        
+      <?php
+        endforeach;
+      ?>
+    </div>
+    <footer>
+		<p id="item-title"></p>
+		<div id="nav" class="noselect">
+			<button class="left">
+			←
+			</button>
+			<button class="right">
+			→
+			</button>
+		</div>
+	</footer>
+</div>
+<script>
+
+	require(['jquery','cloud9'], function($){
+
+
+	$(function() {
+		var showcase = $("#showcase"), title = $('#item-title')
+
+		showcase.Cloud9Carousel( {
+			yOrigin: 42,
+			yRadius: 48,
+			mirror: {
+			gap: 12,
+			height: 0.2
+			},
+			buttonLeft: $("#nav > .left"),
+			buttonRight: $("#nav > .right"),
+			autoPlay: 1,
+			bringToFront: true,
+			onRendered: rendered,
+			onLoaded: function() {
+			showcase.css( 'visibility', 'visible' )
+			showcase.css( 'display', 'none' )
+			showcase.fadeIn( 1500 )
+			}
+		} )
+
+		function rendered( carousel ) {
+			title.text( carousel.nearestItem().element.alt )
+
+			var c = Math.cos((carousel.floatIndex() % 1) * 2 * Math.PI)
+			title.css('opacity', 0.5 + (0.5 * c))
+		}
+
+		$('#nav > button').click( function( e ) {
+			var b = $(e.target).addClass( 'down' )
+			setTimeout( function() { b.removeClass( 'down' ) }, 80 )
+		} )
+
+		$(document).keydown( function( e ) {
+			
+			switch( e.keyCode ) {
+			/* left arrow */
+			case 37:
+				$('#nav > .left').click()
+				break
+
+			/* right arrow */
+			case 39:
+				$('#nav > .right').click()
+			}
+		} )
+		});
+	
+	});
+</script>
+<?php endif; ?>
+<?php if ($this->getGalType()=="carousel"): ?>
+
+<script type="text/javascript">
+
+
+            require(["jquery", "owlcarousel", "finalmagpop","shadowbox","domReady!"], function ($, owlcarousel, jqueryfunction, shadowbox) {
+				
+				var ap;
+    
+            if (jQuery("#autoPlay").val()==5000) {
+                ap = 5000;
+            } else {
+                ap = false;
+			}
+			<?php 
+				$blockid=$this->getBlock();
+				$gall_id="owl-demo".$blockid;
+				?>
+				<?php
+				echo "var sr2 = \"" . $gall_id . "\"";
+				?>
+			
+                $('#'+sr2).owlCarousel(
+                    {
+                        items : parseInt("<?= /* @escapeNotVerified */ $this->_helper->carouselItems() ?>"), //10 items above 1000px browser width
+                        itemsDesktop : [1000, 3], //5 items between 1000px and 901px
+                        itemsDesktopSmall : [900, 3], // betweem 900px and 601px
+                        itemsTablet : [600, 2], //2 items between 600 and 0
+                        itemsMobile : [450, 1],
+                        <?php if ($this->_helper->carouselRotation()): ?>
+						autoPlay: parseInt("<?= /* @escapeNotVerified */ $this->_helper->carouselRotationTime() ?>"), //10 items above 1000px browser width
+						<?php else: ?>
+						autoPlay : false,
+						<?php endif; ?>
+                        <?php if ($this->_helper->carouselNavButton()): ?>
+						navigation: true,
+						<?php else: ?>
+						navigation : false,
+						<?php endif; ?>
+                        navigationText  : ["<i class='icon-left-open'></i>","<i class='icon-right-open'></i>"],
+                        itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option
+                      }
+				);
+				
+				<?php 
+				$blockid=$this->getBlock();
+				$gall_id="image".$blockid;
+				?>
+				<?php
+				echo "var sr3 = \"" . $gall_id . "\"";
+				?>
+			
+                $('.'+sr3).magnificPopup({
+					type: 'image',
+					gallery: {
+							//enablegalonPopUp
+						<?php if ($this->_helper->enablegalonPopUp()): ?>
+						enabled: true,
+						<?php else: ?>
+						enabled: false,
+						<?php endif; ?>	
+
+						preload: [0,2],	
+						<?php if ($this->_helper->enablePopupNavOnCLick()): ?>
+						navigateByImgClick: true,
+						<?php else: ?>
+						navigateByImgClick: false,
+						<?php endif; ?>	
+						},
+						zoom: {
+							enabled: true,
+							duration: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getPopupTime() ?>"),
+							easing: 'ease-in-out',
+							
+						},
+                    });
+                               
+            });
+        </script>
+<?php endif; ?>	
+<?php if ($this->getGalType()=="nanogallery"): ?>
+	<?php 
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$helper = $objectManager->create('FME\Photogallery\Helper\Dataup');
+	?>
+	<?php 
+		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+		$block = $objectManager->create('FME\Photogallery\Block\PList');
+		$helperdown = $objectManager->create('FME\Photogallery\Helper\Data');
+		//$collection=$block->getAllPhotoGalleryImages();
+	?>
+	<?php
+		$collection=$this->getALlGalleryForTabWithOutFilter();
+	?>
+	<!-- ### start of the gallery definition ### -->
+	<div id="my_nanogallery2"
+		data-nanogallery2 = '{
+			"thumbnailHeight":  150,
+			"thumbnailWidth":   150,
+			"itemsBaseURL":     "https://nanogallery2.nanostudio.org/samples/"
+			}' >
+			
+			<?php foreach ($collection as $_item): ?> 
+				<a href = "<?php echo $helperdown->getMediaUrl($_item["img_name"]); ?>"    data-ngThumb = "<?php echo $helperdown->getMediaUrl($_item["img_name"]); ?>" ><?php echo $_item["img_label"]; ?> </a>
+			<?php endforeach; ?>
+
+
+		
+
+	</div>
+	<!-- ### end of the gallery definition ### -->
+	<script type="text/javascript">
+	require(['jquery','nanogallery2'], function($){
+		$("#my_nanogallery2").nanogallery2({
+			//Water Fall gallery
+			<?php if ($helper->getGalleryDefaultLayout()=='wfl'): ?>
+				thumbnailHeight:           200,
+				thumbnailWidth:            200,
+				galleryMosaic:             [
+											{ 'w': 5, 'h': 3, 'c': 2,  'r': 1 },
+											{ 'w': 2, 'h': 2, 'c': 1,  'r': 2 },
+											{ 'w': 2, 'h': 2, 'c': 7,  'r': 2 },
+											{ 'w': 2, 'h': 2, 'c': 2,  'r': 4 },
+											{ 'w': 3, 'h': 4, 'c': 4,  'r': 4 },
+											{ 'w': 3, 'h': 4, 'c': 7,  'r': 4 },
+											{ 'w': 2, 'h': 2, 'c': 10, 'r': 5 },
+											{ 'w': 4, 'h': 2, 'c': 11, 'r': 6 }
+											],
+				thumbnailGutterWidth:      0,
+				thumbnailGutterHeight:     0,
+				thumbnailBorderHorizontal: 5,
+				thumbnailBorderVertical:   5,
+				galleryMaxRows:            1,
+				galleryDisplayMode:        'rows',
+				galleryDisplayMode:        'pagination', 
+				thumbnailLabel:            { display : false }
+			<?php endif; ?>
+			<?php if ($helper->getGalleryDefaultLayout()=='jl'): ?>
+				thumbnailHeight:    150,
+				thumbnailWidth:     'auto',
+				galleryLastRowFull:  true
+			<?php endif; ?>
+			<?php if ($helper->getGalleryDefaultLayout()=='bml'): ?>
+				thumbnailHeight:           200,
+				thumbnailWidth:            200,
+				galleryMosaic:             [
+											{ 'w': 2, 'h': 2, 'c': 1,  'r': 1 },
+											{ 'w': 1, 'h': 1, 'c': 3,  'r': 1 },
+											{ 'w': 1, 'h': 1, 'c': 3,  'r': 2 },
+											{ 'w': 1, 'h': 2, 'c': 4,  'r': 1 },
+											{ 'w': 2, 'h': 1, 'c': 5,  'r': 1 },
+											{ 'w': 1, 'h': 2, 'c': 1,  'r': 3 },
+											{ 'w': 2, 'h': 1, 'c': 2, 'r': 3 },
+											{ 'w': 1, 'h': 1, 'c': 2, 'r': 4 },
+											{ 'w': 2, 'h': 1, 'c': 3, 'r': 4 },
+											{ 'w': 1, 'h': 1, 'c': 4, 'r': 3 },
+											{ 'w': 2, 'h': 2, 'c': 5, 'r': 2 },
+											{ 'w': 1, 'h': 1, 'c': 5, 'r': 4 },
+											{ 'w': 1, 'h': 1, 'c': 6, 'r': 4 }
+											],
+				thumbnailGutterWidth:      0,
+				thumbnailGutterHeight:     0,
+				thumbnailBorderHorizontal: 0,   
+				galleryLastRowFull:true,
+				galleryDisplayMode: 'rows',
+				thumbnailHoverEffect2: 'scale120',
+				galleryMaxRows: 1,
+			<?php endif; ?>
+
+			<?php if ($helper->getGalleryDefaultLayout()=='il'): ?>
+				thumbnailHeight:           300,
+				thumbnailWidth: 300,
+				thumbnailBorderVertical: 0,
+				thumbnailBorderHorizontal: 0,
+				colorScheme: {
+				thumbnail: {
+					background: 'rgba(255,255,255,1)'
+				}
+				},
+				thumbnailLabel: {
+				position: 'onBottom'
+				},
+				thumbnailAlignment: 'center',
+				thumbnailGutterWidth: 80,
+				thumbnailGutterHeight: 80,
+				colorScheme: {
+				thumbnail: {
+					background: 'rgba(255,255,255,1)'
+				}
+				},
+				thumbnailHoverEffect2: [{ name: 'image_scale_1.00_1.15', duration: 500}]
+			<?php endif; ?>
+			<?php if ($helper->getGalleryDefaultLayout()=='fc'): ?>
+				thumbnailHeight: 150, 
+				thumbnailWidth: 150,
+				album:           'none'
+			<?php endif; ?>    
+			<?php if ($helper->getGalleryDefaultLayout()=='cwmb'): ?>
+				thumbnailHeight:         150, 
+				thumbnailWidth: 150,
+				album:                   'none',
+				galleryDisplayMode:      'moreButton',
+				galleryDisplayMoreStep:  2
+			<?php endif; ?> 
+			<?php if ($helper->getGalleryDefaultLayout()=='pbn'): ?>
+				thumbnailHeight:       150, 
+				thumbnailWidth: 150,
+				galleryDisplayMode:    'pagination',
+				galleryMaxRows:        2,
+				galleryPaginationMode: 'numbers'
+			<?php endif; ?> 
+
+			<?php if ($helper->getGalleryDefaultLayout()=='pbd'): ?>
+				thumbnailHeight:       150, thumbnailWidth: 150,
+				album:                 'none',
+				galleryDisplayMode:    'pagination',
+				galleryMaxRows:        2,
+				galleryPaginationMode: 'dots'
+			<?php endif; ?> 
+			<?php if ($helper->getGalleryDefaultLayout()=='pbr'): ?>
+				thumbnailHeight:     150, 
+				thumbnailWidth: 150,
+				album:               'none',
+				galleryDisplayMode:  'rows',
+				galleryMaxRows:      2,
+				galleryLastRowFull:  true
+			<?php endif; ?>
+
+			<?php if ($helper->getGalleryDefaultLayout()=='cl'): ?>
+			thumbnailWidth:  <?php echo $helper->getOverallWidth(); ?>,
+			thumbnailHeight: <?php echo $helper->getOverallHeight(); ?>,
+			thumbnailBorderHorizontal: <?php echo $helper->getNanoThumbTBH(); ?>,
+			thumbnailBorderVertical:<?php echo $helper->getNanoThumbTBV(); ?>,
+			thumbnailGutterWidth:<?php echo $helper->getNanoThumbTGW(); ?>,
+			thumbnailGutterHeight: <?php echo $helper->getNanoThumbTGH(); ?>,
+			thumbnailAlignment: '<?php echo $helper->getNanoThumbAlign(); ?>',
+			<?php if ($helper->getNanolayout()=='mosaic'): ?>
+				galleryMosaic :  <?php echo $helper->getNanoMosacSettings(); ?>,
+			<?php endif; ?>
+				thumbnailDisplayInterval: <?php echo $helper->getNanoThumbDisplayInterval(); ?>,
+				thumbnailDisplayTransition:'<?php echo $helper->getNanoThumbDisplayTransition(); ?>',
+				thumbnailDisplayTransitionDuration: <?php echo $helper->getNanoThumbDisplayTransitionDuration(); ?>,
+				thumbnailLabel:     { position: '<?php echo $helper->getNanoThumbGalleryLabelPosition(); ?>', align: '<?php echo $helper->getNanoThumbGalleryLabelPosition(); ?>', display : <?php echo $helper->isLabelDisplay(); ?>},
+				thumbnailHoverEffect2: <?php echo $helper->getNanoThumbHoverEffect(); ?>,
+				thumbnailToolbarImage: { topLeft:'<?php echo $helper->getNanoThumbToolTL(); ?>', topRight: '<?php echo $helper->getNanoThumbToolTR(); ?>', bottomLeft: '<?php echo $helper->getNanoThumbToolBL(); ?>', bottomRight: '<?php echo $helper->getNanoThumbToolBR(); ?>'},
+				thumbnailStacks:         4,
+				thumbnailStacksRotateY:  0.4,
+				thumbnailBuildInit2:     'thumbnail_transform-origin_50% 150%',
+
+				viewerToolbar:    {
+				standard:  '<?php echo $helper->getNanoLightBOXVTS(); ?>',
+				minimized: '<?php echo $helper->getNanoLightBOXVTB(); ?>' },
+				viewerTools:    {
+				topLeft:   '<?php echo $helper->getNanoLightBOXTL(); ?>',
+				topRight:  '<?php echo $helper->getNanoLightBOXTR(); ?>' },
+				colorScheme: {
+					thumbnail: {
+						borderColor: '<?php echo $helper->getGalleryBackgroundColor(); ?>'
+					}
+					},  
+				<?php if ($helper->getGalleryPaginition()=='plr'): ?>
+					<?php if ($helper->isAllowMaxRows()): ?>
+						galleryDisplayMode: 'rows',
+						galleryMaxRows: <?php echo $helper->getMaxRows(); ?>,
+					<?php endif; ?>
+					galleryLastRowFull: <?php echo $helper->getGalleryThumbLastFill(); ?>,
+				<?php endif; ?>
+				<?php if ($helper->getGalleryPaginition()=='pbtoon'): ?>
+					galleryDisplayMode: 'moreButton',
+					galleryDisplayMoreStep: <?php echo $helper->getGalleryPaginitionMoreStep(); ?>,
+				<?php endif; ?>
+				<?php if ($helper->getGalleryPaginition()=='pdot'): ?>
+					galleryDisplayMode: 'pagination',
+					galleryMaxRows: <?php echo $helper->getGalleryPaginitionRowsDots();?>,
+					galleryPaginationMode: 'dots',
+				<?php endif; ?>
+				<?php if ($helper->getGalleryPaginition()=='pnum'): ?>
+					galleryDisplayMode: 'pagination',
+					galleryMaxRows: <?php echo $helper->getGalleryPaginitionRowsNums();?>,
+					galleryPaginationMode: 'numbers',
+				<?php endif; ?>
+				<?php if ($helper->getGalleryPaginition()=='prect'): ?>
+					galleryDisplayMode: 'pagination',
+					galleryMaxRows: <?php echo $helper->getGalleryPaginitionRowsRect(); ?>,
+				<?php endif; ?>
+
+			<?php endif; ?>
+
+
+		});
+	});
+
+	</script>
+
+
+<?php endif; ?>	
+
+<?php if ($this->getGalType()=="mediagallery"): ?>
+	<?php 
+		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+		$block = $objectManager->create('FME\Photogallery\Block\PList');
+		$helperdown = $objectManager->create('FME\Photogallery\Helper\Data');
+	?>
+	<?php
+		$collection=$this->getALlGalleryForTabWithOutFilter();
+	?>
+	<div id="gallery" style="display:none;">
+			<?php
+					$i = 1;
+					foreach ($collection as $_item):
+				?>
+					<img alt= "<?php echo $_item["img_label"]; ?>"
+						src="<?php echo $helperdown->getMediaUrl($_item["img_name"]); ?>"
+						data-image="<?php echo $helperdown->getMediaUrl($_item["img_name"]); ?>"
+					>
+						
+				<?php
+					$i++;
+					endforeach;
+				?>
+	</div>
+	<script type="text/javascript">
+
+
+	require(['jquery','ugallery','uthemegrid'], function ($) {
+					$("#gallery").unitegallery({
+											theme_panel_position: "right",
+											thumb_width:parseInt("100"),							//thumb width
+						thumb_height:parseInt("100"),							//thumb height
+												thumb_border_effect:true,
+											thumb_border_width: parseInt("5"),						//thumb border width
+						thumb_border_color: "#000000",				//thumb border color
+						thumb_over_border_width: parseInt("5"),					//thumb border width in mouseover state
+						thumb_over_border_color: "#4d0b08",			//thumb border color in mouseover state
+						thumb_selected_border_width: parseInt("5"),				//thumb width in selected state
+						thumb_selected_border_color: "#fc0505",
+						thumb_round_corners_radius:parseInt("70"),
+												thumb_color_overlay_effect:true,
+											thumb_overlay_color: "#f2fa00",			//thumb overlay color
+						thumb_overlay_opacity: "0.4",					//thumb overlay color opacity
+												thumb_overlay_reverse:true,
+																	thumb_image_overlay_effect:false,
+											thumb_image_overlay_type: "sepia",			//thumb overlay color
+						thumb_transition_duration: parseInt("200"),				//thumb effect transition duration
+						thumb_transition_easing: "easeOutQuad",		//thumb effect transition easing
+						strippanel_padding_top:parseInt("10"),				//space from top of the panel
+						strippanel_padding_bottom:parseInt("10"),				//space from bottom of the panel
+						strippanel_padding_left: parseInt("10"),				//space from left of the panel
+						strippanel_padding_right:parseInt("10"),				//space from right of the panel
+						strippanel_background_color:"#06324a",			//thumb overlay color
+						strip_thumbs_align: "top",			//thumb overlay color
+						strip_space_between_thumbs:parseInt("20"),				//space between thumbs
+						strip_scroll_to_thumb_duration:parseInt("1000"),			//duration of scrolling to thumb
+						strip_scroll_to_thumb_easing:"easeOutCubic",		//easing of scrolling to thumb animation
+						strip_control_avia:true,					//avia control - move the strip according strip moseover position
+						strip_control_touch:true,
+
+
+											gridpanel_vertical_scroll:true,
+											gridpanel_grid_align:  "right",			//top , middle , bottom, left, center, right - the align of the grid panel in the gallery 
+						gridpanel_background_color:"#063961",//W					//background color of the grid wrapper, if not set, it will be taken from the css
+						grid_num_cols: parseInt("2"),							//number of grid columns
+						grid_space_between_cols: parseInt("10"),					//space between columns
+						grid_space_between_rows: parseInt("10"),					//space between rows
+						grid_transition_duration:parseInt("1000"),					//transition of the panes change duration 
+						grid_transition_easing: "easeInOutQuad",
+											grid_carousel:true,
+										});
+				});
+			
+
+
+	</script>    
+<?php endif; ?>	
+<?php if ($this->getGalType()=="simple"): ?>
+
+<script type="text/javascript">
+
+</script>
+<script>
+
+require(['jquery','finaltilesgallery','finalmagpop','photolighbox'], function($){
+	
+	
+	
+	<?php 
+$blockid=$this->getBlock();
+
+$gall_id="gallery".$blockid;
+?>
+<?php
+echo "var sr2 = \"" . $gall_id . "\"";
+?>
+
+
+$('#'+sr2).finalTilesGallery({
+
+
+						layout: '<?= /* @escapeNotVerified */ $this->getGalleryLayout() ?>',
+						
+						<?php if ($this->enablePaginitionWithoutFilter()=="1" || $this->enablePaginitionWithoutFilter()==1): ?>
+						onLoading: function () {
+							$('.cbp-l-loadMore-button-link').text('Loading...');
+							$('.loader').css({'display': 'block'});
+							
+						},
+						onUpdate: function () {
+							$('.cbp-l-loadMore-button-link').text('<?= /* @escapeNotVerified */ $this->getManualText() ?>');
+							$('.loader').css({'display': 'none'});
+						},
+						autoLoadURL: '<?= /* @escapeNotVerified */ $this->linkForAjex() ?>' ,
+						<?php endif; ?>	
+
+						
+
+
+});
+<?php if ($this->_helper->getMagniferOption()=="popup"): ?>
+                $('#'+sr2).magnificPopup({
+						type: 'image',
+						
+						delegate: '.tile:not(.ftg-hidden) .tile-inner',
+					
+						gallery: {
+						<?php if ($this->_helper->enablegalonPopUp()): ?>
+						enabled: true,
+						<?php else: ?>
+						enabled: false,
+						<?php endif; ?>	
+
+						preload: [0,2],	
+						<?php if ($this->_helper->enablePopupNavOnCLick()): ?>
+						navigateByImgClick: true,
+						<?php else: ?>
+						navigateByImgClick: false,
+						<?php endif; ?>	
+						},
+						zoom: {
+							enabled: true,
+							duration: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getPopupTime() ?>"),
+							easing: 'ease-in-out',
+							opener: function(openerElement) {
+							return openerElement.is('img') ? openerElement : openerElement.find('img');
+							}
+						},
+						callbacks: {
+							change: function() {
+								if (this.isOpen) {
+									this.wrap.addClass('mfp-open');
+								}
+							}
+						},
+						image: {
+						titleSrc: function(item) {
+							return item.el.parents('.tile').find('h4').html() +   item.el.parents('.tile').find('h5').html();
+							}
+					},
+				
+						fixedContentPos: true,
+
+				});
+			<?php endif; ?>
+});
+
+
+
+</script>
+<?php if ($this->enablePaginitionWithoutFilter()=="1" || $this->enablePaginitionWithoutFilter()==1): ?>				
+	<?php  if ($this->getLoadTypeAjex()=="manual"): ?>
+		<div class="cbp-l-loadMore-button">
+			<a class="cbp-l-loadMore-button-link"><?php echo $this->getManualText()?></a>
+		</div>
+	<?php else: ?>	
+		<div class="loader"></div>
+	<?php endif; ?>
+<?php endif; ?>
+<?php endif; ?>	
+	<?php if ($this->getGalType()=="tab"): ?>
+		<?php 
+			$collection=[];
+			if ($this->enablePaginitionWithoutFilter()=="1" || $this->enablePaginitionWithoutFilter()==1)
+			{
+				$collection=$this->getALlGalleryForTabWithFilter();
+			}
+			else
+			{
+				$collection=$this->getALlGalleryForTabWithOutFilter();
+			}
+		?>
+		<?php if (count($collection)>0): ?>
+
+			<?php 
+			
+			$gallery_labels = $this->getGalleryHeadingForTabs();
+			?>
+			<div id="gallery10" class="final-tiles-gallery  effect-zoom-in effect-speed-medium  social-icons-right social-icons-circle">
+				<div class="ftg-filters tab">
+					
+						<button  style ="display: inline-block;margin-right: 10px;margin-bottom: 10px;color:#777;padding: 4px 10px;border: 1px solid#777;text-decoration: none;outline:0;text-shadow: none;box-shadow: none" class="tablinks" id="defaultOpen" onclick="openCity(event, 'gal_all')" btn-id="all">All</button>
+						<?php foreach ($gallery_labels as $gallery_label ): ?>                	
+							<?php if($gallery_label['show_in']=="1" ||$gallery_label['show_in']=="3"): ?>
+								<button  style ="display: inline-block;margin-right: 10px;margin-bottom: 10px;color:#777;padding: 4px 10px;border: 1px solid#777;text-decoration: none;outline:0;text-shadow: none;box-shadow: none" btn-id="<?php  echo $gallery_label['photogallery_id']?>" class="tablinks" onclick="openCity(event, 'gal_<?php  echo $gallery_label['photogallery_id']?>')"><?php echo $gallery_label['gal_name']?></button>      
+							<?php endif; ?>
+						<?php endforeach; ?>
+					
+				</div>
+			</div>
+			<div id="gal_all" gal-id="all" class="tabcontent">
+				<?php echo $this->photogalleryHtmlDuplicate($collection,""); ?>
+			</div>
+			<?php foreach ($gallery_labels as $gallery_label ): ?>                	
+				<?php if($gallery_label['show_in']=="1" ||$gallery_label['show_in']=="3"): ?>
+					
+					<div id="gal_<?php  echo $gallery_label['photogallery_id']?>" gal-id="<?php  echo $gallery_label['photogallery_id']?>"  class="tabcontent">
+						
+						<?php echo $this->photogalleryHtmlDuplicate($this->getOtherGalleryForTab($gallery_label['photogallery_id']),$gallery_label['photogallery_id']); ?>
+					</div> 	    
+				<?php endif; ?>
+			<?php endforeach; ?>
+		
+			<?php if ($this->enablePaginitionForTabs()=="1" || $this->enablePaginitionForTabs()==1): ?>
+				<?php  if ($this->getLoadTypeAjex()=="manual"): ?>
+				<?php else: ?>	
+					<div class="loader"></div>
+				<?php endif; ?>
+			<?php endif; ?>
+			<script>
+				function openCity(evt, cityName) {
+					var i, tabcontent, tablinks;
+					tabcontent = document.getElementsByClassName("tabcontent");
+					for (i = 0; i < tabcontent.length; i++) {
+						tabcontent[i].style.display = "none";
+					}
+					tablinks = document.getElementsByClassName("tablinks");
+					for (i = 0; i < tablinks.length; i++) {
+						tablinks[i].className = tablinks[i].className.replace(" active", "");
+					}
+					document.getElementById(cityName).style.display = "block";
+					evt.currentTarget.className += " active";
+					require(['jquery','finaltilesgallery','finalmagpop','photolighbox'], function($){
+						var id=$('.tab > button.active').attr('btn-id');
+						if(id=="all")
+						{
+							$('#gallery_').finalTilesGallery({
+								layout: '<?= /* @escapeNotVerified */ $this->getGalleryLayout() ?>',
+								
+								<?php if ($this->_helper->enableMargin()): ?>
+									margin: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getMarginSize() ?>"),
+								<?php endif; ?>	
+									selectedFilter: 'all',
+									minTileWidth :parseInt("<?= /* @escapeNotVerified */ $this->_helper->minTileWidth() ?>"),
+									disableGridSizeBelow:parseInt("<?= /* @escapeNotVerified */ $this->_helper->getGridSizeBelow() ?>"),
+									gridSize:parseInt("<?= /* @escapeNotVerified */ $this->_helper->getGridSize() ?>"),
+								<?php if ($this->_helper->enableEnlargeMent()): ?>
+									allowEnlargement:true,
+								<?php else: ?>
+									allowEnlargement:false,
+								<?php endif; ?>	
+								<?php if ($this->enablePaginitionForTabs()=="1" || $this->enablePaginitionForTabs()==1): ?>
+									onLoading: function () {
+										$('.cbp-l-loadMore-button-link').text('Loading...');
+										$('.loader').css({'display': 'block'});
+										
+									},
+									onUpdate: function () {
+										$('.cbp-l-loadMore-button-link').text('<?= /* @escapeNotVerified */ $this->_helper->getButtonText() ?>');
+										$('.loader').css({'display': 'none'});
+									},
+									autoLoadURL: '<?= /* @escapeNotVerified */ $this->linkForAjexTab() ?>'+'&tabid=all'
+								<?php endif; ?>	
+							});
+							<?php if ($this->_helper->getMagniferOption()=="popup"): ?>
+								$('#gallery_').magnificPopup({
+									type: 'image',
+						
+									delegate: '.tile:not(.ftg-hidden) .tile-inner',
+								
+									gallery: {
+									<?php if ($this->_helper->enablegalonPopUp()): ?>
+									enabled: true,
+									<?php else: ?>
+									enabled: false,
+									<?php endif; ?>	
+
+									preload: [0,2],	
+									<?php if ($this->_helper->enablePopupNavOnCLick()): ?>
+									navigateByImgClick: true,
+									<?php else: ?>
+									navigateByImgClick: false,
+									<?php endif; ?>	
+									},
+									zoom: {
+										enabled: true,
+										duration: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getPopupTime() ?>"),
+										easing: 'ease-in-out',
+										opener: function(openerElement) {
+										return openerElement.is('img') ? openerElement : openerElement.find('img');
+										}
+									},
+									callbacks: {
+										change: function() {
+											if (this.isOpen) {
+												this.wrap.addClass('mfp-open');
+											}
+										}
+									},
+									image: {
+									titleSrc: function(item) {
+										return item.el.parents('.tile').find('h4').html() +   item.el.parents('.tile').find('h5').html();
+										}
+								},
+							
+									fixedContentPos: true,
+
+								});
+							<?php endif; ?>
+						} else {
+							$('#gallery_'+id).finalTilesGallery({
+								layout: '<?= /* @escapeNotVerified */ $this->getGalleryLayout() ?>',
+								
+								<?php if ($this->_helper->enableMargin()): ?>
+									margin: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getMarginSize() ?>"),
+								<?php endif; ?>	
+									
+									minTileWidth :parseInt("<?= /* @escapeNotVerified */ $this->_helper->minTileWidth() ?>"),
+									disableGridSizeBelow:parseInt("<?= /* @escapeNotVerified */ $this->_helper->getGridSizeBelow() ?>"),
+									gridSize:parseInt("<?= /* @escapeNotVerified */ $this->_helper->getGridSize() ?>"),
+								<?php if ($this->_helper->enableEnlargeMent()): ?>
+									allowEnlargement:true,
+								<?php else: ?>
+									allowEnlargement:false,
+								<?php endif; ?>	
+
+
+								<?php if ($this->enablePaginitionForTabs()=="1" || $this->enablePaginitionForTabs()==1): ?>
+									onLoading: function () {
+										$('.cbp-l-loadMore-button-link').text('Loading...');
+										$('.loader').css({'display': 'block'});
+										
+									},
+									onUpdate: function () {
+										$('.cbp-l-loadMore-button-link').text('<?= /* @escapeNotVerified */ $this->_helper->getButtonText() ?>');
+										$('.loader').css({'display': 'none'});
+									},
+									autoLoadURL: '<?= /* @escapeNotVerified */ $this->linkForAjexTab() ?>'+'&tabid='+id,
+								<?php endif; ?>	
+								
+							});
+							<?php if ($this->_helper->getMagniferOption()=="popup"): ?>
+								$('#gallery_'+id).magnificPopup({
+									type: 'image',
+						
+									delegate: '.tile:not(.ftg-hidden) .tile-inner',
+								
+									gallery: {
+									<?php if ($this->_helper->enablegalonPopUp()): ?>
+									enabled: true,
+									<?php else: ?>
+									enabled: false,
+									<?php endif; ?>	
+
+									preload: [0,2],	
+									<?php if ($this->_helper->enablePopupNavOnCLick()): ?>
+									navigateByImgClick: true,
+									<?php else: ?>
+									navigateByImgClick: false,
+									<?php endif; ?>	
+									},
+									zoom: {
+										enabled: true,
+										duration: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getPopupTime() ?>"),
+										easing: 'ease-in-out',
+										opener: function(openerElement) {
+										return openerElement.is('img') ? openerElement : openerElement.find('img');
+										}
+									},
+									callbacks: {
+										change: function() {
+											if (this.isOpen) {
+												this.wrap.addClass('mfp-open');
+											}
+										}
+									},
+									image: {
+									titleSrc: function(item) {
+										return item.el.parents('.tile').find('h4').html() +   item.el.parents('.tile').find('h5').html();
+										}
+								},
+							
+									fixedContentPos: true,
+
+								});
+							<?php endif; ?>
+						}
+					});
+				}
+				// Get the element with id="defaultOpen" and click on it
+				document.getElementById("defaultOpen").click();
+			</script>
+		<?php endif; ?>	
+	<?php endif; ?>	
+<?php endif; ?>	

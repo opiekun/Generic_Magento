@@ -1,0 +1,68 @@
+<?php
+$dataHelper    = $this->helper('\Magezon\Builder\Helper\Data');
+$element       = $block->getElement();
+$id            = $element->getId();
+$googleApi     = $dataHelper->getGoogleMapApi();
+$zoom          = $element->getMapZoom();
+$type          = $element->getMapType();
+$ui            = $element->getMapUi();
+$scrollwheel   = $element->getMapScrollwheel();
+$draggable     = $element->getMapDraggable();
+$infoboxOpened = $element->getData('infobox_opened');
+$items         = $this->getItems();
+$mapId         = $id . '-map';
+$centerItem    = $this->getCenterItem();
+?>
+<?php if ($googleApi && $centerItem) { ?>
+	<div id="<?= $mapId ?>"></div>
+	<script>
+		require([
+			'jquery',
+			'https://maps.google.com/maps/api/js?key=<?= $googleApi ?>&libraries=places'
+		], function() {
+			var initGoogleMap<?= $id ?> = function () {
+				var config = {
+					center: {
+						lat: <?= $centerItem['lat'] ?>,
+						lng: <?= $centerItem['lng'] ?>
+					},
+					zoom: <?= $zoom ?>,
+					mapTypeId: '<?= $type ?>',
+					disableDefaultUI: <?= $ui ? 'true' : 'false' ?>,
+					scrollwheel: <?= $scrollwheel ? 'true' : 'false' ?>,
+					draggable: <?= $draggable ? 'true' : 'false' ?>
+				};
+				var map = new google.maps.Map(document.getElementById('<?= $mapId ?>'), config);
+				<?php if ($items) { ?>
+					<?php foreach ($items as $option) { ?>
+						<?php if ($option) { ?>
+							var myLatLng = new google.maps.LatLng(<?= $option['lat'] ?>, <?= $option['lng'] ?>);
+							addMarker(myLatLng, map, <?= json_encode($option) ?>);
+						<?php } ?>
+					<?php } ?>
+				<?php } ?>
+				function addMarker(location, map, option) {
+					var marker = new google.maps.Marker({
+						position: location,
+						map: map,
+						icon: option['image']
+					});
+					if (option['info']) {
+						var infowindow = new google.maps.InfoWindow({
+							content: option['info']
+						});
+						marker.addListener('click', function() {
+							infowindow.open(map, marker);
+						});
+						<?php if ($infoboxOpened) { ?>
+							infowindow.open(map, marker);
+						<?php } ?>
+					}
+				}
+			}
+			setTimeout(function() {
+				initGoogleMap<?= $id ?>();
+			}, 1000);
+		});
+	</script>
+<?php } ?>

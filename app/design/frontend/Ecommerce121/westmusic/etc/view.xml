@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/view.xsd">
+    <media>
+        <images module="Magento_Catalog">
+            <image id="cart_cross_sell_products" type="small_image">
+                <width>248</width>
+                <height>248</height>
+            </image>
+            <image id="category_page_grid" type="small_image">
+                <width>248</width>
+                <height>248</height>
+            </image>
+            <image id="category_page_grid-1" type="small_image">
+                <width>248</width>
+                <height>248</height>
+            </image>
+            <image id="category_page_list" type="small_image">
+                <width>248</width>
+                <height>248</height>
+            </image>
+            <image id="related_products_list" type="small_image">
+                <width>215</width>
+                <height>215</height>
+            </image>
+        </images>
+    </media>
+    <vars module="Magento_Catalog">
+        <!-- Gallery theme settings. Start -->
+        <var name="breakpoints">
+            <var name="mobile">
+                <var name="conditions">
+                    <var name="max-width">767px</var>
+                </var>
+                <var name="options">
+                    <var name="options">
+                        <var name="arrows">true</var>
+                        <var name="navarrows">true</var>
+                        <var name="nav">thumbs</var>
+                    </var>
+                </var>
+            </var>
+        </var>
+        <!-- end. Gallery theme settings -->
+    </vars>
+</view>

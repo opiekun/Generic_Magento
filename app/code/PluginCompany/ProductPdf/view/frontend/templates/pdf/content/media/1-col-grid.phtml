@@ -1,0 +1,10 @@
+<?php
+foreach($this->getMediaGalleryImagesWithMainImage() as $image){ ?>
+<table autosize="2" class="gallery one-column-gallery">
+        <tr>
+            <td class="centerimage" >
+                <img class="img-responsive" src="<?php echo $image->getUrl(); ?>" />
+            </td>
+        </tr>
+</table>
+<?php } ?>

@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ecommerce121_Filemanager::filemanager"
+             module="Ecommerce121_Filemanager"
+             parent="Magento_Backend::content"
+             sortOrder="9999"
+             title="Media"
+             resource="Magento_Backend::content"/>
+
+        <add action="filemanager/wysiwyg_images/index"
+             id="Ecommerce121_Filemanager::filemanager_files"
+             module="Ecommerce121_Filemanager"
+             parent="Ecommerce121_Filemanager::filemanager"
+             resource="Ecommerce121_Filemanager::filemanager"
+             sortOrder="9999"
+             title="File Manager"/>
+    </menu>
+</config>

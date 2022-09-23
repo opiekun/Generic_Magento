@@ -1,0 +1,48 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .product-variation-item {
+        .price-box {
+            display: block;
+            .weee .price,
+            .price-box .old-price .price,
+            .price-box .price-wrapper .price {
+                .lib-font-size(14);
+            }
+            .weee {
+                .lib-font-size(14);
+                .lib-line-height(19);
+            }
+            .old-price,
+            .special-price {
+                display: block;
+                text-align: center;
+                margin: 0;             
+            }
+        } 
+    }
+    .catalog-product-view {
+        .product-variation-container {
+            color: @color-black;
+            margin-top: 20px;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}

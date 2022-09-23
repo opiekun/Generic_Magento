@@ -1,0 +1,689 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="plugincompany" translate="label" sortOrder="20000" class="plugin-company-config-tab">
+            <label>Plugin Company</label>
+        </tab>
+        <section id="plugincompany_productpdf" translate="label" sortOrder="10000" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Product Page PDF</label>
+            <tab>plugincompany</tab>
+            <resource>PluginCompany_ProductPdf::general</resource>
+            <group id="frontend" translate="label" sortOrder="00" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Front-end Settings</label>
+                <field id="enable_extension" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Extension on Front-end</label>
+                    <comment>Add PDF download functionality to all product pages.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="link_placement_selector" sortOrder="200" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>PDF Link / Icon Position</label>
+                    <comment>Product page block in which the PDF download link is shown.</comment>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\Blockposition</source_model>
+                </field>
+                <field id="link_custom_css_selector" sortOrder="210" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom CSS Selector</label>
+                    <comment>The custom CSS / jQuery selector to insert the PDF print link at</comment>
+                    <depends>
+                        <field id="link_placement_selector">custom_selector</field>
+                    </depends>
+                </field>
+                <field id="link_placement_method" sortOrder="250" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>PDF Link / Icon Insertion Method</label>
+                    <comment>Method used to add the PDF download link to the selected product page block.</comment>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\LinkPlacementMethod</source_model>
+                </field>
+                <field id="show_as" sortOrder="300" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Type</label>
+                    <comment>Show a PDF download icon and / or text link.</comment>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\Blocktype</source_model>
+                </field>
+                <field id="icon_img" translate="label comment" sortOrder="400" type="image" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload Icon</label>
+                    <comment>Allowed file types: .jpeg, .gif, .png&lt;br&gt;Leave empty to use default PDF icon.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">plugincompany/productpdf</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">plugincompany/productpdf</upload_dir>
+                </field>
+                <field id="icon_css" sortOrder="500" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Icon CSS</label>
+                    <comment>Custom CSS for PDF download icon.</comment>
+                    <validate>pc-css</validate>
+                </field>
+                <field id="link_text" sortOrder="600" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Link Title</label>
+                    <comment>Default link title is 'Download PDF', which will function as the image title and alt attribute if an icon is used.</comment>
+                </field>
+                <field id="link_css" sortOrder="700" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Link CSS</label>
+                    <comment>Custom CSS for PDF download text link.</comment>
+                    <validate>pc-css</validate>
+                </field>
+                <field id="link_classes" sortOrder="800" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom CSS Classes</label>
+                    <comment>Enter custom CSS classes separated by a space, for example: btn btn-primary pull-right</comment>
+                </field>
+                <field id="enable_print_window" sortOrder="900" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Print Window</label>
+                    <comment>Enable this to directly show a print window in the browser when a PDF is opened</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="general" translate="label" sortOrder="10" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General PDF Settings</label>
+                <field id="default_fontsize" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Font Size</label>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\Fontsize</source_model>
+                </field>
+                <field id="default_fontcolor" translate="label" sortOrder="200" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Font Color</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\ColorPicker</frontend_model>
+                </field>
+                <field id="default_fontfamily" translate="label" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Font Family</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\FontPicker</frontend_model>
+                </field>
+                <field id="use_resource_path" sortOrder="400" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Load Assets Directly</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When enabled resources like CSS and images will be loaded through the filesystem instead of using HTTP requests. Enable this when you encounter image loading issues when running Magento behind a reverse proxy or in a docker container.</comment>
+                </field>
+                <field id="custom_css" sortOrder="500" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom CSS</label>
+                    <comment>Custom CSS for the PDF file. To view the PDF output as html, add ?html=1 to the PDF URL.</comment>
+                    <validate>pc-css</validate>
+                </field>
+            </group>
+            <group id="header" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>PDF Header Settings</label>
+                <field id="show_header" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Header</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_img" translate="label,comment" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Default Store Logo</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_header">1</field>
+                    </depends>
+                </field>
+                <field id="logo_img" translate="label comment" sortOrder="111" type="image" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Store Logo</label>
+                    <comment>Allowed file types: .jpeg, .gif, .png</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">plugincompany/productpdf</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">plugincompany/productpdf</upload_dir>
+                    <depends>
+                        <field id="default_img">0</field>
+                    </depends>
+                </field>
+                <field id="show_store_title" translate="label" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Store Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_header">1</field>
+                    </depends>
+                </field>
+                <field id="store_title" translate="label" sortOrder="121" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Name</label>
+                    <comment>Leave empty to use the default store name.</comment>
+                    <depends>
+                        <field id="show_store_title">1</field>
+                    </depends>
+                </field>
+                <field id="store_title_fontsize" translate="label" sortOrder="122" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Name Font Size</label>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\Fontsize</source_model>
+                    <depends>
+                        <field id="show_store_title">1</field>
+                    </depends>
+                </field>
+                <field id="store_title_color" translate="label" sortOrder="123" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Name Font Color</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="show_store_title">1</field>
+                    </depends>
+                </field>
+                <field id="use_custom_title_font" translate="label" sortOrder="124" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Custom Store Name Font</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_store_title">1</field>
+                    </depends>
+                </field>
+                <field id="store_name_fontfamily" translate="label" sortOrder="125" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Name Font Family</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\FontPicker</frontend_model>
+                    <depends>
+                        <field id="use_custom_title_font">1</field>
+                    </depends>
+                </field>
+                <field id="header_1" translate="label" sortOrder="130" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Left Header Text Content</label>
+                    <depends>
+                        <field id="show_header">1</field>
+                    </depends>
+                </field>
+                <field id="header_2" translate="label" sortOrder="140" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Center Header Text Content</label>
+                    <depends>
+                        <field id="show_header">1</field>
+                    </depends>
+                </field>
+                <field id="header_3" translate="label" sortOrder="150" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Right Header Text Content</label>
+                    <depends>
+                        <field id="show_header">1</field>
+                    </depends>
+                </field>
+                <field id="show_barcode" translate="label" sortOrder="155" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show QR Code</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_header">1</field>
+                    </depends>
+                    <comment>If enabled, a QR Code with the product URL will be shown in the header.</comment>
+                </field>
+                <field id="header_fontsize" translate="label" sortOrder="160" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Text Font Size</label>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\Fontsize</source_model>
+                    <depends>
+                        <field id="show_header">1</field>
+                    </depends>
+                </field>
+                <field id="header_fontcolor" translate="label" sortOrder="170" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Text Font Color</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="show_header">1</field>
+                    </depends>
+                </field>
+                <field id="use_custom_font" translate="label" sortOrder="180" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Custom Header Font</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_header">1</field>
+                    </depends>
+                </field>
+                <field id="fontfamily" translate="label" sortOrder="181" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Font Family</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\FontPicker</frontend_model>
+                    <depends>
+                        <field id="use_custom_font">1</field>
+                    </depends>
+                </field>
+                <field id="show_bottomline" translate="label" sortOrder="190" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Header Separator</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_header">1</field>
+                    </depends>
+                </field>
+                <field id="bottomline_thickness" translate="label" sortOrder="191" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Separator Thickness</label>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\Linethickness</source_model>
+                    <depends>
+                        <field id="show_header">1</field>
+                        <field id="show_bottomline">1</field>
+                    </depends>
+                </field>
+                <field id="bottomline_color" translate="label" sortOrder="192" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Separator Color</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="show_header">1</field>
+                        <field id="show_bottomline">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="section_header" translate="label" sortOrder="30" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Content Section Heading Settings</label>
+                <field id="section_header_fontsize" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Section Heading Font Size</label>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\Fontsize</source_model>
+                </field>
+                <field id="section_header_color" translate="label" sortOrder="200" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Section Heading Color</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\ColorPicker</frontend_model>
+                </field>
+                <field id="use_custom_section_header_font" translate="label" sortOrder="300" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Custom Section Heading Font</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="section_header_fontfamily" translate="label" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Section Heading Font</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\FontPicker</frontend_model>
+                    <depends>
+                        <field id="use_custom_section_header_font">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="sectionsort" translate="label" sortOrder="31" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Content Section Sort Order</label>
+                <field id="sort_order" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Drag to change sort order</label>
+                    <comment>Drag and drop sections to change their sort order.</comment>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\SectionSort</frontend_model>
+                </field>
+            </group>
+            <group id="title_price" translate="label" sortOrder="32" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Title and Price Settings</label>
+                <field id="title_fontsize" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Title Font Size</label>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\Fontsize</source_model>
+                </field>
+                <field id="title_fontcolor" translate="label" sortOrder="110" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Title Font Color</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\ColorPicker</frontend_model>
+                </field>
+                <field id="use_custom_product_title_font" translate="label" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Custom Product Title Font</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="product_title_fontfamily" translate="label" sortOrder="121" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Title Font Family</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\FontPicker</frontend_model>
+                    <depends>
+                        <field id="use_custom_product_title_font">1</field>
+                    </depends>
+                </field>
+                <field id="show_product_price" translate="label" sortOrder="130" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Product Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="price_fontsize" translate="label" sortOrder="131" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Price Font Size</label>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\Fontsize</source_model>
+                    <depends>
+                        <field id="show_product_price">1</field>
+                    </depends>
+                </field>
+                <field id="price_fontcolor" translate="label" sortOrder="132" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Price Font Color</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="show_product_price">1</field>
+                    </depends>
+                </field>
+                <field id="use_custom_price_font" translate="label" sortOrder="133" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Custom Product Price Font</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_product_price">1</field>
+                    </depends>
+                </field>
+                <field id="price_font_family" translate="label" sortOrder="134" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Price Font Family</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\FontPicker</frontend_model>
+                    <depends>
+                        <field id="use_custom_price_font">1</field>
+                    </depends>
+                </field>
+                <field id="price_background" translate="label" sortOrder="140" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Price Background Color</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="show_product_price">1</field>
+                    </depends>
+                </field>
+                <field id="add_pagebreak" translate="label" sortOrder="150" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on New Page</label>
+                    <comment>Show this section on a new page instead of adding it to an existing page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="gallery" translate="label" sortOrder="33" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Image Gallery Settings</label>
+                <field id="show_images" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Image Gallery</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="gallery_style" translate="label" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Gallery Style</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\GalleryPicker</frontend_model>
+                    <validate>gallery-style</validate>
+                    <depends>
+                        <field id="show_images">1</field>
+                    </depends>
+                </field>
+                <field id="add_gallery_border" translate="label" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Image Border</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_images">1</field>
+                    </depends>
+                </field>
+                <field id="gallery_border_color" translate="label" sortOrder="121" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Border Color</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="show_images">1</field>
+                        <field id="add_gallery_border">1</field>
+                    </depends>
+                </field>
+                <field id="add_child_images" translate="label" sortOrder="130" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Configurable Child Images</label>
+                    <comment>Add the images of child products to configurable product media gallery.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_images">1</field>
+                    </depends>
+                </field>
+                <field id="add_parent_images" translate="label" sortOrder="135" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Configurable Parent Images</label>
+                    <comment>Add the images of parent products to configurable child product media gallery.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_images">1</field>
+                    </depends>
+                </field>
+                <field id="filter_duplicate_images" translate="label" sortOrder="140" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Filter Duplicate Images</label>
+                    <comment>Automatically filter out duplicate product images.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_images">1</field>
+                    </depends>
+                </field>
+                <field id="gallery_image_count" translate="label" sortOrder="145" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Gallery Image Count</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>The maximum amount of additional gallery images to show in the PDF.</comment>
+                </field>
+                <field id="add_pagebreak" translate="label" sortOrder="150" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on New Page</label>
+                    <comment>Show this section on a new page instead of adding it to an existing page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_images">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="short_description" translate="label" sortOrder="34" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Short Description Settings</label>
+                <field id="show_short_description" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Short Description</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="add_pagebreak" translate="label" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on New Page</label>
+                    <comment>Show this section on a new page instead of adding it to an existing page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_short_description">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="description" translate="label" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Description Settings</label>
+                <field id="show_description" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Product Description</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="add_pagebreak" translate="label" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on New Page</label>
+                    <comment>Show this section on a new page instead of adding it to an existing page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_description">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="additional_information" translate="label" sortOrder="36" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Additional Information Settings</label>
+                <field id="show_additional_information" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Additional Information</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="add_pagebreak" translate="label" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on New Page</label>
+                    <comment>Show this section on a new page instead of adding it to an existing page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_additional_information">1</field>
+                    </depends>
+                </field>
+                <field id="hide_empty_attributes" translate="label" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hide Empty Attributes</label>
+                    <comment>If set to yes, attributes with an empty value will be hidden</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_additional_information">1</field>
+                    </depends>
+                </field>
+                <field id="hide_boolean_no_attributes" translate="label" sortOrder="130" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hide attributes with "No" value</label>
+                    <comment>If enabled, Yes/No attributes with "No" as value will be hidden</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_additional_information">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="configurable_product" translate="label" sortOrder="37" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configurable Product Settings</label>
+                <field id="use_child_product" translate="label" sortOrder="50" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use selected child product for PDF</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the selected child product (if any) is used for the PDF instead of the parent product.</comment>
+                </field>
+                <field id="show_configurable_product_options" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Configurable Product Options</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="add_pagebreak" translate="label" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on New Page</label>
+                    <comment>Show this section on a new page instead of adding it to an existing page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_configurable_product_options">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="bundle_product" translate="label" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Bundled Product Settings</label>
+                <field id="show_bundle_product_options" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Bundled Product Options</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="add_pagebreak" translate="label" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on New Page</label>
+                    <comment>Show this section on a new page instead of adding it to an existing page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_bundle_product_options">1</field>
+                    </depends>
+                </field>
+                <field id="show_price" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Item Price</label>
+                    <comment>Choose whether to show the child item prices or not.</comment>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\ShowPrice</source_model>
+                    <depends>
+                        <field id="show_bundle_product_options">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="grouped_product" translate="label" sortOrder="39" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Grouped Product Settings</label>
+                <field id="show_grouped_product_options" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Grouped Product Options</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="add_pagebreak" translate="label" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on New Page</label>
+                    <comment>Show this section on a new page instead of adding it to an existing page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_grouped_product_options">1</field>
+                    </depends>
+                </field>
+                <field id="show_price" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Item Price</label>
+                    <comment>Choose whether to show the child item prices or not.</comment>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\ShowPrice</source_model>
+                    <depends>
+                        <field id="show_grouped_product_options">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="custom_options" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Options Settings</label>
+                <field id="show_custom_options" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Custom Options</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="add_pagebreak" translate="label" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on New Page</label>
+                    <comment>Show this section on a new page instead of adding it to an existing page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_custom_options">1</field>
+                    </depends>
+                </field>
+                <field id="show_price" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Item Price</label>
+                    <comment>Choose whether to show the custom option prices or not.</comment>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\ShowPrice</source_model>
+                    <depends>
+                        <field id="show_custom_options">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="qr_code" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>QR Code Settings</label>
+                <field id="show_qr_code" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show QR Code</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When enabled, a barcode with the product URL will be displayed in the PDF.</comment>
+                </field>
+                <field id="add_pagebreak" translate="label" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on New Page</label>
+                    <comment>Show this section on a new page instead of adding it to an existing page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_qr_code">1</field>
+                    </depends>
+                </field>
+                <field id="enable_border" translate="label" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Border</label>
+                    <comment>Enable this to show a border around the QR Code</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_qr_code">1</field>
+                    </depends>
+                </field>
+                <field id="size" translate="label" sortOrder="130" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Size</label>
+                    <comment>Set the size of the QR Code element. Default size is 2.</comment>
+                    <validate>validate-digits validate-greater-than-zero required-entry</validate>
+                    <depends>
+                        <field id="show_qr_code">1</field>
+                    </depends>
+                </field>
+                <field id="margin_top" translate="label" sortOrder="140" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Margin Top</label>
+                    <comment>Margin above the QR Code element. Default is 50.</comment>
+                    <validate>validate-number required-entry</validate>
+                    <depends>
+                        <field id="show_qr_code">1</field>
+                    </depends>
+                </field>
+                <field id="margin_bottom" translate="label" sortOrder="150" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Margin Bottom</label>
+                    <comment>Margin below the QR Code element. Default is 50.</comment>
+                    <validate>validate-number required-entry</validate>
+                    <depends>
+                        <field id="show_qr_code">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="footer" translate="label" sortOrder="60" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>PDF Footer Settings</label>
+                <field id="show_footer" translate="label" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Footer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_url" translate="label" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Product Page URL</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_footer">1</field>
+                    </depends>
+                </field>
+                <field id="show_timestamp" translate="label" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Timestamp</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_footer">1</field>
+                    </depends>
+                </field>
+                <field id="show_pagenumber" translate="label" sortOrder="130" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Pagination</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_footer">1</field>
+                    </depends>
+                </field>
+                <field id="pagenumber_fontcolor" translate="label" sortOrder="131" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Page Number Font Color</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="show_footer">1</field>
+                        <field id="show_pagenumber">1</field>
+                    </depends>
+                </field>
+                <field id="use_custom_pagenumber_font" translate="label" sortOrder="132" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Custom Page Number Font</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_footer">1</field>
+                        <field id="show_pagenumber">1</field>
+                    </depends>
+                </field>
+                <field id="pagenumber_font_family" translate="label" sortOrder="133" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Page Number Font Family</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\FontPicker</frontend_model>
+                    <depends>
+                        <field id="use_custom_pagenumber_font">1</field>
+                    </depends>
+                </field>
+                <field id="pagenumber_background" translate="label" sortOrder="134" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pagination Background Color</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="show_footer">1</field>
+                        <field id="show_pagenumber">1</field>
+                    </depends>
+                </field>
+                <field id="footer_fontsize" translate="label" sortOrder="140" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer Font Size</label>
+                    <source_model>PluginCompany\ProductPdf\Model\System\Config\Source\Fontsize</source_model>
+                    <depends>
+                        <field id="show_footer">1</field>
+                    </depends>
+                </field>
+                <field id="footer_fontcolor" translate="label" sortOrder="141" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer Font Color</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="show_footer">1</field>
+                    </depends>
+                </field>
+                <field id="use_custom_footer_font" translate="label" sortOrder="142" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Custom Footer Font</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_footer">1</field>
+                    </depends>
+                </field>
+                <field id="footer_font_family" translate="label" sortOrder="143" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer Font Family</label>
+                    <frontend_model>PluginCompany\ProductPdf\Block\Adminhtml\Config\FontPicker</frontend_model>
+                    <depends>
+                        <field id="use_custom_footer_font">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

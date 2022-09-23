@@ -1,0 +1,100 @@
+<?php
+$element               = $this->getElement();
+$layout                = $element->getData('layout');
+$showSeparator         = $element->getData('show_separator');
+$separatorType         = $element->getData('separator_type');
+$headingText           = $element->getData('heading_text');
+$subHeadingText        = $element->getData('sub_heading_text');
+$linkText              = $element->getData('link_text');
+$link                  = $this->getLinkParams($element->getData('link_url'));
+$circleBackgroundColor = $element->getData('circle_background_color');
+$textInline            = $element->getData('text_inline');
+?>
+<div class="mgz-countdown mgz-countdown-<?= $layout ?> <?= $showSeparator ? 'mgz-countdown-separator-' . $separatorType : '' ?> <?= $textInline ? 'mgz-countdown-text-inline' : '' ?>" data-mage-init='{
+		"Magezon_Builder/js/countdown" : {
+			"type": "<?= $layout ?>",
+			"time": "<?= $this->getTime() ?>"
+		}
+	}'>
+    <?php if ($headingText || $subHeadingText) { ?>
+        <div class="mgz-countdown-heading-wrapper">
+            <?php if ($subHeadingText) { ?>
+            <div class="mgz-countdown-subheading"><?= $subHeadingText ?></div>
+            <?php } ?>
+            <?php if ($headingText) { ?>
+            <div class="mgz-countdown-heading"><?= $headingText ?></div>
+            <?php } ?>
+        </div>
+    <?php } ?>
+    <div class="mgz-countdown-counter-wrapper">
+        <div class="mgz-countdown-number mgz-countdown-days">
+            <div class="mgz-countdown-unit">
+                <span class="mgz-countdown-unit-number"></span>
+                <div class="mgz-countdown-unit-label" data-label='{"singular":"<?= __('Day') ?>","plural":"<?= __('Days') ?>"}'><?= __('Day') ?></div>
+            </div>
+            <?php if ($layout == 'circle') { ?>
+            <div class="mgz-countdown-circle-container">
+                <div class="svg-container">
+                    <svg class="svg" viewBox="0 0 200 200" version="1.1" preserveAspectRatio="xMinYMin meet">
+                        <circle fill="<?= $circleBackgroundColor ?>" class="mgz-element-bar-bg" r="90" cx="100" cy="100" stroke-dasharray="565.49" stroke-dashoffset="0"></circle>
+                        <circle class="mgz-element-bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.49" stroke-dashoffset="565.49" transform="rotate(-90 100 100)"></circle>
+                    </svg>
+                </div>
+            </div>
+    	    <?php } ?>
+        </div>
+        <div class="mgz-countdown-number mgz-countdown-hours">
+            <div class="mgz-countdown-unit">
+                <span class="mgz-countdown-unit-number"></span>
+                <div class="mgz-countdown-unit-label" data-label='{"singular":"<?= __('Hour') ?>","plural":"<?= __('Hours') ?>"}'><?= __('Hour') ?></div>
+            </div>
+            <?php if ($layout == 'circle') { ?>
+            <div class="mgz-countdown-circle-container">
+                <div class="svg-container">
+                    <svg class="svg" viewBox="0 0 200 200" version="1.1" preserveAspectRatio="xMinYMin meet">
+                        <circle fill="<?= $circleBackgroundColor ?>" class="mgz-element-bar-bg" r="90" cx="100" cy="100" stroke-dasharray="565.49" stroke-dashoffset="0"></circle>
+                        <circle class="mgz-element-bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.49" stroke-dashoffset="565.49" transform="rotate(-90 100 100)"></circle>
+                    </svg>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+        <div class="mgz-countdown-number mgz-countdown-minutes">
+            <div class="mgz-countdown-unit">
+                <span class="mgz-countdown-unit-number"></span>
+                <div class="mgz-countdown-unit-label" data-label='{"singular":"<?= __('Minute') ?>","plural":"<?= __('Minutes') ?>"}'><?= __('Minute') ?></div>
+            </div>
+            <?php if ($layout == 'circle') { ?>
+            <div class="mgz-countdown-circle-container">
+                <div class="svg-container">
+                    <svg class="svg" viewBox="0 0 200 200" version="1.1" preserveAspectRatio="xMinYMin meet">
+                        <circle fill="<?= $circleBackgroundColor ?>" class="mgz-element-bar-bg" r="90" cx="100" cy="100" stroke-dasharray="565.49" stroke-dashoffset="0"></circle>
+                        <circle class="mgz-element-bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.49" stroke-dashoffset="565.49" transform="rotate(-90 100 100)"></circle>
+                    </svg>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+        <div class="mgz-countdown-number mgz-countdown-seconds">
+            <div class="mgz-countdown-unit">
+                <span class="mgz-countdown-unit-number"></span>
+                <div class="mgz-countdown-unit-label" data-label='{"singular":"<?= __('Second') ?>","plural":"<?= __('Seconds') ?>"}'><?= __('Second') ?></div>
+            </div>
+            <?php if ($layout == 'circle') { ?>
+            <div class="mgz-countdown-circle-container">
+                <div class="svg-container">
+                    <svg class="svg" viewBox="0 0 200 200" version="1.1" preserveAspectRatio="xMinYMin meet">
+                        <circle fill="<?= $circleBackgroundColor ?>" class="mgz-element-bar-bg" r="90" cx="100" cy="100" stroke-dasharray="565.49" stroke-dashoffset="0"></circle>
+                        <circle class="mgz-element-bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.49" stroke-dashoffset="565.49" transform="rotate(-90 100 100)"></circle>
+                    </svg>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
+    <?php if ($linkText) { ?>
+        <div class="mgz-countdown-link-wrapper">
+            <a href="<?= $link['url'] ?>" class="mgz-countdown-link" title="<?= $block->escapeHtml($link['title']) ?>" <?= $link['blank'] ? 'target="_blank"' : '' ?> <?= $link['nofollow'] ? 'rel="nofollow"' : '' ?>><?= $linkText ?></a>
+        </div>
+    <?php } ?>
+</div>

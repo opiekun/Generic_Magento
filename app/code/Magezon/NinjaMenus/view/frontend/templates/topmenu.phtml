@@ -1,0 +1,9 @@
+<?php
+$html = $block->getMenuHtml();
+$html = str_replace('data-mage-init=\'{"ninjamenus"', 'data-mage-init=\'{"ninjamenustop"', $block->getMenuHtml());
+?>
+<?php if($html) { ?>
+    <nav class="navigation" data-action="navigation">
+        <?= $html ?>
+    </nav>
+<?php } ?>

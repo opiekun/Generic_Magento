@@ -1,0 +1,14 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var $block \Aheadworks\Freeshippinglabel\Block\Label */
+?>
+<?php if ($block->isLabelEnabled()):
+    $label = $block->getLabelModel();
+    ?>
+    <div class="aw_fslabel_label header-alert">
+        <p>
+            <?php /* @noEscape */ echo $block->getLabelContent($label) ?>
+        </p>
+    </div>
+<?php endif; ?>

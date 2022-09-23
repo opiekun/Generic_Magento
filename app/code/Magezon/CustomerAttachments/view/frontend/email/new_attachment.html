@@ -1,0 +1,32 @@
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://magezon.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_CustomerAttachments
+ * @copyright Copyright (C) 2018 Magezon (https://magezon.com)
+ */
+-->
+<!--@subject {{trans "%store_name: New File Upload" store_name=$store.getFrontendName()}} @-->
+<!--@vars {
+"var this.getUrl($store, 'customer/account/')":"Customer Account URL",
+"var customer.email":"Customer Email",
+"var customer.name":"Customer Name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">{{trans "Hi %name," name=$customer.name}}</p>
+<p>
+	{{trans "%number_of_file file(s) have been uploaded to your account." number_of_file=$number_of_file}}
+	{{trans "You can check the files by logging into <a href="%customer_url">your account</a>." customer_url=$this.getUrl($store,'customer/account/',[_nosid:1])|raw}}
+	{{trans "Your files details are as below. If you have questions about the files uploaded, you can email us at %contact_email" contact_email=$contact_email }}
+</p>
+<p>{{var file_html|raw}}</p>
+
+{{template config_path="design/email/footer_template"}}

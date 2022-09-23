@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="WeltPixel_Backend::WeltPixel">
+                    <resource id="WeltPixel_OwlCarouselSlider::owlcarouselslider" title="WeltPixel OwlCarouselSlider" sortOrder="10">
+                        <resource id="WeltPixel_OwlCarouselSlider::owlcarouselslider_general_configuration_carousel" title="Manage General Settings" sortOrder="0" />
+                        <resource id="WeltPixel_OwlCarouselSlider::owlcarouselslider_products_sliders" title="Manage Products Sliders" sortOrder="10" />
+                    </resource>
+                    <resource id="WeltPixel_OwlCarouselSlider::owlsliders" title="WeltPixel OwlCarouselSlider" sortOrder="10">
+                        <resource id="WeltPixel_OwlCarouselSlider::owlcarouselslider_general_configuration_slider" title="Manage General Settings" sortOrder="0" />
+                        <resource id="WeltPixel_OwlCarouselSlider::owlcarouselslider_custom_sliders" title="Manage Sliders" sortOrder="10" />
+                        <resource id="WeltPixel_OwlCarouselSlider::owlcarouselslider_custom_banners" title="Manage Banners for Sliders" sortOrder="10" />
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="WeltPixel_OwlCarouselSlider::owlcarouselslider_settings" title="OwlCarouselSlider Products Sliders And Settings" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

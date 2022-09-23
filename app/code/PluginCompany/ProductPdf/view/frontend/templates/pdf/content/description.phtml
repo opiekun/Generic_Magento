@@ -1,0 +1,12 @@
+<?php if($this->getGroupConfigFlag('description/add_pagebreak')){ ?>
+    <pagebreak />
+<?php } ?>
+<div class="section section-description">
+    <h3 class="section-title description-title"><?php echo __('Description');?></h3>
+    <div class="description">
+        <p>
+            <?php echo $this->getProduct()->getDescription(); ?>
+        </p>
+    </div>
+</div>
+

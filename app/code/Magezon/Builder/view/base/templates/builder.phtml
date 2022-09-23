@@ -1,0 +1,103 @@
+<?php
+$config            = $this->getBuilderConfig();
+$id                = $this->getHtmlId();
+$targetId          = $this->getTargetId();
+$additionalClasses = $this->getAdditionalClasses();
+$url               = $this->getUrl('mgzpagebuilder/product/wysiwyg');
+?>
+<div class="mgz-builder <?= $additionalClasses ?>" id="<?= $id ?>" ng-controller="magezonBuilderCtrl">
+	<magezon-builder profile="profile"></magezon-builder>
+</div>
+<style id="<?= $targetId ?>-styles"></style>
+<script type="text/javascript">
+	window.magezonBuilder = {
+		viewFileUrl: '<?= $this->getBuilderViewFileUrl() ?>'
+	}
+	require([
+		'jquery',
+		'angular',
+		'magezonBuilder',
+		'api-check'
+		<?= $this->getModulePaths() ?>
+	], function($, angular, mgzBuilder, apiCheck) {
+		var parent = $('#<?= $targetId ?>').closest('.admin__field');
+		if (parent.parent().hasClass('admin__field-control')) {
+			parent.parent().addClass('magezon-builder-active-wrapper');
+			var width = parent.parent().parent().width() * .72;
+			parent.parent().width(width);
+			$('#<?= $id ?>').width(width);
+		}
+		apiCheck.globalConfig.disabled = true;
+		var builderConfig = <?= $this->getSerializedBuilderConfig() ?>;
+		window.builderConfig = builderConfig;
+		var app = angular.module('<?= $id ?>', ['magezonBuilder' <?= $this->getModuleKeys() ?>], function config(magezonBuilderConfigProvider, formlyConfigProvider) {
+			formlyConfigProvider.disableWarnings = true;
+			formlyConfigProvider.extras.removeChromeAutoComplete = true;
+  			formlyConfigProvider.extras.explicitAsync = true;
+			_.each(builderConfig.groups, function(elem) {
+				magezonBuilderConfigProvider.registerGroup(elem.type, elem);
+			});
+			_.each(builderConfig.elements, function(elem) {
+				magezonBuilderConfigProvider.registerElement(elem.type, elem);
+			});
+			magezonBuilderConfigProvider.processAllowTypes();
+			_.each(builderConfig.directives, function(directive, name) {
+				magezonBuilderConfigProvider.registerDirectives(name, directive);
+			});
+		}).run(['$rootScope', '$log', '$window', 'magezonBuilderService', 'magezonBuilderUrl', 'magezonBuilderConfig', 'elementManager', 'magezonBuilderModal', 'formlyConfig', '$sce', function($rootScope, $log, $window, magezonBuilderService, magezonBuilderUrl, magezonBuilderConfig, elementManager, magezonBuilderModal, formlyConfig, $sce, historyManager) {
+			formlyConfig.disableWarnings     = true;
+			elementManager.registerElements(magezonBuilderConfig.elements);
+			elementManager.groups            = magezonBuilderConfig.groups;
+			$rootScope.profile               = {
+				elements: []
+			};
+			$rootScope.ajaxData              = {};
+			$rootScope.additionalClasses     = [];
+			$rootScope.magezonBuilderService = magezonBuilderService;
+			$rootScope.magezonBuilderUrl     = magezonBuilderUrl;
+			$rootScope.elementManager        = elementManager;
+			$rootScope.historyManager        = historyManager;
+			$rootScope.$log                  = $log;
+			$rootScope.currentProfile        = {};
+			$rootScope.$window               = $window;
+			$rootScope.parseInt              = parseInt;
+			$rootScope.parseFloat            = parseFloat;
+			$rootScope.builderConfig         = builderConfig;
+			$rootScope.$sce                  = $sce;
+			$rootScope.rootId                = '<?= $id ?>-wrapper';
+			$rootScope.fullscreen            = false;
+			$rootScope.history               = [];
+			magezonBuilderModal.registerModals(builderConfig.modals);
+			$rootScope.magezonBuilderModal = magezonBuilderModal;
+		}]);
+		app.config(['$compileProvider', '$httpProvider', function($compileProvider, $httpProvider) {
+			$compileProvider.commentDirectivesEnabled(false);
+			$compileProvider.cssClassDirectivesEnabled(false);
+			$compileProvider.debugInfoEnabled(false);
+			$httpProvider.useApplyAsync(1000);
+			$httpProvider.useLegacyPromiseExtensions = false;
+		}]);
+		app.controller('magezonBuilderCtrl', ['$scope', '$rootScope', '$timeout', function($scope, $rootScope, $timeout) {
+			var parent = $('#<?= $targetId ?>').closest('.admin__field');
+			parent.addClass('mgz-builder-wrapper');
+			parent.addClass('<?= $id ?>-wrapper');
+			if (parent.parent().hasClass('admin__control-grouped')) {
+				parent.parent().addClass('mgz-builder-grouped-wrapper');
+			}
+		}]);
+		<?php
+			if (isset($config['controllers'])) {
+				foreach ($config['controllers'] as $key => $path) { ?>
+					require(['<?= $path ?>'], function(_controller) {
+						app.controller('<?= $key ?>', _controller);
+					});
+				<?php }
+			}
+		?>
+		require(['domReady!'], function (document) {
+			angular.bootstrap(document.getElementById('<?= $id ?>'), ['<?= $id ?>'], {
+				//strictDi: true
+			});
+		});
+	});
+</script>

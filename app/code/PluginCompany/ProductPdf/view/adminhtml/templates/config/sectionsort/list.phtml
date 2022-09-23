@@ -1,0 +1,23 @@
+<div class="pc-sortable">
+    <ul id="<?php echo $this->getHtmlId();?>" class="block__list block__list_words">
+        <?php foreach($this->getValue() as $k => $v){ ?>
+            <li data-value="<?php echo $k; ?>"><?php echo $v; ?></li>
+        <?php } ?>
+    </ul>
+</div>
+<?php $this->getValue(); ?>
+<script type="text/javascript">
+require(["jquery", "PluginCompany_ProductPdf/js/lib/sortable/sortable"], function($, Sortable) {
+    var sort = document.getElementById("<?php echo $this->getHtmlId(); ?>");
+    Sortable.create(sort, {
+        onUpdate: function(evt){
+            var result = {};
+            jQuery(evt.from).find('li').each(function(){
+                var li = jQuery(this);
+                result[li.data('value')] = li.text();
+            })
+            jQuery('#<?php echo $this->getElementHtmlId(); ?>').val(JSON.stringify(result));
+        }
+    });
+});
+</script>

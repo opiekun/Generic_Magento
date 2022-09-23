@@ -1,0 +1,64 @@
+<?php
+$options = $this->getProduct()->getOptions();
+if (!empty($options)) {
+    ?>
+    <?php if($this->getGroupConfigFlag('custom_options/add_pagebreak')){ ?>
+        <pagebreak />
+    <?php } ?>
+    <div class="section section-custom-options attribute-options">
+        <h3 class="section-title custom-options-title">
+            <?php echo __('Additional Options');?>
+        </h3>
+        <table autosize="1" class="custom-options product-options">
+            <?php
+            foreach ($options as $option) {
+                $values = $option->getValues();
+                $gtitle = $option->getTitle();
+                $i = 1;
+                ?>
+                <?php
+                if(empty($values)){
+                    ?>
+                    <tr class="<?php echo $this->getRowClass($i); ?>">
+                        <td class="custom-option-title" colspan="2">
+                            <?php echo __($gtitle); ?>
+                        </td>
+                        <td></td>
+                        <?php if($this->canShowPrice()) { ?>
+                            <td class="price">
+                                <p style="margin: 0 20px 0; ">
+                                    <?php echo $this->formatCurrency($option->getPrice()); ?>
+                                </p>
+                            </td>
+                        <?php } ?>
+                    </tr>
+                    <?php $i++; } ?>
+
+                <?php
+                if ($values && (is_array($values) || is_object($values))) {
+                    foreach ($values as $value) {
+                        $data = $value->getData();
+                        $title = $data['title'];
+                        $price = $this->formatCurrency($data['price']);
+                        ?>
+                        <tr class="<?php echo $this->getRowClass($i); ?>">
+                            <td class="custom-option-title" colspan="2">
+                                <?php echo __($gtitle); ?>
+                            </td>
+                            <td><?php echo __($title); ?></td>
+                            <?php if($this->canShowPrice()) { ?>
+                                <td class="price"><p style="margin: 0 20px 0; "><?php echo $price; ?></p></td>
+                            <?php } ?>
+                        </tr>
+                        <?php
+                        $gtitle = '';
+                        $i++;
+                    }
+                }
+            }
+            ?>
+        </table>
+    </div>
+    <?php
+}
+?>

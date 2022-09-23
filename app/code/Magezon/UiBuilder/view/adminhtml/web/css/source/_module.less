@@ -1,0 +1,177 @@
+@import 'module/_modal.less';
+@import 'module/_typography.less';
+@import 'module/_tab.less';
+@import 'module/_styling.less';
+
+@uibuilder-main-color: #007dbd;
+@uibuilder-main-color2: #e22626;
+@uibuilder-main-color3: #514943;
+@uibuilder-main-hover-color: #0077b3;
+
+
+.align-center {
+	text-align: center;
+}
+
+.uibuilder-width100,
+.admin__control-group-equal > .uibuilder-width100 {
+	width: 100% !important;
+}
+
+.uibuilder-width90 {
+	width: 90% !important;
+}
+
+.uibuilder-inner-width90 {
+	> .admin__field-control {
+		width: 90% !important;
+	}
+}
+
+.uibuilder-width80 {
+	width: 80% !important;
+}
+
+.uibuilder-inner-width80 {
+	> .admin__field-control {
+		width: 80% !important;
+	}
+}
+
+.uibuilder-width70 {
+	width: 70% !important;
+}
+
+.uibuilder-inner-width70 {
+	> .admin__field-control {
+		width: 70% !important;
+	}
+}
+
+.uibuilder-width60,
+.admin__control-group-equal > .uibuilder-width60 {
+	width: 60% !important;
+}
+
+.uibuilder-inner-width60 {
+	> .admin__field-control {
+		width: 60% !important;
+	}
+}
+
+.uibuilder-width50 {
+	width: 50% !important;
+}
+
+.uibuilder-inner-width50 {
+	> .admin__field-control {
+		width: 50% !important;
+	}
+}
+
+.uibuilder-width45 {
+	width: 45% !important;
+}
+
+.admin__control-group-equal > .uibuilder-width40,
+.uibuilder-width40 {
+	width: 40% !important;
+}
+
+.uibuilder-inner-width40 {
+	> .admin__field-control {
+		width: 40% !important;
+	}
+}
+
+.uibuilder-width30 {
+	width: 30% !important;
+}
+
+.uibuilder-width20 {
+	width: 20% !important;
+}
+
+.admin__control-group-equal > .uibuilder-width10,
+.uibuilder-width10 {
+	width: 10% !important;
+}
+
+.uibuilder-codemirror {
+	.CodeMirror {
+		border: 1px solid #adadad;
+		height: 200px;
+	}
+
+	.uibuilder-element-image-preview {
+		width: 100%;
+	}
+}
+
+button.uibuilder-btn {
+	padding: 6px 12px;
+	background-color: @uibuilder-main-color;
+	border-color: @uibuilder-main-hover-color;
+	color: #FFF;
+	font-weight: normal;
+
+	&:hover {
+		color: #FFF;
+		background: @uibuilder-main-hover-color;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	}
+
+	&.action-delete {
+		background: #e22626;
+		border-color: #e22626;
+
+		&:hover {
+			background: #e22626;
+			border-color: #e22626;
+		}
+	}
+}
+
+.uibuilder-select-remove {
+	.mgz-border-radius(50%);
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	font-size: 10px;
+	padding: 4px;
+	cursor: pointer;
+	color: #e22626;
+	border: 1px solid #e22626;
+	background: #fff;
+	font-weight: 700;
+	z-index: 599;
+	right: -10px;
+	top: -10px;
+	float: right;
+	width: 23px;
+	text-align: center;
+	position: absolute;
+
+	&:hover {
+		background: #e22626;
+		color: #FFF;
+	}
+}
+
+.uibuilder-select {
+	.admin__field-control {
+		position: relative;
+	}
+}
+
+.uibuilder-field-animation {
+	.admin__action-multiselect-wrap {
+		+ .admin__additional-info {
+			display: none;
+		}
+	}
+
+	.uibuilder-field-animation-btn {
+		margin-top: 1rem;
+	}
+}

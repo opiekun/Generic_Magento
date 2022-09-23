@@ -1,0 +1,79 @@
+<div class="pc-font-select">
+    <?php foreach($this->getFontData() as $fontData){ ?>
+        <div data-identifier="<?php echo $fontData['identifier']; ?>"
+             class="select-image select-image-<?php echo $fontData['identifier']; ?>">
+            <img src='data:image/png;base64, <?php echo $fontData['image_base64']; ?>'>
+        </div>
+    <?php } ?>
+</div>
+<style>
+    .pc-font-select {
+        float:left;
+        clear:both;
+        max-height:400px;
+        width:100%;
+        overflow-y:scroll;
+        background:white;
+        position:relative;
+    }
+    .pc-font-select .select-image {
+        float:left;
+        clear:both;
+        width:100%;
+        box-sizing:border-box;
+        overflow:hidden;
+        padding-left:10px;
+        border:3px solid #fff;
+    }
+    .pc-font-select .select-image.selected {
+        border:3px solid #7cdbff;
+        border-radius:4px;
+    }
+    .pc-font-select img {
+        float:left;
+        clear:both;
+    }
+</style>
+
+<script type="text/javascript">
+    require(["jquery"], function($) {
+        var currentValue = $('#<?php echo $block->getElementHtmlId(); ?>').val();
+        var currentSelectedEm = $('#<?php echo $block->getElementHtmlId(); ?>')
+            .parent()
+            .find('.select-image-' + currentValue);
+
+        if(currentSelectedEm.length) {
+            currentSelectedEm.addClass('selected');
+        }
+
+        function scrollToSelectedEm(){
+            var gallery = $('#<?php echo $block->getElementHtmlId(); ?>')
+                .parent()
+                .find('.pc-font-select');
+            if(gallery.find('.selected').length){
+                gallery
+                    .scrollTop(0)
+                    .scrollTop(gallery.find('.selected').position().top - 5);
+            }
+        }
+
+        $(document).ready(function(){
+            scrollToSelectedEm();
+        })
+
+        $('#<?php echo $block->getElementHtmlId(); ?>')
+            .closest('.section-config').find('a').first()
+            .click(function(){
+                scrollToSelectedEm()
+            })
+
+
+        $('#<?php echo $block->getElementHtmlId(); ?>').parent().find('.select-image')
+            .click(function(){
+                $(this).parent().children().removeClass('selected');
+                $(this).addClass('selected');
+                $('#<?php echo $block->getElementHtmlId(); ?>').val($(this).data('identifier'));
+            })
+
+    });
+</script>

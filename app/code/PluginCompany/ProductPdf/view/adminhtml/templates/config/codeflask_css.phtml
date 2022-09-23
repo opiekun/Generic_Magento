@@ -1,0 +1,27 @@
+<?php /** @var $this \PluginCompany\ProductPdf\Block\Adminhtml\Config\CodeFlaskCss */ ?>
+<link rel="stylesheet" href="<?= $this->getCodeFlaskCssUrl(); ?>">
+<script>
+    require(
+        [
+            'jquery',
+            "PluginCompany_ProductPdf/js/lib/codeflask.min"
+        ], function ($, CodeFlask) {
+            $(document).ready(function(){
+                $('.pc-css').each(function(){
+                    var field = this;
+                    var fieldId = $(this).attr('id');
+                    var editorId = fieldId + "_editor";
+                    $(this).closest('td').addClass('pc-codeflask-wrapper');
+                    $(this).before('<div id="' + editorId + '">');
+                    var flask = new CodeFlask('#' + editorId, {
+                        language: 'css'
+                    });
+                    flask.updateCode($(this).val());
+                    $('#save').click(function(){
+                        $(field).val(flask.getCode());
+                    })
+                })
+            })
+        }
+    );
+</script>

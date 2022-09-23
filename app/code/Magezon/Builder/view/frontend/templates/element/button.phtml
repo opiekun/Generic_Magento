@@ -1,0 +1,23 @@
+<?php
+$element       = $this->getElement();
+$title         = $element->getData('title');
+$btnStyle      = $element->getData('button_style');
+$btnSize       = $element->getData('button_size');
+$onclickCode   = $element->getData('onclick_code');
+$addIcon       = $element->getData('add_icon');
+$iconPosition  = $element->getData('icon_position');
+$icon          = $element->getData('icon');
+$link          = $this->getLinkParams($element->getData('link'));
+$displayAsLink = $element->getData('display_as_link');
+?>
+<div class="mgz-button mgz-btn-style-<?= $btnStyle ?> mgz-btn-size-<?= $btnSize ?>">
+	<a href="<?= $link['url'] ?>" class="mgz-link <?= !$displayAsLink ? 'mgz-btn' : '' ?>" title="<?= $block->escapeHtml($link['title']) ?>" <?= $onclickCode ? 'onclick="' . $block->escapeHtmlAttr($onclickCode) . '"' : '' ?> <?= $link['blank'] ? 'target="_blank"' : '' ?> <?= $link['nofollow'] ? 'rel="nofollow"' : '' ?>>
+		<?php if ($addIcon && $icon && $iconPosition == 'left') { ?>
+			<i class="<?= $icon ?>"></i>
+		<?php } ?>
+		<?= $title ?>
+		<?php if ($addIcon && $icon && $iconPosition == 'right') { ?>
+			<i class="<?= $icon ?>"></i>
+		<?php } ?>
+	</a>
+</div>

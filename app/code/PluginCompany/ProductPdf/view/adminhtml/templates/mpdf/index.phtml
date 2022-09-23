@@ -1,0 +1,83 @@
+<?php /** @var $this \PluginCompany\ProductPdf\Block\Adminhtml\Mpdf\Index */ ?>
+
+<?php if(!$this->isMpdfInstalled()){ ?>
+    <p>
+        <?php echo __(
+            "In order to use the Product Page PDF extension, 
+            the mPDF library should be installed on your system. 
+            You can either try the automatic installation or install 
+            the library manually by executing a shell command on your server."
+        ); ?>
+    </p>
+
+    <p>&nbsp;</p>
+    <?php if($this->getRequest()->getParam('tried_automatic_install') ){ ?>
+        <div class="messages">
+            <div class="message message-error error">
+                <?php echo __("Automatic installation failed, please try manually installing the mPDF library"); ?>
+            </div>
+        </div>
+    <?php } ?>
+    <div class="section">
+        <div class="fieldset-wrapper-title">
+            <strong class="title">
+                Automatic Installation
+            </strong>
+        </div>
+        <div class="admin__fieldset-wrapper-content">
+            <fieldset class="admin__fieldset">
+                <p>Please click the button below to start the automatic installation process.</p>
+                <p>Installation might take a couple of minutes, please don't refresh the page while the installation is running.</p>
+                <p>&nbsp;</p>
+                <button id="automaticInstall" class="primary">
+                    <span><?php echo __("Install Automatically") ?></span>
+                </button>
+            </fieldset>
+            <div class="messages mpdf-error" style="display:none;">
+                <div class="message message-error error">
+                    Automatic installation of the mPDF library failed. Please install the library manually.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="fieldset-wrapper-title">
+            <strong class="title">
+                Manual Installation
+            </strong>
+        </div>
+        <div class="admin__fieldset-wrapper-content">
+            <fieldset class="admin__fieldset">
+                <p>To install the mPDF library manually, please run the following commands in your Magento root folder:</p>
+                <pre class="code">composer require mpdf/mpdf</pre><br>
+                <pre class="code">composer require mpdf/qrcode</pre>
+            </fieldset>
+        </div>
+    </div>
+    <script>
+        require(['jquery'], function($){
+            $('#automaticInstall').click(function() {
+                jQuery('body').loader('show');
+                $.get('<?php echo $this->getUrl('*/*/install'); ?>', function(data) {
+                    if(data == 'success') {
+                        return location.reload();
+                    }
+                    $('.mpdf-error').show();
+                    jQuery('body').loader('hide');
+                })
+                .fail(function() {
+                    $('.mpdf-error').show();
+                    jQuery('body').loader('hide');
+                })
+            })
+        })
+    </script>
+<?php }else{ ?>
+    <div class="messages">
+        <div class="message message-success success">
+            Congratulations, the mPDF library is successfully installed!
+        </div>
+    </div>
+<?php } ?>
+

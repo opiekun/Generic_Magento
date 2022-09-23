@@ -1,0 +1,7 @@
+<div class="mgz-button mgz-btn-style-{{ element.button_style }} mgz-btn-size-{{ element.button_size }}">
+	<a ng-href="element.link" class="mgz-link" title="{{ element.title }}" ng-class="{'mgz-btn': !element.display_as_link}">
+		<i class="{{ element.icon }}" ng-if="element.add_icon && element.icon && element.icon_position=='left'"></i>
+		<span ng-bind-html="element.title"></span>
+		<i class="{{ element.icon }}" ng-if="element.add_icon && element.icon && element.icon_position=='right'"></i>
+	</a>
+</div>

@@ -1,0 +1,65 @@
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.wrap {
+  width: 980px; /* fixed width, centered in viewport */
+  left: -490px;
+  margin-left: 50%;
+  position: relative;
+}
+#showcase {
+  visibility: hidden;
+}
+#showcase img {
+  cursor: pointer;
+}
+footer {
+  display: block;
+  position: relative;
+}
+#get {
+  font-size: 20px;
+  text-align: center;
+}
+#download {
+  margin: 8px auto;
+  margin-top: 12px;
+  display: block;
+}
+#license {
+  font-size: 18px;
+  text-align: center;
+  margin: 0;
+}
+#share {
+  position: absolute;
+  left: 4px;
+}
+.fb-like {
+  vertical-align: top;
+}
+.twitter-share-button {
+  margin-left: 8px; /* give facebook some space */
+}
+#credits {
+  color: #c9c9c9;
+  text-align: right;
+  padding-right: 25px;
+  position: absolute;
+  right: 0;
+}
+#credits h1 {
+  font-size: 1em;
+  margin: 2px auto;
+}
+#credits ul {
+  font-size: 14px;
+  list-style-type: none;
+  padding-left: 2px;
+  margin: 2px 0;
+}

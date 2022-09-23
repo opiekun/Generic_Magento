@@ -1,0 +1,3 @@
+<ul ng-if="isUpVisible()||isDownVisible()">
+	<li ng-if="isUpVisible()"><a mgz-tooltip="{{ upTitle }}" ng-click="moveUp()"><i class="fas {{ upClass }}"></i></a></li><li ng-if="isDownVisible()"><a mgz-tooltip="{{ downTitle }}" ng-click="moveDown()"><i class="fas {{ downClass }}"></i></a></li>
+</ul>

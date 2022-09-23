@@ -1,0 +1,23 @@
+<div class="admin__field"
+          visible="visible"
+          css="_required: required"
+          attr="'data-index': index">
+    <div class="admin__field-label" if="$data.label">
+        <span translate="$data.label"/>
+    </div>
+    <div class="admin__field-control" css="$data.additionalClasses" data-bind="style: $data.styles">
+        <each args="data: elems, as: 'element'">
+            <render template="template"/>
+        </each>
+
+        <each args="getRegion('insideGroup')" render=""/>
+
+        <each args="elems" if="validateWholeGroup">
+            <if args="!$data.additionalForGroup">
+                <label class="admin__field-error" if="error() && visible()" attr="for: uid" text="error"/>
+            </if>
+        </each>
+    </div>
+
+    <each args="getRegion('outsideGroup')" render=""/>
+</div>

@@ -1,0 +1,192 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //  Newsletter subscription
+    .block.newsletter {
+        margin-bottom: 36px;
+        .title {
+            margin: 0 0 20px;
+            strong {
+                .lib-font-size(14);
+                .lib-line-height(22);
+                font-weight: @font-weight__bold;
+                letter-spacing: -0.045em;
+                text-transform: uppercase;
+            }
+        }
+        .form.subscribe {
+            display: table;
+            margin-bottom: 36px;
+            width: 100%;
+        }
+
+        .fieldset {
+            display: table-cell;
+            margin: 0;
+            padding: 0;
+            vertical-align: top;
+        }
+
+        .field {
+            margin: 0 -3px 0 0;
+
+            .control {
+                display: block;
+            }
+        }
+
+        input {
+            .lib-font-size(15);
+            background: @theme__color__fourth;
+            border:  0.886309px solid @border-color__base;
+            color: @color-black;
+            margin-right: 35px;
+            padding: 24px 15px 23px;
+            height: 49px;
+            &:focus {
+                border-color: @color-black;
+                box-shadow: none;
+                outline: none;
+            }
+            &::placeholder {
+                color: @input-text-placeholder__color;
+            }
+        }
+
+        .label {
+            &:extend(.abs-visually-hidden all);
+        }
+
+        .actions {
+            display: table-cell;
+            vertical-align: top;
+            width: 1%;
+        }
+
+        .action.subscribe {
+            margin-left: -1px;
+            height: 49px;
+            width: 135px;
+        }
+        ul {
+            margin: 0;
+            overflow: hidden;
+            padding: 0;
+            li {
+                float: left;
+                margin: 0 12.6px 12.6px 0;
+                &:last-child {
+                    margin-right: 0;
+                }
+                a {
+                    .lib-text-hide();
+                    display: block;
+                    &:hover:before {
+                        color: @color-white;
+                        background: @color-black;
+                    }
+                    &:before {
+                        .lib-font-size(23.4);
+                        background: @theme__color__primary;
+                        border-radius: 45px;
+                        color: @color-white;
+                        display: block;
+                        font-family: "Font Awesome 5 Brands";
+                        height: 45px;
+                        line-height: 45px;
+                        text-align: center;
+                        width: 45px;
+                    }
+                    &[href*="facebook"]:before {
+                        content: "\f39e";
+                    }
+                    &[href*="twitter"]:before {
+                        content: "\f099";
+                    }
+                    &[href*="youtube"]:before {
+                        content: "\f167";
+                    }
+                    &[href*="pinterest"]:before {
+                        content: "\f231";
+                    }
+                    &[href*="linkedin"]:before {
+                        content: "\f0e1";
+                    }
+                    &[href*="instagram"]:before {
+                        content: "\f16d";
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    //  Newsletter subscription
+    .block.newsletter {
+        .action.subscribe {
+            width: 49px;
+            padding: 0;
+            span {
+                display: none;
+            }
+            .lib-icon-font(
+                @_icon-font-content: "\f1d8",
+                @_icon-font: "Font Awesome 5 Free",
+                @_icon-font-size: 2.2rem,
+                @_icon-font-line-height: 45px
+            );
+            &:before {
+                font-weight: @font-weight__heavy;
+            }
+        }
+        ul {
+            text-align: center;
+            li {
+                display: inline-block;
+                float: none;
+                margin: 0 6px 6px 0;
+                vertical-align: top;
+                &:last-child {
+                    margin-right: 0;
+                }
+                a {
+                    &:before {
+                        .lib-font-size(16);
+                        height: 35px;
+                        line-height: 35px;
+                        width: 35px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .block.newsletter {
+        width: 29.2%;
+
+        .field {
+            .control {
+                width: 100%;
+            }
+        }
+    }
+}

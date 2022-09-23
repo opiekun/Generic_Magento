@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'plugincompany';
+  src:  url('fonts/plugincompany.eot?1n9nx0');
+  src:  url('fonts/plugincompany.eot?1n9nx0#iefix') format('embedded-opentype'),
+    url('fonts/plugincompany.ttf?1n9nx0') format('truetype'),
+    url('fonts/plugincompany.woff?1n9nx0') format('woff'),
+    url('fonts/plugincompany.svg?1n9nx0#plugincompany') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon-plugin-company-logo:before {
+  content: "\e900";
+}

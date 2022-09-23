@@ -1,0 +1,119 @@
+<?php
+/**
+ * FME Extensions
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the fmeextensions.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.fmeextensions.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category  FME
+ * @author     Atta <support@fmeextensions.com>
+ * @package   FME_Photogallery
+ * @copyright Copyright (c) 2019 FME (http://fmeextensions.com/)
+ * @license   https://fmeextensions.com/LICENSE.txt
+ */
+?>
+<?php if($this->_helper->enableModule()):?>
+<?php if($this->_helper->enableCatGallery() && $this->_helper->getCatGalleryPosition()=='bottom'):  ?>
+<script type="text/javascript">
+
+
+require(["jquery", "owlcarousel", "finalmagpop","shadowbox","domReady!"], function ($, owlcarousel, jqueryfunction, shadowbox) {
+    
+    $('#owl-democ2').owlCarousel(
+                    {
+                        items : parseInt("<?= /* @escapeNotVerified */ $this->_helper->carouselItems() ?>"), //10 items above 1000px browser width
+                        itemsDesktop : [1000, 3], //5 items between 1000px and 901px
+                        itemsDesktopSmall : [900, 3], // betweem 900px and 601px
+                        itemsTablet : [600, 2], //2 items between 600 and 0
+                        itemsMobile : [450, 1],
+                        <?php if ($this->_helper->carouselRotation()): ?>
+						autoPlay: parseInt("<?= /* @escapeNotVerified */ $this->_helper->carouselRotationTime() ?>"), //10 items above 1000px browser width
+						<?php else: ?>
+						autoPlay : false,
+						<?php endif; ?>
+                        <?php if ($this->_helper->carouselNavButton()): ?>
+						navigation: true,
+						<?php else: ?>
+						navigation : false,
+						<?php endif; ?>
+                        navigationText  : ["<i class='icon-left-open'></i>","<i class='icon-right-open'></i>"],
+                        itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option
+                      
+                      }
+				);
+    $('.imagec2').magnificPopup({
+        type: 'image',
+        gallery: {
+            <?php if ($this->_helper->enablegalonPopUp()): ?>
+            enabled: true,
+            <?php else: ?>
+            enabled: false,
+            <?php endif; ?>	
+
+            preload: [0,2],	
+            <?php if ($this->_helper->enablePopupNavOnCLick()): ?>
+            navigateByImgClick: true,
+            <?php else: ?>
+            navigateByImgClick: false,
+            <?php endif; ?>	
+            },
+            zoom: {
+                enabled: true,
+                duration: parseInt("<?= /* @escapeNotVerified */ $this->_helper->getPopupTime() ?>"),
+                easing: 'ease-in-out',
+                
+            },
+
+                });
+                   
+});
+</script>
+
+
+    <?php      $galleryImages = $this->getGalleryForCatorPro(); ?>
+
+
+   <?php if (count($galleryImages)): ?>
+    <div class="media_gallery_slider">
+        <h3><?php echo __('Category Picture Gallery'); ?></h3>
+        <div class="container-carousel">
+        <div id="owl-democ2" class="owl-carousel owl-theme">
+
+
+
+<?php $i = 1;
+foreach ($galleryImages as $_gallery) :
+?>
+<?php
+$imageFile = $this->_helper->getMediaUrl($_gallery["img_name"]);
+$str = $_gallery["img_name"];
+$aryimg = explode("/", $str);
+$targetPath = $this->_helper->getMediaUrl($_gallery["img_name"]);
+$thumbPath = $this->_helper->getThumbsDirPath($targetPath);
+$arrayName = explode('/', $_gallery["img_name"]);
+$thumbnail_path = $thumbPath . $arrayName[3];
+?>
+<div class="item">
+
+<a class="imagec2" href="<?php echo $imageFile ?>" title="" rel="shadowbox">
+    <img src="<?php echo $thumbnail_path; ?>" width="100%" height="120px" alt="thumbnail" /></a>
+
+</div>
+
+<?php endforeach ?>
+</div>
+<div class="customNavigation clearfix"> <a class="prev"><i class="icon-left-open"></i></a> <a class="next"><i class="icon-right-open"></i></a> </div>
+        </div>
+    </div>
+    <?php endif; ?> 
+
+<?php endif;?>
+<?php endif;?>

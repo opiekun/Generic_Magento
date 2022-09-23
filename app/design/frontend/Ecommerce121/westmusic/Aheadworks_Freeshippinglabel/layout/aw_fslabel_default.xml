@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header.container">
+            <block class="Aheadworks\Freeshippinglabel\Block\Label" name="aw_fslabel_page_top_fixed" as="aw_fslabel_page_top_fixed" before="-" />
+        </referenceContainer>
+    </body>
+</page>

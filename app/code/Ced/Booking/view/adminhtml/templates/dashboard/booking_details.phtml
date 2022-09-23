@@ -1,0 +1,134 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Booking
+ * @author      CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+?>
+<?php $orderDetails = $block->getOrderDetails(); ?>
+<?php $helper = $this->helper(\Ced\Booking\Helper\Data::class); ?>
+
+<fieldset class="admin__fieldset">
+    <div class="admin__field">
+        <label class="admin__field-label">
+            <span><?= __('# Order'); ?></span>
+        </label>
+        <div class="admin__field-control">
+            <a class="admin__control"
+               href="<?= $this->getUrl('sales/order/view', ['order_id' => $orderDetails['order_entity_id']]) ?>"
+               target="_blank">
+                #<?= $orderDetails['order_id'] ?>
+            </a>
+        </div>
+    </div>
+    <div class="admin__field">
+        <label class="admin__field-label">
+            <span><?= __('Product'); ?></span>
+        </label>
+        <div class="admin__field-control">
+            <a href="<?= $this->getUrl('catalog/product/edit', ['id' => $orderDetails['product_id']]); ?>"
+               target="_blank">
+                <?= $orderDetails['product_name'] ?>
+            </a>
+        </div>
+    </div>
+    <?php if (isset($orderDetails['booking_from'])) { ?>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?= __('Booking From'); ?></span>
+            </label>
+            <div class="admin__field-control">
+                <?php
+                if ($orderDetails['product_type'] == \Ced\Booking\Helper\Data::RENTAL_PRODUCT_TYPE) {
+                    echo date("d-F-Y", strtotime($orderDetails['booking_from']));
+                } else {
+                    echo date("d-F-Y H:i a", strtotime($orderDetails['booking_from']));
+                }
+                ?>
+            </div>
+        </div>
+    <?php } ?>
+
+
+    <?php if (isset($orderDetails['booking_from'])) { ?>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?= __('Booking To'); ?></span>
+            </label>
+            <div class="admin__field-control">
+                <?php
+                if ($orderDetails['product_type'] == \Ced\Booking\Helper\Data::RENTAL_PRODUCT_TYPE) {
+                    echo date("d-F-Y", strtotime($orderDetails['booking_to']));
+                } else {
+                    echo date("d-F-Y H:i a", strtotime($orderDetails['booking_to']));
+                }
+                ?>
+            </div>
+        </div>
+    <?php } ?>
+
+    <?php if (isset($orderDetails['booking_qty'])) : ?>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?= __('Qty'); ?></span>
+            </label>
+            <div class="admin__field-control">
+                <?= $orderDetails['booking_qty'] ?>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <div class="admin__field">
+        <label class="admin__field-label">
+            <span><?= __('Booking Status'); ?></span>
+        </label>
+        <div class="admin__field-control">
+            <?= $orderDetails['booking_status'] ?>
+        </div>
+    </div>
+
+    <?php if (isset($orderDetails['tickets'])) : ?>
+
+        <div class="admin__field">
+            <label class="admin__field-label"><?= __('Ticket Information : '); ?></label>
+            <table class="admin__field-control">
+                <thead class="admin__field-control">
+                <tr class="admin__field-control">
+                    <th class="admin__field-control"><?= __('Ticket Name'); ?></th>
+                    <th class="admin__field-control"><?= __('Ticket Qty'); ?></th>
+                    <th class="admin__field-control"><?= __('Ticket Price'); ?></th>
+                    <th class="admin__field-control"><?= __('Total Price'); ?></th>
+                </tr>
+                </thead>
+                <tbody class="admin__field-control">
+                <?php foreach ($orderDetails['tickets'] as $ticket) : ?>
+                    <tr class="admin__field-control">
+                        <td class="admin__field-control"><?= $ticket['ticket_name']; ?></td>
+                        <td class="admin__field-control"><?= $ticket['qty']; ?></td>
+                        <td class="admin__field-control"><?= $helper->getFormattedPrice($ticket['price']); ?></td>
+                        <td class="admin__field-control"><?= $helper->getFormattedPrice($ticket['qty'] * $ticket['price']); ?></td>
+                    </tr>
+                <?php
+                endforeach;
+                ?>
+                </tbody>
+            </table>
+        </div>
+    <?php endif; ?>
+</fieldset>
+
+
+
+
+

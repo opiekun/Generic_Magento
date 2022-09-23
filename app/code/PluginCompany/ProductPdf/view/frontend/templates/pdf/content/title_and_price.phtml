@@ -1,0 +1,42 @@
+<?php /** @var $this  \PluginCompany\ProductPdf\Block\Pdf\Content\TitleAndPrice */ ?>
+<?php if($this->getGroupConfigFlag('title_price/add_pagebreak')){ ?>
+    <pagebreak />
+<?php } ?>
+<div class="col-sm-12">
+    <?php if($this->canShowMainPrice()){ ?>
+        <div class="col-sm-9" style="width:74.9999%">
+            <h1 class="product-title"><?php echo $this->getProduct()->getName(); ?></h1>
+        </div>
+    <?php }else { ?>
+        <h1 class="product-title"><?php echo $this->getProduct()->getName(); ?></h1>
+    <?php } ?>
+    <?php if($this->canShowMainPrice()){ ?>
+        <div class="col-sm-3">
+            <?php echo $this->getProductPriceHtml(); ?>
+        </div>
+    <?php } ?>
+</div>
+
+<style>
+    .content .product-title {
+        font-family: <?php echo $this->getProductTitleFontFamily(); ?>;
+        font-size:<?php echo $this->getConfig('title_fontsize'); ?>;
+        color:#<?php echo $this->getConfig('title_fontcolor'); ?>;
+    }
+
+    .content .product-price {
+        font-family: <?php echo $this->getPriceFontFamily(); ?>;
+        background-color: #<?php echo $this->getConfig('price_background'); ?>;
+    }
+    .content .product-price .price-box {
+        font-family: <?php echo $this->getPriceFontFamily(); ?>;
+        color:#<?php echo $this->getConfig('price_fontcolor'); ?>;
+        font-size:<?php echo $this->getConfig('price_fontsize'); ?>;
+    }
+    .content .tier-price-wrapper {
+        font-family: <?php echo $this->getPriceFontFamily(); ?>;
+        background:#<?php echo $this->getConfig('price_background'); ?>;
+        color:#<?php echo $this->getConfig('price_fontcolor'); ?>;
+    }
+
+</style>

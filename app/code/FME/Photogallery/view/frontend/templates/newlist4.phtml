@@ -1,0 +1,65 @@
+<?php 
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $block = $objectManager->create('FME\Photogallery\Block\PList');
+    $helperdown = $objectManager->create('FME\Photogallery\Helper\Data');
+    $collection=$block->getAllPhotoGalleryImages();
+?>
+<div id="gallery" style="display:none;">
+	<?php
+		$i = 1;
+		foreach ($collection as $_item):
+	?>
+		<img alt= "<?php echo $_item["img_label"]; ?>"
+			src="<?php echo $helperdown->getMediaUrl($_item["img_name"]); ?>"
+			data-image="<?php echo $helperdown->getMediaUrl($_item["img_name"]); ?>"
+		>		
+	<?php
+		$i++;
+		endforeach;
+	?>
+</div>
+<script type="text/javascript">
+	require(['jquery','ugallery','uthemegrid'], function ($) {
+		$("#gallery").unitegallery({
+			theme_panel_position: "right",
+			thumb_width:parseInt("100"),							//thumb width
+			thumb_height:parseInt("100"),							//thumb height
+			thumb_border_effect:true,
+			thumb_border_width: parseInt("5"),						//thumb border width
+			thumb_border_color: "#000000",				//thumb border color
+			thumb_over_border_width: parseInt("5"),					//thumb border width in mouseover state
+			thumb_over_border_color: "#4d0b08",			//thumb border color in mouseover state
+			thumb_selected_border_width: parseInt("5"),				//thumb width in selected state
+			thumb_selected_border_color: "#fc0505",
+			thumb_round_corners_radius:parseInt("70"),
+			thumb_color_overlay_effect:true,
+			thumb_overlay_color: "#f2fa00",			//thumb overlay color
+			thumb_overlay_opacity: "0.4",					//thumb overlay color opacity
+			thumb_overlay_reverse:true,
+			thumb_image_overlay_effect:false,
+			thumb_image_overlay_type: "sepia",			//thumb overlay color
+			thumb_transition_duration: parseInt("200"),				//thumb effect transition duration
+			thumb_transition_easing: "easeOutQuad",		//thumb effect transition easing
+			strippanel_padding_top:parseInt("10"),				//space from top of the panel
+			strippanel_padding_bottom:parseInt("10"),				//space from bottom of the panel
+			strippanel_padding_left: parseInt("10"),				//space from left of the panel
+			strippanel_padding_right:parseInt("10"),				//space from right of the panel
+			strippanel_background_color:"#06324a",			//thumb overlay color
+			strip_thumbs_align: "top",			//thumb overlay color
+			strip_space_between_thumbs:parseInt("20"),				//space between thumbs
+			strip_scroll_to_thumb_duration:parseInt("1000"),			//duration of scrolling to thumb
+			strip_scroll_to_thumb_easing:"easeOutCubic",		//easing of scrolling to thumb animation
+			strip_control_avia:true,					//avia control - move the strip according strip moseover position
+			strip_control_touch:true,
+			gridpanel_vertical_scroll:true,
+			gridpanel_grid_align:  "right",			//top , middle , bottom, left, center, right - the align of the grid panel in the gallery 
+			gridpanel_background_color:"#063961",//W					//background color of the grid wrapper, if not set, it will be taken from the css
+			grid_num_cols: parseInt("2"),							//number of grid columns
+			grid_space_between_cols: parseInt("10"),					//space between columns
+			grid_space_between_rows: parseInt("10"),					//space between rows
+			grid_transition_duration:parseInt("1000"),					//transition of the panes change duration 
+			grid_transition_easing: "easeInOutQuad",
+			grid_carousel:true,
+		});
+	});
+</script>               

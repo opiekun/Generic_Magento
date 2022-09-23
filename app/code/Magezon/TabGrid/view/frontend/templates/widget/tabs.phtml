@@ -1,0 +1,51 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magezon\TabGrid\Block\Widget\Tabs */
+?>
+<?php if (!empty($tabs)): ?>
+
+  <div class="mgz__page-nav" data-role="container" id="<?php echo $block->getId() ?>" data-mage-init='{"Magezon_TabGrid/js/tabs":{"active": "<?php echo $block->getActiveTabId() ?>","destination": "#<?php echo $block->getDestElementId() ?>","tabsBlockPrefix": "<?php echo $block->getId() ?>_","tabIdArgument": "active_tab"}}'>
+    <?php if ($block->getTitle()): ?>
+      <div class="mgz__page-nav-title" data-role="title" <?php echo $block->getUiId('title') ?>>
+        <strong><?php echo $block->getTitle() ?></strong>
+        <span data-role="title-messages" class="mgz__page-nav-title-messages"></span>
+      </div>
+    <?php endif ?>
+    <ul <?php echo $block->getUiId('tab', $block->getId()) ?> class="<?php echo $block->getIsHoriz() ? 'tabs-horiz' : 'tabs mgz__page-nav-items' ?>">
+      <?php foreach ($tabs as $_tab): ?>
+
+        <?php if (!$block->canShowTab($_tab)): continue;  endif; ?>
+        <?php $_tabClass = 'tab-item-link ' . $block->getTabClass($_tab) . ' ' . (preg_match('/\s?ajax\s?/', $_tab->getClass()) ? 'notloaded' : '') ?>
+        <?php $_tabType = (!preg_match('/\s?ajax\s?/', $_tabClass) && $block->getTabUrl($_tab) != '#') ? 'link' : '' ?>
+        <?php $_tabHref = $block->getTabUrl($_tab) == '#' ? '#' . $block->getTabId($_tab) . '_content' : $block->getTabUrl($_tab) ?>
+
+        <li class="mgz__page-nav-item" <?php if ($block->getTabIsHidden($_tab)): ?> style="display:none"<?php endif; ?><?php echo $block->getUiId('tab', 'item', $_tab->getId()) ?>>
+          <a href="<?php echo $_tabHref ?>" id="<?php echo $block->getTabId($_tab) ?>" name="<?php echo $block->getTabId($_tab, false) ?>" title="<?php echo $block->getTabTitle($_tab) ?>"
+           class="mgz__page-nav-link <?php echo $_tabClass;?>"
+           data-tab-type="<?php echo $_tabType;?>"
+           <?php echo $block->getUiId('tab', 'link', $_tab->getId()) ?>>
+
+           <span><?php echo $block->getTabLabel($_tab); ?></span>
+
+           <span class="mgz__page-nav-item-messages" data-role="item-messages">
+            <span class="mgz__page-nav-item-message-loader">
+             <span class="spinner">
+               <span></span><span></span><span></span><span></span>
+               <span></span><span></span><span></span><span></span>
+             </span>
+           </span>
+         </span>
+       </a>
+       <div id="<?php echo $block->getTabId($_tab) ?>_content" style="display:none;"<?php echo $block->getUiId('tab', 'content', $_tab->getId()) ?>><?php echo $block->getTabContent($_tab) ?></div>
+     </li>
+   <?php endforeach; ?>
+ </ul>
+</div>
+
+<?php endif; ?>

@@ -1,0 +1,16 @@
+<?php
+/**
+ * Category view template
+ *
+ * @var $block \Magento\Catalog\Block\Category\View
+ */
+?>
+<?php if ($footerDescription = $block->getCurrentCategory()->getFooterDescription()) :?>
+    <div class="category-footer-description">
+        <?= /* @noEscape */ $this->helper(Magento\Catalog\Helper\Output::class)->categoryAttribute(
+            $block->getCurrentCategory(),
+            $footerDescription,
+            'footer_description'
+        ) ?>
+    </div>
+<?php endif; ?>

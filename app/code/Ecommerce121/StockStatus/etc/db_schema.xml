@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="amasty_stockstatus_additional_settings" resource="default" engine="innodb"
+           comment="Amasty stockstatus additional settings">
+        <column xsi:type="text" name="additional_content" nullable="true"  comment="Additional content"/>
+    </table>
+</schema>

@@ -1,0 +1,46 @@
+<div class="mgz-navigator-element-inner-wrapper" ng-init="elem=element;_bElem=elem.builder;_bElemChild=mgz.getBuilderElement(_bElem.children);">
+	<div class="mgz-navigator-element-inner" 
+		ng-if="::!mgz.isProfile()"
+		ng-style="mgz.getStype()"
+		ng-init="elem=element;_bElem=elem.builder;_bElemChild=mgz.getBuilderElement(_bElem.children);"
+		ng-mouseenter="element.builder.navigator.controlVisible=true;$root.$broadcast('activeElement', element)"
+		ng-mouseleave="element.builder.navigator.controlVisible=false;$root.$broadcast('deactiveElement')"
+		ng-dblclick="$root.$broadcast('gotoElement', element, true)"
+	>
+		<i class="fas mgz-fa-ellipsis-v"></i>
+		<span class="mgz-navigator-element-list-toggle">
+			<i class="fas" 
+			ng-class="{'mgz-fa-caret-down': !element.builder.navigator.listVisible,'mgz-fa-caret-up': element.builder.navigator.listVisible}"
+			ng-click="toggleElementList()"></i>
+		</span>
+		<div class="mgz-navigator-element-title"><span content-editable="true" ng-model="element.builder.name"></span> <i class="fas mgz-fa-eye-slash"></i></div>
+		<div class="mgz-navigator-controls" ng-if="element.builder.navigator.controlVisible">
+			<ul magezon-builder-directive-list group="elemControl" tag="{{ element.type }}-elemControl" html-tag="li" element="elem"></ul>
+		</div>
+	</div>
+	<div ng-if="element.id&&element.builder.navigator.listVisible||!element.id" class="mgz-navigator-element-elements"
+		dnd-disable-builder="!element.builder.is_collection"
+		dnd-disable-if="element.builder.dndDisabled" 
+		dnd-list="element.elements"
+		dnd-drop="mgz.dropElement(item, index, element)"
+		dnd-allowed-types="::element.builder.allowed_types">
+		<div ng-repeat="element in element.elements"
+			ng-class="mgz.getWrapperClasses()"
+			ng-mouseenter="mgz.onMouseEnter($event)"
+			ng-mouseleave="mgz.onMouseLeave($event)"
+			dnd-effect-allowed="move"
+			dnd-type="element.type"
+			dnd-dragstart="mgz.onDragstart(element)"
+			dnd-dragend="mgz.onDragend(element)"
+			dnd-moved="mgz.onMoved(element)"
+			dnd-draggable="element">
+			<div class="mgz-element-inner"
+				dynamic-directive
+				element="element" 
+				element-name="mgz-element-navigator-{{ ::element.type }}"
+				>
+			</div>
+		</div>
+		<div class='dndPlaceholder mgz-placeholder'></div>
+	</div>
+</div>

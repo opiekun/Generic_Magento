@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+                id="WeltPixel_QuickCart::QuickCart_Label"
+                title="Quick Cart"
+                module="WeltPixel_QuickCart"
+                sortOrder="80"
+                parent="WeltPixel_Backend::WeltPixel"
+                resource="WeltPixel_QuickCart::QuickCart_Label"
+        />
+        <add
+                id="WeltPixel_QuickCart::QuickCart"
+                title="Quick Cart Settings"
+                module="WeltPixel_QuickCart"
+                action="adminhtml/system_config/edit/section/weltpixel_quick_cart/"
+                sortOrder="10"
+                parent="WeltPixel_QuickCart::QuickCart_Label"
+                resource="WeltPixel_QuickCart::QuickCart"
+        />
+    </menu>
+</config>

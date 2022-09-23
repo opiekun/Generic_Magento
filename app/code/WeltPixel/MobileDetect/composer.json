@@ -1,0 +1,18 @@
+{
+    "name": "weltpixel/m2-weltpixel-mobiledetect",
+    "description": "WeltPixel MobileDetect Module",
+    "type": "magento2-module",
+    "version": "1.10.9",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "WeltPixel\\MobileDetect\\": ""
+        }
+    }
+}

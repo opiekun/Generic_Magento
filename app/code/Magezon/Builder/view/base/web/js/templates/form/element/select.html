@@ -1,0 +1,1 @@
+<select name="{{ options.key }}" class="mgz__control-select" ng-options="option[to.valueProp || 'value'] as option[to.labelProp || 'label'] group by option[to.groupProp || 'group'] for option in to.options" ng-model="model[options.key]"><option ng-if="to.placeholder != ''" value="">{{to.placeholder}}</option></select>

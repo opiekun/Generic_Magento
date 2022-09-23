@@ -1,0 +1,14 @@
+<div class="mgz-element-toolbar-inner" outside-click="outsideClick()">
+	<div class="mgz-element-toolbar-options">
+		<a class="mgz-element-toolbar-option" ng-click="mgz.editElement(element)"><span>Edit</span></a>
+	</div>
+	<div class="mgz-element-toolbar-options">
+		<a class="mgz-element-toolbar-option" ng-repeat="type in ::headingTypes" ng-click="changeToolbar($event, type, 'elemHeading')" ng-class="{'active': element.title_tag==type}"><span>{{ type }}</span></a>
+	</div>
+	<div class="mgz-element-toolbar-options">
+		<a class="mgz-element-toolbar-option mgz-element-toolbar-item-{{type}}" ng-repeat="type in ::alignTypes" ng-click="changeToolbar($event, type, 'elemAlign')" mgz-tooltip="Align {{ type }}" ng-class="{'active': element.title_align==type}"><span>{{ type }}</span></a>
+	</div>
+	<div class="mgz-element-toolbar-options">
+		<magezon-builder-color-picker config="colorPickerConfig" ng-model="element.color"></magezon-builder-color-picker>
+	</div>
+</div>

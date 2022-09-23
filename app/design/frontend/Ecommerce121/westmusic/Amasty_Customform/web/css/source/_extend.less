@@ -1,0 +1,26 @@
+//
+//  Common
+//  -------------------------------------------
+
+& when (@media-common = true) {.amform-form .action.primary,
+    .amform-form .action.primary,
+    .amform-parent .action.primary,
+    .amform-form .amshopby-button,
+    .amform-parent .amshopby-button,
+    .amform-form .am-filter-go,
+    .amform-parent .am-filter-go {
+        & {
+            background: @theme__color__primary;
+        }
+        &:hover {
+            background: @theme__color__secondary;
+        }
+    }
+    .amcform-popup-block {
+        .amcform-button.-close-popup:hover {
+            .amcform-icon {
+                color: @color-white;
+            }
+        }
+    }
+}

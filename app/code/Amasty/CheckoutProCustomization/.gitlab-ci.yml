@@ -1,0 +1,9 @@
+---
+include:
+  - project: 'git-tools/ci-common-repo'
+    ref: master
+    file: '/magento2/2.3-gitlab-ci.yml'
+
+variables:
+    MODULE_DEPS: >-
+      magento2/base.git

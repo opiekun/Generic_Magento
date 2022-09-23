@@ -1,0 +1,206 @@
+Banners,Banners
+"Add New Banner","Add New Banner"
+"Save Banner","Save Banner"
+"Close Window","Close Window"
+"Save and Continue Edit","Save and Continue Edit"
+"Save and Close","Save and Close"
+"Banner Details","Banner Details"
+Title,Title
+"Show Title","Show Title"
+Yes,Yes
+No,No
+Description,Description
+"Show Description","Show Description"
+Status,Status
+"Banner Status","Banner Status"
+Slider,Slider
+URL,URL
+"GA Promo ID","GA Promo ID"
+"GA Promo Name","GA Promo Name"
+"GA Promo Creative","GA Promo Creative"
+"GA Promo Position","GA Promo Position"
+Target,Target
+"Same Window","Same Window"
+"New Window Tab","New Window Tab"
+"Button Text","Button Text"
+"Insert the text which is displayed on the button. To display the button make sure you fill the URL field also.","Insert the text which is displayed on the button. To display the button make sure you fill the URL field also."
+"Banner Type","Banner Type"
+Video,Video
+"Desktop Image","Desktop Image"
+"Mobile Image","Mobile Image"
+"Thumb Image","Thumb Image"
+"Create Custom Banner here","Create Custom Banner here"
+"Alt Text","Alt Text"
+"Banner Class","Banner Class"
+"Wrapper class name of the current banner. It can be used in Custom CSS field to style each banner from the slider. This is displayed only after you 
+                    saved the banner.","Wrapper class name of the current banner. It can be used in Custom CSS field to style each banner from the slider. This is displayed only after you 
+                    saved the banner."
+"Custom HTML Content","Custom HTML Content"
+"Set Link For Custom HTML Content","Set Link For Custom HTML Content"
+"Wrap Link","Wrap Link"
+"Custom CSS","Custom CSS"
+"Banner Valid From","Banner Valid From"
+"Valid From","Valid From"
+"Banner Valid To","Banner Valid To"
+"Valid To","Valid To"
+"Edit Banner '%1'","Edit Banner '%1'"
+"New Banner","New Banner"
+"Banner Information","Banner Information"
+"Banner ID","Banner ID"
+"Slider ID","Slider ID"
+Edit,Edit
+CSV,CSV
+XML,XML
+Excel,Excel
+Delete,Delete
+"Are you sure?","Are you sure?"
+"Change Status","Change Status"
+Sliders,Sliders
+"Add New Slider","Add New Slider"
+"Save Slider","Save Slider"
+"Create Banner","Create Banner"
+"You have to save the banner and close this window!","You have to save the banner and close this window!"
+Image,Image
+"Banner Title","Banner Title"
+"Sort Order","Sort Order"
+"Slider Details","Slider Details"
+"Slider Status","Slider Status"
+"Ajax Scheduled Banners","Ajax Scheduled Banners"
+True,True
+False,False
+"<strong>Slider General Configuration</strong>","<strong>Slider General Configuration</strong>"
+"Next/Prev Buttons","Next/Prev Buttons"
+Dots,Dots
+Thumbs,Thumbs
+"Banner Transition Effect","Banner Transition Effect"
+"Center Item","Center Item"
+StagePadding,StagePadding
+Margin,Margin
+Items,Items
+Loop,Loop
+LazyLoad,LazyLoad
+Autoplay,Autoplay
+AutoplayTimeout,AutoplayTimeout
+AutoplayHoverPause,AutoplayHoverPause
+"Auto Height","Auto Height"
+"<strong>Slider Responsive Breakpoints.<br/>This configuration will overwrite the main slider options.</strong>","<strong>Slider Responsive Breakpoints.<br/>This configuration will overwrite the main slider options.</strong>"
+"Breakpoint 1","Breakpoint 1"
+"Breakpoint 2","Breakpoint 2"
+"Breakpoint 3","Breakpoint 3"
+"Breakpoint 4","Breakpoint 4"
+"Edit Slider '%1'","Edit Slider '%1'"
+"New Slider","New Slider"
+"Make sure this value is not duplicated","Make sure this value is not duplicated"
+"Slider Information","Slider Information"
+"Change status","Change status"
+"General Carousel Settings","General Carousel Settings"
+"General Slider Settings","General Slider Settings"
+"Breakpoint ","Breakpoint "
+"Breakpoint Carousel Options","Breakpoint Carousel Options"
+"This configuration will overwrite the General Carousel Options.","This configuration will overwrite the General Carousel Options."
+"General Carousel Options","General Carousel Options"
+"Delete successfully!","Delete successfully!"
+"Please select banner(s).","Please select banner(s)."
+"A total of %1 banner(s) have been deleted.","A total of %1 banner(s) have been deleted."
+"A total of %1 banner(s) status have been changed.","A total of %1 banner(s) status have been changed."
+"The banner has been saved.","The banner has been saved."
+"Something went wrong while saving the banner.","Something went wrong while saving the banner."
+"Delete successfully !","Delete successfully !"
+"This slider no longer exists.","This slider no longer exists."
+"Please select slider(s).","Please select slider(s)."
+"A total of %1 slider(s) have been deleted.","A total of %1 slider(s) have been deleted."
+"A total of %1 slider(s) status have been changed.","A total of %1 slider(s) status have been changed."
+"The slider has been saved.","The slider has been saved."
+"Something went wrong while saving the slider.","Something went wrong while saving the slider."
+"--- Please select a slider ---","--- Please select a slider ---"
+Custom,Custom
+"All Time","All Time"
+"Last Day","Last Day"
+"Last Week","Last Week"
+"Last Month","Last Month"
+"Last Year","Last Year"
+"Default Magento","Default Magento"
+"Specific Category","Specific Category"
+"Default Magento & Specific Category","Default Magento & Specific Category"
+"Select Custom Slider...","Select Custom Slider..."
+"Select Products Slider...","Select Products Slider..."
+"New Products","New Products"
+"Best-sell Products","Best-sell Products"
+"Sale Products","Sale Products"
+"Recently Viewed","Recently Viewed"
+Slide,Slide
+Fade,Fade
+Enabled,Enabled
+Disabled,Disabled
+"We can't save the cron expression.","We can't save the cron expression."
+"Related Products","Related Products"
+"We found other products you might like!","We found other products you might like!"
+"More Choices:","More Choices:"
+"Check items to add to the cart or","Check items to add to the cart or"
+"select all","select all"
+"Add to Cart","Add to Cart"
+"In stock","In stock"
+"Out of stock","Out of stock"
+"Add to Wish List","Add to Wish List"
+"Add to Compare","Add to Compare"
+"View More","View More"
+"OWL Product Carousels Pro","OWL Product Carousels Pro"
+"General Configuration for OWL Product Carousels and Banner Sliders","General Configuration for OWL Product Carousels and Banner Sliders"
+"Display wishlist","Display wishlist"
+"Display/Hide wishlist. <br/> This setting applies only to Related, Cross-Sell and Up-Sell carousels. For the rest, there are specific settings at the individual Product Carousel level.","Display/Hide wishlist. <br/> This setting applies only to Related, Cross-Sell and Up-Sell carousels. For the rest, there are specific settings at the individual Product Carousel level."
+"Display compare","Display compare"
+"Display/Hide compare. <br/> This setting applies only to Related, Cross-Sell and Up-Sell carousels. For the rest, there are specific settings at the individual Product Carousel level.","Display/Hide compare. <br/> This setting applies only to Related, Cross-Sell and Up-Sell carousels. For the rest, there are specific settings at the individual Product Carousel level."
+"New Products Carousel Settings","New Products Carousel Settings"
+"Enable New Product Carousel","Enable New Product Carousel"
+"Show Price","Show Price"
+"Show Add To Cart","Show Add To Cart"
+"Show/Hide ‘Add to cart’ button for products in the carousel.","Show/Hide ‘Add to cart’ button for products in the carousel."
+"Show Wishlist","Show Wishlist"
+"Show/Hide wishlist icon for products in the carousel.","Show/Hide wishlist icon for products in the carousel."
+"Show Compare","Show Compare"
+"Show/Hide Compare icon for products in the carousel","Show/Hide Compare icon for products in the carousel"
+"Show Reviews and Ratings","Show Reviews and Ratings"
+"Show/Hide Reviews and Ratings for products in the carousel","Show/Hide Reviews and Ratings for products in the carousel"
+"Random Sort","Random Sort"
+"If enabled, the products in the carousel are displayed in random order on each refresh.","If enabled, the products in the carousel are displayed in random order on each refresh."
+"Max Items","Max Items"
+"Slide By","Slide By"
+Center,Center
+"Best Sell Products Carousel Settings","Best Sell Products Carousel Settings"
+"Enable Best Sell Products Carousel","Enable Best Sell Products Carousel"
+Period,Period
+"Sale Products Carousel Settings","Sale Products Carousel Settings"
+"Enable Sale Products Carousel","Enable Sale Products Carousel"
+"Recently Viewed Products Carousel Settings","Recently Viewed Products Carousel Settings"
+"Enable Recently Viewed Products Carousel","Enable Recently Viewed Products Carousel"
+"Related Products Carousel Settings","Related Products Carousel Settings"
+"Enable Related Products Carousel","Enable Related Products Carousel"
+"Up-Sells Products Carousel Settings","Up-Sells Products Carousel Settings"
+"Enable Up-Sells Products Carousel","Enable Up-Sells Products Carousel"
+"Cross-Sell Products Carousel Settings","Cross-Sell Products Carousel Settings"
+"Enable Cross-Sell Products Carousel","Enable Cross-Sell Products Carousel"
+"Custom Category Products Carousel Settings","Custom Category Products Carousel Settings"
+"Enable Custom Category Products Carousel","Enable Custom Category Products Carousel"
+"Owl Slider Pro","Owl Slider Pro"
+"General Settings","General Settings"
+"Enable Google Analytics Tracking","Enable Google Analytics Tracking"
+"Enable Hover Image on products","Enable Hover Image on products"
+"Select the hover image Product -> Edit -> Images -> Listing Hover Image","Select the hover image Product -> Edit -> Images -> Listing Hover Image"
+"Enable Hover Image for products in carousel. Select the hover image per product.
+                        Go to Product -> Edit the product-> Images -> Listing Hover Image","Enable Hover Image for products in carousel. Select the hover image per product.
+                        Go to Product -> Edit the product-> Images -> Listing Hover Image"
+"Mobile Breakpoint","Mobile Breakpoint"
+"Specify a valid number ( Ex: 778 ). At this breakpoint the mobile / desktop banner images will be switched.","Specify a valid number ( Ex: 778 ). At this breakpoint the mobile / desktop banner images will be switched."
+"Use Default Loading Image","Use Default Loading Image"
+"Use default loading image before sliders are rendered","Use default loading image before sliders are rendered"
+"Custom Loading Image","Custom Loading Image"
+"Select image displayed before carousel is displayed. It is recommended to upload a gif.","Select image displayed before carousel is displayed. It is recommended to upload a gif."
+"WeltPixel - Custom Slider Widget","WeltPixel - Custom Slider Widget"
+"Custom Slider","Custom Slider"
+"WeltPixel - Products Carousel Widget","WeltPixel - Products Carousel Widget"
+"Products Slider Type","Products Slider Type"
+"WeltPixel - Custom Category Product Carousel","WeltPixel - Custom Category Product Carousel"
+Category,Category
+"Select Category...","Select Category..."
+"Cache Lifetime (Seconds)","Cache Lifetime (Seconds)"
+"86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.","86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache."

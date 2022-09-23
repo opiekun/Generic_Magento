@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="PluginCompany_ProductPdf" setup_version="100.0.1">
+        <pc_license>
+            <type>proprietary</type>
+            <name>Plugin Company Product Page PDF</name>
+        </pc_license>
+        <sequence>
+            <module name="PluginCompany_LicenseManager" />
+        </sequence>
+    </module>
+</config>

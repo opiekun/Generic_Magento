@@ -1,0 +1,56 @@
+Column,Column
+Inline,Inline
+Desktop,Desktop
+Mobile,Mobile
+Both,Both
+Arrows,Arrows
+Plus-Minus,Plus-Minus
+"Default Input","Default Input"
+"My Cart","My Cart"
+"Incl. Tax","Incl. Tax"
+"Total Incl. Tax","Total Incl. Tax"
+"Excl. Tax","Excl. Tax"
+Total,Total
+Close,Close
+"Recently added item(s)","Recently added item(s)"
+"You have no items in your shopping cart.","You have no items in your shopping cart."
+item,item
+items,items
+"View and edit cart","View and edit cart"
+"Go to Checkout","Go to Checkout"
+Qty,Qty
+Update,Update
+Price,Price
+"See price before order confirmation.","See price before order confirmation."
+"Quick Cart","Quick Cart"
+"Important / Recommended:","Important / Recommended:"
+"General Settings for QuickCart","General Settings for QuickCart"
+Enable,Enable
+"Open minicart after item is added or removed","Open minicart after item is added or removed"
+"Open minicart on Mobile/Desktop","Open minicart on Mobile/Desktop"
+"Quick Cart Header","Quick Cart Header"
+Height,Height
+"Background Color","Background Color"
+"Text Color","Text Color"
+"Quick Cart Footer","Quick Cart Footer"
+"Subtotal Background Color","Subtotal Background Color"
+"Subtotal Text Color","Subtotal Text Color"
+"Quick Cart Custom Message","Quick Cart Custom Message"
+"Custom Message","Custom Message"
+"{amount_needed} custom variable can be used if the Free Shipping Integration is used. It will return the needed amount for Free Shipping.","{amount_needed} custom variable can be used if the Free Shipping Integration is used. It will return the needed amount for Free Shipping."
+"Free Shipping Integration","Free Shipping Integration"
+"Message for Free Shipping","Message for Free Shipping"
+"Insert a custom message which is displayed whe the free shipping can be applied, based on the Minimum Order Amount value set in the Free Shipping settings.","Insert a custom message which is displayed whe the free shipping can be applied, based on the Minimum Order Amount value set in the Free Shipping settings."
+"Message Text Color","Message Text Color"
+"Message Text Font Size","Message Text Font Size"
+"Custom Css","Custom Css"
+"Shopping Cart Custom Message","Shopping Cart Custom Message"
+"Shopping Cart Content Design","Shopping Cart Content Design"
+"Quantity Button Type","Quantity Button Type"
+"Enable Custom CMS Block","Enable Custom CMS Block"
+"Pick Custom CMS Block","Pick Custom CMS Block"
+"Display Discounted Price","Display Discounted Price"
+"Discounted Price Display Mode","Discounted Price Display Mode"
+"Display Carousel","Display Carousel"
+"Carousel Type","Carousel Type"
+"Carousel Title","Carousel Title"

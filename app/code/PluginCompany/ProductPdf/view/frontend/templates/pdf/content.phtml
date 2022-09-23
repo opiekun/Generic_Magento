@@ -1,0 +1,16 @@
+<div class="content">
+<?php
+    foreach($this->getSortedContentElementsKeys() as $k){
+        echo $this->getContentElementHtml($k);
+    }
+?>
+</div>
+<style>
+    .content .section-title {
+        border-bottom:2px solid #00ACEE;
+        border-bottom-color:#<?php echo $this->getSectionHeaderConfig('section_header_color'); ?>!important;
+        font-family: <?php echo $this->getSectionTitleFontFamily(); ?>;
+        font-size:<?php echo $this->getSectionHeaderConfig('section_header_fontsize'); ?>;
+        color:#<?php echo $this->getSectionHeaderConfig('section_header_color'); ?>!important;
+    }
+</style>

@@ -1,0 +1,17 @@
+<div class="mgzreport-header" if="getRegion('header')().length">
+	<each args="getRegion('header')" render="" />
+</div>
+<div class="mgzreport-before-content" if="getRegion('beforeMainContent')().length">
+	<each args="getRegion('beforeMainContent')" render="" />
+</div>
+<div class="mgzreport-maincontent" css="'has-sidebar': getRegion('sidebar')().length">
+	<div class="mgzreport-sidebar" if="getRegion('sidebar')().length">
+		<each args="getRegion('sidebar')" render="" />
+	</div>
+	<div class="mgzreport-content" if="getRegion('content')().length">
+		<each args="getRegion('content')" render="" />
+	</div>
+</div>
+<div class="mgzreport-footer" if="getRegion('footer')().length">
+	<each args="getRegion('footer')" render="" />
+</div>

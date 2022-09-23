@@ -1,0 +1,233 @@
+{
+    "name": "ecommerce121/west-music",
+    "description": "eCommerce Platform for Growth (Enterprise Edition)",
+    "type": "project",
+    "version": "2.4.2",
+    "license": "OSL-3.0",
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "repositories": {
+        "repo": {
+            "type": "composer",
+            "url": "https://repo.magento.com",
+            "canonical": false
+        },
+        "ecommerce121": {
+            "type": "composer",
+            "url": "https://composer.121ecommerce.com/"
+        },
+        "aheadworks": {
+            "type": "composer",
+            "url": "https://dist.aheadworks.com/"
+        },
+        "amasty": {
+            "type": "composer",
+            "url": "https://composer.amasty.com/enterprise/"
+        },
+        "bsscommerce": {
+            "type": "composer",
+            "url": "https://composer.bsscommerce.com/enterprise"
+        },
+        "magefan": {
+            "type": "composer",
+            "url": "https://magefan.com/repo/"
+        },
+        "wyomind": {
+            "type": "composer",
+            "url": "https://repo.wyomind.com"
+        },
+        "Ced_Reverb": {
+            "type": "composer",
+            "url": "https://repo.cedcommerce.com"
+        },
+        "perfion": {
+            "type": "composer",
+            "url": "https://semaio.repo.packagist.com/perfion/"
+        },
+        "redchamps": {
+            "type": "composer",
+            "url": "https://repo.redchamps.com/repositories/clientadvocates@121ecommerce.com-DJPcG1KkY5igAY18vgZNyr7yj3s8gs8L"
+        }
+    },
+    "require": {
+        "aheadworks/module-freeshippinglabel": "^1.2",
+        "amasty/affiliate": "^2.1",
+        "amasty/amp": "^1.3",
+        "amasty/blog": "^2.7",
+        "amasty/custom-stock-status-msi": "^1.0",
+        "amasty/feed": "^2.6",
+        "amasty/finder": "^1.11",
+        "amasty/geoip": "^1.5",
+        "amasty/label": "^2.1",
+        "amasty/module-ccpa": "^1.3",
+        "amasty/module-elastic-search": "1.13.3",
+        "amasty/module-faq-product-questions": "^2.9",
+        "amasty/module-fpc-warmer": "^2.3",
+        "amasty/module-hide-price": "^1.5",
+        "amasty/module-improved-layered-navigation-page": "^2.7",
+        "amasty/module-magento-custom-form": "^1.15",
+        "amasty/module-magento-custom-form-graphql": "^1.0",
+        "amasty/module-one-step-checkout-pro-package": "^2.0",
+        "amasty/module-page-speed-optimizer": "^2.1",
+        "amasty/module-promo-banners": "^1.1",
+        "amasty/module-promo-mftf-3": "^1.0",
+        "amasty/module-seo-toolkit": "^1.20",
+        "amasty/module-shipping-suite": "^1.0",
+        "amasty/module-shop-by-base": "^2.15",
+        "amasty/module-shop-by-brand": "^2.12",
+        "amasty/module-store-pickup-with-locator": "^2.5",
+        "amasty/module-store-pickup-with-locator-msi": "^1.0",
+        "amasty/orderattr": "^3.7",
+        "amasty/payrestriction": "^2.3",
+        "amasty/product-attachment": "^2.4",
+        "amasty/promo": "^2.10",
+        "amasty/shippingtablerates": "^1.10",
+        "amasty/shiprestriction": "^2.6",
+        "amasty/shiprules": "^2.8",
+        "amasty/shopby": "^2.17",
+        "amasty/shopby-graphql": "^1.0",
+        "amasty/shopby-root": "^2.9",
+        "amasty/shopby-seo": "^2.12",
+        "amasty/stockstatus": "^2.3",
+        "avada/module-proofo": "^1.0",
+        "bread/module-breadcheckout": "^1.1",
+        "bsscommerce/popup": "^1.1",
+        "ced/integrator": "^1.2",
+        "ced/reverb-integration": "1.0.7.2",
+        "cweagans/composer-patches": "^1.7",
+        "ecommerce121/ajax-related-products": "^1.0",
+        "ecommerce121/basket": "^1.0",
+        "ecommerce121/error-messaging-product-option": "^1.0",
+        "ecommerce121/intuitive-related-products": "^1.0",
+        "ecommerce121/master-coupon": "^2.0",
+        "ecommerce121/persistent-layered-navigation": "^1.0",
+        "ecommerce121/product-popup": "^1.0",
+        "ecommerce121/product-variations": "^1.0",
+        "ecommerce121/rapid-list-ordering": "^2.0",
+        "ecommerce121/sticky-header": "^1.0",
+        "eyemagine/hubspot": "^2.0",
+        "geoip2/geoip2": "^2.12",
+        "magefan/module-convert-guest-to-customer": "^2.0",
+        "magento/extension-b2b": "1.3.1",
+        "magento/live-search": "1.3.1",
+        "magento/magento-cloud-metapackage": ">=2.4.2 <2.4.3",
+        "magento/product-recommendations": "^3.3",
+        "magepal/magento2-customeraccountlinksmanager": "^1.2",
+        "mageplaza/magento-2-social-login": "^4.1",
+        "malibucommerce/mconnect-magento2": "^2.11",
+        "mpdf/mpdf": "^8.0",
+        "mpdf/qrcode": "^1.1",
+        "perfion/perfion-magento-connector": "^3.0.0",
+        "perfion/perfion-objectdata-importer-magento2": "^1.1.0",
+        "perfion/perfion-objectdata-importer-magento2-commerce": "^1.2.0",
+        "redchamps/module-share-cart": "^1.3",
+        "vurbis/magento2-punchout": "^2.4",
+        "wyomind/googlecustomerreviews": "^3.5",
+        "zonos/checkout": "^2.2",
+        "zonos/hello": "^2.0"
+    },
+    "suggest": {
+        "ext-pcntl": "Need for run processes in parallel mode"
+    },
+    "conflict": {
+        "gene/bluefoot": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Magento\\Setup\\": "setup/src/Magento/Setup/",
+            "Magento\\": "app/code/Magento/",
+            "Zend\\Mvc\\Controller\\": "setup/src/Zend/Mvc/Controller/"
+        },
+        "psr-0": {
+            "": [
+                "app/code/",
+                "generated/code/",
+                "lib/"
+            ]
+        },
+        "files": [
+            "app/etc/NonComposerComponentRegistration.php"
+        ],
+        "exclude-from-classmap": [
+            "**/dev/**",
+            "**/update/**",
+            "**/Test/**"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Magento\\Sniffs\\": "dev/tests/static/framework/Magento/Sniffs/",
+            "Magento\\Tools\\": "dev/tools/Magento/Tools/",
+            "Magento\\Tools\\Sanity\\": "dev/build/publication/sanity/Magento/Tools/Sanity/",
+            "Magento\\TestFramework\\Inspection\\": "dev/tests/static/framework/Magento/TestFramework/Inspection/",
+            "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/"
+        }
+    },
+    "minimum-stability": "alpha",
+    "prefer-stable": true,
+    "extra": {
+        "component_paths": {
+            "trentrichardson/jquery-timepicker-addon": "lib/web/jquery/jquery-ui-timepicker-addon.js",
+            "components/jquery": [
+                "lib/web/jquery.js",
+                "lib/web/jquery/jquery.min.js",
+                "lib/web/jquery/jquery-migrate.js"
+            ],
+            "blueimp/jquery-file-upload": "lib/web/jquery/fileUploader",
+            "components/jqueryui": [
+                "lib/web/jquery/jquery-ui.js"
+            ],
+            "twbs/bootstrap": [
+                "lib/web/jquery/jquery.tabs.js"
+            ],
+            "tinymce/tinymce": "lib/web/tiny_mce_4"
+        },
+        "magento-force": true,
+        "magento-deploystrategy": "copy",
+        "patches": {
+            "magento/module-checkout": {
+                "MDVA-33289": "patches/MDVA-33289.patch"
+            },
+            "magento/module-google-tag-manager": {
+                "switching billing address causes Javascript function text to render in front-end checkout payment section": "patches/billing-address-causes-javascript-issue-on-checkout.patch"
+            },
+            "amasty/module-lazy-load": {
+                "Fix validation on preg match": "patches/amasty_lazy_load.patch"
+            },
+            "magento/module-product-video": {
+                "Fix vimeo video": "patches/fix_magento_product_video.patch"
+            },
+            "paradoxlabs/subscriptions": {
+                "Fix state incompatibility with mageworx custom options": "patches/paradoxlabs_state.patch"
+            },
+            "magento/module-cms": {
+                "Fix media directory tree slow load": "patches/fix_media_directory.patch"
+            },
+            "magento/module-media-gallery-ui": {
+                "Fix media directory tree structure": "patches/fix_media_directorytree.patch"
+            },
+            "amasty/shippingtablerates": {
+                "Fix incompatibility with amasty shipping rates": "patches/paradoxlabs_amasty_rates.diff"
+            },
+            "amasty/module-elastic-search": {
+                "Fix search": "patches/amasty_elasticsearch_fix_search.patch"
+            },
+            "magento/module-ui": {
+                "Radio buttons for shipping methods are disabled in shopping cart and during checkout": "patches/magento_issue_25737.patch"
+            },
+            "amasty/shopby": {
+                "sorting bug": "patches/amasty_sortby_WMU288.patch"
+            },
+            "amasty/module-one-step-checkout-core" : {
+                "Amasty checkout fix" : "patches/349911-Amasty_CheckoutCore-fix-payment-methods-and-remove-address-validation-vendor.patch"
+            }
+        }
+    },
+    "require-dev": {
+        "ecommerce121/phpstan-magento2": "^1.0",
+        "magento/magento-coding-standard": "^6.0",
+        "sebastian/phpcpd": "^6.0"
+    }
+}

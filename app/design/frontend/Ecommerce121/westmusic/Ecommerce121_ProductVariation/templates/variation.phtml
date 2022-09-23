@@ -1,0 +1,55 @@
+<?php
+/**
+ * @var Ecommerce121\ProductVariation\Block\Product\View\Type\SimpleVariation $block
+ * @var Ecommerce121\ProductVariation\ViewModel\Product\View\VariationRenderStrategy $renderStrategy
+ */
+
+$product = $block->getProduct();
+if (!$block->isProductVariation($product)) {
+    return;
+}
+?>
+<?php
+$renderStrategy = $block->getRenderStrategy();
+$variations = $block->getProductsVariations($product);
+?>
+<?php if ($renderStrategy->renderSwatches($variations)): ?>
+    <label class="product-variation-label"
+           title="<?= $block->escapeHtml($product->getSkuOption()); ?>">
+        <?= $block->escapeHtml(__('Option:')) ?>
+        <span><?= $block->escapeHtml($product->getSkuOption()) ?></span>
+    </label>
+    <div class="product-variation-list">
+        <?php
+        foreach ($variations as $product): ?>
+            <div class="product-variation-item">
+                <a href="<?= $block->escapeUrl($block->getProductUrl($product)); ?>"
+                   class="product photo product-item-photo" title="<?= $block->escapeHtml($product->getSkuOption()) ?>">
+                <?php $product->setData('exclude_amlabel', true); ?>
+                    <?= $block->getImage($product, 'product_thumbnail_image')->toHtml() ?>
+                </a>
+                <?= /* @noEscape */ $block->getProductPrice($product) ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <label for="ecommerce-options"><?= $block->escapeHtml(__('Select Option:')) ?></label>
+
+    <select name="ecommerce_options" id="ecommerce-options">
+        <option value=""></option>
+        <?php foreach ($variations as $variation): ?>
+            <option value="<?= $block->escapeHtml($variation->getId()) ?>"
+                    data-url="<?= $block->escapeUrl($block->getProductUrl($variation)); ?>">
+                <?= $block->escapeHtml($variation->getSkuOption() ?? $variation->getName()) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+{
+    ".product-variation-container": {
+       "product_variation": {}
+    }
+}
+</script>

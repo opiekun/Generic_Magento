@@ -1,0 +1,10 @@
+<div class="mgz__control-inner">
+	<ui-select multiple ng-model="model[options.key]" theme="bootstrap" class="mgz__control-uiselect" close-on-select="false" search-enabled="true">
+		<ui-select-match placeholder="{{to.placeholder}}">{{ $item.short_label ? $item.short_label : $item.label }}</ui-select-match>
+		<ui-select-choices position='down' repeat="option[to.valueProp || 'value'] as option in to.options | filter: $select.search"
+			refresh="refresh($select)"
+			refresh-delay="300">
+			<div ng-bind-html="(to.showValue ? '[' + option['value'] + '] ' : '') + option[to.labelProp || 'label'] | highlight: $select.search"></div>
+		</ui-select-choices>
+	</ui-select>
+</div>

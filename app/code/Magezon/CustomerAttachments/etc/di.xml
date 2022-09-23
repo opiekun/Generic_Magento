@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://magezon.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_CustomerAttachments
+ * @copyright Copyright (C) 2018 Magezon (https://magezon.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magezon\CustomerAttachments\Api\Data\AttachmentSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Magezon\CustomerAttachments\Api\Data\AttachmentInterface" type="Magezon\CustomerAttachments\Model\Attachment" />
+    <preference for="Magezon\CustomerAttachments\Api\AttachmentRepositoryInterface" type="Magezon\CustomerAttachments\Model\AttachmentRepository" />
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="customerattachments_attachment_listing_data_source" xsi:type="string">Magezon\CustomerAttachments\Model\ResourceModel\Attachment\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magezon\CustomerAttachments\Model\ResourceModel\Attachment\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">customerattachments_attachment</argument>
+            <argument name="eventPrefix" xsi:type="string">customerattachments_attachment_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">attachment_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Magezon\CustomerAttachments\Model\ResourceModel\Attachment</argument>
+        </arguments>
+    </type>
+    <preference for="Magezon\CustomerAttachments\Api\AttachmentRepositoryInterface" type="Magezon\CustomerAttachments\Model\AttachmentRepository" />
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="Magezon\CustomerAttachments\Api\AttachmentRepositoryInterface" xsi:type="string">Magezon\CustomerAttachments\Api\AttachmentRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Magezon\CustomerAttachments\Api\Data\AttachmentInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">customerattachments_attachment</item>
+                    <item name="identifierField" xsi:type="string">attachment_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Magezon\CustomerAttachments\Api\Data\AttachmentInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="websiteReader" xsi:type="string">Magezon\CustomerAttachments\Model\ResourceModel\Attachment\Relation\Website\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="websiteReader" xsi:type="string">Magezon\CustomerAttachments\Model\ResourceModel\Attachment\Relation\Website\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="websiteReader" xsi:type="string">Magezon\CustomerAttachments\Model\ResourceModel\Attachment\Relation\Website\SaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Magezon\CustomerAttachments\Api\Data\AttachmentInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Magezon\CustomerAttachments\Model\Api\SearchCriteria\CollectionProcessor\AttachmentFilterProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor">
+        <arguments>
+            <argument name="customFilters" xsi:type="array">
+                <item name="website_id" xsi:type="object">Magezon\CustomerAttachments\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor\AttachmentWebsiteFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magezon\CustomerAttachments\Model\Api\SearchCriteria\AttachmentCollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">Magezon\CustomerAttachments\Model\Api\SearchCriteria\CollectionProcessor\AttachmentFilterProcessor</item>
+                <item name="sorting" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor</item>
+                <item name="pagination" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magezon\CustomerAttachments\Model\AttachmentRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Magezon\CustomerAttachments\Model\Api\SearchCriteria\AttachmentCollectionProcessor</argument>
+        </arguments>
+    </type>
+    <type name="Magezon\CustomerAttachments\Model\ResourceModel\Attachment">
+        <plugin name="mca_attachment_save" type="Magezon\CustomerAttachments\Plugin\Model\ResourceModel\Attachment" />
+    </type>
+    <preference for="Magezon\CustomerAttachments\Api\Data\ConditionInterface" type="Magezon\CustomerAttachments\Model\Data\Condition" />
+</config>

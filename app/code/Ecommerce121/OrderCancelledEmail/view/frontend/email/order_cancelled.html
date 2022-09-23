@@ -1,0 +1,23 @@
+<!--@subject {{trans "Your order #%increment_id has been canceled" increment_id=$data.increment_id}} @-->
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "%name," name=$data.customer_name}}</p>
+            <p>
+                {{trans
+                "Your order <strong>#%increment_id</strong> has been <strong>canceled</strong>."
+
+                increment_id=$data.increment_id
+                |raw}}
+            </p>
+            <p>
+                {{trans 'If you have questions about your order, you can email us at <a href="mailto:%store_email">%store_email</a>' store_email=$data.store_email |raw}}
+                {{depend $data.store_phone}} {{trans 'or call us at <a href="tel:%store_phone">%store_phone</a>' store_phone=$data.store_phone |raw}}{{/depend}}.
+            </p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}
