@@ -1,0 +1,1 @@
+generic Magento for docker
